@@ -50,6 +50,14 @@ python scripts/validate_static_release.py
 
 완성 파일은 `release/GABA_Feed_Public_Site_Static_Deploy.zip`입니다. 압축파일 최상위에 `index.html`이 있으므로 정적 웹호스팅의 직접 업로드 화면에 그대로 올릴 수 있습니다. 배포본에는 `.openai` 설정, 로컬 경로, 인증 정보가 들어가지 않습니다. 자세한 방법은 압축파일 안의 `DEPLOYMENT_GUIDE.md`를 확인합니다.
 
+Cloudflare Pages 프로젝트와 배포용 환경변수가 준비된 경우 다음 명령으로 검증부터 업로드까지 한 번에 실행할 수 있습니다.
+
+```powershell
+.\scripts\publish_cloudflare_pages.ps1 -ProjectName gaba-feed-business-index
+```
+
+업로드 없이 빌드와 검증만 다시 수행하려면 `-ValidateOnly`를 붙입니다.
+
 ## 자료 관리 원칙
 
 - 사용자 제공 이력과 생산가능량은 외부 확인 전까지 ‘사용자 제공 자료’로 표시합니다.

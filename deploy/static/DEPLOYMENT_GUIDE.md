@@ -12,6 +12,12 @@
 Cloudflare Pages의 Direct Upload는 미리 만든 정적 폴더나 ZIP 업로드를 지원합니다.
 https://developers.cloudflare.com/pages/get-started/direct-upload/
 
+Cloudflare Pages 프로젝트와 `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` 환경변수가 준비되어 있다면 저장소 루트에서 다음 명령으로 검증과 배포를 함께 실행할 수 있습니다.
+
+```powershell
+.\scripts\publish_cloudflare_pages.ps1 -ProjectName gaba-feed-business-index
+```
+
 GitHub Pages 자동 배포를 사용할 때는 저장소 루트의 `.github/workflows/public-index.yml`을 사용합니다.
 https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
 
