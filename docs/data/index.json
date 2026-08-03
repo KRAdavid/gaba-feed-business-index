@@ -67,6 +67,7 @@
       "capacity_value": 20,
       "capacity_unit": "배양액 톤/월",
       "capacity_label": "월 20톤",
+      "crude_capacity_label": "가바(20%)크루드 이론 월 20톤",
       "basis": "사용자 제공 자료 기준"
     },
     {
@@ -74,6 +75,7 @@
       "capacity_value": 200,
       "capacity_unit": "배양액 톤/월",
       "capacity_label": "월 200톤",
+      "crude_capacity_label": "가바(20%)크루드 이론 월 200톤",
       "basis": "사용자 제공 자료 기준"
     }
   ],
@@ -81,7 +83,8 @@
     "value": 220,
     "unit": "배양액 톤/월",
     "label": "월 220톤",
-    "basis": "두 생산 파트너의 사용자 제공 자료 합계"
+    "crude_label": "가바(20%)크루드 이론 월 220톤",
+    "basis": "두 생산 파트너의 사용자 제공 자료 합계 · 배양액 1톤당 이론 생산량 1톤"
   },
   "caremix_advancement": {
     "goal": "가바케어믹스를 주요 가축의 생산성과 축산물 품질을 함께 검증하는 브랜드 축산용 배합사료로 고도화합니다.",
@@ -887,7 +890,7 @@
   ],
   "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T07:58:58Z",
+    "generated_at": "2026-08-03T08:03:41Z",
     "as_of_date": "2026-08-03",
     "timezone": "Asia/Seoul",
     "automation": "Codex 주간 자동화 + Sites production 배포",
@@ -1571,23 +1574,23 @@
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T07:58:58Z",
+        "fetched_at": "2026-08-03T08:03:41Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T07:58:58Z",
+        "fetched_at": "2026-08-03T08:03:41Z",
         "item_count": 6
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T07:58:58Z",
+        "fetched_at": "2026-08-03T08:03:41Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T07:58:58Z",
+    "last_successful_live_refresh": "2026-08-03T08:03:41Z",
     "review_queue_count": 18
   }
 }

@@ -318,7 +318,7 @@
     "status": "ready",
     "datasets": {
       "summary": [
-        { "readiness": 41, "readiness_target": 100, "readiness_gap": 59, "critical_gates": 4, "business_tracks": 2, "production_capacity": 220, "source_count": 14, "validation_sprint_days": 30 }
+ { "readiness": 41, "readiness_target": 100, "readiness_gap": 59, "critical_gates": 4, "business_tracks": 2, "production_capacity": 220, "crude_capacity": 220, "source_count": 14, "validation_sprint_days": 30 }
       ],
       "business_model": [
         { "order": 1, "name": "가바크루드", "category": "원료 사업", "product": "GABA 20% 기준품 · OEM 5~20% 맞춤 농도", "sales_model": "기준품·주문형 원료 판매", "quality_focus": "활성 GABA 함량 · 로트별 시험성적서 · 농도별 제품 규격" },
@@ -349,8 +349,8 @@
         { "order": 3, "name": "박지호", "role": "정밀발효·정제 전문가", "current": "현 셀핀다 생명과학연구소 소장", "experience": "전 현대바이오랜드 재직" }
       ],
       "partners": [
-        { "name": "비전바이오켐", "capacity": 20, "basis": "사용자 제공 자료 기준" },
-        { "name": "지에프퍼멘텍", "capacity": 200, "basis": "사용자 제공 자료 기준" }
+ { "name": "비전바이오켐", "capacity": 20, "crude_capacity": 20, "basis": "사용자 제공 자료 기준" },
+ { "name": "지에프퍼멘텍", "capacity": 200, "crude_capacity": 200, "basis": "사용자 제공 자료 기준" }
       ],
       "readiness": [
         { "dimension": "규제·품목분류", "score": 6, "gate": "GABA/발효배양물의 분류·등록경로" },

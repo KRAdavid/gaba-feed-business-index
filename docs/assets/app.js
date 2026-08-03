@@ -203,7 +203,8 @@
       <ul>${row.experience.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
     </article>`).join("");
     $("#partner-total").textContent = `${data.production_capacity_summary.label} · 배양액`;
-    $("#partner-list").innerHTML = data.production_partners.map(row => `<div class="partner-row"><div><strong>${escapeHTML(row.name)}</strong><small>${escapeHTML(row.basis)}</small></div><span>${escapeHTML(row.capacity_label)}</span></div>`).join("");
+    $("#crude-partner-total").textContent = data.production_capacity_summary.crude_label || "가바(20%)크루드 이론 환산 확인 필요";
+    $("#partner-list").innerHTML = data.production_partners.map(row => `<div class="partner-row"><div><strong>${escapeHTML(row.name)}</strong><small>${escapeHTML(row.basis)}</small></div><span><b>${escapeHTML(row.capacity_label)}</b><small>${escapeHTML(row.crude_capacity_label || "가바(20%)크루드 환산 확인 필요")}</small></span></div>`).join("");
   }
 
   function renderHealth(data) {

@@ -52,6 +52,7 @@
       "capacity_value": 20,
       "capacity_unit": "배양액 톤/월",
       "capacity_label": "월 20톤",
+      "crude_capacity_label": "가바(20%)크루드 이론 월 20톤",
       "basis": "사용자 제공 자료 기준"
     },
     {
@@ -59,6 +60,7 @@
       "capacity_value": 200,
       "capacity_unit": "배양액 톤/월",
       "capacity_label": "월 200톤",
+      "crude_capacity_label": "가바(20%)크루드 이론 월 200톤",
       "basis": "사용자 제공 자료 기준"
     }
   ],
@@ -66,7 +68,8 @@
     "value": 220,
     "unit": "배양액 톤/월",
     "label": "월 220톤",
-    "basis": "두 생산 파트너의 사용자 제공 자료 합계"
+    "crude_label": "가바(20%)크루드 이론 월 220톤",
+    "basis": "두 생산 파트너의 사용자 제공 자료 합계 · 배양액 1톤당 이론 생산량 1톤"
   },
   "caremix_advancement": {
     "goal": "가바케어믹스를 주요 가축의 생산성과 축산물 품질을 함께 검증하는 브랜드 축산용 배합사료로 고도화합니다.",
