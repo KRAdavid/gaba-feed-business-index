@@ -25,9 +25,9 @@ REQUIRED_FILES = (
     DOCS / "data" / "index.json",
 )
 DOWNLOAD_PAIRS = (
-    (ROOT / "GABA_Index_Master.xlsx", DOCS / "downloads" / "GABA_Index_Master.xlsx"),
     (ROOT / "GABA_Feed_Business_Model_Speech_Deck_v1.pptx", DOCS / "downloads" / "GABA_Feed_Business_Model_Speech_Deck_v1.pptx"),
-    (ROOT / "GABA_Index_운영가이드.md", DOCS / "downloads" / "GABA_Index_운영가이드.md"),
+    (ROOT / "GABA_Crude_Specification.md", DOCS / "downloads" / "GABA_Crude_Specification.md"),
+    (ROOT / "GABA_Caremix_Specification.md", DOCS / "downloads" / "GABA_Caremix_Specification.md"),
 )
 EXPECTED_LIVE_SOURCES = {"mafra_rss", "europe_pmc", "world_bank_pink_sheet"}
 DISCOURAGED_PUBLIC_TERMS = (
