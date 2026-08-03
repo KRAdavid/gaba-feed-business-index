@@ -239,6 +239,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .roadmap-card ul { margin: 0; padding: 0; list-style: none; }
 .roadmap-card li { position: relative; padding: 12px 0 12px 22px; border-top: 1px solid #edf0ed; color: #50605a; font-size: 12px; }
 .roadmap-card li::before { content: "✓"; position: absolute; left: 0; color: var(--leaf); font-weight: 900; }
+.timeline-card { display: flex; flex-direction: column; }
+.timeline-model { min-height: 42px; margin: -10px 0 16px; color: var(--leaf); font-size: 12px; font-weight: 800; }
+.timeline-gate { margin-top: auto; padding-top: 18px; border-top: 1px solid #dfe6df; }
+.timeline-gate span { display: block; margin-bottom: 6px; color: #77857f; font-size: 10px; font-weight: 900; letter-spacing: .08em; }
+.timeline-gate strong { display: block; color: var(--ink); font-size: 12px; line-height: 1.55; }
+.timeline-note { margin: 16px 0 0; color: #66736e; font-size: 12px; line-height: 1.7; }
 
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .team-card { min-height: 270px; padding: 28px; background: white; border: 1px solid #e0e5e0; border-radius: var(--radius); }

@@ -160,6 +160,10 @@
     $("#roadmap-list").innerHTML = rows.map(row => `<article class="roadmap-card"><span class="window">${escapeHTML(row.window)}</span><h3>${escapeHTML(row.theme)}</h3><ul>${row.actions.map(action => `<li>${escapeHTML(action)}</li>`).join("")}</ul></article>`).join("");
   }
 
+  function renderProjectTimeline(rows) {
+    $("#project-timeline-list").innerHTML = rows.map(row => `<article class="roadmap-card timeline-card"><span class="window">${escapeHTML(row.window)}</span><h3>${escapeHTML(row.theme)}</h3><p class="timeline-model">${escapeHTML(row.model)}</p><ul>${row.actions.map(action => `<li>${escapeHTML(action)}</li>`).join("")}</ul><div class="timeline-gate"><span>다음 단계 조건</span><strong>${escapeHTML(row.gate)}</strong></div></article>`).join("");
+  }
+
   function renderTeam(data) {
     $("#team-grid").innerHTML = data.commercialization_team.map(row => `<article class="team-card">
       <span>${escapeHTML(row.role)}</span><h3>${escapeHTML(row.name)}</h3><p class="current-role">${escapeHTML(row.current)}</p>
@@ -198,6 +202,7 @@
     renderMarket(data);
     renderAssumptions(data.assumptions);
     renderRoadmap(data.roadmap);
+    renderProjectTimeline(data.project_timeline || []);
     renderTeam(data);
     renderHealth(data);
     renderDownloads(data.downloads);

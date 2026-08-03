@@ -191,8 +191,8 @@
       },
       {
         "id": "economics_table",
-        "title": "단위 경제성 — 숫자보다 근거를 먼저 확인합니다",
-        "subtitle": "주황 입력값이 실제 견적·시험생산·유효용량으로 대체되기 전에는 투자수익으로 표현하지 않습니다.",
+        "title": "매출·원가·이익 — 배양액부터 매출총이익까지 계산합니다",
+        "subtitle": "배양액 조성과 생산수율은 제시된 기준으로 계산하고, 말토덱스트린·가공·검사·포장 원가는 실제 견적을 입력한 뒤 확정합니다.",
         "dataset": "economics",
         "sourceId": "source_register",
         "density": "dense",
@@ -203,6 +203,22 @@
           { "field": "formula", "label": "산식/정의", "type": "text" },
           { "field": "evidence", "label": "근거 상태", "type": "text" },
             { "field": "unlock", "label": "완료 조건", "type": "text" }
+        ]
+      },
+      {
+        "id": "timeline_table",
+        "title": "사업화 일정 — 파일럿 생산에서 자체 공장까지",
+        "subtitle": "목표 일정은 단계별 수요·품질·매출총이익·투자 조건을 통과할 때만 다음 단계로 전환합니다.",
+        "dataset": "timeline",
+        "sourceId": "user_update",
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "period", "label": "목표 시점", "type": "text" },
+          { "field": "stage", "label": "단계", "type": "text" },
+          { "field": "operating_model", "label": "운영 방식", "type": "text" },
+          { "field": "target", "label": "핵심 목표", "type": "text" },
+          { "field": "gate", "label": "다음 단계 승인 조건", "type": "text" }
         ]
       },
       {
@@ -254,13 +270,14 @@
       },
       { "id": "signals", "type": "table", "tableId": "signal_table", "layout": "full" },
       { "id": "economics", "type": "table", "tableId": "economics_table", "layout": "full" },
+      { "id": "timeline", "type": "table", "tableId": "timeline_table", "layout": "full" },
       { "id": "team", "type": "table", "tableId": "team_table", "layout": "full" },
       { "id": "partners", "type": "table", "tableId": "partner_table", "layout": "full" },
       { "id": "glossary", "type": "table", "tableId": "glossary_table", "layout": "full" },
       {
         "id": "appendix",
         "type": "markdown",
-        "body": "## APPENDIX · 계산식·판단 기준·이용 안내\n\n30일 목표는 제품·사업 준비와 유료 실증 착수 시점이며 육질 개선 효능을 확정하는 시점이 아닙니다. 생산성은 90일의 조기 신호와 출하 시점의 누적 결과를 함께 보고, 육질은 개체 식별이 연결된 도축 성적서로 최종 판단합니다. 준비도 점수는 투자 등급, 신용 평가, 제품 효능 등급이 아닙니다. GABA와 발효배양물의 법적 분류, 표시·광고 문구, 축종별 유효 용량, 공장 적합성과 실제 견적은 별도로 확인해야 합니다."
+        "body": "## APPENDIX · 계산식·판단 기준·이용 안내\n\n30일 목표는 제품·사업 준비와 유료 실증 착수 시점이며 육질 개선 효능을 확정하는 시점이 아닙니다. 생산성은 90일의 조기 신호와 출하 시점의 누적 결과를 함께 보고, 육질은 개체 식별이 연결된 도축 성적서로 최종 판단합니다. 2026년 8월 파일럿 생산, 2027년 상반기 양산 가동, 2028년 하반기 자체 공장 설립은 목표 일정이며 수요·품질·매출총이익·투자 회수·인허가 조건을 통과해야 합니다. 준비도 점수는 투자 등급, 신용 평가, 제품 효능 등급이 아닙니다. GABA와 발효배양물의 법적 분류, 표시·광고 문구, 축종별 유효 용량, 공장 적합성과 실제 견적은 별도로 확인해야 합니다."
       }
     ]
   },
@@ -300,7 +317,7 @@
         { "dimension": "규제·품목분류", "score": 6, "gate": "GABA/발효배양물의 분류·등록경로" },
         { "dimension": "제품근거·유효용량", "score": 8, "gate": "활성함량·안정성·해당 제품의 유효 용량" },
         { "dimension": "공급·QA", "score": 12, "gate": "OEM 실사·견적·MOQ·리드타임·회수" },
-        { "dimension": "단위경제성", "score": 11, "gate": "9,240원/kg·4,681.8원/kg 비용 연결" },
+        { "dimension": "단위경제성", "score": 11, "gate": "말토덱스트린·가공 원가·실제 수율·가바케어믹스 제품원가 확인" },
         { "dimension": "상업검증", "score": 4, "gate": "유료 고객 시험·반복 주문 자료" }
       ],
       "signals": [
@@ -316,15 +333,26 @@
         { "date": "2023-11-20", "category": "정책·규제", "signal": "신규·변경 물질은 제조방법·안전성·품질·첨가수준 자료가 핵심", "judgment": "상시", "action": "심의 필요 여부와 제출자료 목록 확정", "source": "국가법령정보센터" }
       ],
       "economics": [
-        { "metric": "가바크루드 20% 기준품 판매가", "value": "18,000원/kg", "formula": "입력", "evidence": "검증 필요", "unlock": "고객 견적·가격 수용성" },
-        { "metric": "가바크루드 20% 기준품 원가 가정", "value": "9,240원/kg", "formula": "입력", "evidence": "세부 근거 확인 필요", "unlock": "배양·건조·부형제·검사·포장·수율의 세부 원가 내역" },
-        { "metric": "가바크루드 단위당 공헌이익", "value": "8,760원/kg", "formula": "18,000-9,240", "evidence": "가정 계산", "unlock": "실제 견적으로 다시 계산" },
-        { "metric": "가바케어믹스 프로그램 가격", "value": "6,000원/사료t", "formula": "입력", "evidence": "검증 필요", "unlock": "유료 PoV·가격 협상" },
+        { "metric": "가바배양액 구입원가", "value": "400만원/톤", "formula": "1,000L×4,000원/L", "evidence": "사용자 제공", "unlock": "공급 견적서" },
+        { "metric": "배양액 고형분 구성", "value": "GABA 200kg+기타 100kg", "formula": "배양액 1톤×고형분 30%; GABA:기타=2:1", "evidence": "사용자 제공", "unlock": "시험성적서" },
+        { "metric": "말토덱스트린 필요량", "value": "700kg/배양액 1톤", "formula": "가바크루드 1,000kg-고형분 300kg", "evidence": "계산", "unlock": "배치 투입기록" },
+        { "metric": "가바크루드 총생산량", "value": "1,000kg/배양액 1톤", "formula": "GABA 200kg÷최종 함량 20%", "evidence": "이론 계산", "unlock": "시험생산 수율" },
+        { "metric": "확인된 원가 하한", "value": "4,000원/kg", "formula": "배양액 400만원÷가바크루드 1,000kg", "evidence": "추가 원가 미반영", "unlock": "말토덱스트린·건조·검사·포장 견적" },
+        { "metric": "가바크루드 최종 매출원가", "value": "견적 입력 후 확정", "formula": "(400만원+700kg×말토덱스트린 단가+건조·검사·포장비)÷1,000kg", "evidence": "계산 대기", "unlock": "실제 견적·공정수율" },
+        { "metric": "가바크루드 판매가격", "value": "18,000원/kg", "formula": "입력", "evidence": "검증 필요", "unlock": "고객 견적·가격 수용성" },
+        { "metric": "가바크루드 매출총이익", "value": "최종 매출원가 확정 후 계산", "formula": "판매가격-매출원가", "evidence": "계산 대기", "unlock": "최종 매출원가" },
+        { "metric": "가바케어믹스 매출액", "value": "6,000원/사료t", "formula": "입력", "evidence": "검증 필요", "unlock": "유료 PoV·가격 협상" },
         { "metric": "가바케어믹스 투입량", "value": "75g/사료t", "formula": "입력", "evidence": "유효용량 미검증", "unlock": "제품 활성함량·제형·축종별 용량 연결" },
-        { "metric": "가바케어믹스 제품원가", "value": "351원/사료t", "formula": "0.075kg×4,681.8원/kg", "evidence": "가정 계산", "unlock": "투입량과 제품원가의 실제 견적" },
-        { "metric": "가바케어믹스 단위당 공헌이익", "value": "4,149원/사료t", "formula": "6,000-351-1,500", "evidence": "가정 계산", "unlock": "채널비·현장비·반품비 포함" },
-        { "metric": "T1 손익분기", "value": "10,991 사료t", "formula": "45.6백만원÷4,148.865원", "evidence": "시나리오", "unlock": "검증 예산과 단위당 공헌이익 확정" },
-        { "metric": "첫 반복 주문 총공헌이익", "value": "382.6백만원", "formula": "가바크루드 20t+가바케어믹스 50,000t", "evidence": "시나리오", "unlock": "실제 발주서와 반복 주문 자료" }
+        { "metric": "가바케어믹스 매출원가", "value": "351원/사료t", "formula": "0.075kg×4,681.8원/kg", "evidence": "가정 계산", "unlock": "투입량과 제품원가 실제 견적" },
+        { "metric": "가바케어믹스 매출총이익", "value": "5,649원/사료t", "formula": "6,000-351", "evidence": "가정 계산", "unlock": "제품 매출원가 확정" },
+        { "metric": "가바케어믹스 손익분기 기준이익", "value": "4,149원/사료t", "formula": "5,649-판매·현장 변동비 1,500", "evidence": "가정 계산", "unlock": "채널비·현장비·반품비 확정" },
+        { "metric": "T1 손익분기", "value": "10,991 사료t", "formula": "45.6백만원÷4,148.865원", "evidence": "시나리오", "unlock": "검증 예산과 손익분기 기준이익 확정" },
+        { "metric": "첫 반복 주문 총매출액", "value": "660백만원", "formula": "가바크루드 20t+가바케어믹스 50,000t", "evidence": "시나리오", "unlock": "실제 발주서와 반복 주문 자료" }
+      ],
+      "timeline": [
+        { "period": "2026년 8월", "stage": "파일럿 생산", "operating_model": "생산 파트너 활용", "target": "배치기록·3지점 시료·CoA·공정수율·실제 매출원가 확인", "gate": "제품 규격·QA·고객 시험용 출고 승인" },
+        { "period": "2027년 상반기", "stage": "양산 가동", "operating_model": "외부 생산 기반 상업 생산", "target": "반복 주문에 대응하는 생산·품질·납기 체계 가동", "gate": "유료 반복 주문·매출총이익·납기·품질 지표 충족" },
+        { "period": "2028년 하반기", "stage": "자체 공장 설립", "operating_model": "5·10·50톤급 발효조(퍼멘터) 대안 검토", "target": "수요에 맞는 자체 정밀발효·정제 생산 기반 구축", "gate": "확정 수요·가동률·투자 회수·인허가·자금조달 통과" }
       ],
       "glossary": [
         { "term": "GABA", "plain": "감마아미노부티르산", "use": "축종·용량·제형에 따라 효과가 달라질 수 있는 성분" },
@@ -335,7 +363,10 @@
         { "term": "MOQ", "plain": "최소주문수량", "use": "공장이 한 번에 생산하는 최소 물량" },
         { "term": "FIFO", "plain": "선입선출", "use": "먼저 입고한 재고를 먼저 출고" },
         { "term": "PoV", "plain": "고객 가치 검증", "use": "실제 고객 환경에서 제품이 경제적 가치를 만드는지 확인" },
-        { "term": "단위당 공헌이익", "plain": "한 단위를 팔아 남는 금액", "use": "판매가에서 제품 원가와 직접 변동비를 뺀 값" },
+        { "term": "매출액", "plain": "제품을 판매해 발생한 금액", "use": "판매수량에 판매가격을 곱한 값" },
+        { "term": "매출원가", "plain": "판매된 제품을 만드는 데 직접 들어간 원가", "use": "원료·가공·건조·검사·포장처럼 생산에 직접 연결되는 비용" },
+        { "term": "매출총이익", "plain": "매출액에서 매출원가를 뺀 금액", "use": "판매관리비와 고정비 차감 전 제품의 기본 수익성" },
+        { "term": "손익분기 기준이익", "plain": "고정비 회수에 기여하는 주문단위 이익", "use": "매출총이익에서 판매량에 따라 달라지는 판매·현장비를 뺀 값" },
         { "term": "품목분류", "plain": "어떤 사료로 볼지 결정", "use": "법적 범주와 등록경로를 정하는 절차" },
         { "term": "기준품", "plain": "품질과 농도의 기준이 되는 제품", "use": "가바크루드 GABA 20% 제품처럼 시험·출하 기준을 대표하는 규격" },
         { "term": "미네랄매트릭스", "plain": "미네랄 기반 배합체", "use": "가바크루드와 함께 가바케어믹스의 배합 구조와 투입 기준을 구성하는 혼합 기반" },
