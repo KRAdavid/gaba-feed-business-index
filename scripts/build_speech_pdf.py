@@ -11,8 +11,8 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "GABA_Feed_Business_Model_Speech_Deck_v1.pdf"
 FONT = "NotoSansKR"
-pdfmetrics.registerFont(TTFont(FONT, r"C:\Windows\Fonts\NotoSans-Regular.ttf"))
-pdfmetrics.registerFont(TTFont(FONT + "-Bold", r"C:\Windows\Fonts\NotoSans-Bold.ttf"))
+pdfmetrics.registerFont(TTFont(FONT, r"C:\Windows\Fonts\malgun.ttf"))
+pdfmetrics.registerFont(TTFont(FONT + "-Bold", r"C:\Windows\Fonts\malgunbd.ttf"))
 
 PAGE = landscape(A4)
 styles = getSampleStyleSheet()

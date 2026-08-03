@@ -9,8 +9,8 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 
 ROOT = Path(__file__).resolve().parents[1]
 FONT = "NotoSansKR"
-pdfmetrics.registerFont(TTFont(FONT, r"C:\Windows\Fonts\NotoSans-Regular.ttf"))
-pdfmetrics.registerFont(TTFont(FONT+"-Bold", r"C:\Windows\Fonts\NotoSans-Bold.ttf"))
+pdfmetrics.registerFont(TTFont(FONT, r"C:\Windows\Fonts\malgun.ttf"))
+pdfmetrics.registerFont(TTFont(FONT+"-Bold", r"C:\Windows\Fonts\malgunbd.ttf"))
 styles = getSampleStyleSheet()
 title = ParagraphStyle("title", parent=styles["Title"], fontName=FONT+"-Bold", fontSize=24, leading=32, textColor=colors.HexColor("#101828"))
 head = ParagraphStyle("head", parent=styles["Heading2"], fontName=FONT+"-Bold", fontSize=17, leading=24, textColor=colors.HexColor("#101828"))
