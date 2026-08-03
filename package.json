@@ -1,0 +1,10 @@
+{
+  "name": "gaba-feed-business-index",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:site": "node scripts/build_site_worker.mjs",
+    "check": "python scripts/validate_public_index.py && python scripts/validate_public_site.py && python -m unittest discover -s tests -v && node --check docs/assets/app.js && node scripts/build_site_worker.mjs"
+  }
+}

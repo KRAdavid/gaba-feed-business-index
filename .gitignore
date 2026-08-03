@@ -1,7 +1,9 @@
 _work/
+dist/
+node_modules/
+*.tar.gz
 *.inspect.ndjson
 __pycache__/
 *.pyc
 .DS_Store
 .env
-
