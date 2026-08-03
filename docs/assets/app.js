@@ -175,6 +175,7 @@
   }
 
   function renderMarket(data) {
+    if (!$("#market-grid")) return;
     const rows = Object.values(data.market || {}).filter(row => row && Array.isArray(row.points) && row.points.length);
     if (!rows.length) {
       const failed = (data.automation.source_health || []).filter(row => row.source === "world_bank_pink_sheet" && row.status !== "ok");
