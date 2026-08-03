@@ -25,7 +25,7 @@ REQUIRED_FILES = (
     DOCS / "data" / "index.json",
 )
 DOWNLOAD_PAIRS = (
-    (ROOT / "GABA_Feed_Business_Model_Speech_Deck_v1.pptx", DOCS / "downloads" / "GABA_Feed_Business_Model_Speech_Deck_v1.pptx"),
+    (ROOT / "GABA_Feed_Business_Model_Speech_Deck_v1.pdf", DOCS / "downloads" / "GABA_Feed_Business_Model_Speech_Deck_v1.pdf"),
     (ROOT / "GABA_Crude_Specification.md", DOCS / "downloads" / "GABA_Crude_Specification.md"),
     (ROOT / "GABA_Caremix_Specification.md", DOCS / "downloads" / "GABA_Caremix_Specification.md"),
 )

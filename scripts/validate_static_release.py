@@ -23,7 +23,7 @@ REQUIRED = {
     "health.json",
     "release-manifest.json",
     "DEPLOYMENT_GUIDE.md",
-    "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx",
+    "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf",
     "downloads/GABA_Crude_Specification.md",
     "downloads/GABA_Caremix_Specification.md",
 }
@@ -90,7 +90,7 @@ def validate() -> list[str]:
                 errors.append(f"file exceeds 25 MiB direct-upload limit: {info.filename}")
 
     for source_name in (
-        "GABA_Feed_Business_Model_Speech_Deck_v1.pptx",
+        "GABA_Feed_Business_Model_Speech_Deck_v1.pdf",
         "GABA_Crude_Specification.md",
         "GABA_Caremix_Specification.md",
     ):

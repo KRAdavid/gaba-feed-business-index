@@ -533,7 +533,7 @@
   ],
   "collection_schedule": {"timezone": "Asia/Seoul", "status": "예약 운영", "rule": "예약 수집은 탐색용이며, 원문·기준일·축종·시험조건을 검토한 뒤에만 준비도 점수 증빙으로 승격합니다.", "jobs": [{"category_id": "research_materials", "schedule": "매주 월요일 09:00", "next_run": "2026-08-10 09:00"}, {"category_id": "papers", "schedule": "매주 월요일 09:15", "next_run": "2026-08-10 09:15"}, {"category_id": "market_domestic", "schedule": "매주 월요일 09:30", "next_run": "2026-08-10 09:30"}, {"category_id": "market_overseas", "schedule": "매월 첫 영업일 09:45", "next_run": "2026-09-01 09:45"}]},
   "downloads": [
-    {"name": "사료업체·투자자 스피치덱", "file": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx", "type": "PPTX"},
+    {"name": "사료업체·투자자 스피치덱 PDF", "file": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf", "type": "PDF"},
     {"name": "가바크루드 규격서", "file": "downloads/GABA_Crude_Specification.md", "type": "MD"},
     {"name": "가바케어믹스 규격서", "file": "downloads/GABA_Caremix_Specification.md", "type": "MD"}
   ],
