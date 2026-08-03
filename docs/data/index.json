@@ -943,7 +943,7 @@
   ],
   "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T09:06:50Z",
+    "generated_at": "2026-08-03T09:32:02Z",
     "as_of_date": "2026-08-03",
     "timezone": "Asia/Seoul",
     "automation": "Codex 주간 자동화 + Sites production 배포",
@@ -1627,23 +1627,23 @@
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T09:06:50Z",
+        "fetched_at": "2026-08-03T09:32:02Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T09:06:50Z",
+        "fetched_at": "2026-08-03T09:32:02Z",
         "item_count": 6
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T09:06:50Z",
+        "fetched_at": "2026-08-03T09:32:02Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T09:06:50Z",
+    "last_successful_live_refresh": "2026-08-03T09:32:02Z",
     "review_queue_count": 18
   }
 }
