@@ -319,11 +319,12 @@
   ],
   "disclaimer": "이 공개 인덱스는 사업 준비도와 검증 순서를 관리하는 자료입니다. 법률·수의·사료·투자 자문을 대체하지 않으며, 자동 수집 신호는 검토 완료 전 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T02:28:22Z",
+    "generated_at": "2026-08-03T02:45:18Z",
     "as_of_date": "2026-08-03",
     "timezone": "Asia/Seoul",
-    "automation": "GitHub Actions weekly + manual dispatch",
+    "automation": "Codex 주간 자동화 + Sites production 배포",
     "next_scheduled_refresh": "매주 월요일 09:17 KST",
+    "public_url": "https://gaba-feed-business-index.dubaissday.chatgpt.site",
     "score_policy": "자동 수집 신호는 검토 완료 전 준비도 점수에 반영하지 않음"
   },
   "summary": {
@@ -1013,23 +1014,23 @@
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T02:28:22Z",
+        "fetched_at": "2026-08-03T02:45:18Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T02:28:22Z",
+        "fetched_at": "2026-08-03T02:45:18Z",
         "item_count": 7
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T02:28:22Z",
+        "fetched_at": "2026-08-03T02:45:18Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T02:28:22Z",
+    "last_successful_live_refresh": "2026-08-03T02:45:18Z",
     "review_queue_count": 19
   }
 }

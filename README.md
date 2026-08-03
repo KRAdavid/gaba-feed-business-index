@@ -4,7 +4,9 @@
 
 ## 공개 화면
 
-`docs/`가 GitHub Pages 배포 루트입니다. 저장소를 GitHub에 연결하고 **Settings → Pages → Source: GitHub Actions**를 선택하면 `.github/workflows/public-index.yml`이 사이트를 배포합니다.
+Production URL: [https://gaba-feed-business-index.dubaissday.chatgpt.site](https://gaba-feed-business-index.dubaissday.chatgpt.site)
+
+현재 공개본은 검증된 스냅샷이며, Codex 주간 자동화가 매주 월요일 09:17 KST에 원천 수집·검증·Sites 재배포를 수행합니다. `docs/`는 사이트 콘텐츠 원본이고 `worker/`와 `scripts/build_site_worker.mjs`가 Sites 배포 패키지를 만듭니다.
 
 ## 로컬 실행
 
@@ -17,9 +19,9 @@ python -m http.server 8000 --directory docs
 
 브라우저에서 `http://localhost:8000`을 엽니다. `index.html`을 파일로 직접 열면 브라우저 보안 정책 때문에 JSON을 불러올 수 없습니다.
 
-## 최초 공개
+## GitHub Pages 미러링(선택)
 
-빈 공개 GitHub 저장소를 만든 뒤 아래 명령 하나로 검증·커밋·push까지 수행할 수 있습니다.
+별도 GitHub Pages 미러가 필요하면 빈 공개 저장소를 만든 뒤 아래 명령으로 검증·커밋·push할 수 있습니다.
 
 ```powershell
 .\scripts\publish_github_pages.ps1 `
@@ -29,11 +31,11 @@ python -m http.server 8000 --directory docs
   -AuthorEmail "YOUR EMAIL"
 ```
 
-push가 끝나면 저장소의 **Settings → Pages → Source**를 `GitHub Actions`로 선택하고 `Refresh and publish public index` 워크플로를 한 번 실행합니다. 이후에는 예약 갱신과 배포가 자동으로 이어집니다.
+push가 끝나면 저장소의 **Settings → Pages → Source**를 `GitHub Actions`로 선택하고 `Refresh and publish public index` 워크플로를 한 번 실행합니다.
 
 ## 자동 업데이트
 
-- 매주 월요일 09:17 KST에 농림축산식품부 RSS, Europe PMC, World Bank Pink Sheet 원료가격 데이터를 확인합니다.
+- 매주 월요일 09:17 KST에 농림축산식품부 RSS, Europe PMC, World Bank Pink Sheet 원료가격 데이터를 확인하고 Sites production을 갱신합니다.
 - 원천 연결이 실패하면 이전 스냅샷을 유지하고 화면에 `이전값` 상태를 표시합니다.
 - 자동 수집된 신호는 `검토 대기`로 표시되며 준비도 점수에 자동 반영되지 않습니다.
 - 담당자가 원문·대상 축종·용량·시험설계·통계 결과를 검토한 뒤 `data/manual_signals.json`과 `data/base_index.json`을 갱신해야 점수가 바뀝니다.
@@ -47,6 +49,8 @@ push가 끝나면 저장소의 **Settings → Pages → Source**를 `GitHub Acti
 - `scripts/update_public_index.py` — 공개 원천 수집 및 스냅샷 생성
 - `scripts/validate_public_index.py` — 점수·필수 필드·출처 링크 불변조건 검증
 - `tests/` — 파서와 오프라인 복구 테스트
+- `.openai/hosting.json` — 기존 Sites 프로젝트를 재사용하기 위한 호스팅 식별자
+- `worker/` — 공개 사이트를 제공하는 Sites Worker 원본
 
 ## 운영 원칙
 

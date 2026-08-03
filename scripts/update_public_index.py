@@ -488,8 +488,9 @@ def build_index(
         "generated_at": now_iso,
         "as_of_date": now.date().isoformat(),
         "timezone": "Asia/Seoul",
-        "automation": "GitHub Actions weekly + manual dispatch",
+        "automation": "Codex 주간 자동화 + Sites production 배포",
         "next_scheduled_refresh": "매주 월요일 09:17 KST",
+        "public_url": "https://gaba-feed-business-index.dubaissday.chatgpt.site",
         "score_policy": "자동 수집 신호는 검토 완료 전 준비도 점수에 반영하지 않음",
     }
     result["summary"] = {
