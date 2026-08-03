@@ -4,7 +4,7 @@
     "version": 1,
     "surface": "dashboard",
     "title": "GABA Feed Business Model Index",
-    "description": "사료업계가 처음이어도 5분 안에 현재 상태와 근거, 다음에 할 일을 파악할 수 있는 운영 대시보드 · 기준일 2026-08-03",
+    "description": "사료업계가 처음이어도 가바크루드 원료 사업과 가바케어믹스 배합사료 사업의 구조, 현재 상태, 핵심 인력과 생산 기반을 5분 안에 파악할 수 있는 운영 대시보드 · 기준일 2026-08-03",
     "generatedAt": "2026-08-03T02:00:00Z",
     "filters": [
       {
@@ -30,6 +30,20 @@
         "dataset": "summary",
         "sourceId": "source_register",
         "metrics": [{ "label": "미완료 핵심 검증", "field": "critical_gates", "format": "number" }]
+      },
+      {
+        "id": "tracks_card",
+        "description": "원료 사업과 배합사료 사업을 구분해 관리합니다.",
+        "dataset": "summary",
+        "sourceId": "user_update",
+        "metrics": [{ "label": "사업 부문", "field": "business_tracks", "format": "number" }]
+      },
+      {
+        "id": "capacity_card",
+        "description": "두 생산 파트너가 제공한 배양액 월간 생산가능량의 합계입니다.",
+        "dataset": "summary",
+        "sourceId": "user_update",
+        "metrics": [{ "label": "배양액 생산가능량", "field": "production_capacity", "format": "number", "unit": "톤/월" }]
       },
       {
         "id": "signals_card",
@@ -71,6 +85,56 @@
       }
     ],
     "tables": [
+      {
+        "id": "business_model_table",
+        "title": "가바사료 사업은 두 부문으로 운영합니다",
+        "subtitle": "가바크루드는 원료를, 가바케어믹스는 배합사료와 현장 적용 프로그램을 담당합니다.",
+        "dataset": "business_model",
+        "sourceId": "user_update",
+        "defaultSort": { "field": "order", "direction": "asc" },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "order", "label": "순서", "type": "number" },
+          { "field": "name", "label": "사업명", "type": "text" },
+          { "field": "category", "label": "사업 구분", "type": "text" },
+          { "field": "product", "label": "제품·서비스", "type": "text" },
+          { "field": "sales_model", "label": "매출 방식", "type": "text" },
+          { "field": "quality_focus", "label": "품질 초점", "type": "text" }
+        ]
+      },
+      {
+        "id": "team_table",
+        "title": "사업화 핵심 인력",
+        "subtitle": "현재 역할과 주요 경력을 함께 확인합니다.",
+        "dataset": "team",
+        "sourceId": "user_update",
+        "defaultSort": { "field": "order", "direction": "asc" },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "order", "label": "순서", "type": "number" },
+          { "field": "name", "label": "성명", "type": "text" },
+          { "field": "role", "label": "사업 역할", "type": "text" },
+          { "field": "current", "label": "현재", "type": "text" },
+          { "field": "experience", "label": "주요 경력", "type": "text" }
+        ]
+      },
+      {
+        "id": "partner_table",
+        "title": "생산 파트너와 배양액 생산가능량",
+        "subtitle": "사용자 제공 자료 기준이며 계약·가동 조건은 외부 공유 전 다시 확인합니다.",
+        "dataset": "partners",
+        "sourceId": "user_update",
+        "defaultSort": { "field": "capacity", "direction": "desc" },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "name", "label": "생산 파트너", "type": "text" },
+          { "field": "capacity", "label": "배양액 톤/월", "type": "number" },
+          { "field": "basis", "label": "자료 기준", "type": "text" }
+        ]
+      },
       {
         "id": "signal_table",
         "title": "정책·산업·제품근거 신호",
@@ -122,6 +186,7 @@
     ],
     "sources": [
       { "id": "source_register", "label": "대시보드 재현 SQL · 원장은 02_Source_Register", "path": "_work/dashboard/gaba_index_snapshot.sql" },
+      { "id": "user_update", "label": "사용자 제공 사업화 정보 · 2026-08-03", "path": "_work/dashboard/user_update_snapshot.sql" },
       { "id": "source_workbook", "label": "감사 가능한 관리 원장", "path": "GABA_Index_Master.xlsx" },
       { "id": "feed_standard", "label": "사료 등의 기준 및 규격", "href": "https://www.law.go.kr/행정규칙/사료%20등의%20기준%20및%20규격" },
       { "id": "feed_committee", "label": "사료공정심의위원회 운영규정", "href": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000231582&chrClsCd=010201" },
@@ -136,18 +201,23 @@
       {
         "id": "decision_note",
         "type": "markdown",
-        "body": "## 지금의 결론\n\n**사업 구조는 유망하지만 아직 검증 단계입니다.** 20% 마스터 한 품목만 재고로 두고 5%·10%·15%·20% 제품은 주문 후 OEM 생산하는 구조는 재고 부담을 줄입니다. 다만 품목 분류, 해당 제품의 유효 용량, OEM 실제 견적, 유료 반복 주문은 아직 확인되지 않았습니다."
+        "sourceId": "user_update",
+        "body": "## 지금의 결론\n\n**가바사료 사업은 가바크루드 원료 사업과 가바케어믹스 배합사료 사업으로 나눠 추진합니다.** 가바크루드는 GABA 20% 기준품과 5~20% 주문형 OEM 원료를 공급하고, 가바케어믹스는 가바크루드와 미네랄매트릭스를 결합해 고객 현장에 적용합니다. 다만 품목 분류, 해당 제품의 유효 용량, OEM 실제 견적, 유료 반복 주문은 아직 확인되지 않았습니다."
       },
-      { "id": "metrics", "type": "metric-strip", "cardIds": ["readiness_card", "gates_card", "signals_card", "decision_card"] },
+      { "id": "metrics", "type": "metric-strip", "cardIds": ["readiness_card", "gates_card", "tracks_card", "capacity_card", "signals_card", "decision_card"] },
+      { "id": "business_model", "type": "table", "tableId": "business_model_table", "layout": "full" },
       { "id": "readiness", "type": "chart", "chartId": "readiness_axes", "layout": "half" },
       {
         "id": "next_90_days",
         "type": "markdown",
         "layout": "half",
+        "sourceId": "source_register",
         "body": "## 앞으로 90일 동안 확인할 일\n\n**0~30일** — 품목 분류·등록 경로 사전 검토, 제품 시험성적서와 활성 함량, OEM 2곳 정보 요청\n\n**31~60일** — 시험 생산, 안정성·균일도, 축종 하나에 집중한 유료 고객 시험계획\n\n**61~90일** — 첫 유료 발주서, 반복 주문 조건, 실제 원가를 바탕으로 투자·납품 여부 결정"
       },
       { "id": "signals", "type": "table", "tableId": "signal_table", "layout": "full" },
       { "id": "economics", "type": "table", "tableId": "economics_table", "layout": "full" },
+      { "id": "team", "type": "table", "tableId": "team_table", "layout": "full" },
+      { "id": "partners", "type": "table", "tableId": "partner_table", "layout": "full" },
       { "id": "glossary", "type": "table", "tableId": "glossary_table", "layout": "full" },
       {
         "id": "appendix",
@@ -162,7 +232,20 @@
     "status": "ready",
     "datasets": {
       "summary": [
-        { "readiness": 41, "critical_gates": 4, "source_count": 10, "decision_windows": 3 }
+        { "readiness": 41, "critical_gates": 4, "business_tracks": 2, "production_capacity": 220, "source_count": 10, "decision_windows": 3 }
+      ],
+      "business_model": [
+        { "order": 1, "name": "가바크루드", "category": "원료 사업", "product": "GABA 20% 기준품 · OEM 5~20% 맞춤 농도", "sales_model": "기준품·주문형 원료 판매", "quality_focus": "활성 GABA 함량 · 로트별 시험성적서 · 농도별 제품 규격" },
+        { "order": 2, "name": "가바케어믹스", "category": "배합사료 사업", "product": "가바크루드 + 미네랄매트릭스", "sales_model": "배합사료 판매·현장 적용 프로그램", "quality_focus": "축종별 유효용량 · 배합 균일도 · 보관 안정성" }
+      ],
+      "team": [
+        { "order": 1, "name": "장순욱", "role": "분석기술 전문가", "current": "현 셀핀다 생명과학연구소 부사장", "experience": "전 해원바이오 전무 · 전 한국신약 연구소장" },
+        { "order": 2, "name": "구장룡", "role": "분석기술 고문", "current": "현 국가공인 시험·검사기관 충남대 농업과학연구소 총괄책임", "experience": "전 우성사료 연구소장" },
+        { "order": 3, "name": "박지호", "role": "정밀발효·정제 전문가", "current": "현 셀핀다 생명과학연구소 소장", "experience": "전 현대바이오랜드 재직" }
+      ],
+      "partners": [
+        { "name": "비전바이오켐", "capacity": 20, "basis": "사용자 제공 자료 기준" },
+        { "name": "지에프퍼멘텍", "capacity": 200, "basis": "사용자 제공 자료 기준" }
       ],
       "readiness": [
         { "dimension": "규제·품목분류", "score": 6, "gate": "GABA/발효배양물의 분류·등록경로" },
@@ -172,7 +255,7 @@
         { "dimension": "상업검증", "score": 4, "gate": "유료 고객 시험·반복 주문 자료" }
       ],
       "signals": [
-        { "date": "2026-08-03", "category": "내부 모델", "signal": "20% 마스터 한 품목 + 주문 후 OEM 구조", "judgment": "검증 필요", "action": "세부 원가·용량·OEM 견적을 실제 자료로 확인", "source": "원본 22장" },
+        { "date": "2026-08-03", "category": "내부 모델", "signal": "가바크루드 20% 기준품 한 품목 + 주문형 OEM 구조", "judgment": "검증 필요", "action": "세부 원가·용량·OEM 견적을 실제 자료로 확인", "source": "원본 22장" },
         { "date": "2026-06-26", "category": "정책·규제", "signal": "품목 기준은 추가·변경될 수 있어 월별 공고 점검 필요", "judgment": "모니터링", "action": "GABA 관련 공고 유무 확인", "source": "농식품부" },
         { "date": "2026-05-29", "category": "정책·시장", "signal": "저메탄·질소저감 사료는 인정 기준 충족 제품에 지원", "judgment": "기회", "action": "GABA를 저탄소 사료로 단정하지 않고 별도 검증", "source": "농식품부" },
         { "date": "2026-03-16", "category": "산업·품질", "signal": "사료 원료의 추적·검사·회수 체계가 OEM 선정의 핵심", "judgment": "주의", "action": "OEM 실사표에 원료 추적·회수·병원체 관리 추가", "source": "농식품부" },
@@ -184,15 +267,15 @@
         { "date": "2023-11-20", "category": "정책·규제", "signal": "신규·변경 물질은 제조방법·안전성·품질·첨가수준 자료가 핵심", "judgment": "상시", "action": "심의 필요 여부와 제출자료 목록 확정", "source": "국가법령정보센터" }
       ],
       "economics": [
-        { "metric": "20% 마스터 판매가", "value": "18,000원/kg", "formula": "입력", "evidence": "검증 필요", "unlock": "고객 견적·가격 수용성" },
-        { "metric": "20% 마스터 원가 가정", "value": "9,240원/kg", "formula": "입력", "evidence": "세부 근거 확인 필요", "unlock": "배양·건조·부형제·검사·포장·수율의 세부 원가 내역" },
-        { "metric": "20% 마스터 단위당 공헌이익", "value": "8,760원/kg", "formula": "18,000-9,240", "evidence": "가정 계산", "unlock": "실제 견적으로 다시 계산" },
-        { "metric": "매트릭스 프로그램 가격", "value": "6,000원/사료t", "formula": "입력", "evidence": "검증 필요", "unlock": "유료 PoV·가격 협상" },
-        { "metric": "매트릭스 투입량", "value": "75g/사료t", "formula": "입력", "evidence": "유효용량 미검증", "unlock": "제품 활성함량·제형·축종별 용량 연결" },
-        { "metric": "매트릭스 제품원가", "value": "351원/사료t", "formula": "0.075kg×4,681.8원/kg", "evidence": "가정 계산", "unlock": "투입량과 제품원가의 실제 견적" },
-        { "metric": "매트릭스 단위당 공헌이익", "value": "4,149원/사료t", "formula": "6,000-351-1,500", "evidence": "가정 계산", "unlock": "채널비·현장비·반품비 포함" },
+        { "metric": "가바크루드 20% 기준품 판매가", "value": "18,000원/kg", "formula": "입력", "evidence": "검증 필요", "unlock": "고객 견적·가격 수용성" },
+        { "metric": "가바크루드 20% 기준품 원가 가정", "value": "9,240원/kg", "formula": "입력", "evidence": "세부 근거 확인 필요", "unlock": "배양·건조·부형제·검사·포장·수율의 세부 원가 내역" },
+        { "metric": "가바크루드 단위당 공헌이익", "value": "8,760원/kg", "formula": "18,000-9,240", "evidence": "가정 계산", "unlock": "실제 견적으로 다시 계산" },
+        { "metric": "가바케어믹스 프로그램 가격", "value": "6,000원/사료t", "formula": "입력", "evidence": "검증 필요", "unlock": "유료 PoV·가격 협상" },
+        { "metric": "가바케어믹스 투입량", "value": "75g/사료t", "formula": "입력", "evidence": "유효용량 미검증", "unlock": "제품 활성함량·제형·축종별 용량 연결" },
+        { "metric": "가바케어믹스 제품원가", "value": "351원/사료t", "formula": "0.075kg×4,681.8원/kg", "evidence": "가정 계산", "unlock": "투입량과 제품원가의 실제 견적" },
+        { "metric": "가바케어믹스 단위당 공헌이익", "value": "4,149원/사료t", "formula": "6,000-351-1,500", "evidence": "가정 계산", "unlock": "채널비·현장비·반품비 포함" },
         { "metric": "T1 손익분기", "value": "10,991 사료t", "formula": "45.6백만원÷4,148.865원", "evidence": "시나리오", "unlock": "검증 예산과 단위당 공헌이익 확정" },
-        { "metric": "첫 반복 주문 총공헌이익", "value": "382.6백만원", "formula": "마스터 20t+매트릭스 50,000t", "evidence": "시나리오", "unlock": "실제 발주서와 반복 주문 자료" }
+        { "metric": "첫 반복 주문 총공헌이익", "value": "382.6백만원", "formula": "가바크루드 20t+가바케어믹스 50,000t", "evidence": "시나리오", "unlock": "실제 발주서와 반복 주문 자료" }
       ],
       "glossary": [
         { "term": "GABA", "plain": "감마아미노부티르산", "use": "축종·용량·제형에 따라 효과가 달라질 수 있는 성분" },
@@ -204,7 +287,10 @@
         { "term": "FIFO", "plain": "선입선출", "use": "먼저 입고한 재고를 먼저 출고" },
         { "term": "PoV", "plain": "고객 가치 검증", "use": "실제 고객 환경에서 제품이 경제적 가치를 만드는지 확인" },
         { "term": "단위당 공헌이익", "plain": "한 단위를 팔아 남는 금액", "use": "판매가에서 제품 원가와 직접 변동비를 뺀 값" },
-        { "term": "품목분류", "plain": "어떤 사료로 볼지 결정", "use": "법적 범주와 등록경로를 정하는 절차" }
+        { "term": "품목분류", "plain": "어떤 사료로 볼지 결정", "use": "법적 범주와 등록경로를 정하는 절차" },
+        { "term": "기준품", "plain": "품질과 농도의 기준이 되는 제품", "use": "가바크루드 GABA 20% 제품처럼 시험·출하 기준을 대표하는 규격" },
+        { "term": "미네랄매트릭스", "plain": "미네랄 기반 배합체", "use": "가바크루드와 함께 가바케어믹스의 배합 구조와 투입 기준을 구성하는 혼합 기반" },
+        { "term": "CAPA", "plain": "생산가능량", "use": "정해진 기간에 생산할 수 있는 최대 물량. 이 자료에서는 배양액의 월간 생산량" }
       ]
     }
   },

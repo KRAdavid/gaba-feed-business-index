@@ -1,60 +1,59 @@
-# GABA Feed Business Model Index
+# GABA 사료 비즈니스 모델 인덱스
 
-사료업계가 처음인 사용자도 GABA 사료 사업의 **현재 준비도, 남은 핵심 검증, 최신 정책·연구·원료 시장 동향, 90일 실행계획**을 빠르게 파악할 수 있도록 만든 공개 인덱스입니다.
+사료 업계 경험이 없는 사용자도 사업 구조, 준비도, 검증 과제, 정책·연구·원료시장 동향을 한 화면에서 이해하도록 만든 공개 인덱스입니다.
+
+## 사업 구조
+
+- **가바크루드:** GABA 20% 기준품과 OEM 5~20% 맞춤 농도의 원료 판매 사업
+- **가바케어믹스:** 가바크루드와 미네랄매트릭스를 조합한 배합사료 사업
+
+두 사업은 판매 대상과 수익 구조가 다르지만, 규제 검토·성분 분석·로트 품질·공급 조건·고객 시험은 같은 기준으로 관리합니다.
 
 ## 공개 화면
 
-Production URL: [https://gaba-feed-business-index.dubaissday.chatgpt.site](https://gaba-feed-business-index.dubaissday.chatgpt.site)
+서비스 주소: [https://gaba-feed-business-index.dubaissday.chatgpt.site](https://gaba-feed-business-index.dubaissday.chatgpt.site)
 
-현재 공개본은 감리를 마친 스냅샷입니다. Codex 주간 자동화가 매주 월요일 오전 9시 17분(한국 시간)에 공개 자료를 수집하고 검사한 뒤 사이트를 다시 배포합니다. `docs/`에는 사이트 원본이 있으며, `worker/`와 `scripts/build_site_worker.mjs`는 배포 파일을 만듭니다.
+공개 화면은 매주 월요일 오전에 정책·연구·원료시장 자료를 다시 확인합니다. 외부 자료를 받지 못하면 직전 자료를 유지하고 화면에 자료 상태를 알립니다. 자동 수집 자료는 검토 대기 항목으로 표시하며, 전문가가 확인하기 전에는 준비도 점수에 반영하지 않습니다.
+
+## 핵심 산출물
+
+- `GABA_Index_Master.xlsx`: 준비도, 근거 자료, 손익 가정, 사업 구조, 핵심 인력, 생산 파트너를 관리하는 원본
+- `GABA_Business_Model_Index.html`: 회의와 내부 공유에 쓰는 휴대형 인덱스
+- `GABA_Feed_Business_Model_Speech_Deck_v1.pptx`: 사료업체·투자자 대상 20장 발표자료
+- `GABA_Index_Artifact.json`: 휴대형 인덱스를 다시 만들 수 있는 구조화 원본
 
 ## 로컬 실행
 
 ```powershell
 python scripts/update_public_index.py
+python scripts/localize_portable_artifact.py
 python scripts/audit_korean_copy.py
 python scripts/validate_public_index.py
 python scripts/prepare_public_site.py
 python -m http.server 8000 --directory docs
 ```
 
-브라우저에서 `http://localhost:8000`을 엽니다. `index.html`을 파일로 직접 열면 브라우저 보안 정책 때문에 JSON을 불러올 수 없습니다.
+브라우저에서 `http://localhost:8000`을 엽니다. `index.html`을 파일로 직접 열면 브라우저 보안 정책 때문에 JSON 자료를 불러오지 못할 수 있습니다.
 
-## GitHub Pages 미러링(선택)
+## 자료 관리 원칙
 
-별도 GitHub Pages 미러가 필요하면 빈 공개 저장소를 만든 뒤 아래 명령으로 검증·커밋·push할 수 있습니다.
+- 사용자 제공 이력과 생산가능량은 외부 확인 전까지 ‘사용자 제공 자료’로 표시합니다.
+- 비전바이오켐 20톤/월과 지에프퍼멘텍 200톤/월은 배양액 생산가능량입니다. 계약, 실제 가동, 품질 체계를 확인한 뒤 공급계획에 반영합니다.
+- 가격·원가·투입량·고객가치는 검증 전 가정과 실제 확인값을 구분합니다.
+- 규제 분류, 표시·광고 문구, 축종별 유효용량은 관계기관·전문가·공인 시험기관에서 별도로 확인합니다.
+- 모든 공개 자료의 마지막 페이지 또는 마지막 구역은 `APPENDIX`로 유지합니다.
 
-```powershell
-.\scripts\publish_github_pages.ps1 `
-  -RepositoryUrl "https://github.com/OWNER/REPOSITORY.git" `
-  -Branch main `
-  -AuthorName "YOUR NAME" `
-  -AuthorEmail "YOUR EMAIL"
-```
+## 주요 파일
 
-push가 끝나면 저장소의 **Settings → Pages → Source**를 `GitHub Actions`로 선택하고 `Refresh and publish public index` 워크플로를 한 번 실행합니다.
+- `data/base_index.json`: 사업 정의, 준비도, 검증 과제, 인력, 생산 파트너, 용어
+- `data/manual_signals.json`: 담당자가 확인한 정책·연구·시장 자료
+- `docs/data/index.json`: 공개 화면이 읽는 최신 스냅샷
+- `scripts/update_public_index.py`: 외부 자료 수집과 스냅샷 생성
+- `scripts/audit_korean_copy.py`: 어색한 번역투와 금지 표현 검사
+- `scripts/validate_public_index.py`: 데이터 구조와 핵심 수치 검사
+- `scripts/validate_public_site.py`: 공개 화면의 필수 구역과 다운로드 파일 검사
+- `KOREAN_COPY_AUDIT.md`: 최종 문장 감리 기록
 
-## 자동 업데이트
+## Appendix · 이용 안내
 
-- 매주 월요일 오전 9시 17분(한국 시간)에 농림축산식품부 RSS, Europe PMC, 세계은행 원료 가격 자료를 확인하고 공개 사이트를 갱신합니다.
-- 자료를 새로 받지 못하면 이전 스냅샷을 유지하고 화면에 `이전 자료 사용`이라고 표시합니다.
-- 자동 수집된 신호는 `검토 대기`로 표시되며 준비도 점수에 자동 반영되지 않습니다.
-- 담당자가 원문, 대상 축종, 용량, 시험 설계, 통계 결과를 검토한 뒤 `data/manual_signals.json`과 `data/base_index.json`을 갱신해야 점수가 바뀝니다.
-- 갱신 결과와 변경 이력은 Git 커밋으로 남습니다.
-
-## 데이터 구조
-
-- `data/base_index.json` — 검토 완료된 준비도·검증 항목·가정·로드맵·용어·출처
-- `data/manual_signals.json` — 담당자가 검토한 정책·연구·내부모델 신호
-- `docs/data/index.json` — 공개 사이트가 읽는 최신 스냅샷
-- `scripts/update_public_index.py` — 공개 원천 수집 및 스냅샷 생성
-- `scripts/validate_public_index.py` — 점수·필수 필드·출처 링크 불변조건 검증
-- `scripts/audit_korean_copy.py` — 어색한 번역투와 금지 표현을 찾는 한국어 문장 감리
-- `KOREAN_COPY_AUDIT.md` — 감리 범위와 최종 검사 결과 기록
-- `tests/` — 파서와 오프라인 복구 테스트
-- `.openai/hosting.json` — 기존 Sites 프로젝트를 재사용하기 위한 호스팅 식별자
-- `worker/` — 공개 사이트를 제공하는 Sites Worker 원본
-
-## 운영 원칙
-
-이 인덱스는 투자·법률·수의학 분야의 확정 의견이 아닙니다. 규제 분류, 표시 가능 문구, 축종별 유효 용량, OEM 조건, 고객의 구매 의사는 각각 서면 자료로 확인합니다. 공개 전에는 한국어 문장 감리를 거치며, 모든 자료의 마지막 공개 섹션은 `APPENDIX · 부록`으로 유지합니다.
+이 인덱스는 사업 준비도 관리 도구이며 법률·수의·사료·투자 자문을 대신하지 않습니다. 품목 분류, 표시·광고, 제품 효능과 안전성, 공장 적합성, 실제 경제성은 관계기관과 전문가, 공인 시험기관, 실제 견적과 고객 현장에서 각각 확인해야 합니다.

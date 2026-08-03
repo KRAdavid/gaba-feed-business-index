@@ -2,8 +2,86 @@
   "schema_version": "1.0.0",
   "title": "GABA Feed Business Model Index",
   "subtitle": "사료업계가 처음이어도 현재 상태와 근거, 다음에 확인할 일을 5분 안에 파악할 수 있는 공개 인덱스",
-  "thesis": "20% GABA 마스터 한 SKU만 재고로 관리하고, 5·10·15·20% 제품은 고객 주문 후 OEM 생산한다.",
+  "thesis": "사업은 가바크루드 원료 사업과 가바케어믹스 배합사료 사업으로 나눕니다. 가바크루드는 GABA 20% 기준품과 5~20% 주문형 OEM 원료를 공급하고, 가바케어믹스는 가바크루드와 미네랄매트릭스를 결합한 배합사료입니다.",
   "decision": "사업 구조는 설계됐습니다. 다만 규제 경로, 제품 근거, OEM 조건, 유료 반복 주문을 확인할 때까지는 검증 단계로 관리합니다.",
+  "business_tracks": [
+    {
+      "id": "gaba_crude",
+      "name": "가바크루드",
+      "category": "원료 사업",
+      "headline": "GABA 20% 기준품과 5~20% 주문형 OEM 원료",
+      "description": "GABA 20% 기준품을 품질 기준으로 관리하고, 고객이 원하는 농도는 주문을 받은 뒤 OEM 방식으로 생산합니다.",
+      "revenue_model": "기준품·주문형 원료 판매",
+      "offerings": [
+        "GABA 20% 기준품",
+        "OEM 5~20% 맞춤 농도"
+      ],
+      "quality_focus": "활성 GABA 함량, 로트별 시험성적서, 농도별 제품 규격"
+    },
+    {
+      "id": "gaba_care_mix",
+      "name": "가바케어믹스",
+      "category": "배합사료 사업",
+      "headline": "가바크루드와 미네랄매트릭스를 결합한 배합사료",
+      "description": "축종과 급여 목적에 맞춘 배합 설계로 고객 현장 시험을 진행하고 반복 주문을 확보합니다.",
+      "revenue_model": "배합사료 판매·현장 적용 프로그램",
+      "offerings": [
+        "가바크루드",
+        "미네랄매트릭스",
+        "축종별 맞춤 배합"
+      ],
+      "quality_focus": "축종별 유효용량, 배합 균일도, 보관 안정성"
+    }
+  ],
+  "commercialization_team": [
+    {
+      "name": "장순욱",
+      "role": "분석기술 전문가",
+      "current": "현 셀핀다 생명과학연구소 부사장",
+      "experience": [
+        "전 해원바이오 전무",
+        "전 한국신약 연구소장"
+      ]
+    },
+    {
+      "name": "구장룡",
+      "role": "분석기술 고문",
+      "current": "현 국가공인 시험·검사기관 충남대 농업과학연구소 총괄책임",
+      "experience": [
+        "전 우성사료 연구소장"
+      ]
+    },
+    {
+      "name": "박지호",
+      "role": "정밀발효·정제 전문가",
+      "current": "현 셀핀다 생명과학연구소 소장",
+      "experience": [
+        "전 현대바이오랜드 재직"
+      ]
+    }
+  ],
+  "production_partners": [
+    {
+      "name": "비전바이오켐",
+      "capacity_value": 20,
+      "capacity_unit": "배양액 톤/월",
+      "capacity_label": "월 20톤",
+      "basis": "사용자 제공 자료 기준"
+    },
+    {
+      "name": "지에프퍼멘텍",
+      "capacity_value": 200,
+      "capacity_unit": "배양액 톤/월",
+      "capacity_label": "월 200톤",
+      "basis": "사용자 제공 자료 기준"
+    }
+  ],
+  "production_capacity_summary": {
+    "value": 220,
+    "unit": "배양액 톤/월",
+    "label": "월 220톤",
+    "basis": "두 생산 파트너의 사용자 제공 자료 합계"
+  },
   "readiness": {
     "score": 41,
     "max_score": 100,
@@ -109,42 +187,42 @@
   ],
   "assumptions": [
     {
-      "metric": "20% 마스터 판매가",
+      "metric": "가바크루드 20% 기준품 판매가",
       "value": "18,000원/kg",
       "state": "검증 필요",
       "formula": "입력",
       "unlock": "고객 견적과 가격 수용성"
     },
     {
-      "metric": "20% 마스터 원가 가정",
+      "metric": "가바크루드 20% 기준품 원가 가정",
       "value": "9,240원/kg",
       "state": "세부 근거 확인 필요",
       "formula": "입력",
       "unlock": "배양·건조·부형제·검사·포장·수율의 세부 원가 내역"
     },
     {
-      "metric": "20% 마스터 단위당 공헌이익",
+      "metric": "가바크루드 단위당 공헌이익",
       "value": "8,760원/kg",
       "state": "가정 계산",
       "formula": "18,000-9,240",
       "unlock": "실제 원가로 재계산"
     },
     {
-      "metric": "매트릭스 가격",
+      "metric": "가바케어믹스 프로그램 가격",
       "value": "6,000원/사료t",
       "state": "검증 필요",
       "formula": "입력",
       "unlock": "유료 PoV와 고객 계약"
     },
     {
-      "metric": "매트릭스 투입량",
+      "metric": "가바케어믹스 투입량",
       "value": "75g/사료t",
       "state": "유효용량 미검증",
       "formula": "입력",
       "unlock": "활성함량·제형·축종별 용량 연결"
     },
     {
-      "metric": "매트릭스 단위당 공헌이익",
+      "metric": "가바케어믹스 단위당 공헌이익",
       "value": "4,149원/사료t",
       "state": "가정 계산",
       "formula": "6,000-351-1,500",
@@ -247,6 +325,21 @@
       "term": "품목분류",
       "plain": "어떤 사료로 볼지 결정",
       "use": "법적 범주와 등록경로를 정하는 절차"
+    },
+    {
+      "term": "기준품",
+      "plain": "품질과 농도의 기준이 되는 제품",
+      "use": "가바크루드 GABA 20% 제품처럼 시험·출하 기준을 대표하는 규격"
+    },
+    {
+      "term": "미네랄매트릭스",
+      "plain": "미네랄 기반 배합체",
+      "use": "가바크루드와 함께 가바케어믹스의 배합 구조와 투입 기준을 구성하는 혼합 기반"
+    },
+    {
+      "term": "CAPA",
+      "plain": "생산가능량",
+      "use": "정해진 기간에 생산할 수 있는 최대 물량. 이 자료에서는 배양액의 월간 생산량"
     }
   ],
   "source_catalog": [
@@ -319,7 +412,7 @@
   ],
   "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T03:01:20Z",
+    "generated_at": "2026-08-03T03:36:59Z",
     "as_of_date": "2026-08-03",
     "timezone": "Asia/Seoul",
     "automation": "Codex 주간 자동화 + Sites production 배포",
@@ -342,8 +435,8 @@
       "id": "internal-model-v5",
       "date": "2026-08-03",
       "category": "전략",
-      "title": "20% 마스터 1 SKU + 주문 후 OEM 모델",
-      "summary": "20% 마스터 한 품목만 재고로 두고, 고객이 발주한 규격은 주문 후 생산하는 구조입니다.",
+      "title": "가바크루드 20% 기준품 + 주문형 OEM 모델",
+      "summary": "가바크루드 20% 기준품을 기본 재고로 두고, 고객이 발주한 5~20% 규격은 주문 후 생산하는 구조입니다.",
       "judgment": "검증 필요",
       "action": "세부 원가, 제품 투입량, OEM 실제 견적, 유료 반복 주문을 자료로 확인합니다.",
       "source_name": "원본 사업모델 v5",
@@ -1014,23 +1107,23 @@
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T03:01:20Z",
+        "fetched_at": "2026-08-03T03:36:59Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T03:01:20Z",
+        "fetched_at": "2026-08-03T03:36:59Z",
         "item_count": 7
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T03:01:20Z",
+        "fetched_at": "2026-08-03T03:36:59Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T03:01:20Z",
+    "last_successful_live_refresh": "2026-08-03T03:36:59Z",
     "review_queue_count": 19
   }
 }

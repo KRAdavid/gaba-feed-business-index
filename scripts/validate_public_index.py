@@ -23,6 +23,18 @@ def valid_link(value: str) -> bool:
 
 def validate(data: dict) -> list[str]:
     errors: list[str] = []
+    tracks = data.get("business_tracks", [])
+    if [row.get("id") for row in tracks] != ["gaba_crude", "gaba_care_mix"]:
+        errors.append("business_tracks must contain gaba_crude and gaba_care_mix in order")
+    team = data.get("commercialization_team", [])
+    if len(team) != 3 or any(not row.get("name") or not row.get("role") or not row.get("current") for row in team):
+        errors.append("commercialization_team must contain three complete member records")
+    partners = data.get("production_partners", [])
+    partner_total = sum(row.get("capacity_value", 0) for row in partners)
+    if len(partners) != 2 or partner_total != 220:
+        errors.append("production_partners must contain two partners totaling 220 tons per month")
+    if data.get("production_capacity_summary", {}).get("value") != partner_total:
+        errors.append("production_capacity_summary is inconsistent")
     readiness = data.get("readiness", {})
     dimensions = readiness.get("dimensions", [])
     score = readiness.get("score")
@@ -88,4 +100,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

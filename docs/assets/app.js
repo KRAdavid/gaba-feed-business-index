@@ -39,6 +39,16 @@
     $("#summary-grid").innerHTML = cards.map(([label, value, note]) => `<article class="summary-card"><span>${escapeHTML(label)}</span><strong>${escapeHTML(value)}</strong><p>${escapeHTML(note)}</p></article>`).join("");
   }
 
+  function renderBusinessTracks(rows) {
+    $("#business-track-grid").innerHTML = rows.map((row, index) => `<article class="track-card track-${index + 1}">
+      <div class="track-number">0${index + 1}</div>
+      <div class="track-head"><span>${escapeHTML(row.category)}</span><h3>${escapeHTML(row.name)}</h3></div>
+      <p class="track-headline">${escapeHTML(row.headline)}</p>
+      <p class="track-description">${escapeHTML(row.description)}</p>
+      <dl><div><dt>주요 제품</dt><dd>${row.offerings.map(item => `<span>${escapeHTML(item)}</span>`).join("")}</dd></div><div><dt>매출 방식</dt><dd>${escapeHTML(row.revenue_model)}</dd></div><div><dt>품질 초점</dt><dd>${escapeHTML(row.quality_focus)}</dd></div></dl>
+    </article>`).join("");
+  }
+
   function renderReadiness(data) {
     $("#readiness-rule").textContent = data.readiness.scoring_rule;
     $("#decision-title").textContent = `${stageLabel(data.readiness.stage)} · ${data.readiness.score}점`;
@@ -141,13 +151,22 @@
     $("#roadmap-list").innerHTML = rows.map(row => `<article class="roadmap-card"><span class="window">${escapeHTML(row.window)}</span><h3>${escapeHTML(row.theme)}</h3><ul>${row.actions.map(action => `<li>${escapeHTML(action)}</li>`).join("")}</ul></article>`).join("");
   }
 
+  function renderTeam(data) {
+    $("#team-grid").innerHTML = data.commercialization_team.map(row => `<article class="team-card">
+      <span>${escapeHTML(row.role)}</span><h3>${escapeHTML(row.name)}</h3><p class="current-role">${escapeHTML(row.current)}</p>
+      <ul>${row.experience.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
+    </article>`).join("");
+    $("#partner-total").textContent = `${data.production_capacity_summary.label} · 배양액`;
+    $("#partner-list").innerHTML = data.production_partners.map(row => `<div class="partner-row"><div><strong>${escapeHTML(row.name)}</strong><small>${escapeHTML(row.basis)}</small></div><span>${escapeHTML(row.capacity_label)}</span></div>`).join("");
+  }
+
   function renderHealth(data) {
     const rows = data.automation.source_health || [];
     $("#source-health").innerHTML = rows.map(row => `<div class="health-row"><div><strong>${escapeHTML(sourceLabel(row.source))}</strong><small>${row.item_count}건 · ${escapeHTML(formatTimestamp(row.fetched_at))}</small></div><span class="health-status ${escapeHTML(row.status)}">${row.status === "ok" ? "정상" : row.status === "offline" ? "연결 안 됨" : "이전 자료 사용"}</span></div>`).join("");
   }
 
   function renderDownloads(rows) {
-    const descriptions = { XLSX: "근거 목록·점수·가정·90일 실행계획", PPTX: "사료업체·투자자 미팅용 발표자료", MD: "업데이트 규칙·검토 절차·담당 업무" };
+    const descriptions = { XLSX: "두 사업·핵심 인력·생산 파트너·근거·점수", PPTX: "사료업체·투자자 미팅용 발표자료", MD: "업데이트 규칙·검토 절차·담당 업무" };
     $("#download-grid").innerHTML = rows.map(row => `<a class="download-card" href="${escapeHTML(safeURL(row.file))}" download><small>${escapeHTML(row.type)}</small><strong>${escapeHTML(row.name)}</strong><p>${escapeHTML(descriptions[row.type] || "공개 운영 자료")}</p><span>다운로드 ↓</span></a>`).join("");
   }
 
@@ -161,6 +180,7 @@
     state.data = data;
     renderHero(data);
     renderSummary(data);
+    renderBusinessTracks(data.business_tracks);
     renderReadiness(data);
     renderGates(data.critical_gates);
     setupSignalFilters(data);
@@ -168,6 +188,7 @@
     renderMarket(data);
     renderAssumptions(data.assumptions);
     renderRoadmap(data.roadmap);
+    renderTeam(data);
     renderHealth(data);
     renderDownloads(data.downloads);
     renderAppendix(data);

@@ -22,6 +22,8 @@ TEXT_FILES = (
     ROOT / "README.md",
     ROOT / "GABA_Index_Artifact.json",
     ROOT / "GABA_Business_Model_Index.html",
+    ROOT / "_work" / "deck" / "build_speech_deck.mjs",
+    ROOT / "_work" / "model" / "build_gaba_index_workbook.mjs",
 )
 PRESENTATION = ROOT / "GABA_Feed_Business_Model_Speech_Deck_v1.pptx"
 
@@ -34,6 +36,7 @@ FORBIDDEN_EXPRESSIONS = (
     "열린 게이트",
     "게이트가 열",
     "게이트가 닫",
+    "열려 있",
     "닫혀야",
     "해제 근거",
     "다음 결정을 명확하게",
@@ -79,8 +82,8 @@ def audit_copy() -> list[str]:
         errors.append(f"감리 대상 발표자료가 없습니다: {PRESENTATION.name}")
     else:
         checked.append((PRESENTATION.name, deck_text))
-        if slide_count != 19:
-            errors.append(f"발표자료 장수가 19장이 아닙니다: {slide_count}장")
+        if slide_count != 20:
+            errors.append(f"발표자료 장수가 20장이 아닙니다: {slide_count}장")
         if "APPENDIX" not in final_slide.upper():
             errors.append("발표자료의 마지막 장이 APPENDIX가 아닙니다.")
 
@@ -112,7 +115,7 @@ def main() -> None:
                 "audit": "korean-copy",
                 "text_files": len(TEXT_FILES),
                 "presentation": PRESENTATION.name,
-                "slides": 19,
+                "slides": 20,
                 "forbidden_expressions": len(FORBIDDEN_EXPRESSIONS),
             },
             ensure_ascii=False,
