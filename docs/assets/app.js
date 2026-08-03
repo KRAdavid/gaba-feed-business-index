@@ -30,11 +30,12 @@
   }
 
   function renderSummary(data) {
+    const validationDays = data.caremix_advancement?.validation_clock?.[0]?.target || "30일";
     const cards = [
       ["사업 준비도", `${data.summary.readiness_score}/100`, "원문 검토를 마친 근거만 반영"],
       ["남은 핵심 검증", `${data.summary.critical_open_gates}개`, "4개를 모두 확인한 뒤 사업 확대 검토"],
-      ["검토를 마친 자료", `${data.summary.reviewed_signals}건`, "정책·연구·내부 자료"],
-      ["검토를 기다리는 자료", `${data.summary.auto_signals_waiting_review}건`, "자동 수집 · 점수에 반영하지 않음"]
+      ["유료 실증 착수 목표", validationDays, "비육 한우 농장 1곳·발주서 1건"],
+      ["첫 검증 축종", data.caremix_advancement?.first_validation_species || "비육 한우", "한 축종에 집중해 비교 가능성 확보"]
     ];
     $("#summary-grid").innerHTML = cards.map(([label, value, note]) => `<article class="summary-card"><span>${escapeHTML(label)}</span><strong>${escapeHTML(value)}</strong><p>${escapeHTML(note)}</p></article>`).join("");
   }
@@ -47,6 +48,14 @@
       <p class="track-description">${escapeHTML(row.description)}</p>
       <dl><div><dt>주요 제품</dt><dd>${row.offerings.map(item => `<span>${escapeHTML(item)}</span>`).join("")}</dd></div><div><dt>매출 방식</dt><dd>${escapeHTML(row.revenue_model)}</dd></div><div><dt>품질 초점</dt><dd>${escapeHTML(row.quality_focus)}</dd></div></dl>
     </article>`).join("");
+  }
+
+  function renderCareMixAdvancement(data) {
+    if (!data) return;
+    $("#caremix-goal").innerHTML = `<div><span>사업화 목표</span><h3>${escapeHTML(data.goal)}</h3><p>${escapeHTML(data.positioning)}</p></div><strong>${escapeHTML(data.first_validation_species)}</strong>`;
+    $("#validation-clock").innerHTML = data.validation_clock.map((row, index) => `<article class="clock-card"><span>0${index + 1}</span><strong>${escapeHTML(row.target)}</strong><h3>${escapeHTML(row.name)}</h3><p>${escapeHTML(row.definition)}</p></article>`).join("");
+    $("#caremix-kpi-grid").innerHTML = data.kpis.map(row => `<article class="kpi-card"><span>${escapeHTML(row.group)} · ${escapeHTML(row.timing)}</span><h3>${escapeHTML(row.name)}</h3><p>${escapeHTML(row.definition)}</p><dl><div><dt>판정 기준</dt><dd>${escapeHTML(row.target)}</dd></div><div><dt>증빙</dt><dd>${escapeHTML(row.evidence)}</dd></div></dl></article>`).join("");
+    $("#caremix-guardrails").innerHTML = `<div><span>판단 원칙</span><strong>${escapeHTML(data.scope_note)}</strong></div><ul>${data.guardrails.map(row => `<li>${escapeHTML(row)}</li>`).join("")}</ul>`;
   }
 
   function renderReadiness(data) {
@@ -181,6 +190,7 @@
     renderHero(data);
     renderSummary(data);
     renderBusinessTracks(data.business_tracks);
+    renderCareMixAdvancement(data.caremix_advancement);
     renderReadiness(data);
     renderGates(data.critical_gates);
     setupSignalFilters(data);

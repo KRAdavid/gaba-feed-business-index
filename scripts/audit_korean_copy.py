@@ -48,6 +48,7 @@ FORBIDDEN_EXPRESSIONS = (
     "사료업계 비경험자",
     "90일 안에 잠글 것",
     "Source for ",
+    "구장룡",
 )
 
 

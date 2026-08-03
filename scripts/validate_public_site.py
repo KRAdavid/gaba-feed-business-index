@@ -83,7 +83,7 @@ def validate(max_age_hours: float | None = None) -> list[str]:
         if term in public_copy:
             errors.append(f"discouraged public wording is present: {term}")
     parser.feed(html)
-    required_ids = {"main", "business-model", "readiness", "signals", "economics", "roadmap", "team", "downloads", "appendix"}
+    required_ids = {"main", "business-model", "caremix", "readiness", "signals", "economics", "roadmap", "team", "downloads", "appendix"}
     for missing in sorted(required_ids - parser.ids):
         errors.append(f"required HTML id is missing: {missing}")
     if not parser.section_ids or parser.section_ids[-1] != "appendix":

@@ -29,6 +29,20 @@ def validate(data: dict) -> list[str]:
     team = data.get("commercialization_team", [])
     if len(team) != 3 or any(not row.get("name") or not row.get("role") or not row.get("current") for row in team):
         errors.append("commercialization_team must contain three complete member records")
+    if "구자룡" not in {row.get("name") for row in team} or "구장룡" in {row.get("name") for row in team}:
+        errors.append("commercialization_team must use the corrected name 구자룡")
+    caremix = data.get("caremix_advancement", {})
+    if caremix.get("first_validation_species") != "비육 한우":
+        errors.append("caremix_advancement.first_validation_species must be 비육 한우")
+    clocks = caremix.get("validation_clock", [])
+    if [row.get("target") for row in clocks] != ["30일", "90일", "출하 시"]:
+        errors.append("caremix validation clock must be 30일, 90일, 출하 시")
+    if len(caremix.get("phases", [])) != 5:
+        errors.append("caremix_advancement.phases must contain five phases")
+    if len(caremix.get("kpis", [])) != 4:
+        errors.append("caremix_advancement.kpis must contain four KPI groups")
+    if len(caremix.get("guardrails", [])) < 4:
+        errors.append("caremix_advancement.guardrails must contain at least four rules")
     partners = data.get("production_partners", [])
     partner_total = sum(row.get("capacity_value", 0) for row in partners)
     if len(partners) != 2 or partner_total != 220:
