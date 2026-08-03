@@ -239,7 +239,6 @@
     setupSignalFilters(data);
     renderSignals();
     renderCollection(data);
-    renderMarket(data);
     renderAssumptions(data.assumptions);
     renderRoadmap(data.roadmap);
     renderProjectTimeline(data.project_timeline || []);
