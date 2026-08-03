@@ -32,17 +32,24 @@ def validate(data: dict) -> list[str]:
     if "구자룡" not in {row.get("name") for row in team} or "구장룡" in {row.get("name") for row in team}:
         errors.append("commercialization_team must use the corrected name 구자룡")
     caremix = data.get("caremix_advancement", {})
-    if caremix.get("first_validation_species") != "비육 한우":
-        errors.append("caremix_advancement.first_validation_species must be 비육 한우")
+    required_species = ["비육우", "젖소", "돼지", "육계", "산란계", "염소·면양"]
+    if caremix.get("validation_species") != required_species:
+        errors.append("caremix_advancement.validation_species must contain the six target livestock groups in order")
     clocks = caremix.get("validation_clock", [])
-    if [row.get("target") for row in clocks] != ["30일", "90일", "출하 시"]:
-        errors.append("caremix validation clock must be 30일, 90일, 출하 시")
+    if [row.get("target") for row in clocks] != ["30일", "35~168일 이상", "생산주기 종료"]:
+        errors.append("caremix validation clock must separate 30-day setup, species-specific trials, and production-cycle final judgment")
     if len(caremix.get("phases", [])) != 5:
         errors.append("caremix_advancement.phases must contain five phases")
     if len(caremix.get("kpis", [])) != 4:
         errors.append("caremix_advancement.kpis must contain four KPI groups")
     if len(caremix.get("guardrails", [])) < 4:
         errors.append("caremix_advancement.guardrails must contain at least four rules")
+    species_validation = data.get("species_validation", {})
+    species_rows = species_validation.get("rows", [])
+    if [row.get("species") for row in species_rows] != required_species:
+        errors.append("species_validation.rows must contain the six target livestock groups in order")
+    if any(not row.get("minimum_period") or not row.get("final_judgment") or not row.get("primary_kpis") for row in species_rows):
+        errors.append("every species validation row must define period, final judgment, and KPIs")
     partners = data.get("production_partners", [])
     partner_total = sum(row.get("capacity_value", 0) for row in partners)
     if len(partners) != 2 or partner_total != 220:
@@ -62,6 +69,14 @@ def validate(data: dict) -> list[str]:
     for row in dimensions:
         if not 0 <= row.get("score", -1) <= row.get("max_score", -1):
             errors.append(f"invalid dimension score: {row.get('id')}")
+    target = readiness.get("target", {})
+    target_dimensions = target.get("dimensions", [])
+    if target.get("score") != 100 or target.get("gap") != 100 - score:
+        errors.append("readiness.target must preserve the verified current score and calculate the gap to 100")
+    if len(target_dimensions) != 5 or sum(row.get("gain", 0) for row in target_dimensions) != target.get("gap"):
+        errors.append("readiness.target dimensions must account for the full evidence-gated score gap")
+    if any(row.get("current") + row.get("gain") != row.get("target") for row in target_dimensions):
+        errors.append("each readiness target dimension must reconcile current, gain, and target")
     gates = data.get("critical_gates", [])
     if len(gates) != 4:
         errors.append("critical_gates must contain exactly four gates")

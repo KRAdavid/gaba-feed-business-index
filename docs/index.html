@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d2f27">
-  <meta name="description" content="가바크루드 원료 사업과 비육 한우 브랜드 축산용 배합사료 가바케어믹스의 검증 일정, KPI, 준비도, 산업 동향을 한눈에 확인하는 공개 인덱스입니다.">
+  <meta name="description" content="가바크루드 원료 사업과 주요 가축별 가바케어믹스 배합사료의 검증기간, 현재 준비도 41점과 100점 달성 증빙, 산업 동향을 한눈에 확인하는 공개 인덱스입니다.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="GABA Feed Business Model Index">
   <meta property="og:description" content="육질 개선과 생산성 향상을 검증하는 가바케어믹스 사업 의사결정 대시보드">
@@ -18,7 +18,7 @@
     "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "GABA Feed Business Model Index",
-    "description": "가바크루드 원료 사업과 비육 한우 브랜드 축산용 배합사료 가바케어믹스의 준비도, 검증 일정, KPI, 인력, 생산 기반과 산업 신호를 관리하는 공개 인덱스",
+    "description": "가바크루드 원료 사업과 주요 가축별 가바케어믹스 배합사료의 준비도, 축종별 검증기간, KPI, 인력, 생산 기반과 산업 신호를 관리하는 공개 인덱스",
     "license": "https://creativecommons.org/licenses/by-nc/4.0/",
     "creator": {"@type": "Organization", "name": "GABA Feed Business Model Index"}
   }
@@ -34,6 +34,7 @@
     <nav class="desktop-nav" aria-label="주요 메뉴">
       <a href="#business-model">사업모델</a>
       <a href="#caremix">가바케어믹스</a>
+      <a href="#species-validation">축종별 검증</a>
       <a href="#readiness">준비도</a>
       <a href="#signals">동향</a>
       <a href="#economics">사업성</a>
@@ -90,8 +91,8 @@
 
     <section class="section shell" id="caremix" aria-labelledby="caremix-title">
       <div class="section-heading">
-        <div><div class="section-kicker">02 · 가바케어믹스 고도화</div><h2 id="caremix-title">육질과 생산성을 같은 시험에서 확인합니다.</h2></div>
-        <p>첫 검증 축종은 비육 한우로 좁힙니다. 30일 안에 제품과 사업을 준비하고, 90일에 생산성 조기 신호를 확인하며, 출하 성적으로 육질을 최종 평가합니다.</p>
+        <div><div class="section-kicker">02 · 가바케어믹스 고도화</div><h2 id="caremix-title">축종별 생산주기에 맞춰 생산성과 축산물 품질을 확인합니다.</h2></div>
+        <p>30일 안에 제품과 시험 착수 조건을 준비합니다. 효능은 비육우·젖소·돼지·육계·산란계·염소·면양별 장기 시험기간과 최종 생산물 성적으로 판단합니다.</p>
       </div>
       <div class="caremix-goal" id="caremix-goal"></div>
       <div class="validation-clock" id="validation-clock"></div>
@@ -99,10 +100,21 @@
       <div class="guardrail-panel" id="caremix-guardrails"></div>
     </section>
 
+    <section class="section section-mist" id="species-validation" aria-labelledby="species-validation-title">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="section-kicker">03 · 축종별 검증기간</div><h2 id="species-validation-title">시험기간은 가축의 생산주기에 맞춥니다.</h2></div>
+          <p>공식 장기 효능시험 최소기간을 사업계획 기준으로 적용하고, 국내 연구기관이 적응기간·개체수·반복수·통계설계를 최종 확정합니다.</p>
+        </div>
+        <div class="species-grid" id="species-grid"></div>
+        <div class="species-basis" id="species-basis"></div>
+      </div>
+    </section>
+
     <section class="section section-dark" id="readiness" aria-labelledby="readiness-title">
       <div class="shell">
         <div class="section-heading inverse">
-          <div><div class="section-kicker">03 · 사업 준비도</div><h2 id="readiness-title">30일 안에 실증 착수 조건부터 확인합니다.</h2></div>
+          <div><div class="section-kicker">04 · 사업 준비도</div><h2 id="readiness-title">현재 41점과 100점까지 남은 59점을 분리해 관리합니다.</h2></div>
           <p id="readiness-rule">검증 규칙을 불러오는 중입니다.</p>
         </div>
         <div class="readiness-layout">
@@ -114,6 +126,7 @@
             <div class="decision-boundary"><small>가장 낮은 축</small><strong id="lowest-dimension">–</strong></div>
           </aside>
         </div>
+        <div class="readiness-target" id="readiness-target"></div>
       </div>
     </section>
 
@@ -128,7 +141,7 @@
     <section class="section section-mist" id="signals" aria-labelledby="signals-title">
       <div class="shell">
         <div class="section-heading">
-          <div><div class="section-kicker">04 · 정책·연구·시장 동향</div><h2 id="signals-title">사업 판단에 필요한 변화만 모았습니다.</h2></div>
+          <div><div class="section-kicker">05 · 정책·연구·시장 동향</div><h2 id="signals-title">사업 판단에 필요한 변화만 모았습니다.</h2></div>
           <p>자동 수집 자료는 담당자가 원문을 확인한 뒤 사업 판단에 반영합니다.</p>
         </div>
         <div class="signal-toolbar" role="search">
@@ -157,7 +170,7 @@
     <section class="section section-ink" id="economics" aria-labelledby="economics-title">
       <div class="shell">
         <div class="section-heading inverse">
-          <div><div class="section-kicker">05 · 매출·원가·이익</div><h2 id="economics-title">배양액부터 매출총이익까지 한 흐름으로 계산합니다.</h2></div>
+          <div><div class="section-kicker">06 · 매출·원가·이익</div><h2 id="economics-title">배양액부터 매출총이익까지 한 흐름으로 계산합니다.</h2></div>
           <p>배양액 조성과 생산수율은 제시된 기준으로 계산하고, 말토덱스트린·가공·검사·포장 원가는 실제 견적을 입력한 뒤 확정합니다.</p>
         </div>
         <div class="table-wrap"><table class="data-table" id="assumption-table"><thead><tr><th>핵심 변수</th><th>현재 값</th><th>상태</th><th>계산/근거</th><th>다음 검증</th></tr></thead><tbody></tbody></table></div>
@@ -166,8 +179,8 @@
 
     <section class="section shell" id="roadmap" aria-labelledby="roadmap-title">
       <div class="section-heading">
-        <div><div class="section-kicker">06 · 검증 실행계획</div><h2 id="roadmap-title">30일 준비, 90일 조기 신호, 출하 최종 평가로 나눕니다.</h2></div>
-        <p>30일 안에 유료 실증을 시작하되, 생산성과 육질 결과는 필요한 관찰 기간을 지켜 판단합니다.</p>
+        <div><div class="section-kicker">07 · 검증 실행계획</div><h2 id="roadmap-title">30일 안에 시험을 열고, 결과는 축종별 기간을 지켜 판정합니다.</h2></div>
+        <p>빠른 육계 시험부터 긴 비육우·산란계 시험까지 같은 제품 규격과 증빙 규칙으로 관리합니다.</p>
       </div>
       <div class="roadmap" id="roadmap-list"></div>
     </section>
@@ -175,7 +188,7 @@
     <section class="section section-mist" id="project-timeline" aria-labelledby="project-timeline-title">
       <div class="shell">
         <div class="section-heading">
-          <div><div class="section-kicker">07 · 사업화 일정</div><h2 id="project-timeline-title">파일럿 생산에서 자체 공장까지 단계적으로 확장합니다.</h2></div>
+          <div><div class="section-kicker">08 · 사업화 일정</div><h2 id="project-timeline-title">파일럿 생산에서 자체 공장까지 단계적으로 확장합니다.</h2></div>
           <p>2026년 8월 파일럿 생산, 2027년 상반기 양산 가동, 2028년 하반기 자체 공장 설립을 목표로 하며 단계별 승인 조건을 통과할 때만 다음 단계로 이동합니다.</p>
         </div>
         <div class="roadmap" id="project-timeline-list"></div>
@@ -185,7 +198,7 @@
 
     <section class="section shell" id="team" aria-labelledby="team-title">
       <div class="section-heading">
-        <div><div class="section-kicker">08 · 사업화 조직과 생산 기반</div><h2 id="team-title">분석·발효·정제 경험과 생산 기반을 한 팀으로 연결합니다.</h2></div>
+        <div><div class="section-kicker">09 · 사업화 조직과 생산 기반</div><h2 id="team-title">분석·발효·정제 경험과 생산 기반을 한 팀으로 연결합니다.</h2></div>
         <p>경력과 생산능력은 사용자 제공 자료를 기준으로 정리했으며, 외부 공유 전 재직·계약·가동 조건을 다시 확인합니다.</p>
       </div>
       <div class="team-grid" id="team-grid"></div>
@@ -198,7 +211,7 @@
     <section class="section section-mist" id="operations" aria-labelledby="operations-title">
       <div class="shell">
         <div class="section-heading">
-          <div><div class="section-kicker">09 · 운영 현황</div><h2 id="operations-title">자동 수집 자료는 담당자가 확인한 뒤 반영합니다.</h2></div>
+          <div><div class="section-kicker">10 · 운영 현황</div><h2 id="operations-title">자동 수집 자료는 담당자가 확인한 뒤 반영합니다.</h2></div>
           <p>공개 자료는 정기적으로 모으되, 원문 검토를 마친 자료만 준비도 점수에 반영합니다.</p>
         </div>
         <div class="ops-grid">

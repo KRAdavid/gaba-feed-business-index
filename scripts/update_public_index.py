@@ -495,6 +495,8 @@ def build_index(
     }
     result["summary"] = {
         "readiness_score": result["readiness"]["score"],
+        "target_readiness_score": result["readiness"].get("target", {}).get("score", 100),
+        "readiness_gap": result["readiness"].get("target", {}).get("gap", 100 - result["readiness"]["score"]),
         "stage": result["readiness"]["stage"],
         "critical_open_gates": sum(1 for gate in result["critical_gates"] if gate.get("status") == "OPEN"),
         "reviewed_signals": reviewed_count,

@@ -31,11 +31,12 @@
 
   function renderSummary(data) {
     const validationDays = data.caremix_advancement?.validation_clock?.[0]?.target || "30일";
+    const target = data.readiness?.target || { score: 100, gap: 100 - data.summary.readiness_score };
     const cards = [
-      ["사업 준비도", `${data.summary.readiness_score}/100`, "원문 검토를 마친 근거만 반영"],
-      ["남은 핵심 검증", `${data.summary.critical_open_gates}개`, "4개를 모두 확인한 뒤 사업 확대 검토"],
-      ["유료 실증 착수 목표", validationDays, "비육 한우 농장 1곳·발주서 1건"],
-      ["첫 검증 축종", data.caremix_advancement?.first_validation_species || "비육 한우", "한 축종에 집중해 비교 가능성 확보"]
+      ["현재 검증점수", `${data.summary.readiness_score}/100`, "완료 증빙이 확인된 점수만 반영"],
+      ["목표점수", `${target.score}/100`, `남은 ${target.gap}점은 증빙 확보 후 반영`],
+      ["유료 시험 착수 목표", validationDays, "우선 축종의 연구기관·농장 계약"],
+      ["검증 범위", data.caremix_advancement?.validation_scope_label || "6개 축종군", "비육우·젖소·돼지·닭·염소·면양"]
     ];
     $("#summary-grid").innerHTML = cards.map(([label, value, note]) => `<article class="summary-card"><span>${escapeHTML(label)}</span><strong>${escapeHTML(value)}</strong><p>${escapeHTML(note)}</p></article>`).join("");
   }
@@ -52,10 +53,21 @@
 
   function renderCareMixAdvancement(data) {
     if (!data) return;
-    $("#caremix-goal").innerHTML = `<div><span>사업화 목표</span><h3>${escapeHTML(data.goal)}</h3><p>${escapeHTML(data.positioning)}</p></div><strong>${escapeHTML(data.first_validation_species)}</strong>`;
+    $("#caremix-goal").innerHTML = `<div><span>사업화 목표</span><h3>${escapeHTML(data.goal)}</h3><p>${escapeHTML(data.positioning)}</p></div><strong>${escapeHTML(data.validation_scope_label || "축종별 검증")}</strong>`;
     $("#validation-clock").innerHTML = data.validation_clock.map((row, index) => `<article class="clock-card"><span>0${index + 1}</span><strong>${escapeHTML(row.target)}</strong><h3>${escapeHTML(row.name)}</h3><p>${escapeHTML(row.definition)}</p></article>`).join("");
     $("#caremix-kpi-grid").innerHTML = data.kpis.map(row => `<article class="kpi-card"><span>${escapeHTML(row.group)} · ${escapeHTML(row.timing)}</span><h3>${escapeHTML(row.name)}</h3><p>${escapeHTML(row.definition)}</p><dl><div><dt>판정 기준</dt><dd>${escapeHTML(row.target)}</dd></div><div><dt>증빙</dt><dd>${escapeHTML(row.evidence)}</dd></div></dl></article>`).join("");
     $("#caremix-guardrails").innerHTML = `<div><span>판단 원칙</span><strong>${escapeHTML(data.scope_note)}</strong></div><ul>${data.guardrails.map(row => `<li>${escapeHTML(row)}</li>`).join("")}</ul>`;
+  }
+
+  function renderSpeciesValidation(data) {
+    if (!data || !Array.isArray(data.rows)) return;
+    $("#species-grid").innerHTML = data.rows.map(row => `<article class="species-card">
+      <div class="species-head"><span>${escapeHTML(row.stage)}</span><h3>${escapeHTML(row.species)}</h3></div>
+      <strong class="species-period">${escapeHTML(row.minimum_period)}</strong>
+      <dl><div><dt>최종 판정</dt><dd>${escapeHTML(row.final_judgment)}</dd></div><div><dt>핵심 지표</dt><dd>${escapeHTML(row.primary_kpis)}</dd></div></dl>
+      <span class="species-status">${escapeHTML(row.status)}</span>
+    </article>`).join("");
+    $("#species-basis").innerHTML = `<div><span>기간 산정 기준</span><strong>${escapeHTML(data.basis)}</strong><p>${escapeHTML(data.localization_note)}</p></div><a href="${escapeHTML(safeURL(data.source_url))}" target="_blank" rel="noopener noreferrer">공식 기준 원문 ↗</a>`;
   }
 
   function renderReadiness(data) {
@@ -71,6 +83,11 @@
         <div class="dimension-detail"><span>현재: ${escapeHTML(row.evidence)}</span><span>다음: ${escapeHTML(row.next_evidence)}</span></div>
       </div>`;
     }).join("");
+    const target = data.readiness.target;
+    if (target) {
+      $("#readiness-target").innerHTML = `<div class="target-summary"><div><span>현재 확인</span><strong>${data.readiness.score}</strong></div><i aria-hidden="true">→</i><div><span>증빙 확보</span><strong>+${target.gap}</strong></div><i aria-hidden="true">→</i><div><span>목표</span><strong>${target.score}</strong></div><p>${escapeHTML(target.policy)} 목표일 ${escapeHTML(formatDate(target.target_date))}</p></div>
+      <div class="target-dimension-list">${target.dimensions.map(row => `<article><div><strong>${escapeHTML(row.name)}</strong><span>${row.current} → ${row.target} · +${row.gain}</span></div><p>${escapeHTML(row.unlock_evidence)}</p></article>`).join("")}</div>`;
+    }
   }
 
   function renderGates(gates) {
@@ -195,6 +212,7 @@
     renderSummary(data);
     renderBusinessTracks(data.business_tracks);
     renderCareMixAdvancement(data.caremix_advancement);
+    renderSpeciesValidation(data.species_validation);
     renderReadiness(data);
     renderGates(data.critical_gates);
     setupSignalFilters(data);
