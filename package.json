@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "build:site": "node scripts/build_site_worker.mjs",
-    "check": "python scripts/validate_public_index.py && python scripts/validate_public_site.py && python -m unittest discover -s tests -v && node --check docs/assets/app.js && node scripts/build_site_worker.mjs"
+    "build:static": "python scripts/build_static_release.py",
+    "check:static": "python scripts/validate_static_release.py",
+    "check": "python scripts/validate_public_index.py && python scripts/validate_public_site.py && python -m unittest discover -s tests -v && node --check docs/assets/app.js && node scripts/build_site_worker.mjs && python scripts/build_static_release.py && python scripts/validate_static_release.py"
   }
 }

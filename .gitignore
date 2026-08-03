@@ -1,5 +1,6 @@
 _work/
 dist/
+release/
 node_modules/
 *.tar.gz
 *.inspect.ndjson
