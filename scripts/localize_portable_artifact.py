@@ -52,7 +52,7 @@ SPECIES_BLOCK = '''<div class="portable-block portable-layout-full" data-artifac
 
 READINESS_TARGET_BLOCK = '''<div class="portable-block portable-layout-full" data-artifact-block-id="readiness_target" data-artifact-block-type="markdown" data-layout="full"><section class="portable-markdown"><h2>41점에서 100점까지</h2><p><strong>현재 확인 41점 → 증빙 확보 +59점 → 목표 100점</strong></p><ul><li>규제 +14점: 품목 분류·등록 경로·사용조건·표시 문구</li><li>제품 +12점: 제품 규격·안정성·6개 축종군 시험 결과</li><li>공급 +8점: OEM 실사·품질협약·CAPA·MOQ·납기·회수</li><li>단위 경제성 +9점: 실제 견적·수율·매출원가·매출총이익</li><li>상업성 +16점: 유료 시험·실제 매출·반복 발주</li></ul><p>파일·URL·기준일·검토 결론이 연결될 때만 점수를 올립니다.</p></section></div>'''
 
-COLLECTION_BLOCK = '''<div class="portable-block portable-layout-full" data-artifact-block-id="collection_categories" data-artifact-block-type="table" data-layout="full"><section class="portable-content-card portable-table-card" data-artifact-id="collection_categories_table" data-artifact-kind="table" data-table-id="collection_categories_table"><header class="portable-visual-header"><h2>연구 자료·논문·시장 동향 수집</h2></header><div class="portable-table-scroll"><table><caption>공개 자료 수집 카테고리</caption><thead><tr><th>카테고리</th><th>수집 대상</th><th>갱신 주기</th><th>검토 원칙</th><th>연결 출처</th></tr></thead><tbody><tr><td>연구 자료</td><td>축종별 생산성·품질·안전성 연구</td><td>주 1회</td><td>원문·축종·용량·시험기간 확인 후 반영</td><td>4개</td></tr><tr><td>논문</td><td>GABA와 사료·축산 동료심사 논문</td><td>주 1회</td><td>논문 존재와 제품 효능 주장을 구분</td><td>3개</td></tr><tr><td>시장 동향</td><td>정책·산업 변화·원료 가격</td><td>주 1회·월 1회</td><td>출처·기준월 확인 후 준비도와 분리</td><td>3개</td></tr></tbody></table></div><p class="portable-table-note">자동 수집 자료는 검토 대기로 표시되며 준비도 점수에 자동 반영되지 않습니다.</p></section></div>'''
+COLLECTION_BLOCK = '''<div class="portable-block portable-layout-full" data-artifact-block-id="collection_categories" data-artifact-block-type="table" data-layout="full"><section class="portable-content-card portable-table-card" data-artifact-id="collection_categories_table" data-artifact-kind="table" data-table-id="collection_categories_table"><header class="portable-visual-header"><h2>연구 자료·논문·국내외 시장 동향 수집</h2></header><div class="portable-table-scroll"><table><caption>공개 자료 수집 카테고리</caption><thead><tr><th>카테고리</th><th>수집 대상</th><th>갱신 주기</th><th>검토 원칙</th><th>연결 출처</th></tr></thead><tbody><tr><td>연구 자료</td><td>축종별 생산성·품질·안전성 연구</td><td>주 1회</td><td>원문·축종·용량·시험기간 확인 후 반영</td><td>3개</td></tr><tr><td>논문</td><td>GABA와 사료·축산 동료심사 논문</td><td>주 1회</td><td>논문 존재와 제품 효능 주장을 구분</td><td>3개</td></tr><tr><td>국내 동향</td><td>국내 정책·축산 산업·원료 수급</td><td>주 1회·월 1회</td><td>공고·산업 신호와 기준일 확인</td><td>2개</td></tr><tr><td>해외 동향</td><td>국제 원료 가격·해외 사료 시장</td><td>월 1회</td><td>기준월·단위·환율 영향을 확인</td><td>1개</td></tr></tbody></table></div><p class="portable-table-note">자동 수집 자료는 검토 대기로 표시되며 준비도 점수에 자동 반영되지 않습니다.</p></section></div>'''
 
 
 def localize_time(match: re.Match[str]) -> str:
@@ -82,7 +82,15 @@ def main() -> int:
     if 'data-artifact-block-id="readiness_target"' not in content and readiness_anchor in content:
         content = content.replace(readiness_anchor, READINESS_TARGET_BLOCK + readiness_anchor, 1)
     collection_anchor = '<div class="portable-block portable-layout-full" data-artifact-block-id="signals"'
-    if 'data-artifact-block-id="collection_categories"' not in content and collection_anchor in content:
+    if 'data-artifact-block-id="collection_categories"' in content and collection_anchor in content:
+        content = re.sub(
+            r'<div class="portable-block portable-layout-full" data-artifact-block-id="collection_categories".*?(?=<div class="portable-block portable-layout-full" data-artifact-block-id="signals")',
+            COLLECTION_BLOCK,
+            content,
+            count=1,
+            flags=re.DOTALL,
+        )
+    elif collection_anchor in content:
         content = content.replace(collection_anchor, COLLECTION_BLOCK + collection_anchor, 1)
     content = re.sub(
         r'<p><strong><span class="portable-source-tooltip portable-source-value"[^>]*>.*?'

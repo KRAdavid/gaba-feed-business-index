@@ -138,7 +138,7 @@
     const marketPoints = Object.values(data.market || {}).reduce((sum, row) => sum + (Array.isArray(row?.points) ? row.points.length : 0), 0);
     const cards = categories.map(category => {
       const signalCount = signals.filter(row => category.signal_categories?.includes(row.category)).length;
-      const marketCount = category.id === "market_trends" ? marketPoints : 0;
+      const marketCount = category.id === "market_overseas" ? marketPoints : 0;
       const sourceCount = catalog.filter(row => category.source_ids?.includes(row.id)).length;
       const itemCount = signalCount + marketCount;
       return `<article class="collection-card"><div class="collection-card-top"><span>${escapeHTML(category.cadence)}</span><strong>${itemCount}건</strong></div><h3>${escapeHTML(category.name)}</h3><p>${escapeHTML(category.purpose)}</p><dl><div><dt>연결 출처</dt><dd>${sourceCount}개</dd></div><div><dt>검토 원칙</dt><dd>${escapeHTML(category.review_rule)}</dd></div></dl><a href="#signals">자료 목록에서 확인 ↗</a></article>`;

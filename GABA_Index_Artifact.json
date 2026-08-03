@@ -394,9 +394,10 @@
         { "period": "2028년 하반기", "stage": "자체 공장 설립", "operating_model": "5·10·50톤급 발효조(퍼멘터) 대안 검토", "target": "수요에 맞는 자체 정밀발효·정제 생산 기반 구축", "gate": "확정 수요·가동률·투자 회수·인허가·자금조달 통과" }
       ],
       "collection_categories": [
-        { "id": "research_materials", "name": "연구 자료", "purpose": "축종별 생산성·품질·안전성 연구 결과", "cadence": "주 1회", "review_rule": "원문·축종·용량·시험기간 확인 후 반영", "source_count": 4 },
+        { "id": "research_materials", "name": "연구 자료", "purpose": "축종별 생산성·품질·안전성 연구 결과", "cadence": "주 1회", "review_rule": "원문·축종·용량·시험기간 확인 후 반영", "source_count": 3 },
         { "id": "papers", "name": "논문", "purpose": "GABA와 사료·축산 동료심사 논문", "cadence": "주 1회", "review_rule": "논문 존재와 제품 효능 주장을 구분", "source_count": 3 },
-        { "id": "market_trends", "name": "시장 동향", "purpose": "정책·산업 변화·원료 가격 추적", "cadence": "주 1회·월 1회", "review_rule": "출처·기준월 확인 후 점수와 분리", "source_count": 3 }
+        { "id": "market_domestic", "name": "국내 동향", "purpose": "국내 정책·축산 산업·원료 수급", "cadence": "주 1회·월 1회", "review_rule": "공고·산업 신호와 기준일 확인", "source_count": 2 },
+        { "id": "market_overseas", "name": "해외 동향", "purpose": "국제 원료 가격·해외 사료 시장", "cadence": "월 1회", "review_rule": "기준월·단위·환율 영향을 확인", "source_count": 1 }
       ],
       "glossary": [
         { "term": "GABA", "plain": "감마아미노부티르산", "use": "축종·용량·제형에 따라 효과가 달라질 수 있는 성분" },
