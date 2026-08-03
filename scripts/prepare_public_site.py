@@ -10,9 +10,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DOWNLOADS = ROOT / "docs" / "downloads"
 FILES = {
-    "GABA_Index_Master.xlsx": "GABA_Index_Master.xlsx",
     "GABA_Feed_Business_Model_Speech_Deck_v1.pptx": "GABA_Feed_Business_Model_Speech_Deck_v1.pptx",
-    "GABA_Index_운영가이드.md": "GABA_Index_운영가이드.md",
+    "GABA_Crude_Specification.md": "GABA_Crude_Specification.md",
+    "GABA_Caremix_Specification.md": "GABA_Caremix_Specification.md",
 }
 
 
