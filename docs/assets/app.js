@@ -250,11 +250,15 @@
 
   async function init() {
     try {
-      const response = await fetch(dataEndpoint, { cache: "no-store", headers: { Accept: "application/json" } });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const contentType = response.headers.get("content-type") || "";
-      if (!contentType.toLowerCase().includes("application/json")) throw new Error("데이터 형식이 올바르지 않습니다");
-      const data = await response.json();
+      const inlineData = window.__GABA_INDEX_DATA__;
+      let data = inlineData;
+      if (!data) {
+        const response = await fetch(dataEndpoint, { cache: "no-store", headers: { Accept: "application/json" } });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const contentType = response.headers.get("content-type") || "";
+        if (!contentType.toLowerCase().includes("application/json")) throw new Error("데이터 형식이 올바르지 않습니다");
+        data = await response.json();
+      }
       if (!isIndexData(data)) throw new Error("인덱스 데이터 구조가 올바르지 않습니다");
       render(data);
     } catch (error) {
