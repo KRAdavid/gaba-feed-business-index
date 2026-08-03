@@ -46,7 +46,7 @@
       <div class="track-number">0${index + 1}</div>
       <div class="track-head"><span>${escapeHTML(row.category)}</span><h3>${escapeHTML(row.name)}</h3></div>
       <p class="track-headline">${escapeHTML(row.headline)}</p>
-      <p class="track-description">${escapeHTML(row.description)}</p><div class="track-effects"><small>기대효과 · 검증 전 마케팅 표현</small><ul>${(row.marketing_effects || []).map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul></div>
+      <p class="track-description">${escapeHTML(row.description)}</p><div class="track-effects"><small>기대효과 · 검증 전 마케팅 표현</small><ul>${(row.marketing_effects || []).map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul><small>시험 확인 필요: ${(row.expected_effect_directions || []).join(" · ")}</small></div>
       <dl><div><dt>주요 제품</dt><dd>${row.offerings.map(item => `<span>${escapeHTML(item)}</span>`).join("")}</dd></div><div><dt>매출 방식</dt><dd>${escapeHTML(row.revenue_model)}</dd></div><div><dt>품질 초점</dt><dd>${escapeHTML(row.quality_focus)}</dd></div></dl>
     </article>`).join("");
   }
