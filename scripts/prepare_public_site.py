@@ -18,6 +18,11 @@ FILES = {
 
 def main() -> None:
     DOWNLOADS.mkdir(parents=True, exist_ok=True)
+    # Keep the public download surface intentionally limited to the approved three files.
+    for stale_name in ("GABA_Index_Master.xlsx", "GABA_Index_운영가이드.md"):
+        stale = DOWNLOADS / stale_name
+        if stale.exists():
+            stale.unlink()
     for source_name, target_name in FILES.items():
         source = ROOT / source_name
         if not source.exists():
