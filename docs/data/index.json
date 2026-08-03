@@ -871,6 +871,33 @@
       "review_rule": "해외 가격은 기준월·단위·환율 영향을 확인하고 참고 자료로 관리"
     }
   ],
+  "collection_schedule": {
+    "timezone": "Asia/Seoul",
+    "status": "예약 운영",
+    "rule": "예약 수집은 탐색용이며, 원문·기준일·축종·시험조건을 검토한 뒤에만 준비도 점수 증빙으로 승격합니다.",
+    "jobs": [
+      {
+        "category_id": "research_materials",
+        "schedule": "매주 월요일 09:00",
+        "next_run": "2026-08-10 09:00"
+      },
+      {
+        "category_id": "papers",
+        "schedule": "매주 월요일 09:15",
+        "next_run": "2026-08-10 09:15"
+      },
+      {
+        "category_id": "market_domestic",
+        "schedule": "매주 월요일 09:30",
+        "next_run": "2026-08-10 09:30"
+      },
+      {
+        "category_id": "market_overseas",
+        "schedule": "매월 첫 영업일 09:45",
+        "next_run": "2026-09-01 09:45"
+      }
+    ]
+  },
   "downloads": [
     {
       "name": "사료업체·투자자 스피치덱",
@@ -890,7 +917,7 @@
   ],
   "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T08:16:31Z",
+    "generated_at": "2026-08-03T08:18:08Z",
     "as_of_date": "2026-08-03",
     "timezone": "Asia/Seoul",
     "automation": "Codex 주간 자동화 + Sites production 배포",
@@ -1574,23 +1601,23 @@
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T08:16:31Z",
+        "fetched_at": "2026-08-03T08:18:08Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T08:16:31Z",
+        "fetched_at": "2026-08-03T08:18:08Z",
         "item_count": 6
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T08:16:31Z",
+        "fetched_at": "2026-08-03T08:18:08Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T08:16:31Z",
+    "last_successful_live_refresh": "2026-08-03T08:18:08Z",
     "review_queue_count": 18
   }
 }

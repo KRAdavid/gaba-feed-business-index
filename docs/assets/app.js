@@ -144,7 +144,10 @@
       return `<article class="collection-card"><div class="collection-card-top"><span>${escapeHTML(category.cadence)}</span><strong>${itemCount}건</strong></div><h3>${escapeHTML(category.name)}</h3><p>${escapeHTML(category.purpose)}</p><dl><div><dt>연결 출처</dt><dd>${sourceCount}개</dd></div><div><dt>검토 원칙</dt><dd>${escapeHTML(category.review_rule)}</dd></div></dl><a href="#signals">자료 목록에서 확인 ↗</a></article>`;
     });
     $("#collection-grid").innerHTML = cards.join("");
-    $("#collection-note").textContent = "수집 건수는 현재 공개 스냅샷 기준입니다. 원문 검토 전 자료는 검토 대기로 표시되며 준비도 점수와 분리됩니다.";
+    const schedule = data.collection_schedule;
+    const jobs = Array.isArray(schedule?.jobs) ? schedule.jobs : [];
+    const next = jobs.map(job => `${job.schedule} · 다음 ${job.next_run}`).join(" / ");
+    $("#collection-note").textContent = `${schedule?.status || "수집 운영"} · ${next} · 수집 건수는 현재 공개 스냅샷 기준입니다. 원문 검토 전 자료는 검토 대기로 표시되며 준비도 점수와 분리됩니다.`;
   }
 
   function setupSignalFilters(data) {

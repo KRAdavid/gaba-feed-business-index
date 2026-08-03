@@ -531,6 +531,7 @@
     {"id": "market_domestic", "name": "국내 동향", "purpose": "국내 사료 정책·축산 산업·원료 수급 변화를 추적합니다.", "signal_categories": ["산업", "정책", "정책자동"], "source_ids": ["mafra_rss", "krei_grain"], "cadence": "주 1회·월 1회", "review_rule": "국내 공고·산업 신호는 원문과 기준일 확인 후 점수와 분리"},
     {"id": "market_overseas", "name": "해외 동향", "purpose": "국제 원료 가격과 해외 사료 시장 변화를 추적합니다.", "signal_categories": [], "source_ids": ["world_bank_pink_sheet"], "cadence": "월 1회", "review_rule": "해외 가격은 기준월·단위·환율 영향을 확인하고 참고 자료로 관리"}
   ],
+  "collection_schedule": {"timezone": "Asia/Seoul", "status": "예약 운영", "rule": "예약 수집은 탐색용이며, 원문·기준일·축종·시험조건을 검토한 뒤에만 준비도 점수 증빙으로 승격합니다.", "jobs": [{"category_id": "research_materials", "schedule": "매주 월요일 09:00", "next_run": "2026-08-10 09:00"}, {"category_id": "papers", "schedule": "매주 월요일 09:15", "next_run": "2026-08-10 09:15"}, {"category_id": "market_domestic", "schedule": "매주 월요일 09:30", "next_run": "2026-08-10 09:30"}, {"category_id": "market_overseas", "schedule": "매월 첫 영업일 09:45", "next_run": "2026-09-01 09:45"}]},
   "downloads": [
     {"name": "사료업체·투자자 스피치덱", "file": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx", "type": "PPTX"},
     {"name": "가바크루드 규격서", "file": "downloads/GABA_Crude_Specification.md", "type": "MD"},
