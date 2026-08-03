@@ -14,9 +14,9 @@ const publicFiles = [
   ["/assets/styles.css", "assets/styles.css", "text/css; charset=utf-8"],
   ["/assets/app.js", "assets/app.js", "text/javascript; charset=utf-8"],
   ["/data/index.json", "data/index.json", "application/json; charset=utf-8"],
-  ["/downloads/GABA_Index_Master.xlsx", "downloads/GABA_Index_Master.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
-  ["/downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx", "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx", "application/vnd.openxmlformats-officedocument.presentationml.presentation"],
-  ["/downloads/GABA_Index_운영가이드.md", "downloads/GABA_Index_운영가이드.md", "text/markdown; charset=utf-8"]
+  ["/downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf", "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf", "application/pdf"],
+  ["/downloads/GABA_Crude_Specification.md", "downloads/GABA_Crude_Specification.md", "text/markdown; charset=utf-8"],
+  ["/downloads/GABA_Caremix_Specification.md", "downloads/GABA_Caremix_Specification.md", "text/markdown; charset=utf-8"]
 ];
 
 const assets = {};
