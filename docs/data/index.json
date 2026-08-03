@@ -473,11 +473,11 @@
       "unlock": "시험생산 실수율로 보정"
     },
     {
-      "metric": "확인된 원가 하한",
-      "value": "4,000원/kg",
-      "state": "추가 원가 미반영",
-      "formula": "배양액 400만원÷가바크루드 1,000kg",
-      "unlock": "말토덱스트린·건조·검사·포장 견적 입력"
+      "metric": "가바크루드 표준품 원가",
+      "value": "7,000원/kg",
+      "state": "사용자 제공 기준",
+      "formula": "표준품 1kg 기준",
+      "unlock": "실제 제조·검사·포장 원가로 확정"
     },
     {
       "metric": "가바크루드 최종 매출원가",
@@ -508,18 +508,18 @@
       "unlock": "유료 PoV와 고객 계약"
     },
     {
-      "metric": "가바케어믹스 투입량",
-      "value": "75g/사료t",
-      "state": "유효용량 미검증",
-      "formula": "입력",
-      "unlock": "활성함량·제형·축종별 용량 연결"
+      "metric": "가바케어믹스 GABA 설계량",
+      "value": "100mg/제품 1kg·가축 1일 섭취량 기준",
+      "state": "사용자 제공 설계",
+      "formula": "제품 1kg당 GABA 100mg 포함",
+      "unlock": "축종별 실제 섭취량·유효용량 시험"
     },
     {
-      "metric": "가바케어믹스 매출총이익",
-      "value": "5,649원/사료t",
-      "state": "가정 계산",
-      "formula": "매출액 6,000원-매출원가 351원",
-      "unlock": "제품 투입량과 제품원가 실제 견적 확정"
+      "metric": "가바케어믹스 제품 원가",
+      "value": "7,000원/kg",
+      "state": "사용자 제공 기준",
+      "formula": "가바크루드 표준품 4,000원/kg+미네랄매트릭스 3,000원/kg",
+      "unlock": "배합비·실제 구매 견적·제조비 확인"
     },
     {
       "metric": "가바케어믹스 손익분기 기준이익",
@@ -943,7 +943,7 @@
   ],
   "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T08:39:56Z",
+    "generated_at": "2026-08-03T08:44:32Z",
     "as_of_date": "2026-08-03",
     "timezone": "Asia/Seoul",
     "automation": "Codex 주간 자동화 + Sites production 배포",
@@ -1627,23 +1627,23 @@
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T08:39:56Z",
+        "fetched_at": "2026-08-03T08:44:32Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T08:39:56Z",
+        "fetched_at": "2026-08-03T08:44:32Z",
         "item_count": 6
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T08:39:56Z",
+        "fetched_at": "2026-08-03T08:44:32Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T08:39:56Z",
+    "last_successful_live_refresh": "2026-08-03T08:44:32Z",
     "review_queue_count": 18
   }
 }
