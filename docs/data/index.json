@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0.0",
   "title": "GABA Feed Business Model Index",
-  "subtitle": "사료업계 비경험자도 상태·근거·다음 행동을 5분 안에 확인하는 공개 인덱스",
+  "subtitle": "사료업계가 처음이어도 현재 상태와 근거, 다음에 확인할 일을 5분 안에 파악할 수 있는 공개 인덱스",
   "thesis": "20% GABA 마스터 한 SKU만 재고로 관리하고, 5·10·15·20% 제품은 고객 주문 후 OEM 생산한다.",
-  "decision": "구조는 설계됐지만 규제·제품근거·OEM·유료 반복주문이 잠길 때까지 VALIDATE 단계로 관리한다.",
+  "decision": "사업 구조는 설계됐습니다. 다만 규제 경로, 제품 근거, OEM 조건, 유료 반복 주문을 확인할 때까지는 검증 단계로 관리합니다.",
   "readiness": {
     "score": 41,
     "max_score": 100,
     "stage": "VALIDATE",
-    "stage_description": "규제경로·제품정의·공장·유료 고객을 증빙으로 검증하는 단계",
-    "scoring_rule": "파일·URL·기준일·결론이 연결된 증빙이 있을 때만 점수를 올린다.",
+    "stage_description": "규제 경로, 제품 조건, 생산 공장, 유료 고객을 실제 자료로 확인하는 단계입니다.",
+    "scoring_rule": "파일이나 URL에 기준일과 검토 결론이 함께 기록된 경우에만 점수를 올립니다.",
     "dimensions": [
       {
         "id": "regulatory",
@@ -17,9 +17,9 @@
         "score": 6,
         "max_score": 20,
         "status": "검증 필요",
-        "evidence": "현행 기준과 심의절차를 확인함",
-        "open_gate": "GABA·발효배양물의 품목분류, 등록경로, 표시 가능 문구가 미확정",
-        "next_evidence": "관할기관 또는 전문 검토자의 서면 사전검토",
+        "evidence": "현행 기준과 심의 절차를 확인했습니다.",
+        "open_gate": "GABA와 발효배양물의 품목 분류, 등록 경로, 표시 문구가 아직 정해지지 않았습니다.",
+        "next_evidence": "관할 기관 또는 전문 검토자의 서면 사전 검토 결과",
         "owner": "Reg/QA",
         "target_date": "2026-09-01"
       },
@@ -29,9 +29,9 @@
         "score": 8,
         "max_score": 20,
         "status": "부분 근거",
-        "evidence": "축종별 학술 신호가 있으나 결과는 혼합",
-        "open_gate": "활성함량·안정성·제형·축종별 제품특이 용량 연결이 없음",
-        "next_evidence": "제품특이 CoA, 안정성 자료, 유료 PoV",
+        "evidence": "축종별 연구가 있으나 결과가 일관되지는 않습니다.",
+        "open_gate": "활성 함량, 안정성, 제형과 축종별 투여량을 해당 제품 기준으로 연결한 자료가 없습니다.",
+        "next_evidence": "해당 제품의 시험성적서(CoA), 안정성 자료, 유료 고객 시험",
         "owner": "R&D",
         "target_date": "2026-10-15"
       },
@@ -41,33 +41,33 @@
         "score": 12,
         "max_score": 20,
         "status": "설계 완료",
-        "evidence": "1 SKU·FIFO·CoA·주문 후 OEM 흐름을 설계함",
-        "open_gate": "OEM 실사·견적·MOQ·리드타임·회수체계가 미확정",
-        "next_evidence": "OEM 두 곳의 실사, 실견적, QA Agreement",
+        "evidence": "재고 한 품목, 선입선출, 시험성적서, 주문 후 OEM 생산 절차를 설계했습니다.",
+        "open_gate": "OEM 공장 실사, 견적, 최소 주문 수량, 납기, 회수 체계가 아직 정해지지 않았습니다.",
+        "next_evidence": "OEM 두 곳의 실사 결과, 실제 견적, 품질 협약서",
         "owner": "SCM/QA",
         "target_date": "2026-09-30"
       },
       {
         "id": "economics",
-        "name": "단위경제성",
+        "name": "단위 경제성",
         "score": 11,
         "max_score": 20,
         "status": "가정 모델",
-        "evidence": "마스터·매트릭스 단위공헌과 손익분기 산식이 있음",
-        "open_gate": "9,240원/kg과 4,681.8원/kg 비용 근거가 단절됨",
-        "next_evidence": "실견적·시험생산·포장·물류비를 포함한 원가 브리지",
+        "evidence": "마스터와 매트릭스의 단위당 공헌이익, 손익분기 산식이 있습니다.",
+        "open_gate": "kg당 9,240원과 4,681.8원의 세부 비용 근거를 확인하지 못했습니다.",
+        "next_evidence": "실제 견적, 시험 생산, 포장비, 물류비를 포함한 세부 원가 내역",
         "owner": "Finance",
         "target_date": "2026-09-30"
       },
       {
         "id": "commercial",
-        "name": "상업검증",
+        "name": "상업성 검증",
         "score": 4,
         "max_score": 20,
         "status": "미검증",
-        "evidence": "고객가치 가설과 반복주문 조건만 정의됨",
-        "open_gate": "LOI·유료 PO·반복주문 증빙이 없음",
-        "next_evidence": "유료 PoV 두 건과 반복 PO 트리거",
+        "evidence": "고객 가치 가설과 반복 주문 조건만 정해진 상태입니다.",
+        "open_gate": "구매 의향서, 유료 발주서, 반복 주문 자료가 없습니다.",
+        "next_evidence": "유료 고객 시험 두 건과 반복 주문 조건",
         "owner": "Sales",
         "target_date": "2026-11-15"
       }
@@ -79,32 +79,32 @@
       "name": "규제·품목분류",
       "status": "OPEN",
       "question": "어떤 사료 품목으로 등록하고 어떤 문구를 표시할 수 있는가?",
-      "unlock_evidence": "품목분류·등록경로·표시 문구의 서면 사전검토",
-      "stop_rule": "미확정이면 외부 효능표현과 납품을 중단"
+      "unlock_evidence": "품목 분류, 등록 경로, 표시 문구에 대한 서면 사전 검토 결과",
+      "stop_rule": "확인 전에는 외부 효능 표현과 납품을 진행하지 않습니다."
     },
     {
       "id": "product_gate",
       "name": "제품근거·유효용량",
       "status": "OPEN",
       "question": "이 제품의 활성함량·안정성·축종별 유효용량은 무엇인가?",
-      "unlock_evidence": "로트 CoA·안정성·제품특이 유료 PoV",
-      "stop_rule": "미확정이면 SCALE 보류"
+      "unlock_evidence": "로트별 시험성적서, 안정성 자료, 해당 제품을 사용한 유료 고객 시험",
+      "stop_rule": "확인 전에는 생산과 판매 확대를 보류합니다."
     },
     {
       "id": "oem_gate",
       "name": "OEM·QA",
       "status": "OPEN",
       "question": "실제 공장에서 얼마에, 얼마나 빨리, 어떤 품질책임으로 만들 수 있는가?",
-      "unlock_evidence": "OEM 두 곳 실견적·MOQ·리드타임·QA Agreement",
-      "stop_rule": "미합의면 고객 납기 약속 보류"
+      "unlock_evidence": "OEM 두 곳의 실제 견적, 최소 주문 수량, 납기, 품질 협약서",
+      "stop_rule": "조건에 합의하기 전에는 고객에게 납기를 약속하지 않습니다."
     },
     {
       "id": "commercial_gate",
       "name": "상업검증",
       "status": "OPEN",
       "question": "고객이 실제로 비용을 지불하고 다시 주문하는가?",
-      "unlock_evidence": "유료 PoV와 반복 PO 트리거",
-      "stop_rule": "유료 반복 증빙이 없으면 투자 확대 중단"
+      "unlock_evidence": "유료 고객 시험 결과와 반복 주문 자료",
+      "stop_rule": "유료 반복 주문이 확인되지 않으면 투자를 확대하지 않습니다."
     }
   ],
   "assumptions": [
@@ -116,14 +116,14 @@
       "unlock": "고객 견적과 가격 수용성"
     },
     {
-      "metric": "20% 마스터 잠정원가",
+      "metric": "20% 마스터 원가 가정",
       "value": "9,240원/kg",
-      "state": "근거 단절",
+      "state": "세부 근거 확인 필요",
       "formula": "입력",
-      "unlock": "배양·건조·부형제·검사·포장·수율 원가 브리지"
+      "unlock": "배양·건조·부형제·검사·포장·수율의 세부 원가 내역"
     },
     {
-      "metric": "20% 마스터 단위공헌",
+      "metric": "20% 마스터 단위당 공헌이익",
       "value": "8,760원/kg",
       "state": "가정 계산",
       "formula": "18,000-9,240",
@@ -144,7 +144,7 @@
       "unlock": "활성함량·제형·축종별 용량 연결"
     },
     {
-      "metric": "매트릭스 단위공헌",
+      "metric": "매트릭스 단위당 공헌이익",
       "value": "4,149원/사료t",
       "state": "가정 계산",
       "formula": "6,000-351-1,500",
@@ -155,35 +155,35 @@
       "value": "18,000원/사료t",
       "state": "가설",
       "formula": "손실회피 가정",
-      "unlock": "유료 대조군 PoV에서 경제효과 측정"
+      "unlock": "유료 비교시험에서 경제 효과 측정"
     }
   ],
   "roadmap": [
     {
       "window": "0~30일",
-      "theme": "경로 잠금",
+      "theme": "규제 경로 확인",
       "actions": [
-        "품목분류·등록경로·표시 문구 사전검토",
-        "제품 활성함량·제형·로트 규격 확정",
-        "OEM 후보 두 곳에 RFI 발송"
+        "품목 분류·등록 경로·표시 문구 사전 검토",
+        "제품 활성 함량·제형·로트 규격 확정",
+        "OEM 후보 두 곳에 정보 요청서(RFI) 발송"
       ]
     },
     {
       "window": "31~60일",
-      "theme": "제품 잠금",
+      "theme": "제품·공급 조건 확인",
       "actions": [
-        "시험생산·균일도·안정성·CoA 확인",
-        "축종 하나·제형 하나·1차 지표 하나의 유료 PoV",
-        "실제 견적으로 단위경제성 재산정"
+        "시험 생산·균일도·안정성·시험성적서 확인",
+        "축종 하나·제형 하나·핵심 지표 하나에 집중한 유료 고객 시험",
+        "실제 견적으로 단위 경제성 다시 계산"
       ]
     },
     {
       "window": "61~90일",
-      "theme": "상업 잠금",
+      "theme": "상업성 확인",
       "actions": [
-        "첫 유료 PO 확보",
-        "반복주문 트리거와 중단 기준 계약",
-        "실제 원가·공급능력으로 GO/NO-GO 결정"
+        "첫 유료 발주서 확보",
+        "반복 주문 조건과 중단 기준을 계약서에 반영",
+        "실제 원가와 공급 능력을 바탕으로 계속 추진할지 결정"
       ]
     }
   ],
@@ -200,7 +200,7 @@
     },
     {
       "term": "OEM",
-      "plain": "주문자상표 부착생산",
+      "plain": "주문자 상표 부착 생산",
       "use": "발주자가 규격을 정하고 외부 공장이 생산하는 방식"
     },
     {
@@ -210,8 +210,8 @@
     },
     {
       "term": "CoA",
-      "plain": "성적서",
-      "use": "로트별 성분·미생물·중금속 등 시험결과 문서"
+      "plain": "시험성적서",
+      "use": "로트별 성분·미생물·중금속 시험 결과를 기록한 문서"
     },
     {
       "term": "MOQ",
@@ -225,23 +225,23 @@
     },
     {
       "term": "PO",
-      "plain": "구매주문서",
+      "plain": "발주서",
       "use": "규격·수량·가격·납기를 확정한 주문 문서"
     },
     {
       "term": "PoV",
-      "plain": "가치검증",
+      "plain": "고객 가치 검증",
       "use": "실제 고객 환경에서 경제적 가치를 확인하는 시험"
     },
     {
       "term": "QA Agreement",
-      "plain": "품질합의서",
+      "plain": "품질 협약서",
       "use": "시험·변경·일탈·회수 책임을 발주자와 제조자가 합의한 문서"
     },
     {
-      "term": "단위공헌",
-      "plain": "한 단위가 남기는 금액",
-      "use": "판매가에서 제품원가와 직접변동비를 뺀 값"
+      "term": "단위당 공헌이익",
+      "plain": "한 단위를 팔아 남는 금액",
+      "use": "판매가에서 제품 원가와 직접 변동비를 뺀 값"
     },
     {
       "term": "품목분류",
@@ -317,9 +317,9 @@
       "type": "MD"
     }
   ],
-  "disclaimer": "이 공개 인덱스는 사업 준비도와 검증 순서를 관리하는 자료입니다. 법률·수의·사료·투자 자문을 대체하지 않으며, 자동 수집 신호는 검토 완료 전 점수나 효능 판단에 반영하지 않습니다.",
+  "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T02:45:18Z",
+    "generated_at": "2026-08-03T03:01:20Z",
     "as_of_date": "2026-08-03",
     "timezone": "Asia/Seoul",
     "automation": "Codex 주간 자동화 + Sites production 배포",
@@ -335,7 +335,7 @@
     "auto_signals_waiting_review": 19,
     "source_health_ok": 3,
     "source_health_total": 3,
-    "lowest_dimension": "상업검증"
+    "lowest_dimension": "상업성 검증"
   },
   "signals": [
     {
@@ -343,9 +343,9 @@
       "date": "2026-08-03",
       "category": "전략",
       "title": "20% 마스터 1 SKU + 주문 후 OEM 모델",
-      "summary": "재고 리스크를 20% 마스터 한 품목에 격리하고 고객 규격은 PO 후 생산하는 구조다.",
+      "summary": "20% 마스터 한 품목만 재고로 두고, 고객이 발주한 규격은 주문 후 생산하는 구조입니다.",
       "judgment": "검증 필요",
-      "action": "원가·제품용량·OEM 실견적·유료 반복주문의 증빙을 연결한다.",
+      "action": "세부 원가, 제품 투입량, OEM 실제 견적, 유료 반복 주문을 자료로 확인합니다.",
       "source_name": "원본 사업모델 v5",
       "url": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx",
       "review_status": "reviewed",
@@ -356,9 +356,9 @@
       "date": "2026-08-03",
       "category": "정책자동",
       "title": "축산물 동물용의약품 잔류검사, 국제기준에 맞춰 위해도 기반으로 체계화",
-      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
       "source_name": "농림축산식품부 RSS",
       "url": "http://www.mafra.go.kr/bbs/home/792/578606/artclView.do",
       "review_status": "auto-collected",
@@ -369,9 +369,9 @@
       "date": "2026-07-30",
       "category": "정책자동",
       "title": "축산농가 폭염 대응에 차질 없도록 현장 지원 강화",
-      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
       "source_name": "농림축산식품부 RSS",
       "url": "http://www.mafra.go.kr/bbs/home/792/578579/artclView.do",
       "review_status": "auto-collected",
@@ -382,9 +382,9 @@
       "date": "2026-07-28",
       "category": "정책자동",
       "title": "농식품부, 장마 이후 폭염에 대비하여 농축산물 수급 차질 없도록 총력 대응",
-      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
       "source_name": "농림축산식품부 RSS",
       "url": "http://www.mafra.go.kr/bbs/home/792/578568/artclView.do",
       "review_status": "auto-collected",
@@ -395,9 +395,9 @@
       "date": "2026-07-27",
       "category": "정책자동",
       "title": "농식품부·기후부, 가축분뇨를 전기와 열로... 바이오매스 고체연료 기술개발 본격 착수",
-      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
       "source_name": "농림축산식품부 RSS",
       "url": "http://www.mafra.go.kr/bbs/home/792/578546/artclView.do",
       "review_status": "auto-collected",
@@ -408,9 +408,9 @@
       "date": "2026-07-21",
       "category": "정책자동",
       "title": "경북 예천 구제역 방역조치 차질 없이 추진 중",
-      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
       "source_name": "농림축산식품부 RSS",
       "url": "http://www.mafra.go.kr/bbs/home/792/578506/artclView.do",
       "review_status": "auto-collected",
@@ -421,9 +421,9 @@
       "date": "2026-07-20",
       "category": "정책자동",
       "title": "폭염·호우 등에 대비하여 농축산물 수급 관리 강화",
-      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
       "source_name": "농림축산식품부 RSS",
       "url": "http://www.mafra.go.kr/bbs/home/792/578501/artclView.do",
       "review_status": "auto-collected",
@@ -434,9 +434,9 @@
       "date": "2026-07-20",
       "category": "정책자동",
       "title": "여름철 다중 이용시설 인근 축산 악취, 전문 컨설팅으로 집중 관리",
-      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
       "source_name": "농림축산식품부 RSS",
       "url": "http://www.mafra.go.kr/bbs/home/792/578500/artclView.do",
       "review_status": "auto-collected",
@@ -460,8 +460,8 @@
       "date": "2026-05-29",
       "category": "정책",
       "title": "2026 저탄소 농업 프로그램 축산 분야",
-      "summary": "저메탄·질소저감 사료는 인정 기준을 충족한 제품에 지원되며 GABA 제품의 해당 여부는 별도 검증이 필요하다.",
-      "judgment": "기회·제한",
+      "summary": "저메탄·질소 저감 사료는 인정 기준을 충족해야 지원받을 수 있습니다. GABA 제품이 대상에 해당하는지는 별도로 확인해야 합니다.",
+      "judgment": "가능성 있음·별도 확인 필요",
       "action": "GABA를 저탄소 사료로 단정하지 않고 인정 기준과 환경효과를 별도 검증한다.",
       "source_name": "농림축산식품부",
       "url": "https://www.mafra.go.kr/bbs/home/791/597692/download.do",
@@ -473,9 +473,9 @@
       "date": "2026-05-27",
       "category": "학술자동",
       "title": "Effects of GABA-enriched alfalfa silage on rumen microbiota, lactation hormones, immunity, and mammary gland gene expression, alongside lactation performance in dairy goats.",
-      "summary": "J Anim Sci Biotechnol에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "J Anim Sci Biotechnol에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "J Anim Sci Biotechnol",
       "url": "https://doi.org/10.1186/s40104-026-01408-9",
       "review_status": "auto-collected",
@@ -493,7 +493,7 @@
       "date": "2026-03-16",
       "category": "산업",
       "title": "사료 원료·배합사료 방역·회수 관리 강화",
-      "summary": "원료 추적, 병원체 검사, 판매중지와 회수 능력이 OEM 선정의 핵심 품질조건이다.",
+      "summary": "OEM을 선정할 때는 원료 추적, 병원체 검사, 판매 중지와 회수 체계를 반드시 확인해야 합니다.",
       "judgment": "주의",
       "action": "OEM 실사표에 원료 추적·검사·일탈·회수 체계를 포함한다.",
       "source_name": "농림축산식품부",
@@ -506,9 +506,9 @@
       "date": "2026-03-11",
       "category": "학술자동",
       "title": "Creatine pyruvate and gamma-aminobutyric acid mitigate heat stress in goats: Mechanistic insights from antioxidant function, ruminal epithelial barrier integrity, and transcriptomics.",
-      "summary": "J Therm Biol에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "J Therm Biol에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "J Therm Biol",
       "url": "https://doi.org/10.1016/j.jtherbio.2026.104438",
       "review_status": "auto-collected",
@@ -526,9 +526,9 @@
       "date": "2026-01-22",
       "category": "학술자동",
       "title": "Integrated multi-omics analysis reveals gamma-aminobutyric acid as a key regulator of social genetic effects on residual feed intake in pigs.",
-      "summary": "Genomics에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "Genomics에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "Genomics",
       "url": "https://doi.org/10.1016/j.ygeno.2026.111207",
       "review_status": "auto-collected",
@@ -547,8 +547,8 @@
       "category": "제품근거",
       "title": "젖소 열스트레스 RP-GABA 연구",
       "summary": "18두 시험에서 산유량 효과는 통계적으로 유의하지 않았고 일부 유성분에는 유의한 변화가 있었다.",
-      "judgment": "유망·제한",
-      "action": "반추위 보호 제형과 고정 용량으로 제품특이 유료 PoV를 설계한다.",
+      "judgment": "가능성 있음·결과 제한적",
+      "action": "반추위 보호 제형과 정해진 용량으로 해당 제품의 유료 고객 시험을 설계합니다.",
       "source_name": "Animals",
       "url": "https://www.mdpi.com/2076-2615/16/2/262",
       "review_status": "reviewed",
@@ -559,9 +559,9 @@
       "date": "2026-01-15",
       "category": "학술자동",
       "title": "Effect of Dietary Supplementation with Rumen-Protected GABA (γ-Aminobutyric Acid) on Milk Productivity and Blood Profiles of Dairy Cattle Under Heat Stress Conditions.",
-      "summary": "Animals (Basel)에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "Animals (Basel)에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "Animals (Basel)",
       "url": "https://doi.org/10.3390/ani16020262",
       "review_status": "auto-collected",
@@ -579,9 +579,9 @@
       "date": "2025-12-10",
       "category": "학술자동",
       "title": "Advances in GABA-Enriched Yogurt and Frozen Yogurt: Microbial Biosynthesis, Functional Properties, and Health Perspectives-A Comprehensive Review.",
-      "summary": "Foods에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "Foods에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "Foods",
       "url": "https://doi.org/10.3390/foods14244254",
       "review_status": "auto-collected",
@@ -599,9 +599,9 @@
       "date": "2025-11-08",
       "category": "학술자동",
       "title": "γ-aminobutyric acid improves gut-brain axis function and behavioral adaptation in broilers under low-protein diet.",
-      "summary": "Poult Sci에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "Poult Sci에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "Poult Sci",
       "url": "https://doi.org/10.1016/j.psj.2025.106085",
       "review_status": "auto-collected",
@@ -619,9 +619,9 @@
       "date": "2025-11-03",
       "category": "학술자동",
       "title": "Transcriptional profiling of the hippocampus and hypothalamus reveals a potential role of thyroid hormone in gamma-aminobutyric acid (GABA) synthesis in dairy cows fed a high-concentrate diet.",
-      "summary": "BMC Vet Res에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "BMC Vet Res에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "BMC Vet Res",
       "url": "https://doi.org/10.1186/s12917-025-05078-z",
       "review_status": "auto-collected",
@@ -639,9 +639,9 @@
       "date": "2025-10-21",
       "category": "학술자동",
       "title": "Gamma-Aminobutyric Acid (GABA) as a Dietary Strategy for Enhancing Temperature Stress Resilience in Aquaculture Species.",
-      "summary": "Int J Mol Sci에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "Int J Mol Sci에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "Int J Mol Sci",
       "url": "https://doi.org/10.3390/ijms262010233",
       "review_status": "auto-collected",
@@ -659,9 +659,9 @@
       "date": "2025-10-01",
       "category": "학술자동",
       "title": "Genomic and phenotypic analysis of probiotic properties of GABA-producing Enterococcus lactis A1 in Micropterus salmoides aquaculture",
-      "summary": "Microbiological research에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "Microbiological research에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "Microbiological research",
       "url": "https://europepmc.org/article/AGR/IND609301643",
       "review_status": "auto-collected",
@@ -679,9 +679,9 @@
       "date": "2025-05-26",
       "category": "학술자동",
       "title": "Genomic and phenotypic analysis of probiotic properties of GABA-producing Enterococcus lactis A1 in Micropterus salmoides aquaculture.",
-      "summary": "Microbiol Res에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "Microbiol Res에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "Microbiol Res",
       "url": "https://doi.org/10.1016/j.micres.2025.128241",
       "review_status": "auto-collected",
@@ -699,9 +699,9 @@
       "date": "2025-03-20",
       "category": "학술자동",
       "title": "The effects of gamma-aminobutyric acid on growth performance, diarrhoea, ruminal fermentation, and antioxidant capacity in pre-weaned calves.",
-      "summary": "Animal에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "Animal에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "Animal",
       "url": "https://doi.org/10.1016/j.animal.2025.101493",
       "review_status": "auto-collected",
@@ -719,9 +719,9 @@
       "date": "2025-03-12",
       "category": "학술자동",
       "title": "Effects of Dietary Gamma-Aminobutyric Acid (GABA) Inclusion on Acute Temperature Stress Responses in Juvenile Olive Flounder (&lt;i&gt;Paralichthys olivaceus&lt;/i&gt;).",
-      "summary": "Animals (Basel)에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "summary": "Animals (Basel)에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
       "judgment": "검토 대기",
-      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
       "source_name": "Animals (Basel)",
       "url": "https://doi.org/10.3390/ani15060809",
       "review_status": "auto-collected",
@@ -740,8 +740,8 @@
       "category": "제품근거",
       "title": "넙치 염분스트레스 GABA 연구",
       "summary": "8주 시험에서 성장과 삼투조절 개선이 통계적으로 유의하지 않았다.",
-      "judgment": "중립·부정",
-      "action": "효과가 없었던 축종·상황도 근거 맵에 유지한다.",
+      "judgment": "효과 확인 안 됨",
+      "action": "효과가 확인되지 않은 축종과 시험 조건도 근거 목록에 남깁니다.",
       "source_name": "Korean Journal of Fisheries and Aquatic Sciences",
       "url": "https://www.e-kfas.org/Upload/files/kfas/4.%2058%281%29%2033-45.pdf",
       "review_status": "reviewed",
@@ -754,7 +754,7 @@
       "title": "사료 등의 기준 및 규격",
       "summary": "품목·기준·표시·등록 검토의 출발점이며 GABA의 명시 허용 여부는 별도 확인이 필요하다.",
       "judgment": "상시",
-      "action": "품목분류 사전검토와 표시 가능 문구를 서면으로 확정한다.",
+      "action": "품목 분류와 사용할 수 있는 표시 문구를 서면으로 확인합니다.",
       "source_name": "국가법령정보센터",
       "url": "https://www.law.go.kr/행정규칙/사료%20등의%20기준%20및%20규격",
       "review_status": "reviewed",
@@ -766,8 +766,8 @@
       "category": "제품근거",
       "title": "비육 한우 GABA 연구",
       "summary": "21두 시험에서 초기 증체 신호가 있었으나 도체 지표는 통계적으로 유의하지 않았다.",
-      "judgment": "유망·제한",
-      "action": "활성함량·제형·용량을 고정한 축종별 제품특이 PoV를 우선한다.",
+      "judgment": "가능성 있음·결과 제한적",
+      "action": "활성 함량, 제형, 용량을 정한 뒤 축종별 유료 고객 시험을 우선 진행합니다.",
       "source_name": "KCI",
       "url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART003036784",
       "review_status": "reviewed",
@@ -798,7 +798,7 @@
       "latest": 197.1,
       "mom_pct": -8.8,
       "yoy_pct": 0.5,
-      "signal": "원가압력 완화",
+      "signal": "원료비 부담 완화",
       "points": [
         {
           "date": "2024-07-01",
@@ -908,7 +908,7 @@
       "latest": 468.0,
       "mom_pct": -1.1,
       "yoy_pct": 12.5,
-      "signal": "대체로 보합",
+      "signal": "큰 변동 없음",
       "points": [
         {
           "date": "2024-07-01",
@@ -1014,23 +1014,23 @@
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T02:45:18Z",
+        "fetched_at": "2026-08-03T03:01:20Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T02:45:18Z",
+        "fetched_at": "2026-08-03T03:01:20Z",
         "item_count": 7
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T02:45:18Z",
+        "fetched_at": "2026-08-03T03:01:20Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T02:45:18Z",
+    "last_successful_live_refresh": "2026-08-03T03:01:20Z",
     "review_queue_count": 19
   }
 }

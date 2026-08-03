@@ -16,31 +16,32 @@
     const date = new Date(value);
     return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Seoul" }).format(date);
   };
-  const sourceLabel = source => ({ mafra_rss: "농림축산식품부", europe_pmc: "Europe PMC", world_bank_pink_sheet: "World Bank 원료가격", "all-live-sources": "전체 실시간 원천" })[source] || source;
+  const sourceLabel = source => ({ mafra_rss: "농림축산식품부", europe_pmc: "Europe PMC", world_bank_pink_sheet: "세계은행 원료 가격", "all-live-sources": "전체 공개 자료" })[source] || source;
+  const stageLabel = stage => ({ EXPLORE: "탐색 단계", VALIDATE: "검증 단계", PILOT: "현장 시험 단계", SCALE: "사업 확대 단계", READY: "투자·계약 검토 단계" })[stage] || stage;
 
   function renderHero(data) {
     const { readiness, meta } = data;
     $("#hero-subtitle").textContent = data.subtitle;
     $("#hero-score").textContent = readiness.score;
     $("#score-ring").style.setProperty("--score", readiness.score);
-    $("#hero-stage").textContent = readiness.stage;
+    $("#hero-stage").textContent = stageLabel(readiness.stage);
     $("#hero-stage-description").textContent = readiness.stage_description;
     $("#freshness").textContent = `기준 ${formatTimestamp(meta.generated_at)} · ${meta.next_scheduled_refresh} 자동 갱신`;
   }
 
   function renderSummary(data) {
     const cards = [
-      ["사업 준비도", `${data.summary.readiness_score}/100`, "검토 완료 근거만 반영"],
-      ["미완료 핵심 검증", `${data.summary.critical_open_gates}개`, "4개 모두 완료 후 확장 검토"],
-      ["검토 완료 신호", `${data.summary.reviewed_signals}건`, "정책·연구·내부 모델"],
-      ["검토 대기열", `${data.summary.auto_signals_waiting_review}건`, "자동 수집 · 점수 미반영"]
+      ["사업 준비도", `${data.summary.readiness_score}/100`, "원문 검토를 마친 근거만 반영"],
+      ["남은 핵심 검증", `${data.summary.critical_open_gates}개`, "4개를 모두 확인한 뒤 사업 확대 검토"],
+      ["검토를 마친 자료", `${data.summary.reviewed_signals}건`, "정책·연구·내부 자료"],
+      ["검토를 기다리는 자료", `${data.summary.auto_signals_waiting_review}건`, "자동 수집 · 점수에 반영하지 않음"]
     ];
     $("#summary-grid").innerHTML = cards.map(([label, value, note]) => `<article class="summary-card"><span>${escapeHTML(label)}</span><strong>${escapeHTML(value)}</strong><p>${escapeHTML(note)}</p></article>`).join("");
   }
 
   function renderReadiness(data) {
     $("#readiness-rule").textContent = data.readiness.scoring_rule;
-    $("#decision-title").textContent = `${data.readiness.stage} · ${data.readiness.score}점`;
+    $("#decision-title").textContent = `${stageLabel(data.readiness.stage)} · ${data.readiness.score}점`;
     $("#decision-copy").textContent = data.decision;
     $("#lowest-dimension").textContent = data.summary.lowest_dimension;
     $("#dimension-list").innerHTML = data.readiness.dimensions.map(row => {
@@ -74,7 +75,7 @@
   function renderSignals() {
     const rows = signalRows();
     const visible = rows.slice(0, state.visible);
-    $("#signal-count").textContent = `${rows.length}개 신호`;
+    $("#signal-count").textContent = `${rows.length}건`;
     $("#signal-list").innerHTML = visible.length ? visible.map(row => {
       const reviewed = row.review_status === "reviewed";
       const cls = reviewed ? "reviewed" : "auto";
@@ -85,12 +86,12 @@
           <details><summary>판단 메모 보기</summary><div class="signal-detail">
             <div><small>무엇이 바뀌었나</small><p>${escapeHTML(row.summary || "원문 확인이 필요합니다.")}</p></div>
             <div><small>현재 판단</small><p>${escapeHTML(row.judgment || "검토 대기")}</p></div>
-            <div><small>다음 행동</small><p>${escapeHTML(row.action || "담당자 검토 후 결정")}</p></div>
+            <div><small>다음에 할 일</small><p>${escapeHTML(row.action || "담당자가 원문을 확인한 뒤 정합니다.")}</p></div>
           </div></details>
         </div>
         <a class="signal-link" href="${escapeHTML(safeURL(row.url))}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(row.title)} 원문 열기">↗</a>
       </article>`;
-    }).join("") : `<div class="empty-state">조건에 맞는 신호가 없습니다.</div>`;
+    }).join("") : `<div class="empty-state">조건에 맞는 자료가 없습니다.</div>`;
     $("#signal-more").hidden = visible.length >= rows.length;
   }
 
@@ -122,7 +123,7 @@
     const rows = Object.values(data.market || {}).filter(row => row && Array.isArray(row.points) && row.points.length);
     if (!rows.length) {
       const failed = (data.automation.source_health || []).filter(row => row.source === "world_bank_pink_sheet" && row.status !== "ok");
-      $("#market-grid").innerHTML = `<div class="market-unavailable"><strong>현재 시장 데이터 확인 대기</strong>국제 원료가격 원천 연결이 일시적으로 지연되었습니다.${failed.length ? ` ${failed.map(row => escapeHTML(sourceLabel(row.source))).join(", ")}의 마지막 성공 스냅샷을 확인 중입니다.` : ""} 값이 없는 경우 임의로 채우지 않습니다.</div>`;
+      $("#market-grid").innerHTML = `<div class="market-unavailable"><strong>새 원료 가격을 확인하고 있습니다.</strong>국제 원료 가격 자료를 받는 데 시간이 걸리고 있습니다.${failed.length ? ` ${failed.map(row => escapeHTML(sourceLabel(row.source))).join(", ")}에서 마지막으로 받은 자료를 확인하고 있습니다.` : ""} 새 값이 확인될 때까지 기존 자료를 유지합니다.</div>`;
       return;
     }
     $("#market-grid").innerHTML = rows.map(row => `<article class="market-card">
@@ -142,11 +143,11 @@
 
   function renderHealth(data) {
     const rows = data.automation.source_health || [];
-    $("#source-health").innerHTML = rows.map(row => `<div class="health-row"><div><strong>${escapeHTML(sourceLabel(row.source))}</strong><small>${row.item_count}건 · ${escapeHTML(formatTimestamp(row.fetched_at))}</small></div><span class="health-status ${escapeHTML(row.status)}">${row.status === "ok" ? "정상" : row.status === "offline" ? "오프라인" : "이전값"}</span></div>`).join("");
+    $("#source-health").innerHTML = rows.map(row => `<div class="health-row"><div><strong>${escapeHTML(sourceLabel(row.source))}</strong><small>${row.item_count}건 · ${escapeHTML(formatTimestamp(row.fetched_at))}</small></div><span class="health-status ${escapeHTML(row.status)}">${row.status === "ok" ? "정상" : row.status === "offline" ? "연결 안 됨" : "이전 자료 사용"}</span></div>`).join("");
   }
 
   function renderDownloads(rows) {
-    const descriptions = { XLSX: "근거 등록부·점수·가정·90일 실행계획", PPTX: "사료업체·투자자 미팅용 고급 스피치덱", MD: "업데이트 규칙·검토 절차·운영 책임" };
+    const descriptions = { XLSX: "근거 목록·점수·가정·90일 실행계획", PPTX: "사료업체·투자자 미팅용 발표자료", MD: "업데이트 규칙·검토 절차·담당 업무" };
     $("#download-grid").innerHTML = rows.map(row => `<a class="download-card" href="${escapeHTML(safeURL(row.file))}" download><small>${escapeHTML(row.type)}</small><strong>${escapeHTML(row.name)}</strong><p>${escapeHTML(descriptions[row.type] || "공개 운영 자료")}</p><span>다운로드 ↓</span></a>`).join("");
   }
 

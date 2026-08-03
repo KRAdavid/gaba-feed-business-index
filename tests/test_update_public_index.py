@@ -53,7 +53,7 @@ class UpdatePublicIndexTests(unittest.TestCase):
         summary = updater.parse_world_bank_xlsx(workbook.getvalue())["corn"]
         self.assertEqual(summary["latest"], 220.5)
         self.assertEqual(summary["mom_pct"], 5.0)
-        self.assertEqual(summary["signal"], "원가압력 상승")
+        self.assertEqual(summary["signal"], "원료비 상승 요인")
 
     def test_world_bank_workbook_discovery(self) -> None:
         html = b'<a href="/data/CMO-Historical-Data-Monthly.xlsx">Monthly</a>'

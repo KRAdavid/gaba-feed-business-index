@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 
+from audit_korean_copy import audit_copy
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
@@ -66,7 +68,7 @@ def sha256(path: Path) -> str:
 
 
 def validate(max_age_hours: float | None = None) -> list[str]:
-    errors: list[str] = []
+    errors: list[str] = audit_copy()
     for path in REQUIRED_FILES:
         if not path.exists():
             errors.append(f"required public file is missing: {path.relative_to(ROOT)}")
@@ -137,7 +139,7 @@ def main() -> None:
         for error in errors:
             print(f"ERROR: {error}")
         raise SystemExit(1)
-    print(json.dumps({"ok": True, "site": str(DOCS), "checks": "deployment"}, ensure_ascii=False))
+    print(json.dumps({"ok": True, "site": str(DOCS), "checks": "deployment+korean-copy"}, ensure_ascii=False))
 
 
 if __name__ == "__main__":

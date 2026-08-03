@@ -168,9 +168,9 @@ def parse_mafra_rss(payload: bytes, limit: int = 12) -> list[dict[str, Any]]:
                 "date": date,
                 "category": "정책자동",
                 "title": title,
-                "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+                "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
                 "judgment": "검토 대기",
-                "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+                "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
                 "source_name": "농림축산식품부 RSS",
                 "url": link,
                 "review_status": "auto-collected",
@@ -206,9 +206,9 @@ def parse_europe_pmc(payload: bytes, limit: int = 12) -> list[dict[str, Any]]:
                 "date": parse_date(work.get("firstPublicationDate")) or parse_date(journal_info.get("printPublicationDate")),
                 "category": "학술자동",
                 "title": title,
-                "summary": f"{container or '학술자료'}에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+                "summary": f"{container or '학술자료'}에 실린 연구를 Europe PMC에서 찾았습니다. 대상 축종, 투여 형태와 용량, 시험 설계, 통계 결과를 확인하기 전까지는 참고 자료로만 표시합니다.",
                 "judgment": "검토 대기",
-                "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+                "action": "원문에서 연구 대상, 투여량, 주요 결과와 한계를 확인한 뒤 제품 적용 가능성을 평가합니다.",
                 "source_name": container or "Europe PMC",
                 "url": url,
                 "review_status": "auto-collected",
@@ -364,11 +364,11 @@ def summarize_market(name: str, config: dict[str, str], points: list[dict[str, A
     if mom is None:
         signal = "변화율 계산 대기"
     elif mom >= 3:
-        signal = "원가압력 상승"
+        signal = "원료비 상승 요인"
     elif mom <= -3:
-        signal = "원가압력 완화"
+        signal = "원료비 부담 완화"
     else:
-        signal = "대체로 보합"
+        signal = "큰 변동 없음"
     return {
         "key": name,
         "name": config["name"],
