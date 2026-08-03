@@ -518,7 +518,14 @@
     {"id": "eu_feed_efficacy_period", "name": "사료첨가제 장기 효능시험 최소기간", "organization": "유럽연합 법령정보", "url": "https://eur-lex.europa.eu/eli/reg/2008/429/oj/eng", "cadence": "연 1회"},
     {"id": "nias_piglet_feed_trial", "name": "이유자돈 사료 급여시험 6주 사례", "organization": "국립축산과학원", "url": "https://www.nias.go.kr/front/contview3.do?cmCode=M170106113356833&cntntsNo=202201&mainCategoryCode=", "cadence": "근거 고정"},
     {"id": "nias_broiler_cycle", "name": "육계 1~5(6)주령 현장 시험 사례", "organization": "국립축산과학원", "url": "https://nias.go.kr/front/soboarddown.do?boardSeqNum=3668&cmCode=M090814150850297&fileSeqNum=2744", "cadence": "근거 고정"},
-    {"id": "nias_layer_feed_trial", "name": "산란계 사료 급여 8주 생산성 조사 사례", "organization": "국립축산과학원", "url": "https://nias.go.kr/front/soboarddown.do?boardSeqNum=9095&cmCode=M091023194037455&fileSeqNum=5948", "cadence": "근거 고정"}
+    {"id": "nias_layer_feed_trial", "name": "산란계 사료 급여 8주 생산성 조사 사례", "organization": "국립축산과학원", "url": "https://nias.go.kr/front/soboarddown.do?boardSeqNum=9095&cmCode=M091023194037455&fileSeqNum=5948", "cadence": "근거 고정"},
+    {"id": "kci_gaba_livestock", "name": "GABA 축산 연구 논문 색인", "organization": "한국학술지인용색인", "url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART003036784", "cadence": "주 1회"},
+    {"id": "animals_gaba_dairy", "name": "젖소 GABA 연구 논문", "organization": "Animals", "url": "https://www.mdpi.com/2076-2615/16/2/262", "cadence": "근거 고정"}
+  ],
+  "collection_categories": [
+    {"id": "research_materials", "name": "연구 자료", "purpose": "축종별 생산성·품질·안전성에 필요한 연구 결과를 모읍니다.", "signal_categories": ["제품근거", "학술자동"], "source_ids": ["europe_pmc", "nias_piglet_feed_trial", "nias_broiler_cycle", "nias_layer_feed_trial"], "cadence": "주 1회", "review_rule": "원문·축종·용량·시험기간을 확인하기 전에는 검토 대기로 유지"},
+    {"id": "papers", "name": "논문", "purpose": "GABA와 사료·축산 관련 동료심사 논문 및 서지정보를 관리합니다.", "signal_categories": ["학술자동", "제품근거"], "source_ids": ["europe_pmc", "kci_gaba_livestock", "animals_gaba_dairy"], "cadence": "주 1회", "review_rule": "논문 존재와 제품 효능 주장을 구분하고 원문 검토 후 인덱스에 반영"},
+    {"id": "market_trends", "name": "시장 동향", "purpose": "사료 정책·산업 변화·원료 가격을 사업 판단용으로 추적합니다.", "signal_categories": ["산업", "정책", "정책자동"], "source_ids": ["mafra_rss", "krei_grain", "world_bank_pink_sheet"], "cadence": "주 1회·월 1회", "review_rule": "정책·시장 신호는 출처와 기준월을 확인하고 준비도 점수와 분리"}
   ],
   "downloads": [
     {"name": "관리 원장", "file": "downloads/GABA_Index_Master.xlsx", "type": "XLSX"},

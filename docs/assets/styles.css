@@ -238,7 +238,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .signal-detail div { padding: 12px; background: rgba(255,255,255,.58); border-radius: 10px; }
 .signal-detail small { color: var(--muted); font-size: 9px; font-weight: 900; }
 .signal-detail p { margin: 5px 0 0; font-size: 11px; }
-.signal-link { align-self: center; display: grid; place-items: center; width: 32px; height: 32px; color: var(--deep); border: 1px solid #cbd6ce; border-radius: 50%; text-decoration: none; }
+ .signal-link { align-self: center; display: grid; place-items: center; width: 32px; height: 32px; color: var(--deep); border: 1px solid #cbd6ce; border-radius: 50%; text-decoration: none; }
+
+ .collection-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+ .collection-card { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); box-shadow: var(--shadow); }
+ .collection-card-top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 11px; }
+ .collection-card-top strong { color: var(--accent); font-size: 24px; letter-spacing: -.04em; }
+ .collection-card h3 { margin: 22px 0 8px; font-size: 20px; letter-spacing: -.03em; }
+ .collection-card > p { min-height: 42px; margin: 0 0 18px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+ .collection-card dl { display: grid; gap: 10px; margin: 0; padding-top: 14px; border-top: 1px solid var(--line); }
+ .collection-card dl div { display: grid; grid-template-columns: 70px 1fr; gap: 10px; }
+ .collection-card dt { color: var(--muted); font-size: 11px; }
+ .collection-card dd { margin: 0; font-size: 12px; line-height: 1.5; }
+ .collection-card a { display: inline-block; margin-top: 18px; color: var(--accent); font-size: 12px; text-decoration: none; }
+ .collection-note { margin-top: 14px; color: var(--muted); font-size: 12px; }
 .empty-state { padding: 46px; color: var(--muted); text-align: center; }
 
 .market-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -351,7 +364,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .reading-guide { grid-template-columns: 1fr; gap: 25px; }
   .section-heading { display: block; }
   .section-heading > p { margin-top: 18px; }
-  .readiness-layout, .ops-grid, .appendix-grid, .team-grid, .partner-panel, .guardrail-panel, .species-grid { grid-template-columns: 1fr; }
+ .readiness-layout, .ops-grid, .appendix-grid, .team-grid, .partner-panel, .guardrail-panel, .species-grid, .collection-grid { grid-template-columns: 1fr; }
   .species-card { min-height: 0; }
   .target-summary { grid-template-columns: auto 24px auto 24px auto; }
   .target-summary p { grid-column: 1/-1; margin: 0; }

@@ -299,6 +299,7 @@
         "body": "## 41점에서 100점까지\n\n**규제 +14점** — 품목 분류·등록 경로·축종별 사용조건·표시 문구 서면 확정\n\n**제품 +12점** — 제품 규격·안정성·6개 축종군 대조군 시험과 최종 보고서\n\n**공급 +8점** — OEM 실사·품질협약·CAPA·MOQ·납기·추적·회수\n\n**단위 경제성 +9점** — 실제 견적·수율·축종별 매출원가·매출총이익\n\n**상업성 +16점** — 유료 시험·실제 매출·반복 발주 증빙"
       },
       { "id": "signals", "type": "table", "tableId": "signal_table", "layout": "full" },
+      { "id": "collection_categories", "type": "table", "tableId": "collection_categories_table", "layout": "full" },
       { "id": "economics", "type": "table", "tableId": "economics_table", "layout": "full" },
       { "id": "timeline", "type": "table", "tableId": "timeline_table", "layout": "full" },
       { "id": "team", "type": "table", "tableId": "team_table", "layout": "full" },
@@ -391,6 +392,11 @@
         { "period": "2026년 8월", "stage": "파일럿 생산", "operating_model": "생산 파트너 활용", "target": "배치기록·3지점 시료·CoA·공정수율·실제 매출원가 확인", "gate": "제품 규격·QA·고객 시험용 출고 승인" },
         { "period": "2027년 상반기", "stage": "양산 가동", "operating_model": "외부 생산 기반 상업 생산", "target": "반복 주문에 대응하는 생산·품질·납기 체계 가동", "gate": "유료 반복 주문·매출총이익·납기·품질 지표 충족" },
         { "period": "2028년 하반기", "stage": "자체 공장 설립", "operating_model": "5·10·50톤급 발효조(퍼멘터) 대안 검토", "target": "수요에 맞는 자체 정밀발효·정제 생산 기반 구축", "gate": "확정 수요·가동률·투자 회수·인허가·자금조달 통과" }
+      ],
+      "collection_categories": [
+        { "id": "research_materials", "name": "연구 자료", "purpose": "축종별 생산성·품질·안전성 연구 결과", "cadence": "주 1회", "review_rule": "원문·축종·용량·시험기간 확인 후 반영", "source_count": 4 },
+        { "id": "papers", "name": "논문", "purpose": "GABA와 사료·축산 동료심사 논문", "cadence": "주 1회", "review_rule": "논문 존재와 제품 효능 주장을 구분", "source_count": 3 },
+        { "id": "market_trends", "name": "시장 동향", "purpose": "정책·산업 변화·원료 가격 추적", "cadence": "주 1회·월 1회", "review_rule": "출처·기준월 확인 후 점수와 분리", "source_count": 3 }
       ],
       "glossary": [
         { "term": "GABA", "plain": "감마아미노부티르산", "use": "축종·용량·제형에 따라 효과가 달라질 수 있는 성분" },

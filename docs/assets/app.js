@@ -131,6 +131,22 @@
     $("#signal-more").hidden = visible.length >= rows.length;
   }
 
+  function renderCollection(data) {
+    const categories = Array.isArray(data.collection_categories) ? data.collection_categories : [];
+    const signals = Array.isArray(data.signals) ? data.signals : [];
+    const catalog = Array.isArray(data.source_catalog) ? data.source_catalog : [];
+    const marketPoints = Object.values(data.market || {}).reduce((sum, row) => sum + (Array.isArray(row?.points) ? row.points.length : 0), 0);
+    const cards = categories.map(category => {
+      const signalCount = signals.filter(row => category.signal_categories?.includes(row.category)).length;
+      const marketCount = category.id === "market_trends" ? marketPoints : 0;
+      const sourceCount = catalog.filter(row => category.source_ids?.includes(row.id)).length;
+      const itemCount = signalCount + marketCount;
+      return `<article class="collection-card"><div class="collection-card-top"><span>${escapeHTML(category.cadence)}</span><strong>${itemCount}건</strong></div><h3>${escapeHTML(category.name)}</h3><p>${escapeHTML(category.purpose)}</p><dl><div><dt>연결 출처</dt><dd>${sourceCount}개</dd></div><div><dt>검토 원칙</dt><dd>${escapeHTML(category.review_rule)}</dd></div></dl><a href="#signals">자료 목록에서 확인 ↗</a></article>`;
+    });
+    $("#collection-grid").innerHTML = cards.join("");
+    $("#collection-note").textContent = "수집 건수는 현재 공개 스냅샷 기준입니다. 원문 검토 전 자료는 검토 대기로 표시되며 준비도 점수와 분리됩니다.";
+  }
+
   function setupSignalFilters(data) {
     const categories = [...new Set(data.signals.map(row => row.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ko"));
     $("#category-filter").insertAdjacentHTML("beforeend", categories.map(value => `<option value="${escapeHTML(value)}">${escapeHTML(value)}</option>`).join(""));
@@ -217,6 +233,7 @@
     renderGates(data.critical_gates);
     setupSignalFilters(data);
     renderSignals();
+    renderCollection(data);
     renderMarket(data);
     renderAssumptions(data.assumptions);
     renderRoadmap(data.roadmap);
