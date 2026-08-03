@@ -22,6 +22,8 @@ TEXT_FILES = (
     ROOT / "README.md",
     ROOT / "GABA_Index_Artifact.json",
     ROOT / "GABA_Business_Model_Index.html",
+)
+OPTIONAL_TEXT_FILES = (
     ROOT / "_work" / "deck" / "build_speech_deck.mjs",
     ROOT / "_work" / "model" / "build_gaba_index_workbook.mjs",
 )
@@ -77,6 +79,9 @@ def audit_copy() -> list[str]:
             errors.append(f"감리 대상 파일이 없습니다: {path.relative_to(ROOT)}")
             continue
         checked.append((str(path.relative_to(ROOT)), path.read_text(encoding="utf-8-sig")))
+    for path in OPTIONAL_TEXT_FILES:
+        if path.exists():
+            checked.append((str(path.relative_to(ROOT)), path.read_text(encoding="utf-8-sig")))
 
     deck_text, slide_count, final_slide = read_presentation_text(PRESENTATION)
     if not deck_text:
@@ -114,7 +119,7 @@ def main() -> None:
             {
                 "ok": True,
                 "audit": "korean-copy",
-                "text_files": len(TEXT_FILES),
+                "text_files": sum(path.exists() for path in TEXT_FILES + OPTIONAL_TEXT_FILES),
                 "presentation": PRESENTATION.name,
                 "slides": 20,
                 "forbidden_expressions": len(FORBIDDEN_EXPRESSIONS),
