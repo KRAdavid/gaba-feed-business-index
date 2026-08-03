@@ -1,0 +1,219 @@
+{
+  "surface": "dashboard",
+  "manifest": {
+    "version": 1,
+    "surface": "dashboard",
+    "title": "GABA Feed Business Model Index",
+    "description": "사료업계 비경험자도 5분 안에 상태·근거·다음 행동을 확인하는 운영 대시보드 · 기준일 2026-08-03",
+    "generatedAt": "2026-08-03T02:00:00Z",
+    "filters": [
+      {
+        "id": "signal_category",
+        "label": "신호 범주",
+        "dataset": "signals",
+        "field": "category",
+        "includeAll": true,
+        "targets": [{ "dataset": "signals", "field": "category" }]
+      }
+    ],
+    "cards": [
+      {
+        "id": "readiness_card",
+        "description": "100점 만점의 잠정 준비도. 점수는 증빙이 연결될 때만 올립니다.",
+        "dataset": "summary",
+        "sourceId": "source_register",
+        "metrics": [{ "label": "준비도 / 100", "field": "readiness", "format": "number" }]
+      },
+      {
+        "id": "gates_card",
+        "description": "투자·납품 전에 잠가야 하는 핵심 검증 게이트입니다.",
+        "dataset": "summary",
+        "sourceId": "source_register",
+        "metrics": [{ "label": "긴급 검증 게이트", "field": "critical_gates", "format": "number" }]
+      },
+      {
+        "id": "signals_card",
+        "description": "원본·정책·산업·학술 자료를 함께 추적합니다.",
+        "dataset": "summary",
+        "sourceId": "source_register",
+        "metrics": [{ "label": "관리 중 근거", "field": "source_count", "format": "number" }]
+      },
+      {
+        "id": "decision_card",
+        "description": "0~30일, 31~60일, 61~90일의 세 결정 구간입니다.",
+        "dataset": "summary",
+        "sourceId": "source_register",
+        "metrics": [{ "label": "90일 결정 구간", "field": "decision_windows", "format": "number" }]
+      }
+    ],
+    "charts": [
+      {
+        "id": "readiness_axes",
+        "title": "준비도는 공급 설계보다 상업 검증이 뒤처져 있습니다",
+        "subtitle": "각 축 20점 · 현재 총점 41점 · PILOT 진입 전 각 축 최소 12점 권고",
+        "headerMarkdown": "막대가 짧은 축부터 **증빙 파일·URL·결론**을 연결하세요.",
+        "intent": "status",
+        "type": "horizontalBar",
+        "dataset": "readiness",
+        "sourceId": "source_register",
+        "encodings": {
+          "x": { "field": "dimension", "type": "nominal", "label": "평가축" },
+          "y": { "field": "score", "type": "quantitative", "label": "현재 점수", "unit": "점" },
+          "tooltip": [
+            { "field": "score", "type": "quantitative", "label": "현재 점수", "unit": "점" },
+            { "field": "gate", "type": "text", "label": "열린 게이트" }
+          ]
+        },
+        "xAxisTitle": "평가축",
+        "yAxisTitle": "점수 / 20",
+        "layout": "half",
+        "maxRows": 5
+      }
+    ],
+    "tables": [
+      {
+        "id": "signal_table",
+        "title": "정책·산업·제품근거 신호",
+        "subtitle": "긍정 결과만 남기지 않고 중립·부정 결과도 함께 유지합니다.",
+        "dataset": "signals",
+        "sourceId": "source_register",
+        "defaultSort": { "field": "date", "direction": "desc" },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "date", "label": "일자", "type": "date" },
+          { "field": "category", "label": "범주", "type": "text" },
+          { "field": "signal", "label": "한 줄 신호", "type": "text" },
+          { "field": "judgment", "label": "판정", "type": "text" },
+          { "field": "action", "label": "다음 행동", "type": "text" },
+          { "field": "source", "label": "출처", "type": "text" }
+        ]
+      },
+      {
+        "id": "economics_table",
+        "title": "원본 단위경제성 — 숫자보다 증빙 상태를 먼저 봅니다",
+        "subtitle": "주황 입력값이 실제 견적·시험생산·유효용량으로 대체되기 전에는 투자수익으로 표현하지 않습니다.",
+        "dataset": "economics",
+        "sourceId": "source_register",
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "metric", "label": "항목", "type": "text" },
+          { "field": "value", "label": "원본 값", "type": "text" },
+          { "field": "formula", "label": "산식/정의", "type": "text" },
+          { "field": "evidence", "label": "증빙 상태", "type": "text" },
+          { "field": "unlock", "label": "잠금 해제 조건", "type": "text" }
+        ]
+      },
+      {
+        "id": "glossary_table",
+        "title": "처음 보는 사람을 위한 용어",
+        "subtitle": "덱과 계약 검토 때 자주 나오는 단어만 추렸습니다.",
+        "dataset": "glossary",
+        "sourceId": "source_register",
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          { "field": "term", "label": "용어", "type": "text" },
+          { "field": "plain", "label": "쉬운 뜻", "type": "text" },
+          { "field": "use", "label": "업무에서 이렇게 이해", "type": "text" }
+        ]
+      }
+    ],
+    "sources": [
+      { "id": "source_register", "label": "대시보드 재현 SQL · 원장은 02_Source_Register", "path": "_work/dashboard/gaba_index_snapshot.sql" },
+      { "id": "source_workbook", "label": "감사 가능한 관리 원장", "path": "GABA_Index_Master.xlsx" },
+      { "id": "feed_standard", "label": "사료 등의 기준 및 규격", "href": "https://www.law.go.kr/행정규칙/사료%20등의%20기준%20및%20규격" },
+      { "id": "feed_committee", "label": "사료공정심의위원회 운영규정", "href": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000231582&chrClsCd=010201" },
+      { "id": "low_carbon", "label": "2026 저탄소 농업 프로그램(축산)", "href": "https://www.mafra.go.kr/bbs/home/791/597692/download.do" },
+      { "id": "asf_feed", "label": "사료 원료·배합사료 ASF 방역 강화", "href": "https://www.mafra.go.kr/bbs/home/792/577302/artclView.do" },
+      { "id": "krei_grain", "label": "KREI 국제곡물 관측", "href": "https://agevent.krei.re.kr/main" },
+      { "id": "dairy_study", "label": "2026 젖소 열스트레스 RP-GABA 연구", "href": "https://www.mdpi.com/2076-2615/16/2/262" },
+      { "id": "flounder_study", "label": "2025 넙치 염분스트레스 GABA 연구", "href": "https://www.e-kfas.org/Upload/files/kfas/4.%2058%281%29%2033-45.pdf" },
+      { "id": "hanwoo_study", "label": "2023 비육 한우 GABA 연구", "href": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART003036784" }
+    ],
+    "blocks": [
+      {
+        "id": "decision_note",
+        "type": "markdown",
+        "body": "## 지금의 결론\n\n**사업 구조는 유망하지만 아직 검증 단계입니다.** 20% 마스터 한 SKU만 재고로 두고 5%·10%·15%·20% 제품은 주문 후 OEM 생산하는 구조는 재고 리스크를 낮춥니다. 다만 품목분류, 제품특이 유효용량, OEM 실견적, 유료 반복주문이 열려 있어 현재 단계는 **VALIDATE**입니다."
+      },
+      { "id": "metrics", "type": "metric-strip", "cardIds": ["readiness_card", "gates_card", "signals_card", "decision_card"] },
+      { "id": "readiness", "type": "chart", "chartId": "readiness_axes", "layout": "half" },
+      {
+        "id": "next_90_days",
+        "type": "markdown",
+        "layout": "half",
+        "body": "## 90일 안에 잠글 것\n\n**0~30일** — 품목분류·등록경로 사전검토, 제품특이 CoA와 활성함량, OEM 2곳 RFI\n\n**31~60일** — 시험생산, 안정성·균일도, 축종 하나의 유료 PoV 프로토콜\n\n**61~90일** — 첫 유료 PO, 반복주문 조건, 실제 원가로 투자·납품 의사결정"
+      },
+      { "id": "signals", "type": "table", "tableId": "signal_table", "layout": "full" },
+      { "id": "economics", "type": "table", "tableId": "economics_table", "layout": "full" },
+      { "id": "glossary", "type": "table", "tableId": "glossary_table", "layout": "full" },
+      {
+        "id": "appendix",
+        "type": "markdown",
+        "body": "## Appendix · 산식·판정·면책\n\n준비도는 규제·제품근거·공급·단위경제성·상업검증의 다섯 축을 각 20점으로 평가한 운영 지표입니다. 점수는 투자등급·신용평가·제품 효능등급이 아닙니다. GABA와 발효배양물의 법적 분류, 표시·광고 문구, 축종별 제품특이 유효용량, 공장 적합성, 실제 OEM 견적은 관할기관·전문가·시험기관·고객 현장에서 별도 확인해야 합니다. 연구 결과는 축종·제형·용량이 달라 직접 재현을 보장하지 않습니다."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-03T02:00:00Z",
+    "status": "ready",
+    "datasets": {
+      "summary": [
+        { "readiness": 41, "critical_gates": 4, "source_count": 10, "decision_windows": 3 }
+      ],
+      "readiness": [
+        { "dimension": "규제·품목분류", "score": 6, "gate": "GABA/발효배양물의 분류·등록경로" },
+        { "dimension": "제품근거·유효용량", "score": 8, "gate": "활성함량·안정성·제품특이 용량" },
+        { "dimension": "공급·QA", "score": 12, "gate": "OEM 실사·견적·MOQ·리드타임·회수" },
+        { "dimension": "단위경제성", "score": 11, "gate": "9,240원/kg·4,681.8원/kg 비용 연결" },
+        { "dimension": "상업검증", "score": 4, "gate": "유료 PoV·반복주문 증빙" }
+      ],
+      "signals": [
+        { "date": "2026-08-03", "category": "내부 모델", "signal": "20% 마스터 1 SKU + 주문 후 OEM 구조", "judgment": "검증 필요", "action": "원가·용량·OEM 견적의 근거문서 연결", "source": "원본 22장" },
+        { "date": "2026-06-26", "category": "정책·규제", "signal": "품목 기준은 추가·변경될 수 있어 월별 공고 점검 필요", "judgment": "모니터링", "action": "GABA 관련 공고 유무 확인", "source": "농식품부" },
+        { "date": "2026-05-29", "category": "정책·시장", "signal": "저메탄·질소저감 사료는 인정 기준 충족 제품에 지원", "judgment": "기회", "action": "GABA를 저탄소 사료로 단정하지 않고 별도 검증", "source": "농식품부" },
+        { "date": "2026-03-16", "category": "산업·품질", "signal": "사료 원료의 추적·검사·회수 체계가 OEM 선정의 핵심", "judgment": "주의", "action": "OEM 실사표에 원료 추적·회수·병원체 관리 추가", "source": "농식품부" },
+        { "date": "2026-07-02", "category": "산업·원가", "signal": "옥수수·대두박·해상운임을 월별 원가 감시 신호로 사용", "judgment": "모니터링", "action": "3개 신호 월 1회 업데이트", "source": "KREI" },
+        { "date": "2026-01-15", "category": "제품근거", "signal": "18두 젖소 연구에서 산유량은 유의하지 않고 일부 유성분은 유의", "judgment": "유망/제한", "action": "반추위 보호 제형·용량으로 제품특이 PoV", "source": "Animals" },
+        { "date": "2025-02-11", "category": "제품근거", "signal": "8주 넙치 시험에서 성장·삼투조절 개선이 유의하지 않음", "judgment": "혼합", "action": "효과 없는 축종·상황도 근거 맵에 유지", "source": "Korean J Fish Aquat Sci" },
+        { "date": "2024-04-01", "category": "정책·규제", "signal": "현행 사료 품목·기준·표시·등록 검토의 출발점", "judgment": "상시", "action": "품목분류 사전검토와 표시 가능 문구 확정", "source": "국가법령정보센터" },
+        { "date": "2023-12-31", "category": "제품근거", "signal": "21두 한우 연구에서 초기 증체는 개선됐으나 도체 지표는 유의하지 않음", "judgment": "유망/제한", "action": "활성함량·제형·용량을 고정한 축종별 PoV", "source": "KCI" },
+        { "date": "2023-11-20", "category": "정책·규제", "signal": "신규·변경 물질은 제조방법·안전성·품질·첨가수준 자료가 핵심", "judgment": "상시", "action": "심의 필요 여부와 제출자료 목록 확정", "source": "국가법령정보센터" }
+      ],
+      "economics": [
+        { "metric": "20% 마스터 판매가", "value": "18,000원/kg", "formula": "입력", "evidence": "검증 필요", "unlock": "고객 견적·가격 수용성" },
+        { "metric": "20% 마스터 잠정원가", "value": "9,240원/kg", "formula": "입력", "evidence": "근거 단절", "unlock": "배양·건조·부형제·검사·포장·수율의 원가 브리지" },
+        { "metric": "20% 마스터 단위공헌", "value": "8,760원/kg", "formula": "18,000-9,240", "evidence": "가정 계산", "unlock": "실제 견적으로 재산정" },
+        { "metric": "매트릭스 프로그램 가격", "value": "6,000원/사료t", "formula": "입력", "evidence": "검증 필요", "unlock": "유료 PoV·가격 협상" },
+        { "metric": "매트릭스 투입량", "value": "75g/사료t", "formula": "입력", "evidence": "유효용량 미검증", "unlock": "제품 활성함량·제형·축종별 용량 연결" },
+        { "metric": "매트릭스 제품원가", "value": "351원/사료t", "formula": "0.075kg×4,681.8원/kg", "evidence": "가정 계산", "unlock": "투입량과 제품원가의 실제 견적" },
+        { "metric": "매트릭스 단위공헌", "value": "4,149원/사료t", "formula": "6,000-351-1,500", "evidence": "가정 계산", "unlock": "채널비·현장비·반품비 포함" },
+        { "metric": "T1 손익분기", "value": "10,991 사료t", "formula": "45.6백만원÷4,148.865원", "evidence": "시나리오", "unlock": "검증예산·단위공헌 확정" },
+        { "metric": "첫 반복주문 총공헌", "value": "382.6백만원", "formula": "마스터 20t+매트릭스 50,000t", "evidence": "시나리오", "unlock": "실제 PO와 반복주문 증빙" }
+      ],
+      "glossary": [
+        { "term": "GABA", "plain": "감마아미노부티르산", "use": "축종·용량·제형에 따라 효과가 달라질 수 있는 성분" },
+        { "term": "마스터배치", "plain": "고농축 중간재", "use": "최종 제품 전 핵심 성분을 일정 농도로 농축한 재고 단위" },
+        { "term": "OEM", "plain": "주문자상표 부착생산", "use": "발주자가 브랜드·규격을 정하고 공장이 생산" },
+        { "term": "SKU", "plain": "재고관리 단위", "use": "규격·포장·배합을 구분하는 최소 품목" },
+        { "term": "CoA", "plain": "성적서", "use": "로트별 성분·미생물·중금속 결과 문서" },
+        { "term": "MOQ", "plain": "최소주문수량", "use": "공장이 한 번에 생산하는 최소 물량" },
+        { "term": "FIFO", "plain": "선입선출", "use": "먼저 입고한 재고를 먼저 출고" },
+        { "term": "PoV", "plain": "가치검증", "use": "실제 고객 환경에서 제품이 경제적 가치를 만드는지 확인" },
+        { "term": "단위공헌", "plain": "한 단위가 남기는 금액", "use": "판매가에서 제품원가와 직접변동비를 뺀 값" },
+        { "term": "품목분류", "plain": "어떤 사료로 볼지 결정", "use": "법적 범주와 등록경로를 정하는 절차" }
+      ]
+    }
+  },
+  "sources": [
+    { "id": "source_register", "label": "GABA Index Master Workbook", "path": "GABA_Index_Master.xlsx" }
+  ],
+  "package_info": {
+    "root": ".",
+    "manifestPath": "GABA_Index_Artifact.json",
+    "snapshotPath": "GABA_Index_Artifact.json"
+  }
+}

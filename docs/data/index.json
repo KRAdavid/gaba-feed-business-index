@@ -1,0 +1,1035 @@
+{
+  "schema_version": "1.0.0",
+  "title": "GABA Feed Business Model Index",
+  "subtitle": "사료업계 비경험자도 상태·근거·다음 행동을 5분 안에 확인하는 공개 인덱스",
+  "thesis": "20% GABA 마스터 한 SKU만 재고로 관리하고, 5·10·15·20% 제품은 고객 주문 후 OEM 생산한다.",
+  "decision": "구조는 설계됐지만 규제·제품근거·OEM·유료 반복주문이 잠길 때까지 VALIDATE 단계로 관리한다.",
+  "readiness": {
+    "score": 41,
+    "max_score": 100,
+    "stage": "VALIDATE",
+    "stage_description": "규제경로·제품정의·공장·유료 고객을 증빙으로 검증하는 단계",
+    "scoring_rule": "파일·URL·기준일·결론이 연결된 증빙이 있을 때만 점수를 올린다.",
+    "dimensions": [
+      {
+        "id": "regulatory",
+        "name": "규제·품목분류",
+        "score": 6,
+        "max_score": 20,
+        "status": "검증 필요",
+        "evidence": "현행 기준과 심의절차를 확인함",
+        "open_gate": "GABA·발효배양물의 품목분류, 등록경로, 표시 가능 문구가 미확정",
+        "next_evidence": "관할기관 또는 전문 검토자의 서면 사전검토",
+        "owner": "Reg/QA",
+        "target_date": "2026-09-01"
+      },
+      {
+        "id": "product",
+        "name": "제품근거·유효용량",
+        "score": 8,
+        "max_score": 20,
+        "status": "부분 근거",
+        "evidence": "축종별 학술 신호가 있으나 결과는 혼합",
+        "open_gate": "활성함량·안정성·제형·축종별 제품특이 용량 연결이 없음",
+        "next_evidence": "제품특이 CoA, 안정성 자료, 유료 PoV",
+        "owner": "R&D",
+        "target_date": "2026-10-15"
+      },
+      {
+        "id": "supply",
+        "name": "공급·QA",
+        "score": 12,
+        "max_score": 20,
+        "status": "설계 완료",
+        "evidence": "1 SKU·FIFO·CoA·주문 후 OEM 흐름을 설계함",
+        "open_gate": "OEM 실사·견적·MOQ·리드타임·회수체계가 미확정",
+        "next_evidence": "OEM 두 곳의 실사, 실견적, QA Agreement",
+        "owner": "SCM/QA",
+        "target_date": "2026-09-30"
+      },
+      {
+        "id": "economics",
+        "name": "단위경제성",
+        "score": 11,
+        "max_score": 20,
+        "status": "가정 모델",
+        "evidence": "마스터·매트릭스 단위공헌과 손익분기 산식이 있음",
+        "open_gate": "9,240원/kg과 4,681.8원/kg 비용 근거가 단절됨",
+        "next_evidence": "실견적·시험생산·포장·물류비를 포함한 원가 브리지",
+        "owner": "Finance",
+        "target_date": "2026-09-30"
+      },
+      {
+        "id": "commercial",
+        "name": "상업검증",
+        "score": 4,
+        "max_score": 20,
+        "status": "미검증",
+        "evidence": "고객가치 가설과 반복주문 조건만 정의됨",
+        "open_gate": "LOI·유료 PO·반복주문 증빙이 없음",
+        "next_evidence": "유료 PoV 두 건과 반복 PO 트리거",
+        "owner": "Sales",
+        "target_date": "2026-11-15"
+      }
+    ]
+  },
+  "critical_gates": [
+    {
+      "id": "regulatory_gate",
+      "name": "규제·품목분류",
+      "status": "OPEN",
+      "question": "어떤 사료 품목으로 등록하고 어떤 문구를 표시할 수 있는가?",
+      "unlock_evidence": "품목분류·등록경로·표시 문구의 서면 사전검토",
+      "stop_rule": "미확정이면 외부 효능표현과 납품을 중단"
+    },
+    {
+      "id": "product_gate",
+      "name": "제품근거·유효용량",
+      "status": "OPEN",
+      "question": "이 제품의 활성함량·안정성·축종별 유효용량은 무엇인가?",
+      "unlock_evidence": "로트 CoA·안정성·제품특이 유료 PoV",
+      "stop_rule": "미확정이면 SCALE 보류"
+    },
+    {
+      "id": "oem_gate",
+      "name": "OEM·QA",
+      "status": "OPEN",
+      "question": "실제 공장에서 얼마에, 얼마나 빨리, 어떤 품질책임으로 만들 수 있는가?",
+      "unlock_evidence": "OEM 두 곳 실견적·MOQ·리드타임·QA Agreement",
+      "stop_rule": "미합의면 고객 납기 약속 보류"
+    },
+    {
+      "id": "commercial_gate",
+      "name": "상업검증",
+      "status": "OPEN",
+      "question": "고객이 실제로 비용을 지불하고 다시 주문하는가?",
+      "unlock_evidence": "유료 PoV와 반복 PO 트리거",
+      "stop_rule": "유료 반복 증빙이 없으면 투자 확대 중단"
+    }
+  ],
+  "assumptions": [
+    {
+      "metric": "20% 마스터 판매가",
+      "value": "18,000원/kg",
+      "state": "검증 필요",
+      "formula": "입력",
+      "unlock": "고객 견적과 가격 수용성"
+    },
+    {
+      "metric": "20% 마스터 잠정원가",
+      "value": "9,240원/kg",
+      "state": "근거 단절",
+      "formula": "입력",
+      "unlock": "배양·건조·부형제·검사·포장·수율 원가 브리지"
+    },
+    {
+      "metric": "20% 마스터 단위공헌",
+      "value": "8,760원/kg",
+      "state": "가정 계산",
+      "formula": "18,000-9,240",
+      "unlock": "실제 원가로 재계산"
+    },
+    {
+      "metric": "매트릭스 가격",
+      "value": "6,000원/사료t",
+      "state": "검증 필요",
+      "formula": "입력",
+      "unlock": "유료 PoV와 고객 계약"
+    },
+    {
+      "metric": "매트릭스 투입량",
+      "value": "75g/사료t",
+      "state": "유효용량 미검증",
+      "formula": "입력",
+      "unlock": "활성함량·제형·축종별 용량 연결"
+    },
+    {
+      "metric": "매트릭스 단위공헌",
+      "value": "4,149원/사료t",
+      "state": "가정 계산",
+      "formula": "6,000-351-1,500",
+      "unlock": "제품비·채널비·현장비·반품비 확정"
+    },
+    {
+      "metric": "고객가치",
+      "value": "18,000원/사료t",
+      "state": "가설",
+      "formula": "손실회피 가정",
+      "unlock": "유료 대조군 PoV에서 경제효과 측정"
+    }
+  ],
+  "roadmap": [
+    {
+      "window": "0~30일",
+      "theme": "경로 잠금",
+      "actions": [
+        "품목분류·등록경로·표시 문구 사전검토",
+        "제품 활성함량·제형·로트 규격 확정",
+        "OEM 후보 두 곳에 RFI 발송"
+      ]
+    },
+    {
+      "window": "31~60일",
+      "theme": "제품 잠금",
+      "actions": [
+        "시험생산·균일도·안정성·CoA 확인",
+        "축종 하나·제형 하나·1차 지표 하나의 유료 PoV",
+        "실제 견적으로 단위경제성 재산정"
+      ]
+    },
+    {
+      "window": "61~90일",
+      "theme": "상업 잠금",
+      "actions": [
+        "첫 유료 PO 확보",
+        "반복주문 트리거와 중단 기준 계약",
+        "실제 원가·공급능력으로 GO/NO-GO 결정"
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "term": "GABA",
+      "plain": "감마아미노부티르산",
+      "use": "축종·용량·제형에 따라 결과가 달라질 수 있는 성분"
+    },
+    {
+      "term": "마스터배치",
+      "plain": "고농축 중간재",
+      "use": "최종 제품 전 핵심 성분을 일정 농도로 농축한 재고 단위"
+    },
+    {
+      "term": "OEM",
+      "plain": "주문자상표 부착생산",
+      "use": "발주자가 규격을 정하고 외부 공장이 생산하는 방식"
+    },
+    {
+      "term": "SKU",
+      "plain": "재고관리 단위",
+      "use": "규격·포장·배합을 구분하는 최소 품목"
+    },
+    {
+      "term": "CoA",
+      "plain": "성적서",
+      "use": "로트별 성분·미생물·중금속 등 시험결과 문서"
+    },
+    {
+      "term": "MOQ",
+      "plain": "최소주문수량",
+      "use": "공장이 한 번에 생산하는 최소 물량"
+    },
+    {
+      "term": "FIFO",
+      "plain": "선입선출",
+      "use": "먼저 입고한 재고를 먼저 출고하는 원칙"
+    },
+    {
+      "term": "PO",
+      "plain": "구매주문서",
+      "use": "규격·수량·가격·납기를 확정한 주문 문서"
+    },
+    {
+      "term": "PoV",
+      "plain": "가치검증",
+      "use": "실제 고객 환경에서 경제적 가치를 확인하는 시험"
+    },
+    {
+      "term": "QA Agreement",
+      "plain": "품질합의서",
+      "use": "시험·변경·일탈·회수 책임을 발주자와 제조자가 합의한 문서"
+    },
+    {
+      "term": "단위공헌",
+      "plain": "한 단위가 남기는 금액",
+      "use": "판매가에서 제품원가와 직접변동비를 뺀 값"
+    },
+    {
+      "term": "품목분류",
+      "plain": "어떤 사료로 볼지 결정",
+      "use": "법적 범주와 등록경로를 정하는 절차"
+    }
+  ],
+  "source_catalog": [
+    {
+      "id": "feed_standard",
+      "name": "사료 등의 기준 및 규격",
+      "organization": "국가법령정보센터",
+      "url": "https://www.law.go.kr/행정규칙/사료%20등의%20기준%20및%20규격",
+      "cadence": "월 1회"
+    },
+    {
+      "id": "feed_act",
+      "name": "사료관리법",
+      "organization": "국가법령정보센터",
+      "url": "https://www.law.go.kr/법령/사료관리법",
+      "cadence": "월 1회"
+    },
+    {
+      "id": "feed_committee",
+      "name": "사료공정심의위원회 운영규정",
+      "organization": "국가법령정보센터",
+      "url": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000231582&chrClsCd=010201",
+      "cadence": "월 1회"
+    },
+    {
+      "id": "mafra_rss",
+      "name": "농림축산식품부 보도자료 RSS",
+      "organization": "농림축산식품부",
+      "url": "https://www.mafra.go.kr/bbs/home/792/rssList.do?row=50",
+      "cadence": "주 1회"
+    },
+    {
+      "id": "krei_grain",
+      "name": "국제곡물 관측",
+      "organization": "한국농촌경제연구원",
+      "url": "https://agevent.krei.re.kr/main",
+      "cadence": "월 1회"
+    },
+    {
+      "id": "europe_pmc",
+      "name": "GABA·사료 학술 메타데이터",
+      "organization": "Europe PMC",
+      "url": "https://europepmc.org/",
+      "cadence": "주 1회"
+    },
+    {
+      "id": "world_bank_pink_sheet",
+      "name": "World Bank Commodity Price Data (Pink Sheet)",
+      "organization": "World Bank Prospects Group",
+      "url": "https://www.worldbank.org/en/research/commodity-markets",
+      "cadence": "월 1회"
+    }
+  ],
+  "downloads": [
+    {
+      "name": "관리 원장",
+      "file": "downloads/GABA_Index_Master.xlsx",
+      "type": "XLSX"
+    },
+    {
+      "name": "사료업체·투자자 스피치덱",
+      "file": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx",
+      "type": "PPTX"
+    },
+    {
+      "name": "운영가이드",
+      "file": "downloads/GABA_Index_운영가이드.md",
+      "type": "MD"
+    }
+  ],
+  "disclaimer": "이 공개 인덱스는 사업 준비도와 검증 순서를 관리하는 자료입니다. 법률·수의·사료·투자 자문을 대체하지 않으며, 자동 수집 신호는 검토 완료 전 점수나 효능 판단에 반영하지 않습니다.",
+  "meta": {
+    "generated_at": "2026-08-03T02:28:22Z",
+    "as_of_date": "2026-08-03",
+    "timezone": "Asia/Seoul",
+    "automation": "GitHub Actions weekly + manual dispatch",
+    "next_scheduled_refresh": "매주 월요일 09:17 KST",
+    "score_policy": "자동 수집 신호는 검토 완료 전 준비도 점수에 반영하지 않음"
+  },
+  "summary": {
+    "readiness_score": 41,
+    "stage": "VALIDATE",
+    "critical_open_gates": 4,
+    "reviewed_signals": 9,
+    "auto_signals_waiting_review": 19,
+    "source_health_ok": 3,
+    "source_health_total": 3,
+    "lowest_dimension": "상업검증"
+  },
+  "signals": [
+    {
+      "id": "internal-model-v5",
+      "date": "2026-08-03",
+      "category": "전략",
+      "title": "20% 마스터 1 SKU + 주문 후 OEM 모델",
+      "summary": "재고 리스크를 20% 마스터 한 품목에 격리하고 고객 규격은 PO 후 생산하는 구조다.",
+      "judgment": "검증 필요",
+      "action": "원가·제품용량·OEM 실견적·유료 반복주문의 증빙을 연결한다.",
+      "source_name": "원본 사업모델 v5",
+      "url": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx",
+      "review_status": "reviewed",
+      "source_quality": "내부 원본"
+    },
+    {
+      "id": "mafra-eb0e283cad01b2",
+      "date": "2026-08-03",
+      "category": "정책자동",
+      "title": "축산물 동물용의약품 잔류검사, 국제기준에 맞춰 위해도 기반으로 체계화",
+      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578606/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-b3242bc44805b7",
+      "date": "2026-07-30",
+      "category": "정책자동",
+      "title": "축산농가 폭염 대응에 차질 없도록 현장 지원 강화",
+      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578579/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-e3d92af1f46f37",
+      "date": "2026-07-28",
+      "category": "정책자동",
+      "title": "농식품부, 장마 이후 폭염에 대비하여 농축산물 수급 차질 없도록 총력 대응",
+      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578568/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-a7a0eaa05dc5a4",
+      "date": "2026-07-27",
+      "category": "정책자동",
+      "title": "농식품부·기후부, 가축분뇨를 전기와 열로... 바이오매스 고체연료 기술개발 본격 착수",
+      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578546/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-875997f788ba76",
+      "date": "2026-07-21",
+      "category": "정책자동",
+      "title": "경북 예천 구제역 방역조치 차질 없이 추진 중",
+      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578506/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-e96003c8cbac5b",
+      "date": "2026-07-20",
+      "category": "정책자동",
+      "title": "폭염·호우 등에 대비하여 농축산물 수급 관리 강화",
+      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578501/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-e651e47af68395",
+      "date": "2026-07-20",
+      "category": "정책자동",
+      "title": "여름철 다중 이용시설 인근 축산 악취, 전문 컨설팅으로 집중 관리",
+      "summary": "농림축산식품부 보도자료에서 자동 수집한 관련 신호입니다. 원문 검토 전 준비도 점수에 반영하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 읽고 사업 영향·다음 행동·점수 영향을 판정합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578500/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-single-feed-2026-06",
+      "date": "2026-06-26",
+      "category": "정책",
+      "title": "단미사료 기준·규격 변경등록 공고",
+      "summary": "사료 품목 기준은 추가·변경될 수 있으므로 GABA 관련 신규 공고를 정기적으로 확인해야 한다.",
+      "judgment": "모니터링",
+      "action": "월 1회 품목 기준·규격과 신규 공고를 확인한다.",
+      "source_name": "농림축산식품부",
+      "url": "https://www.mafra.go.kr/bbs/home/791/578277/artclView.do",
+      "review_status": "reviewed",
+      "source_quality": "정부 1차 자료"
+    },
+    {
+      "id": "mafra-low-carbon-2026",
+      "date": "2026-05-29",
+      "category": "정책",
+      "title": "2026 저탄소 농업 프로그램 축산 분야",
+      "summary": "저메탄·질소저감 사료는 인정 기준을 충족한 제품에 지원되며 GABA 제품의 해당 여부는 별도 검증이 필요하다.",
+      "judgment": "기회·제한",
+      "action": "GABA를 저탄소 사료로 단정하지 않고 인정 기준과 환경효과를 별도 검증한다.",
+      "source_name": "농림축산식품부",
+      "url": "https://www.mafra.go.kr/bbs/home/791/597692/download.do",
+      "review_status": "reviewed",
+      "source_quality": "정부 1차 자료"
+    },
+    {
+      "id": "europepmc-a5d772ed53cd50",
+      "date": "2026-05-27",
+      "category": "학술자동",
+      "title": "Effects of GABA-enriched alfalfa silage on rumen microbiota, lactation hormones, immunity, and mammary gland gene expression, alongside lactation performance in dairy goats.",
+      "summary": "J Anim Sci Biotechnol에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "J Anim Sci Biotechnol",
+      "url": "https://doi.org/10.1186/s40104-026-01408-9",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Usman S",
+        "Zhang J",
+        "Li Q",
+        "Sheoran N"
+      ],
+      "doi": "10.1186/s40104-026-01408-9"
+    },
+    {
+      "id": "mafra-asf-feed-2026",
+      "date": "2026-03-16",
+      "category": "산업",
+      "title": "사료 원료·배합사료 방역·회수 관리 강화",
+      "summary": "원료 추적, 병원체 검사, 판매중지와 회수 능력이 OEM 선정의 핵심 품질조건이다.",
+      "judgment": "주의",
+      "action": "OEM 실사표에 원료 추적·검사·일탈·회수 체계를 포함한다.",
+      "source_name": "농림축산식품부",
+      "url": "https://www.mafra.go.kr/bbs/home/792/577302/artclView.do",
+      "review_status": "reviewed",
+      "source_quality": "정부 1차 자료"
+    },
+    {
+      "id": "europepmc-dbea39e56b47a7",
+      "date": "2026-03-11",
+      "category": "학술자동",
+      "title": "Creatine pyruvate and gamma-aminobutyric acid mitigate heat stress in goats: Mechanistic insights from antioxidant function, ruminal epithelial barrier integrity, and transcriptomics.",
+      "summary": "J Therm Biol에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "J Therm Biol",
+      "url": "https://doi.org/10.1016/j.jtherbio.2026.104438",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Ye Z",
+        "Yan Y",
+        "Wenkai C",
+        "Xingrui Z"
+      ],
+      "doi": "10.1016/j.jtherbio.2026.104438"
+    },
+    {
+      "id": "europepmc-937ddc91ad8a1e",
+      "date": "2026-01-22",
+      "category": "학술자동",
+      "title": "Integrated multi-omics analysis reveals gamma-aminobutyric acid as a key regulator of social genetic effects on residual feed intake in pigs.",
+      "summary": "Genomics에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "Genomics",
+      "url": "https://doi.org/10.1016/j.ygeno.2026.111207",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Tecku PKM",
+        "Zhao Z",
+        "Chen D",
+        "Cui S"
+      ],
+      "doi": "10.1016/j.ygeno.2026.111207"
+    },
+    {
+      "id": "dairy-rp-gaba-2026",
+      "date": "2026-01-15",
+      "category": "제품근거",
+      "title": "젖소 열스트레스 RP-GABA 연구",
+      "summary": "18두 시험에서 산유량 효과는 통계적으로 유의하지 않았고 일부 유성분에는 유의한 변화가 있었다.",
+      "judgment": "유망·제한",
+      "action": "반추위 보호 제형과 고정 용량으로 제품특이 유료 PoV를 설계한다.",
+      "source_name": "Animals",
+      "url": "https://www.mdpi.com/2076-2615/16/2/262",
+      "review_status": "reviewed",
+      "source_quality": "동료심사 논문"
+    },
+    {
+      "id": "europepmc-dc4a0e18adc7c6",
+      "date": "2026-01-15",
+      "category": "학술자동",
+      "title": "Effect of Dietary Supplementation with Rumen-Protected GABA (γ-Aminobutyric Acid) on Milk Productivity and Blood Profiles of Dairy Cattle Under Heat Stress Conditions.",
+      "summary": "Animals (Basel)에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "Animals (Basel)",
+      "url": "https://doi.org/10.3390/ani16020262",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Joo YH",
+        "Woo JS",
+        "Lee H",
+        "Kim WS"
+      ],
+      "doi": "10.3390/ani16020262"
+    },
+    {
+      "id": "europepmc-27fbbc30af5269",
+      "date": "2025-12-10",
+      "category": "학술자동",
+      "title": "Advances in GABA-Enriched Yogurt and Frozen Yogurt: Microbial Biosynthesis, Functional Properties, and Health Perspectives-A Comprehensive Review.",
+      "summary": "Foods에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "Foods",
+      "url": "https://doi.org/10.3390/foods14244254",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Ushidee-Radzi MA",
+        "Shin Yee C",
+        "Raja-Razali RB",
+        "Zahia-Azizan NA"
+      ],
+      "doi": "10.3390/foods14244254"
+    },
+    {
+      "id": "europepmc-b5ed7bf3dd7a39",
+      "date": "2025-11-08",
+      "category": "학술자동",
+      "title": "γ-aminobutyric acid improves gut-brain axis function and behavioral adaptation in broilers under low-protein diet.",
+      "summary": "Poult Sci에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "Poult Sci",
+      "url": "https://doi.org/10.1016/j.psj.2025.106085",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Randi R",
+        "Aulia A",
+        "Muhtadin M",
+        "Hanim C"
+      ],
+      "doi": "10.1016/j.psj.2025.106085"
+    },
+    {
+      "id": "europepmc-b6b57978619fd0",
+      "date": "2025-11-03",
+      "category": "학술자동",
+      "title": "Transcriptional profiling of the hippocampus and hypothalamus reveals a potential role of thyroid hormone in gamma-aminobutyric acid (GABA) synthesis in dairy cows fed a high-concentrate diet.",
+      "summary": "BMC Vet Res에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "BMC Vet Res",
+      "url": "https://doi.org/10.1186/s12917-025-05078-z",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Hou M",
+        "Wu C",
+        "Chen Q",
+        "Song P"
+      ],
+      "doi": "10.1186/s12917-025-05078-z"
+    },
+    {
+      "id": "europepmc-00a2cb2dbdd271",
+      "date": "2025-10-21",
+      "category": "학술자동",
+      "title": "Gamma-Aminobutyric Acid (GABA) as a Dietary Strategy for Enhancing Temperature Stress Resilience in Aquaculture Species.",
+      "summary": "Int J Mol Sci에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "Int J Mol Sci",
+      "url": "https://doi.org/10.3390/ijms262010233",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Ogun AO",
+        "Moniruzzaman M",
+        "Jeon H",
+        "Kim H"
+      ],
+      "doi": "10.3390/ijms262010233"
+    },
+    {
+      "id": "europepmc-3a6f027c9cf4c9",
+      "date": "2025-10-01",
+      "category": "학술자동",
+      "title": "Genomic and phenotypic analysis of probiotic properties of GABA-producing Enterococcus lactis A1 in Micropterus salmoides aquaculture",
+      "summary": "Microbiological research에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "Microbiological research",
+      "url": "https://europepmc.org/article/AGR/IND609301643",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Wang X",
+        "Zhu L",
+        "Du Z",
+        "Zheng W"
+      ],
+      "doi": ""
+    },
+    {
+      "id": "europepmc-810189996fb8a1",
+      "date": "2025-05-26",
+      "category": "학술자동",
+      "title": "Genomic and phenotypic analysis of probiotic properties of GABA-producing Enterococcus lactis A1 in Micropterus salmoides aquaculture.",
+      "summary": "Microbiol Res에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "Microbiol Res",
+      "url": "https://doi.org/10.1016/j.micres.2025.128241",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Wang X",
+        "Zhu L",
+        "Du Z",
+        "Zheng W"
+      ],
+      "doi": "10.1016/j.micres.2025.128241"
+    },
+    {
+      "id": "europepmc-7e2f78fccbfcee",
+      "date": "2025-03-20",
+      "category": "학술자동",
+      "title": "The effects of gamma-aminobutyric acid on growth performance, diarrhoea, ruminal fermentation, and antioxidant capacity in pre-weaned calves.",
+      "summary": "Animal에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "Animal",
+      "url": "https://doi.org/10.1016/j.animal.2025.101493",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Zhang YT",
+        "Yang Y",
+        "Bu DP",
+        "Ma L."
+      ],
+      "doi": "10.1016/j.animal.2025.101493"
+    },
+    {
+      "id": "europepmc-a328e3ff39594f",
+      "date": "2025-03-12",
+      "category": "학술자동",
+      "title": "Effects of Dietary Gamma-Aminobutyric Acid (GABA) Inclusion on Acute Temperature Stress Responses in Juvenile Olive Flounder (&lt;i&gt;Paralichthys olivaceus&lt;/i&gt;).",
+      "summary": "Animals (Basel)에서 Europe PMC로 자동 발견했습니다. 연구설계·축종·제형·용량·통계결과를 검토하기 전 효능 판단에 사용하지 않습니다.",
+      "judgment": "검토 대기",
+      "action": "원문을 확보해 표본수, 대조군, 용량, 유의성과 제품 적용가능성을 평가합니다.",
+      "source_name": "Animals (Basel)",
+      "url": "https://doi.org/10.3390/ani15060809",
+      "review_status": "auto-collected",
+      "source_quality": "Europe PMC 메타데이터·자동수집",
+      "authors": [
+        "Ogun AO",
+        "Kim H",
+        "Yoon S",
+        "Lee S"
+      ],
+      "doi": "10.3390/ani15060809"
+    },
+    {
+      "id": "flounder-gaba-2025",
+      "date": "2025-02-11",
+      "category": "제품근거",
+      "title": "넙치 염분스트레스 GABA 연구",
+      "summary": "8주 시험에서 성장과 삼투조절 개선이 통계적으로 유의하지 않았다.",
+      "judgment": "중립·부정",
+      "action": "효과가 없었던 축종·상황도 근거 맵에 유지한다.",
+      "source_name": "Korean Journal of Fisheries and Aquatic Sciences",
+      "url": "https://www.e-kfas.org/Upload/files/kfas/4.%2058%281%29%2033-45.pdf",
+      "review_status": "reviewed",
+      "source_quality": "동료심사 논문"
+    },
+    {
+      "id": "feed-standard-current",
+      "date": "2024-04-01",
+      "category": "규제",
+      "title": "사료 등의 기준 및 규격",
+      "summary": "품목·기준·표시·등록 검토의 출발점이며 GABA의 명시 허용 여부는 별도 확인이 필요하다.",
+      "judgment": "상시",
+      "action": "품목분류 사전검토와 표시 가능 문구를 서면으로 확정한다.",
+      "source_name": "국가법령정보센터",
+      "url": "https://www.law.go.kr/행정규칙/사료%20등의%20기준%20및%20규격",
+      "review_status": "reviewed",
+      "source_quality": "법령 1차 자료"
+    },
+    {
+      "id": "hanwoo-gaba-2023",
+      "date": "2023-12-31",
+      "category": "제품근거",
+      "title": "비육 한우 GABA 연구",
+      "summary": "21두 시험에서 초기 증체 신호가 있었으나 도체 지표는 통계적으로 유의하지 않았다.",
+      "judgment": "유망·제한",
+      "action": "활성함량·제형·용량을 고정한 축종별 제품특이 PoV를 우선한다.",
+      "source_name": "KCI",
+      "url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART003036784",
+      "review_status": "reviewed",
+      "source_quality": "학술 논문"
+    },
+    {
+      "id": "feed-process-committee",
+      "date": "2023-11-20",
+      "category": "규제",
+      "title": "사료공정심의위원회 운영규정",
+      "summary": "신규·변경 물질 검토에는 제조방법·안전성·품질·첨가수준 자료가 중요하다.",
+      "judgment": "상시",
+      "action": "심의 필요 여부와 제출자료 목록을 사전에 확정한다.",
+      "source_name": "국가법령정보센터",
+      "url": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000231582&chrClsCd=010201",
+      "review_status": "reviewed",
+      "source_quality": "행정규칙 1차 자료"
+    }
+  ],
+  "market": {
+    "corn": {
+      "key": "corn",
+      "name": "국제 옥수수 가격",
+      "series_id": "World Bank Pink Sheet: Maize",
+      "source_url": "https://www.worldbank.org/en/research/commodity-markets",
+      "unit": "USD/metric ton",
+      "latest_date": "2026-06-01",
+      "latest": 197.1,
+      "mom_pct": -8.8,
+      "yoy_pct": 0.5,
+      "signal": "원가압력 완화",
+      "points": [
+        {
+          "date": "2024-07-01",
+          "value": 177.4
+        },
+        {
+          "date": "2024-08-01",
+          "value": 170.3
+        },
+        {
+          "date": "2024-09-01",
+          "value": 185.0
+        },
+        {
+          "date": "2024-10-01",
+          "value": 190.3
+        },
+        {
+          "date": "2024-11-01",
+          "value": 201.3
+        },
+        {
+          "date": "2024-12-01",
+          "value": 202.6
+        },
+        {
+          "date": "2025-01-01",
+          "value": 214.4
+        },
+        {
+          "date": "2025-02-01",
+          "value": 220.9
+        },
+        {
+          "date": "2025-03-01",
+          "value": 207.4
+        },
+        {
+          "date": "2025-04-01",
+          "value": 215.0
+        },
+        {
+          "date": "2025-05-01",
+          "value": 203.9
+        },
+        {
+          "date": "2025-06-01",
+          "value": 196.1
+        },
+        {
+          "date": "2025-07-01",
+          "value": 192.0
+        },
+        {
+          "date": "2025-08-01",
+          "value": 185.5
+        },
+        {
+          "date": "2025-09-01",
+          "value": 197.4
+        },
+        {
+          "date": "2025-10-01",
+          "value": 198.1
+        },
+        {
+          "date": "2025-11-01",
+          "value": 202.0
+        },
+        {
+          "date": "2025-12-01",
+          "value": 205.7
+        },
+        {
+          "date": "2026-01-01",
+          "value": 204.5
+        },
+        {
+          "date": "2026-02-01",
+          "value": 209.6
+        },
+        {
+          "date": "2026-03-01",
+          "value": 212.7
+        },
+        {
+          "date": "2026-04-01",
+          "value": 214.0
+        },
+        {
+          "date": "2026-05-01",
+          "value": 216.2
+        },
+        {
+          "date": "2026-06-01",
+          "value": 197.1
+        }
+      ]
+    },
+    "soybeans": {
+      "key": "soybeans",
+      "name": "국제 대두 가격",
+      "series_id": "World Bank Pink Sheet: Soybeans",
+      "source_url": "https://www.worldbank.org/en/research/commodity-markets",
+      "unit": "USD/metric ton",
+      "latest_date": "2026-06-01",
+      "latest": 468.0,
+      "mom_pct": -1.1,
+      "yoy_pct": 12.5,
+      "signal": "대체로 보합",
+      "points": [
+        {
+          "date": "2024-07-01",
+          "value": 470.0
+        },
+        {
+          "date": "2024-08-01",
+          "value": 400.0
+        },
+        {
+          "date": "2024-09-01",
+          "value": 391.0
+        },
+        {
+          "date": "2024-10-01",
+          "value": 442.0
+        },
+        {
+          "date": "2024-11-01",
+          "value": 436.0
+        },
+        {
+          "date": "2024-12-01",
+          "value": 409.0
+        },
+        {
+          "date": "2025-01-01",
+          "value": 411.0
+        },
+        {
+          "date": "2025-02-01",
+          "value": 412.0
+        },
+        {
+          "date": "2025-03-01",
+          "value": 401.0
+        },
+        {
+          "date": "2025-04-01",
+          "value": 408.0
+        },
+        {
+          "date": "2025-05-01",
+          "value": 414.0
+        },
+        {
+          "date": "2025-06-01",
+          "value": 416.0
+        },
+        {
+          "date": "2025-07-01",
+          "value": 410.0
+        },
+        {
+          "date": "2025-08-01",
+          "value": 407.0
+        },
+        {
+          "date": "2025-09-01",
+          "value": 404.0
+        },
+        {
+          "date": "2025-10-01",
+          "value": 404.0
+        },
+        {
+          "date": "2025-11-01",
+          "value": 446.0
+        },
+        {
+          "date": "2025-12-01",
+          "value": 440.0
+        },
+        {
+          "date": "2026-01-01",
+          "value": 425.0
+        },
+        {
+          "date": "2026-02-01",
+          "value": 459.0
+        },
+        {
+          "date": "2026-03-01",
+          "value": 473.0
+        },
+        {
+          "date": "2026-04-01",
+          "value": 463.0
+        },
+        {
+          "date": "2026-05-01",
+          "value": 473.0
+        },
+        {
+          "date": "2026-06-01",
+          "value": 468.0
+        }
+      ]
+    }
+  },
+  "automation": {
+    "source_health": [
+      {
+        "source": "europe_pmc",
+        "status": "ok",
+        "fetched_at": "2026-08-03T02:28:22Z",
+        "item_count": 12
+      },
+      {
+        "source": "mafra_rss",
+        "status": "ok",
+        "fetched_at": "2026-08-03T02:28:22Z",
+        "item_count": 7
+      },
+      {
+        "source": "world_bank_pink_sheet",
+        "status": "ok",
+        "fetched_at": "2026-08-03T02:28:22Z",
+        "item_count": 48
+      }
+    ],
+    "last_successful_live_refresh": "2026-08-03T02:28:22Z",
+    "review_queue_count": 19
+  }
+}

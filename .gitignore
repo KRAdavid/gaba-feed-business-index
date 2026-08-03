@@ -1,0 +1,7 @@
+_work/
+*.inspect.ndjson
+__pycache__/
+*.pyc
+.DS_Store
+.env
+

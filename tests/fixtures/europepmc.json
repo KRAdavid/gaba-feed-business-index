@@ -1,0 +1,25 @@
+{
+  "version": "6.9",
+  "hitCount": 2,
+  "resultList": {
+    "result": [
+      {
+        "id": "123456",
+        "source": "MED",
+        "doi": "10.1234/gaba-feed",
+        "title": "Gamma-aminobutyric acid in dairy cattle feed",
+        "journalTitle": "Animal Nutrition",
+        "firstPublicationDate": "2026-07-02",
+        "authorString": "A Researcher, B Scientist"
+      },
+      {
+        "id": "123457",
+        "source": "MED",
+        "doi": "10.1234/human-gaba",
+        "title": "GABA and human sleep",
+        "journalTitle": "Sleep Medicine",
+        "firstPublicationDate": "2026-06-01"
+      }
+    ]
+  }
+}

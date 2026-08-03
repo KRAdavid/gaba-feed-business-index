@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0.0",
+  "title": "GABA Feed Business Model Index",
+  "subtitle": "사료업계 비경험자도 상태·근거·다음 행동을 5분 안에 확인하는 공개 인덱스",
+  "thesis": "20% GABA 마스터 한 SKU만 재고로 관리하고, 5·10·15·20% 제품은 고객 주문 후 OEM 생산한다.",
+  "decision": "구조는 설계됐지만 규제·제품근거·OEM·유료 반복주문이 잠길 때까지 VALIDATE 단계로 관리한다.",
+  "readiness": {
+    "score": 41,
+    "max_score": 100,
+    "stage": "VALIDATE",
+    "stage_description": "규제경로·제품정의·공장·유료 고객을 증빙으로 검증하는 단계",
+    "scoring_rule": "파일·URL·기준일·결론이 연결된 증빙이 있을 때만 점수를 올린다.",
+    "dimensions": [
+      {
+        "id": "regulatory",
+        "name": "규제·품목분류",
+        "score": 6,
+        "max_score": 20,
+        "status": "검증 필요",
+        "evidence": "현행 기준과 심의절차를 확인함",
+        "open_gate": "GABA·발효배양물의 품목분류, 등록경로, 표시 가능 문구가 미확정",
+        "next_evidence": "관할기관 또는 전문 검토자의 서면 사전검토",
+        "owner": "Reg/QA",
+        "target_date": "2026-09-01"
+      },
+      {
+        "id": "product",
+        "name": "제품근거·유효용량",
+        "score": 8,
+        "max_score": 20,
+        "status": "부분 근거",
+        "evidence": "축종별 학술 신호가 있으나 결과는 혼합",
+        "open_gate": "활성함량·안정성·제형·축종별 제품특이 용량 연결이 없음",
+        "next_evidence": "제품특이 CoA, 안정성 자료, 유료 PoV",
+        "owner": "R&D",
+        "target_date": "2026-10-15"
+      },
+      {
+        "id": "supply",
+        "name": "공급·QA",
+        "score": 12,
+        "max_score": 20,
+        "status": "설계 완료",
+        "evidence": "1 SKU·FIFO·CoA·주문 후 OEM 흐름을 설계함",
+        "open_gate": "OEM 실사·견적·MOQ·리드타임·회수체계가 미확정",
+        "next_evidence": "OEM 두 곳의 실사, 실견적, QA Agreement",
+        "owner": "SCM/QA",
+        "target_date": "2026-09-30"
+      },
+      {
+        "id": "economics",
+        "name": "단위경제성",
+        "score": 11,
+        "max_score": 20,
+        "status": "가정 모델",
+        "evidence": "마스터·매트릭스 단위공헌과 손익분기 산식이 있음",
+        "open_gate": "9,240원/kg과 4,681.8원/kg 비용 근거가 단절됨",
+        "next_evidence": "실견적·시험생산·포장·물류비를 포함한 원가 브리지",
+        "owner": "Finance",
+        "target_date": "2026-09-30"
+      },
+      {
+        "id": "commercial",
+        "name": "상업검증",
+        "score": 4,
+        "max_score": 20,
+        "status": "미검증",
+        "evidence": "고객가치 가설과 반복주문 조건만 정의됨",
+        "open_gate": "LOI·유료 PO·반복주문 증빙이 없음",
+        "next_evidence": "유료 PoV 두 건과 반복 PO 트리거",
+        "owner": "Sales",
+        "target_date": "2026-11-15"
+      }
+    ]
+  },
+  "critical_gates": [
+    {
+      "id": "regulatory_gate",
+      "name": "규제·품목분류",
+      "status": "OPEN",
+      "question": "어떤 사료 품목으로 등록하고 어떤 문구를 표시할 수 있는가?",
+      "unlock_evidence": "품목분류·등록경로·표시 문구의 서면 사전검토",
+      "stop_rule": "미확정이면 외부 효능표현과 납품을 중단"
+    },
+    {
+      "id": "product_gate",
+      "name": "제품근거·유효용량",
+      "status": "OPEN",
+      "question": "이 제품의 활성함량·안정성·축종별 유효용량은 무엇인가?",
+      "unlock_evidence": "로트 CoA·안정성·제품특이 유료 PoV",
+      "stop_rule": "미확정이면 SCALE 보류"
+    },
+    {
+      "id": "oem_gate",
+      "name": "OEM·QA",
+      "status": "OPEN",
+      "question": "실제 공장에서 얼마에, 얼마나 빨리, 어떤 품질책임으로 만들 수 있는가?",
+      "unlock_evidence": "OEM 두 곳 실견적·MOQ·리드타임·QA Agreement",
+      "stop_rule": "미합의면 고객 납기 약속 보류"
+    },
+    {
+      "id": "commercial_gate",
+      "name": "상업검증",
+      "status": "OPEN",
+      "question": "고객이 실제로 비용을 지불하고 다시 주문하는가?",
+      "unlock_evidence": "유료 PoV와 반복 PO 트리거",
+      "stop_rule": "유료 반복 증빙이 없으면 투자 확대 중단"
+    }
+  ],
+  "assumptions": [
+    {
+      "metric": "20% 마스터 판매가",
+      "value": "18,000원/kg",
+      "state": "검증 필요",
+      "formula": "입력",
+      "unlock": "고객 견적과 가격 수용성"
+    },
+    {
+      "metric": "20% 마스터 잠정원가",
+      "value": "9,240원/kg",
+      "state": "근거 단절",
+      "formula": "입력",
+      "unlock": "배양·건조·부형제·검사·포장·수율 원가 브리지"
+    },
+    {
+      "metric": "20% 마스터 단위공헌",
+      "value": "8,760원/kg",
+      "state": "가정 계산",
+      "formula": "18,000-9,240",
+      "unlock": "실제 원가로 재계산"
+    },
+    {
+      "metric": "매트릭스 가격",
+      "value": "6,000원/사료t",
+      "state": "검증 필요",
+      "formula": "입력",
+      "unlock": "유료 PoV와 고객 계약"
+    },
+    {
+      "metric": "매트릭스 투입량",
+      "value": "75g/사료t",
+      "state": "유효용량 미검증",
+      "formula": "입력",
+      "unlock": "활성함량·제형·축종별 용량 연결"
+    },
+    {
+      "metric": "매트릭스 단위공헌",
+      "value": "4,149원/사료t",
+      "state": "가정 계산",
+      "formula": "6,000-351-1,500",
+      "unlock": "제품비·채널비·현장비·반품비 확정"
+    },
+    {
+      "metric": "고객가치",
+      "value": "18,000원/사료t",
+      "state": "가설",
+      "formula": "손실회피 가정",
+      "unlock": "유료 대조군 PoV에서 경제효과 측정"
+    }
+  ],
+  "roadmap": [
+    {
+      "window": "0~30일",
+      "theme": "경로 잠금",
+      "actions": ["품목분류·등록경로·표시 문구 사전검토", "제품 활성함량·제형·로트 규격 확정", "OEM 후보 두 곳에 RFI 발송"]
+    },
+    {
+      "window": "31~60일",
+      "theme": "제품 잠금",
+      "actions": ["시험생산·균일도·안정성·CoA 확인", "축종 하나·제형 하나·1차 지표 하나의 유료 PoV", "실제 견적으로 단위경제성 재산정"]
+    },
+    {
+      "window": "61~90일",
+      "theme": "상업 잠금",
+      "actions": ["첫 유료 PO 확보", "반복주문 트리거와 중단 기준 계약", "실제 원가·공급능력으로 GO/NO-GO 결정"]
+    }
+  ],
+  "glossary": [
+    {"term": "GABA", "plain": "감마아미노부티르산", "use": "축종·용량·제형에 따라 결과가 달라질 수 있는 성분"},
+    {"term": "마스터배치", "plain": "고농축 중간재", "use": "최종 제품 전 핵심 성분을 일정 농도로 농축한 재고 단위"},
+    {"term": "OEM", "plain": "주문자상표 부착생산", "use": "발주자가 규격을 정하고 외부 공장이 생산하는 방식"},
+    {"term": "SKU", "plain": "재고관리 단위", "use": "규격·포장·배합을 구분하는 최소 품목"},
+    {"term": "CoA", "plain": "성적서", "use": "로트별 성분·미생물·중금속 등 시험결과 문서"},
+    {"term": "MOQ", "plain": "최소주문수량", "use": "공장이 한 번에 생산하는 최소 물량"},
+    {"term": "FIFO", "plain": "선입선출", "use": "먼저 입고한 재고를 먼저 출고하는 원칙"},
+    {"term": "PO", "plain": "구매주문서", "use": "규격·수량·가격·납기를 확정한 주문 문서"},
+    {"term": "PoV", "plain": "가치검증", "use": "실제 고객 환경에서 경제적 가치를 확인하는 시험"},
+    {"term": "QA Agreement", "plain": "품질합의서", "use": "시험·변경·일탈·회수 책임을 발주자와 제조자가 합의한 문서"},
+    {"term": "단위공헌", "plain": "한 단위가 남기는 금액", "use": "판매가에서 제품원가와 직접변동비를 뺀 값"},
+    {"term": "품목분류", "plain": "어떤 사료로 볼지 결정", "use": "법적 범주와 등록경로를 정하는 절차"}
+  ],
+  "source_catalog": [
+    {"id": "feed_standard", "name": "사료 등의 기준 및 규격", "organization": "국가법령정보센터", "url": "https://www.law.go.kr/행정규칙/사료%20등의%20기준%20및%20규격", "cadence": "월 1회"},
+    {"id": "feed_act", "name": "사료관리법", "organization": "국가법령정보센터", "url": "https://www.law.go.kr/법령/사료관리법", "cadence": "월 1회"},
+    {"id": "feed_committee", "name": "사료공정심의위원회 운영규정", "organization": "국가법령정보센터", "url": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000231582&chrClsCd=010201", "cadence": "월 1회"},
+    {"id": "mafra_rss", "name": "농림축산식품부 보도자료 RSS", "organization": "농림축산식품부", "url": "https://www.mafra.go.kr/bbs/home/792/rssList.do?row=50", "cadence": "주 1회"},
+    {"id": "krei_grain", "name": "국제곡물 관측", "organization": "한국농촌경제연구원", "url": "https://agevent.krei.re.kr/main", "cadence": "월 1회"},
+    {"id": "europe_pmc", "name": "GABA·사료 학술 메타데이터", "organization": "Europe PMC", "url": "https://europepmc.org/", "cadence": "주 1회"},
+    {"id": "world_bank_pink_sheet", "name": "World Bank Commodity Price Data (Pink Sheet)", "organization": "World Bank Prospects Group", "url": "https://www.worldbank.org/en/research/commodity-markets", "cadence": "월 1회"}
+  ],
+  "downloads": [
+    {"name": "관리 원장", "file": "downloads/GABA_Index_Master.xlsx", "type": "XLSX"},
+    {"name": "사료업체·투자자 스피치덱", "file": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx", "type": "PPTX"},
+    {"name": "운영가이드", "file": "downloads/GABA_Index_운영가이드.md", "type": "MD"}
+  ],
+  "disclaimer": "이 공개 인덱스는 사업 준비도와 검증 순서를 관리하는 자료입니다. 법률·수의·사료·투자 자문을 대체하지 않으며, 자동 수집 신호는 검토 완료 전 점수나 효능 판단에 반영하지 않습니다."
+}
