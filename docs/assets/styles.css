@@ -104,6 +104,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .track-head h3 { margin: 9px 0 0; font-size: 34px; line-height: 1.1; letter-spacing: -.045em; }
 .track-headline { position: relative; z-index: 1; max-width: 430px; margin: 28px 0 8px; font-size: 18px; font-weight: 800; line-height: 1.45; }
 .track-description { max-width: 470px; margin: 0; color: var(--muted); font-size: 13px; }
+.track-effects { margin: 16px 0; padding: 12px 14px; border-left: 3px solid var(--accent); background: #f7faf9; }
+.track-effects small { color: var(--muted); font-weight: 700; }
+.track-effects ul { margin: 7px 0 0 18px; padding: 0; }
+.track-effects li { margin: 4px 0; font-size: 12px; }
 .track-card dl { display: grid; gap: 0; margin: 28px 0 0; }
 .track-card dl > div { display: grid; grid-template-columns: 86px 1fr; gap: 12px; padding: 13px 0; border-top: 1px solid #ebefeb; }
 .track-card dt { color: var(--muted); font-size: 10px; font-weight: 800; }

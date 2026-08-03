@@ -16,7 +16,12 @@
         "GABA 20% 기준품",
         "OEM 5~20% 맞춤 농도"
       ],
-      "quality_focus": "활성 GABA 함량, 로트별 시험성적서, 농도별 제품 규격"
+      "quality_focus": "활성 GABA 함량, 로트별 시험성적서, 농도별 제품 규격",
+      "marketing_effects": [
+        "규격이 선명한 GABA 원료 선택",
+        "농도별 OEM으로 고객 배합 설계에 유연하게 대응",
+        "로트·CoA 기반 품질관리로 구매 검토의 불확실성 완화"
+      ]
     },
     {
       "id": "gaba_care_mix",
@@ -31,7 +36,12 @@
         "축종별 배합 설계",
         "농장·연구소 성과 측정"
       ],
-      "quality_focus": "활성함량, 배합 균일도, 보관 안정성, 축종별 생산성, 축산물 품질"
+      "quality_focus": "활성함량, 배합 균일도, 보관 안정성, 축종별 생산성, 축산물 품질",
+      "marketing_effects": [
+        "축종별 생산주기에 맞춘 브랜드 축산 솔루션",
+        "생산성·사료효율·축산물 품질을 하나의 시험 프레임으로 관리",
+        "농장 데이터와 연구기관 검증을 연결해 재구매 판단을 돕는 구조"
+      ]
     }
   ],
   "commercialization_team": [
@@ -900,9 +910,9 @@
   },
   "downloads": [
     {
-      "name": "사료업체·투자자 스피치덱",
-      "file": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx",
-      "type": "PPTX"
+      "name": "사료업체·투자자 스피치덱 PDF",
+      "file": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf",
+      "type": "PDF"
     },
     {
       "name": "가바크루드 규격서",
@@ -917,7 +927,7 @@
   ],
   "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T08:18:08Z",
+    "generated_at": "2026-08-03T08:37:36Z",
     "as_of_date": "2026-08-03",
     "timezone": "Asia/Seoul",
     "automation": "Codex 주간 자동화 + Sites production 배포",
@@ -1601,23 +1611,23 @@
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T08:18:08Z",
+        "fetched_at": "2026-08-03T08:37:36Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T08:18:08Z",
+        "fetched_at": "2026-08-03T08:37:36Z",
         "item_count": 6
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T08:18:08Z",
+        "fetched_at": "2026-08-03T08:37:36Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T08:18:08Z",
+    "last_successful_live_refresh": "2026-08-03T08:37:36Z",
     "review_queue_count": 18
   }
 }
