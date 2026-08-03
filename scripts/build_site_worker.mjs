@@ -15,8 +15,8 @@ const publicFiles = [
   ["/assets/app.js", "assets/app.js", "text/javascript; charset=utf-8"],
   ["/data/index.json", "data/index.json", "application/json; charset=utf-8"],
   ["/downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf", "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf", "application/pdf"],
-  ["/downloads/GABA_Crude_Specification.md", "downloads/GABA_Crude_Specification.md", "text/markdown; charset=utf-8"],
-  ["/downloads/GABA_Caremix_Specification.md", "downloads/GABA_Caremix_Specification.md", "text/markdown; charset=utf-8"]
+  ["/downloads/GABA_Crude_Specification_v1.pdf", "downloads/GABA_Crude_Specification_v1.pdf", "application/pdf"],
+  ["/downloads/GABA_Caremix_Specification_v1.pdf", "downloads/GABA_Caremix_Specification_v1.pdf", "application/pdf"]
 ];
 
 const assets = {};

@@ -11,15 +11,15 @@ ROOT = Path(__file__).resolve().parents[1]
 DOWNLOADS = ROOT / "docs" / "downloads"
 FILES = {
     "GABA_Feed_Business_Model_Speech_Deck_v1.pdf": "GABA_Feed_Business_Model_Speech_Deck_v1.pdf",
-    "GABA_Crude_Specification.md": "GABA_Crude_Specification.md",
-    "GABA_Caremix_Specification.md": "GABA_Caremix_Specification.md",
+    "GABA_Crude_Specification_v1.pdf": "GABA_Crude_Specification_v1.pdf",
+    "GABA_Caremix_Specification_v1.pdf": "GABA_Caremix_Specification_v1.pdf",
 }
 
 
 def main() -> None:
     DOWNLOADS.mkdir(parents=True, exist_ok=True)
     # Keep the public download surface intentionally limited to the approved three files.
-    for stale_name in ("GABA_Index_Master.xlsx", "GABA_Index_운영가이드.md", "GABA_Feed_Business_Model_Speech_Deck_v1.pptx"):
+    for stale_name in ("GABA_Index_Master.xlsx", "GABA_Index_운영가이드.md", "GABA_Feed_Business_Model_Speech_Deck_v1.pptx", "GABA_Crude_Specification.md", "GABA_Caremix_Specification.md"):
         stale = DOWNLOADS / stale_name
         if stale.exists():
             stale.unlink()

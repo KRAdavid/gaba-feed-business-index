@@ -24,8 +24,8 @@ REQUIRED = {
     "release-manifest.json",
     "DEPLOYMENT_GUIDE.md",
     "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf",
-    "downloads/GABA_Crude_Specification.md",
-    "downloads/GABA_Caremix_Specification.md",
+    "downloads/GABA_Crude_Specification_v1.pdf",
+    "downloads/GABA_Caremix_Specification_v1.pdf",
 }
 
 
@@ -91,8 +91,8 @@ def validate() -> list[str]:
 
     for source_name in (
         "GABA_Feed_Business_Model_Speech_Deck_v1.pdf",
-        "GABA_Crude_Specification.md",
-        "GABA_Caremix_Specification.md",
+        "GABA_Crude_Specification_v1.pdf",
+        "GABA_Caremix_Specification_v1.pdf",
     ):
         source = ROOT / source_name
         deployed = OUTPUT / "downloads" / source_name
