@@ -229,23 +229,17 @@
 
   function render(data) {
     state.data = data;
-    renderHero(data);
-    renderSummary(data);
-    renderBusinessTracks(data.business_tracks);
-    renderCareMixAdvancement(data.caremix_advancement);
-    renderSpeciesValidation(data.species_validation);
-    renderReadiness(data);
-    renderGates(data.critical_gates);
-    setupSignalFilters(data);
-    renderSignals();
-    renderCollection(data);
-    renderAssumptions(data.assumptions);
-    renderRoadmap(data.roadmap);
-    renderProjectTimeline(data.project_timeline || []);
-    renderTeam(data);
-    renderHealth(data);
-    renderDownloads(data.downloads);
-    renderAppendix(data);
+    const tasks = [
+      () => renderHero(data), () => renderSummary(data), () => renderBusinessTracks(data.business_tracks),
+      () => renderCareMixAdvancement(data.caremix_advancement), () => renderSpeciesValidation(data.species_validation),
+      () => renderReadiness(data), () => renderGates(data.critical_gates), () => setupSignalFilters(data),
+      () => renderSignals(), () => renderCollection(data), () => renderAssumptions(data.assumptions),
+      () => renderRoadmap(data.roadmap), () => renderProjectTimeline(data.project_timeline || []),
+      () => renderTeam(data), () => renderHealth(data), () => renderDownloads(data.downloads), () => renderAppendix(data)
+    ];
+    const failures = [];
+    tasks.forEach(task => { try { task(); } catch (error) { failures.push(error); console.error(error); } });
+    if (failures.length) console.warn(`부분 렌더링 오류 ${failures.length}건`, failures[0]);
   }
 
   async function init() {

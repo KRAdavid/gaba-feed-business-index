@@ -57,11 +57,11 @@ export default {
       return response(request.method === "HEAD" ? null : decodeBase64(notFound.body), 404, notFound.contentType, "no-store");
     }
 
-    const cacheControl = pathname === "/index.html"
-      ? "public, max-age=120"
-      : pathname === "/data/index.json"
-        ? "public, max-age=300"
-        : "public, max-age=86400";
+    // The index HTML, data, and render assets must travel as one version.
+    // Short-lived caching prevents an older app.js from being paired with a newer index.html.
+    const cacheControl = pathname === "/index.html" || pathname === "/data/index.json" || pathname === "/assets/app.js" || pathname === "/assets/styles.css"
+      ? "no-store, max-age=0"
+      : "public, max-age=86400";
     const headers = {};
     if (asset.download) {
       const filename = pathname.split("/").pop();
