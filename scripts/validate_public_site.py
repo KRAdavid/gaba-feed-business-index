@@ -28,6 +28,14 @@ DOWNLOAD_PAIRS = (
     (ROOT / "GABA_Index_운영가이드.md", DOCS / "downloads" / "GABA_Index_운영가이드.md"),
 )
 EXPECTED_LIVE_SOURCES = {"mafra_rss", "europe_pmc", "world_bank_pink_sheet"}
+DISCOURAGED_PUBLIC_TERMS = (
+    "열린 게이트",
+    "닫혀야",
+    "잠가야",
+    "잠금 해제",
+    "해제 근거",
+    "네 문이 닫히",
+)
 
 
 class IndexHTMLParser(HTMLParser):
@@ -68,6 +76,10 @@ def validate(max_age_hours: float | None = None) -> list[str]:
 
     parser = IndexHTMLParser()
     html = (DOCS / "index.html").read_text(encoding="utf-8")
+    public_copy = html + "\n" + (DOCS / "assets" / "app.js").read_text(encoding="utf-8")
+    for term in DISCOURAGED_PUBLIC_TERMS:
+        if term in public_copy:
+            errors.append(f"discouraged public wording is present: {term}")
     parser.feed(html)
     required_ids = {"main", "readiness", "signals", "economics", "roadmap", "downloads", "appendix"}
     for missing in sorted(required_ids - parser.ids):

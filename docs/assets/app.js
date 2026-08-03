@@ -31,7 +31,7 @@
   function renderSummary(data) {
     const cards = [
       ["사업 준비도", `${data.summary.readiness_score}/100`, "검토 완료 근거만 반영"],
-      ["열린 핵심 게이트", `${data.summary.critical_open_gates}개`, "모두 닫혀야 확장 검토"],
+      ["미완료 핵심 검증", `${data.summary.critical_open_gates}개`, "4개 모두 완료 후 확장 검토"],
       ["검토 완료 신호", `${data.summary.reviewed_signals}건`, "정책·연구·내부 모델"],
       ["검토 대기열", `${data.summary.auto_signals_waiting_review}건`, "자동 수집 · 점수 미반영"]
     ];
@@ -55,9 +55,9 @@
 
   function renderGates(gates) {
     $("#gate-grid").innerHTML = gates.map((gate, index) => `<article class="gate-card" data-number="0${index + 1}">
-      <div class="gate-top"><h3>${escapeHTML(gate.name)}</h3><span class="status-open">${escapeHTML(gate.status)}</span></div>
+      <div class="gate-top"><h3>${escapeHTML(gate.name)}</h3><span class="status-pending">${gate.status === "OPEN" ? "검증 필요" : gate.status === "DONE" ? "검증 완료" : escapeHTML(gate.status)}</span></div>
       <p class="gate-question">${escapeHTML(gate.question)}</p>
-      <div class="gate-evidence"><div><small>해제 근거</small><p>${escapeHTML(gate.unlock_evidence)}</p></div><div><small>중단 기준</small><p>${escapeHTML(gate.stop_rule)}</p></div></div>
+      <div class="gate-evidence"><div><small>완료 조건</small><p>${escapeHTML(gate.unlock_evidence)}</p></div><div><small>중단 기준</small><p>${escapeHTML(gate.stop_rule)}</p></div></div>
     </article>`).join("");
   }
 

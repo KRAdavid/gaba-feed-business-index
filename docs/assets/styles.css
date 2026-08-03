@@ -125,7 +125,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .gate-card::after { content: attr(data-number); position: absolute; right: 18px; bottom: -36px; color: #f0f3ef; font-size: 130px; font-weight: 900; line-height: 1; }
 .gate-top { display: flex; justify-content: space-between; gap: 20px; }
 .gate-top h3 { margin: 0; font-size: 22px; letter-spacing: -.03em; }
-.status-open { flex: none; height: fit-content; padding: 4px 8px; color: var(--danger); background: #f7e8e3; border-radius: 999px; font-size: 10px; font-weight: 900; }
+.status-pending { flex: none; height: fit-content; padding: 4px 8px; color: var(--danger); background: #f7e8e3; border-radius: 999px; font-size: 10px; font-weight: 900; }
 .gate-question { position: relative; z-index: 1; margin: 24px 0; font-size: 16px; font-weight: 800; }
 .gate-evidence { position: relative; z-index: 1; display: grid; gap: 12px; }
 .gate-evidence div { padding-top: 12px; border-top: 1px solid #edf0ec; }

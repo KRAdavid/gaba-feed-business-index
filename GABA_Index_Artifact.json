@@ -26,10 +26,10 @@
       },
       {
         "id": "gates_card",
-        "description": "투자·납품 전에 잠가야 하는 핵심 검증 게이트입니다.",
+        "description": "투자·납품 전에 완료해야 하는 핵심 검증 항목입니다.",
         "dataset": "summary",
         "sourceId": "source_register",
-        "metrics": [{ "label": "긴급 검증 게이트", "field": "critical_gates", "format": "number" }]
+        "metrics": [{ "label": "미완료 핵심 검증", "field": "critical_gates", "format": "number" }]
       },
       {
         "id": "signals_card",
@@ -61,7 +61,7 @@
           "y": { "field": "score", "type": "quantitative", "label": "현재 점수", "unit": "점" },
           "tooltip": [
             { "field": "score", "type": "quantitative", "label": "현재 점수", "unit": "점" },
-            { "field": "gate", "type": "text", "label": "열린 게이트" }
+            { "field": "gate", "type": "text", "label": "미완료 검증" }
           ]
         },
         "xAxisTitle": "평가축",
@@ -102,7 +102,7 @@
           { "field": "value", "label": "원본 값", "type": "text" },
           { "field": "formula", "label": "산식/정의", "type": "text" },
           { "field": "evidence", "label": "증빙 상태", "type": "text" },
-          { "field": "unlock", "label": "잠금 해제 조건", "type": "text" }
+            { "field": "unlock", "label": "완료 조건", "type": "text" }
         ]
       },
       {

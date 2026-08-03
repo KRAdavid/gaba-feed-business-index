@@ -1,6 +1,6 @@
 # GABA Feed Business Model Index
 
-사료업계 경험이 없는 사용자도 GABA 사료 사업의 **현재 준비도, 열린 검증 게이트, 최신 정책·연구·원료시장 신호, 다음 90일 행동**을 빠르게 판단할 수 있도록 만든 공개 운영 인덱스입니다.
+사료업계 경험이 없는 사용자도 GABA 사료 사업의 **현재 준비도, 미완료 핵심 검증, 최신 정책·연구·원료시장 신호, 다음 90일 행동**을 빠르게 판단할 수 있도록 만든 공개 운영 인덱스입니다.
 
 ## 공개 화면
 
@@ -41,7 +41,7 @@ push가 끝나면 저장소의 **Settings → Pages → Source**를 `GitHub Acti
 
 ## 데이터 구조
 
-- `data/base_index.json` — 검토 완료된 준비도·게이트·가정·로드맵·용어·출처
+- `data/base_index.json` — 검토 완료된 준비도·검증 항목·가정·로드맵·용어·출처
 - `data/manual_signals.json` — 담당자가 검토한 정책·연구·내부모델 신호
 - `docs/data/index.json` — 공개 사이트가 읽는 최신 스냅샷
 - `scripts/update_public_index.py` — 공개 원천 수집 및 스냅샷 생성
