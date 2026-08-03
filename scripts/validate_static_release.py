@@ -23,9 +23,9 @@ REQUIRED = {
     "health.json",
     "release-manifest.json",
     "DEPLOYMENT_GUIDE.md",
-    "downloads/GABA_Index_Master.xlsx",
     "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pptx",
-    "downloads/GABA_Index_운영가이드.md",
+    "downloads/GABA_Crude_Specification.md",
+    "downloads/GABA_Caremix_Specification.md",
 }
 
 
@@ -90,9 +90,9 @@ def validate() -> list[str]:
                 errors.append(f"file exceeds 25 MiB direct-upload limit: {info.filename}")
 
     for source_name in (
-        "GABA_Index_Master.xlsx",
         "GABA_Feed_Business_Model_Speech_Deck_v1.pptx",
-        "GABA_Index_운영가이드.md",
+        "GABA_Crude_Specification.md",
+        "GABA_Caremix_Specification.md",
     ):
         source = ROOT / source_name
         deployed = OUTPUT / "downloads" / source_name
