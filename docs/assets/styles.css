@@ -383,6 +383,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .site-footer strong { color: white; }
 .site-footer a { text-decoration: none; }
 .fatal-error { position: fixed; z-index: 50; right: 18px; bottom: 18px; max-width: 480px; padding: 16px; color: #5b261b; background: #f8e4df; border: 1px solid #e7bdb4; border-radius: 12px; box-shadow: var(--shadow); font-size: 12px; }
+.fatal-error strong { display: block; font-size: 14px; }
+.fatal-error p { margin: 8px 0 12px; line-height: 1.55; }
+.fatal-error a { display: inline-block; padding: 8px 11px; color: white; background: #8b3c2a; border-radius: 8px; font-weight: 800; text-decoration: none; }
+.fatal-error small { display: block; margin-top: 10px; color: #825748; }
 
 @media (max-width: 900px) {
   :root { --shell: min(100% - 32px, 720px); }

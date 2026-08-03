@@ -37,13 +37,15 @@ const health = {
   signals: indexData.signals.length,
   source_health: indexData.automation.source_health
 };
+const buildId = `${indexData.meta.generated_at}-${Buffer.byteLength(JSON.stringify(assets))}`;
 
 const template = await readFile(templatePath, "utf8");
 const worker = template
   .replace("__PUBLIC_ASSETS__", JSON.stringify(assets).replaceAll("<", "\\u003c"))
-  .replace("__PUBLIC_HEALTH__", JSON.stringify(health).replaceAll("<", "\\u003c"));
+  .replace("__PUBLIC_HEALTH__", JSON.stringify(health).replaceAll("<", "\\u003c"))
+  .replace("__PUBLIC_BUILD_ID__", JSON.stringify(buildId));
 
-if (worker.includes("__PUBLIC_ASSETS__") || worker.includes("__PUBLIC_HEALTH__")) {
+if (worker.includes("__PUBLIC_ASSETS__") || worker.includes("__PUBLIC_HEALTH__") || worker.includes("__PUBLIC_BUILD_ID__")) {
   throw new Error("Worker template placeholders were not replaced");
 }
 

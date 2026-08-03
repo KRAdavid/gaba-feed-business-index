@@ -1,5 +1,6 @@
 const ASSETS = __PUBLIC_ASSETS__;
 const HEALTH = __PUBLIC_HEALTH__;
+const BUILD_ID = __PUBLIC_BUILD_ID__;
 
 function decodeBase64(value) {
   const binary = atob(value);
@@ -18,7 +19,8 @@ function securityHeaders(contentType, cacheControl) {
     "referrer-policy": "strict-origin-when-cross-origin",
     "x-frame-options": "DENY",
     "permissions-policy": "camera=(), microphone=(), geolocation=()",
-    "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'"
+    "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'",
+    "x-gaba-index-build": BUILD_ID
   };
 }
 
@@ -45,7 +47,7 @@ export default {
 
     if (pathname === "/api/health") {
       const body = request.method === "HEAD" ? null : JSON.stringify(HEALTH);
-      return response(body, 200, "application/json; charset=utf-8", "public, max-age=60");
+      return response(body, 200, "application/json; charset=utf-8", "public, max-age=60", { "x-gaba-index-build": BUILD_ID });
     }
 
     if (pathname === "/" || pathname.endsWith("/")) {

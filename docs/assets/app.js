@@ -18,6 +18,12 @@
   };
   const sourceLabel = source => ({ mafra_rss: "농림축산식품부", europe_pmc: "Europe PMC", world_bank_pink_sheet: "세계은행 원료 가격", "all-live-sources": "전체 공개 자료" })[source] || source;
   const stageLabel = stage => ({ EXPLORE: "탐색 단계", VALIDATE: "검증 단계", PILOT: "현장 시험 단계", SCALE: "사업 확대 단계", READY: "투자·계약 검토 단계" })[stage] || stage;
+  const dataEndpoint = new URL("data/index.json", window.location.href);
+  const publicHome = "https://gaba-feed-business-index.dubaissday.chatgpt.site/";
+
+  function isIndexData(value) {
+    return Boolean(value && typeof value === "object" && value.meta && value.summary && value.readiness && Array.isArray(value.business_tracks) && Array.isArray(value.signals));
+  }
 
   function renderHero(data) {
     const { readiness, meta } = data;
@@ -244,13 +250,17 @@
 
   async function init() {
     try {
-      const response = await fetch("data/index.json", { cache: "no-store" });
+      const response = await fetch(dataEndpoint, { cache: "no-store", headers: { Accept: "application/json" } });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      render(await response.json());
+      const contentType = response.headers.get("content-type") || "";
+      if (!contentType.toLowerCase().includes("application/json")) throw new Error("데이터 형식이 올바르지 않습니다");
+      const data = await response.json();
+      if (!isIndexData(data)) throw new Error("인덱스 데이터 구조가 올바르지 않습니다");
+      render(data);
     } catch (error) {
       const box = $("#fatal-error");
       box.hidden = false;
-      box.innerHTML = `<strong>인덱스 데이터를 불러오지 못했습니다.</strong><br>잠시 후 새로고침해 주세요. 로컬 파일이라면 docs 폴더를 웹서버로 열어야 합니다. (${escapeHTML(error.message)})`;
+      box.innerHTML = `<strong>최신 인덱스에 연결하지 못했습니다.</strong><p>주소가 변경되었거나 데이터 연결이 잠시 지연되고 있습니다. 아래 버튼으로 최신 공개 인덱스를 열어 주세요.</p><a href="${publicHome}">최신 공개 인덱스 열기</a><small>확인 정보: ${escapeHTML(error.message)}</small>`;
       $("#freshness").textContent = "데이터 연결 실패";
     }
   }
