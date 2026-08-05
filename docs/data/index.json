@@ -1647,8 +1647,8 @@
     "review_queue_count": 18
   },
   "auto_intelligence": {
-    "generated_at": "2026-08-05T04:18:35.414485+00:00",
-    "count": 4,
+    "generated_at": "2026-08-05T19:59:48.273174+00:00",
+    "count": 7,
     "items": [
       {
         "item_id": "research-9873cdb9fc610f20d2cc",
@@ -1659,7 +1659,7 @@
         "source_name": "Journal of Advances in Environmental Health Research",
         "source_url": "https://doi.org/10.32598/jaehr.9.4.1232",
         "published_at": "2121-10-01",
-        "detected_at": "2026-08-05T04:18:27.391391+00:00",
+        "detected_at": "2026-08-05T19:59:41.289655+00:00",
         "doi": "10.32598/jaehr.9.4.1232",
         "pmid": "",
         "species": "Multi-species",
@@ -1686,7 +1686,7 @@
         "source_name": "Santé Publique",
         "source_url": "https://doi.org/10.3917/spub.pr2.0055",
         "published_at": "2030-01-01",
-        "detected_at": "2026-08-05T04:18:27.391921+00:00",
+        "detected_at": "2026-08-05T19:59:41.290060+00:00",
         "doi": "10.3917/spub.pr2.0055",
         "pmid": "",
         "species": "Multi-species",
@@ -1713,7 +1713,7 @@
         "source_name": "Advances in Theoretical & Computational Physics",
         "source_url": "https://doi.org/10.33140/atcp.02.02.03",
         "published_at": "2029-05-15",
-        "detected_at": "2026-08-05T04:18:27.392186+00:00",
+        "detected_at": "2026-08-05T19:59:41.290267+00:00",
         "doi": "10.33140/atcp.02.02.03",
         "pmid": "",
         "species": "Multi-species",
@@ -1740,7 +1740,7 @@
         "source_name": "African Journal of Food, Agriculture, Nutrition and Development",
         "source_url": "https://doi.org/10.18697/ajfand.132.22880",
         "published_at": "2027-07-27",
-        "detected_at": "2026-08-05T04:18:26.235522+00:00",
+        "detected_at": "2026-08-05T19:59:40.103916+00:00",
         "doi": "10.18697/ajfand.132.22880",
         "pmid": "",
         "species": "Multi-species",
@@ -1757,8 +1757,89 @@
           "query": "GABA animal feed nutrition",
           "type": "journal-article"
         }
+      },
+      {
+        "item_id": "statistics-3e0f2b7cc853ef42fca1",
+        "category": "statistics",
+        "source_type": "official_monitor",
+        "title": "FAO Animal Production and Health 공식 페이지 변경 감지",
+        "summary": "공식 출처의 페이지 내용이 이전 점검본과 달라졌습니다. 변경 세부사항은 원문에서 확인해야 하며, 자동 감지는 법적 해석을 대신하지 않습니다.",
+        "source_name": "FAO Animal Production and Health",
+        "source_url": "https://www.fao.org/animal-production/en",
+        "published_at": "2026-08-05",
+        "detected_at": "2026-08-05T19:59:48.251537+00:00",
+        "doi": "",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "A",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": true,
+        "tags": [
+          "statistics",
+          "official source",
+          "change detection"
+        ],
+        "metadata": {
+          "source_id": "fao-animal-production",
+          "content_hash": "fc637f2f60690155655d2c24510a05e459db39d6b61f18d9bf2c1fdecbb4d813"
+        }
+      },
+      {
+        "item_id": "policy-7c64db14fdcffbe0c977",
+        "category": "policy",
+        "source_type": "official_monitor",
+        "title": "European Food Safety Authority 공식 페이지 변경 감지",
+        "summary": "공식 출처의 페이지 내용이 이전 점검본과 달라졌습니다. 변경 세부사항은 원문에서 확인해야 하며, 자동 감지는 법적 해석을 대신하지 않습니다.",
+        "source_name": "European Food Safety Authority",
+        "source_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
+        "published_at": "2026-08-05",
+        "detected_at": "2026-08-05T19:59:47.426625+00:00",
+        "doi": "",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "A",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": true,
+        "tags": [
+          "policy",
+          "official source",
+          "change detection"
+        ],
+        "metadata": {
+          "source_id": "efsa-feed-additives",
+          "content_hash": "66e7f1255bb2265efcefb807db487a71cc04e4db469336866b507fbe9d5ea29c"
+        }
+      },
+      {
+        "item_id": "policy-a5496fdab730f44d541e",
+        "category": "policy",
+        "source_type": "official_monitor",
+        "title": "대한민국 식품의약품안전처 공식 페이지 변경 감지",
+        "summary": "공식 출처의 페이지 내용이 이전 점검본과 달라졌습니다. 변경 세부사항은 원문에서 확인해야 하며, 자동 감지는 법적 해석을 대신하지 않습니다.",
+        "source_name": "대한민국 식품의약품안전처",
+        "source_url": "https://www.mfds.go.kr/",
+        "published_at": "2026-08-05",
+        "detected_at": "2026-08-05T19:59:44.346121+00:00",
+        "doi": "",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "A",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": true,
+        "tags": [
+          "policy",
+          "official source",
+          "change detection"
+        ],
+        "metadata": {
+          "source_id": "mfds-feed-policy",
+          "content_hash": "7703bb0033ac26357f40766c84b4f278a0b72d0b44bae8ea72116bda764497e6"
+        }
       }
     ]
   },
-  "auto_intelligence_updated_at": "2026-08-05T04:18:35.414485+00:00"
+  "auto_intelligence_updated_at": "2026-08-05T19:59:48.273174+00:00"
 }
