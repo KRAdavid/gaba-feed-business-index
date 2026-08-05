@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "generated_at": null,
+  "status": "waiting-first-run",
+  "counts": {
+    "collected": 0,
+    "deduplicated": 0,
+    "auto_published": 0,
+    "review_queue": 0
+  },
+  "items": [],
+  "failures": []
+}

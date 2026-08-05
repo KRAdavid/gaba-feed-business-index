@@ -1,0 +1,73 @@
+name: Auto-update GABA feed intelligence
+
+on:
+  schedule:
+    - cron: "20 18 * * *"   # 03:20 KST daily
+  workflow_dispatch:
+    inputs:
+      since_days:
+        description: "Lookback period in days"
+        required: false
+        default: "14"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-gaba-intelligence
+  cancel-in-progress: false
+
+jobs:
+  collect-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect and classify intelligence
+        env:
+          CROSSREF_MAILTO: ${{ secrets.CROSSREF_MAILTO }}
+          KOSIS_API_KEY: ${{ secrets.KOSIS_API_KEY }}
+          USDA_NASS_API_KEY: ${{ secrets.USDA_NASS_API_KEY }}
+        run: |
+          DAYS="${{ github.event.inputs.since_days || '14' }}"
+          python scripts/auto_intelligence.py --since-days "$DAYS"
+
+      - name: Validate generated JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in [
+              Path("docs/data/auto_intelligence.json"),
+              Path("docs/data/index.json"),
+              Path("data/auto_review_queue.json"),
+              Path("data/auto_intelligence_state.json"),
+          ]:
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              assert payload is not None, path
+              print("validated", path)
+          PY
+
+      - name: Commit changed intelligence data
+        run: |
+          git config user.name "gaba-intelligence-bot"
+          git config user.email "gaba-intelligence-bot@users.noreply.github.com"
+          git add \
+            docs/data/auto_intelligence.json \
+            docs/data/index.json \
+            data/auto_review_queue.json \
+            data/auto_intelligence_state.json
+          if git diff --cached --quiet; then
+            echo "No intelligence changes"
+          else
+            git commit -m "chore: auto-update GABA feed intelligence [skip ci]"
+            git push
+          fi
