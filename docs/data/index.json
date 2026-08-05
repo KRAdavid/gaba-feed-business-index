@@ -1645,5 +1645,120 @@
     ],
     "last_successful_live_refresh": "2026-08-03T09:32:02Z",
     "review_queue_count": 18
-  }
+  },
+  "auto_intelligence": {
+    "generated_at": "2026-08-05T04:18:35.414485+00:00",
+    "count": 4,
+    "items": [
+      {
+        "item_id": "research-9873cdb9fc610f20d2cc",
+        "category": "research",
+        "source_type": "crossref",
+        "title": "Effect of Drought Stress, Soil Salinity, P. indica, and MWCNs on Biodegradation of Diesel Oil in the Pb- and Cd-Polluted Soil Under Cultivation of Triticale Plant",
+        "summary": "Background: Today, soil pollution with heavy metals and petroleum compounds is one of the main environmental problems. This research was done to investigate the effect of drought stress, soil salinity, Piriformospora indica (P. indica), and MWCNs on biodegradation of diesel oil in the soil that contaminated with Pb and Cd under cultivation of triticale plant.",
+        "source_name": "Journal of Advances in Environmental Health Research",
+        "source_url": "https://doi.org/10.32598/jaehr.9.4.1232",
+        "published_at": "2121-10-01",
+        "detected_at": "2026-08-05T04:18:27.391391+00:00",
+        "doi": "10.32598/jaehr.9.4.1232",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "C",
+        "confidence": "medium",
+        "auto_publish": true,
+        "official_source": false,
+        "tags": [
+          "GABA",
+          "animal nutrition",
+          "research"
+        ],
+        "metadata": {
+          "query": "GABA heat stress broiler pig cattle",
+          "type": "journal-article"
+        }
+      },
+      {
+        "item_id": "research-3c6848abbe9d677749e4",
+        "category": "research",
+        "source_type": "crossref",
+        "title": "Impact du stress professionnel sur la santé physique des travailleurs : une revue systématique utilisant la méthode PRISMA",
+        "summary": "Plusieurs études de la littérature ont affirmé l’incidence substantielle du stress professionnel (SP) sur la santé physique des travailleurs, le définissant comme un problème de santé publique grave à l’échelle internationale.",
+        "source_name": "Santé Publique",
+        "source_url": "https://doi.org/10.3917/spub.pr2.0055",
+        "published_at": "2030-01-01",
+        "detected_at": "2026-08-05T04:18:27.391921+00:00",
+        "doi": "10.3917/spub.pr2.0055",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "A",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": false,
+        "tags": [
+          "GABA",
+          "animal nutrition",
+          "research"
+        ],
+        "metadata": {
+          "query": "GABA heat stress broiler pig cattle",
+          "type": "journal-article"
+        }
+      },
+      {
+        "item_id": "research-689ba81720792f6c9b62",
+        "category": "research",
+        "source_type": "crossref",
+        "title": "Transient Formulations for a Heat-Generating Fin with a Temperature-Dependent Heat Transfer Coefficient and Thermal Conductivity",
+        "summary": "Numerical calculations and scalar transport analyses are carried out for transient heat transfer in a heat generating fin with a temperature-dependent heat transfer and conduction coefficients.",
+        "source_name": "Advances in Theoretical & Computational Physics",
+        "source_url": "https://doi.org/10.33140/atcp.02.02.03",
+        "published_at": "2029-05-15",
+        "detected_at": "2026-08-05T04:18:27.392186+00:00",
+        "doi": "10.33140/atcp.02.02.03",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "C",
+        "confidence": "medium",
+        "auto_publish": true,
+        "official_source": false,
+        "tags": [
+          "GABA",
+          "animal nutrition",
+          "research"
+        ],
+        "metadata": {
+          "query": "GABA heat stress broiler pig cattle",
+          "type": "journal-article"
+        }
+      },
+      {
+        "item_id": "research-da071c7431989d09a861",
+        "category": "research",
+        "source_type": "crossref",
+        "title": "Risk factors of exposure to Brucella through milk consumption in cattle keeping households in Rwanda",
+        "summary": "Milk produced in Rwanda and consumed in cattle keeping households poses undocumented food safety risks including the transmission of the zoonotic brucellosis from animals to humans. The aim of this study was, therefore, to determine the risk factors of exposure to Brucella species through milk consumption in zero grazing and open grazing cattle keeping households in Rwanda.",
+        "source_name": "African Journal of Food, Agriculture, Nutrition and Development",
+        "source_url": "https://doi.org/10.18697/ajfand.132.22880",
+        "published_at": "2027-07-27",
+        "detected_at": "2026-08-05T04:18:26.235522+00:00",
+        "doi": "10.18697/ajfand.132.22880",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "C",
+        "confidence": "medium",
+        "auto_publish": true,
+        "official_source": false,
+        "tags": [
+          "GABA",
+          "animal nutrition",
+          "research"
+        ],
+        "metadata": {
+          "query": "GABA animal feed nutrition",
+          "type": "journal-article"
+        }
+      }
+    ]
+  },
+  "auto_intelligence_updated_at": "2026-08-05T04:18:35.414485+00:00"
 }

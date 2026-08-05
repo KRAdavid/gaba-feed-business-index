@@ -1,0 +1,25 @@
+{
+  "official_monitors": {
+    "mfds-feed-policy": {
+      "digest": "d6c6b625224ef0e8b2c6390f324ae13d11e660c7bd2e2d6b871707dd0acc5cb2",
+      "checked_at": "2026-08-05T04:18:31.206656+00:00",
+      "url": "https://www.mfds.go.kr/"
+    },
+    "mafra-feed-policy": {
+      "digest": "259a4eb1a2c182eb79e2819f88728548e5334ea41760b6dd355a6723eeae1108",
+      "checked_at": "2026-08-05T04:18:32.212702+00:00",
+      "url": "https://www.mafra.go.kr/"
+    },
+    "efsa-feed-additives": {
+      "digest": "51c2824feea002e4fcf979f2ad2d7a9b3a1d3bf01b44b6ff2d5cd392f5ee86bf",
+      "checked_at": "2026-08-05T04:18:34.473490+00:00",
+      "url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives"
+    },
+    "fao-animal-production": {
+      "digest": "b6670a002f75d746f9a55f4e52271e1004c4ac0a6075600178204d97031aa6a8",
+      "checked_at": "2026-08-05T04:18:35.266360+00:00",
+      "url": "https://www.fao.org/animal-production/en"
+    }
+  },
+  "last_run_at": "2026-08-05T04:18:35.414485+00:00"
+}
