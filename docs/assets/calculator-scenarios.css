@@ -1,0 +1,5 @@
+.calc-scenario-field .scenario-helper{display:block;margin-top:6px;color:#76857d;font-size:10px;line-height:1.45}
+.scenario-assumption-note{display:grid;gap:5px;margin:-2px 0 16px;padding:13px 15px;border:1px solid #d6e9df;border-radius:13px;background:#f3f9f6;color:#4c6257;font-size:12px;line-height:1.55}
+.scenario-assumption-note strong{color:var(--green);font-size:12px}
+.calc-scenario-field input::-webkit-inner-spin-button{opacity:1}
+@media(max-width:640px){.scenario-assumption-note{margin-top:0}.calc-scenario-field .scenario-helper{font-size:11px}}
