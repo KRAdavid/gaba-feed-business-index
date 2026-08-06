@@ -1,0 +1,81 @@
+name: Install Apps Script inquiry receiver client
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps-script/Inquiry.gs"
+      - "docs/assets/inquiry-apps-script.js"
+      - "scripts/patch_inquiry_apps_script.py"
+      - "scripts/build_site_worker.mjs"
+      - "tests/test_patch_inquiry_apps_script.py"
+      - "APPS_SCRIPT_INQUIRY_SETUP.md"
+      - ".github/workflows/install-inquiry-apps-script.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apps-script-inquiry-client
+  cancel-in-progress: true
+
+jobs:
+  install-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate inquiry receiver client
+        run: |
+          node --check docs/assets/inquiry-apps-script.js
+          node --check scripts/build_site_worker.mjs
+          python -m py_compile scripts/patch_inquiry_apps_script.py
+          python -m unittest tests/test_patch_inquiry_apps_script.py -v
+
+      - name: Install inquiry client asset reference
+        run: python scripts/patch_inquiry_apps_script.py
+
+      - name: Commit patched public page
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "Apps Script inquiry client already installed"
+          else
+            git commit -m "fix: activate Apps Script inquiry receiver [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Verify installed route
+        run: |
+          test -f apps-script/Inquiry.gs
+          test -f docs/assets/inquiry-apps-script.js
+          grep -q 'assets/inquiry-apps-script.js' docs/index.html
+          grep -q 'AKfycbxnLIZGWbJDiDPMlUJ3yef8cXI1jgZC5cZsaCBUbYBR6bNAdXskVTZBSrxSHZiIpCDYPA' docs/assets/inquiry-apps-script.js
+          python scripts/patch_inquiry_apps_script.py --check
+
+      - name: Write setup reminder
+        run: |
+          {
+            echo "## Apps Script inquiry receiver"
+            echo "- Front-end client: installed"
+            echo "- Receiver source: \`apps-script/Inquiry.gs\`"
+            echo "- Existing web app URL: configured"
+            echo "- **Manual action required once:** paste \`Inquiry.gs\` into the bound Apps Script project and redeploy the existing web app as a new version."
+            echo "- Setup guide: \`APPS_SCRIPT_INQUIRY_SETUP.md\`"
+          } >> "$GITHUB_STEP_SUMMARY"
