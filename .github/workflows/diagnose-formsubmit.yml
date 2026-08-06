@@ -1,0 +1,97 @@
+name: Diagnose FormSubmit delivery
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/diagnose-formsubmit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: diagnose-formsubmit-delivery
+  cancel-in-progress: true
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Submit diagnostic request
+        shell: bash
+        run: |
+          set +e
+          HTTP_CODE=$(curl -sS -o /tmp/formsubmit-response.json -w "%{http_code}" \
+            --connect-timeout 20 --max-time 60 --retry 2 --retry-delay 2 \
+            -X POST "https://formsubmit.co/ajax/dubaissday@gmail.com" \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/json" \
+            -H "Origin: https://kradavid.github.io" \
+            -H "Referer: https://kradavid.github.io/gaba-feed-business-index/" \
+            --data '{
+              "name":"Cellpinda inquiry delivery diagnostics",
+              "email":"dubaissday@gmail.com",
+              "message":"Automated FormSubmit activation and delivery diagnostic for the GABA Feed business inquiry form.",
+              "_subject":"[GABA Feed 문의폼 진단] FormSubmit 활성화 확인",
+              "_cc":"dubaissday@cellpinda.com",
+              "_captcha":"false",
+              "_template":"table",
+              "_url":"https://kradavid.github.io/gaba-feed-business-index/"
+            }')
+          test -f /tmp/formsubmit-response.json || echo '{"error":"no response body"}' > /tmp/formsubmit-response.json
+          echo "HTTP_CODE=${HTTP_CODE:-000}" >> "$GITHUB_ENV"
+          echo "FormSubmit HTTP status: ${HTTP_CODE:-000}"
+          cat /tmp/formsubmit-response.json
+          exit 0
+
+      - name: Save public diagnostic result
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          body_path = Path('/tmp/formsubmit-response.json')
+          raw = body_path.read_text(encoding='utf-8', errors='replace') if body_path.exists() else ''
+          try:
+              response = json.loads(raw)
+          except json.JSONDecodeError:
+              response = {'raw': raw[:2000]}
+
+          payload = {
+              'checked_at': datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+              'http_code': os.environ.get('HTTP_CODE', '000'),
+              'primary_recipient': 'dubaissday@gmail.com',
+              'business_cc': 'dubaissday@cellpinda.com',
+              'endpoint': 'FormSubmit AJAX',
+              'response': response,
+              'next_action': 'Check dubaissday@gmail.com inbox and spam for the one-time FormSubmit activation message.'
+          }
+          path = Path('data/formsubmit_delivery_status.json')
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(path.read_text(encoding='utf-8'))
+          PY
+
+      - name: Commit diagnostic result
+        run: |
+          git config user.name "cellpinda-delivery-bot"
+          git config user.email "cellpinda-delivery-bot@users.noreply.github.com"
+          git add data/formsubmit_delivery_status.json
+          if git diff --cached --quiet; then
+            echo "No diagnostic change"
+          else
+            git commit -m "chore: record FormSubmit delivery diagnostic [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
