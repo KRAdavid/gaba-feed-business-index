@@ -43,10 +43,17 @@ jobs:
       - name: Verify public index files
         run: |
           test -f docs/index.html
+          test -f docs/assets/inquiry-form.css
+          test -f docs/assets/inquiry-form.js
+          test -f docs/assets/order-guide.css
+          test -f docs/assets/order-guide.js
           test -f docs/data/index.json
           test -f docs/data/auto_intelligence.json
           test -f docs/data/knowledge_base.json
           test -f docs/data/update_status.json
+
+          grep -q 'assets/inquiry-form.js' docs/index.html
+          grep -q 'assets/order-guide.js' docs/index.html
 
           python - <<'PY'
           import json
