@@ -67,7 +67,7 @@
               <input type="hidden" name="_autoresponse" value="셀핀다 GABA Feed Solutions에 문의해 주셔서 감사합니다. 전달해 주신 내용을 확인한 후 담당자가 회신드리겠습니다.">
               <input type="hidden" name="접수시각" id="inquiryTimestamp" value="">
               <input type="hidden" name="접수페이지" id="inquiryPage" value="">
-              <input type="text" name="website" class="inquiry-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="text" name="_honey" class="inquiry-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
 
               <div class="inquiry-progress" aria-label="문의 작성 단계">
                 <div class="inquiry-progress-bar"><i id="inquiryProgressBar"></i></div>
@@ -409,7 +409,7 @@
     const data = new FormData(form);
     const grouped = new Map();
     for (const [key, raw] of data.entries()) {
-      if (key.startsWith('_') || key === 'website') continue;
+      if (key.startsWith('_')) continue;
       const value = String(raw).trim();
       if (!value) continue;
       if (!grouped.has(key)) grouped.set(key, []);
