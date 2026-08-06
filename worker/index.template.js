@@ -19,7 +19,7 @@ function securityHeaders(contentType, cacheControl) {
     "referrer-policy": "strict-origin-when-cross-origin",
     "x-frame-options": "DENY",
     "permissions-policy": "camera=(), microphone=(), geolocation=()",
-    "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'",
+    "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://*.googleusercontent.com; frame-src https://script.google.com https://script.googleusercontent.com https://*.googleusercontent.com; frame-ancestors 'none'; base-uri 'self'; form-action https://script.google.com https://script.googleusercontent.com",
     "x-gaba-index-build": BUILD_ID
   };
 }
@@ -59,8 +59,6 @@ export default {
       return response(request.method === "HEAD" ? null : decodeBase64(notFound.body), 404, notFound.contentType, "no-store");
     }
 
-    // The index HTML, data, and render assets must travel as one version.
-    // Short-lived caching prevents an older app.js from being paired with a newer index.html.
     const cacheControl = pathname === "/index.html" || pathname === "/data/index.json" || pathname === "/assets/app.js" || pathname === "/assets/styles.css"
       ? "no-store, max-age=0"
       : "public, max-age=86400";
