@@ -258,7 +258,7 @@ section{scroll-margin-top:82px}.product-section,.evidence-section,.downloads-sec
   </div>
 </div>
 </section>
-<section class="knowledge-section" id="knowledge"><div class="container"><div class="section-title left"><h2>GABA Feed Intelligence Hub</h2><p>사료용 GABA 관련 논문, 국가별 정책, 축산통계, 시장현황과 전망을 한곳에서 확인합니다. 논문 데이터는 주기적으로 갱신하고 정책·통계는 공식 출처 기준으로 관리합니다.</p></div><div class="knowledge-toolbar" id="knowledgeToolbar"><button class="active" data-type="all">전체</button><button data-type="paper">논문</button><button data-type="policy">정책·규제</button><button data-type="statistics">통계</button><button data-type="market">시장·전망</button></div><div class="api-status" id="apiStatus"><i></i><span>Master DB 연결 확인 중</span></div><div class="knowledge-grid" id="knowledgeGrid"><article class="knowledge-card"><div class="meta">데이터 연결 중</div><h3>최신 자료를 불러오고 있습니다.</h3><p>잠시 후 자동으로 표시됩니다.</p></article></div><div class="knowledge-status"><p>논문은 GitHub Actions가 매주 자동 검색해 후보를 갱신합니다. 정책·규제·통계는 공식기관 링크와 검토일을 함께 표시하며, 사업에 반영하기 전 담당자 검토를 거칩니다.</p><strong id="knowledgeUpdated">업데이트 확인 중</strong></div></div></section>
+<section class="knowledge-section" id="knowledge"><div class="container"><div class="section-title left"><h2>GABA Feed Intelligence Hub</h2><p>사료용 GABA 관련 논문, 국가별 정책, 축산통계, 시장현황과 전망을 한곳에서 확인합니다. 논문 데이터는 주기적으로 갱신하고 정책·통계는 공식 출처 기준으로 관리합니다.</p></div><div class="knowledge-toolbar" id="knowledgeToolbar"><button class="active" data-type="all">전체</button><button data-type="paper">논문</button><button data-type="policy">정책·규제</button><button data-type="statistics">통계</button><button data-type="market">시장·전망</button></div><div class="api-status" id="apiStatus"><i></i><span>Master DB 연결 확인 중</span></div><div class="knowledge-grid" id="knowledgeGrid"><article class="knowledge-card"><div class="meta">데이터 연결 중</div><h3>최신 자료를 불러오고 있습니다.</h3><p>잠시 후 자동으로 표시됩니다.</p></article></div><div class="knowledge-status"><p>논문과 공식기관 정보는 GitHub Actions가 매일 자동 점검하고, 공개 기준을 통과한 자료만 갱신합니다. 정책·규제·통계는 공식기관 링크와 검토일을 함께 표시하며, 사업에 반영하기 전 담당자 검토를 거칩니다.</p><strong id="knowledgeUpdated">업데이트 확인 중</strong></div></div></section>
 <section class="downloads-section" id="downloads"><div class="container"><div class="section-title left"><h2>기술·사업 자료</h2><p>제품 검토, 파일럿 설계, 사료회사 제안을 위한 문서를 제공합니다.</p></div><div class="doc-list"><a href="downloads/셀핀다_가바크루드_국내외시장_사업전략기획서_v1.pdf" target="_blank"><span class="doc-index">01</span><div><strong>가바크루드 국내외시장 사업전략</strong><small>국내시장·해외진출·CAPA·규제</small></div><span class="download-mark">↓</span></a><a href="downloads/GABA_Caremix_Specification_v1.pdf" target="_blank"><span class="doc-index">02</span><div><strong>가바케어믹스 사양서</strong><small>사업 검토용 제품 기준안</small></div><span class="download-mark">↓</span></a><a href="downloads/씨돼지_GABA_사료첨가제_제안서.pdf" target="_blank"><span class="doc-index">03</span><div><strong>씨돼지 GABA 적용 제안서</strong><small>종모돈·종빈돈 고온·스트레스 대응</small></div><span class="download-mark">↓</span></a><a href="downloads/호주_와규_GABA_시장성_평가.pdf" target="_blank"><span class="doc-index">04</span><div><strong>호주 와규 시장성 평가</strong><small>장기비육·열·운송 스트레스 대응</small></div><span class="download-mark">↓</span></a><a href="downloads/사료용_GABA_도입_제안서.pdf" target="_blank"><span class="doc-index">05</span><div><strong>사료용 GABA 도입 제안서</strong><small>축종별 연구·시장·적용방식</small></div><span class="download-mark">↓</span></a></div></div></section>
 <section class="contact-section"><div class="container contact-inner"><div><h2>사료회사 공동개발과 농장 파일럿을 시작합니다.</h2><p>원료 공급, 축종별 설계, OEM·ODM, 시험계획을 한 번에 협의할 수 있습니다.</p></div><a href="mailto:info@cellpinda.com">사업협의 문의 →</a></div></section>
 </main><footer><div class="container footer-inner"><div class="logo"><span class="logo-mark">C</span><span>cellpinda</span></div><p>가바크루드 및 가바케어믹스 자료는 사업 검토용입니다. 실제 규격·급여량·표현은 시험성적서와 관계기관 검토 후 확정합니다.</p></div></footer>
@@ -398,20 +398,42 @@ async function loadKnowledge(){
   const grid=document.getElementById('knowledgeGrid');
   const buttons=[...document.querySelectorAll('#knowledgeToolbar button')];
   let type='all', items=[];
+  /* GABA_INTELLIGENCE_V2_STATIC_MERGE */
+  async function loadStaticKnowledge(){
+    try{
+      const r=await fetch('data/knowledge_base.json',{cache:'no-store'});
+      if(!r.ok)throw new Error(`HTTP ${r.status}`);
+      const db=await r.json();
+      return {items:Array.isArray(db.items)?db.items:[],updated_at:db.updated_at||''};
+    }catch(_e){
+      return {items:[],updated_at:''};
+    }
+  }
+  function mergeKnowledge(...groups){
+    const merged=new Map();
+    groups.flat().filter(Boolean).forEach(x=>{
+      const key=(x.url&&x.url!=='#')?x.url:`${x.type||''}|${x.title||''}|${x.date||''}`;
+      merged.set(key,merged.has(key)?{...merged.get(key),...x}:x);
+    });
+    return [...merged.values()];
+  }
   function draw(){
     const shown=items.filter(x=>type==='all'||x.type===type);
     grid.innerHTML=shown.map(x=>`<article class="knowledge-card"><div class="meta">${x.category} · ${x.date||'상시'}</div><h3>${x.title}</h3><p>${x.summary}</p>${x.url&&x.url!=='#'?`<a href="${x.url}" target="_blank" rel="noreferrer">공식·원문 확인 ↗</a>`:''}</article>`).join('')||'<article class="knowledge-card"><h3>공개 승인된 자료가 없습니다.</h3><p>Master DB에서 Approved/Published 및 public=TRUE인 자료만 표시됩니다.</p></article>';
   }
   buttons.forEach(b=>b.onclick=()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');type=b.dataset.type;draw();});
+  const staticData=await loadStaticKnowledge();
+  items=staticData.items;
   try{
     const [papers,regulations,statistics,market]=await Promise.all([
       apiGet('papers'),apiGet('regulations'),apiGet('statistics'),apiGet('market')
     ]);
-    items=normalizeKnowledge({
+    const apiItems=normalizeKnowledge({
       papers:papers.data,regulations:regulations.data,statistics:statistics.data,market:market.data
     });
-    document.getElementById('knowledgeUpdated').textContent=`API 갱신 ${new Date().toLocaleString('ko-KR')}`;
-    if(!apiStatus.classList.contains('online'))setApiStatus('online',`Master DB 연결됨 · 공개자료 ${items.length}건`);
+    items=mergeKnowledge(staticData.items,apiItems);
+    document.getElementById('knowledgeUpdated').textContent=`GitHub 자동데이터 ${staticData.updated_at||'-'} · API ${new Date().toLocaleString('ko-KR')}`;
+    if(!apiStatus.classList.contains('online'))setApiStatus('online',`GitHub 자동데이터 ${staticData.items.length}건 · Master DB ${apiItems.length}건`);
     draw();
   }catch(e){
     try{

@@ -1647,127 +1647,124 @@
     "review_queue_count": 18
   },
   "auto_intelligence": {
-    "generated_at": "2026-08-05T19:59:48.273174+00:00",
-    "count": 7,
+    "version": "2.0.0",
+    "generated_at": "2026-08-06T01:40:43+00:00",
+    "count": 11,
     "items": [
       {
-        "item_id": "research-9873cdb9fc610f20d2cc",
-        "category": "research",
-        "source_type": "crossref",
-        "title": "Effect of Drought Stress, Soil Salinity, P. indica, and MWCNs on Biodegradation of Diesel Oil in the Pb- and Cd-Polluted Soil Under Cultivation of Triticale Plant",
-        "summary": "Background: Today, soil pollution with heavy metals and petroleum compounds is one of the main environmental problems. This research was done to investigate the effect of drought stress, soil salinity, Piriformospora indica (P. indica), and MWCNs on biodegradation of diesel oil in the soil that contaminated with Pb and Cd under cultivation of triticale plant.",
-        "source_name": "Journal of Advances in Environmental Health Research",
-        "source_url": "https://doi.org/10.32598/jaehr.9.4.1232",
-        "published_at": "2121-10-01",
-        "detected_at": "2026-08-05T19:59:41.289655+00:00",
-        "doi": "10.32598/jaehr.9.4.1232",
-        "pmid": "",
-        "species": "Multi-species",
-        "evidence_grade": "C",
-        "confidence": "medium",
-        "auto_publish": true,
-        "official_source": false,
-        "tags": [
-          "GABA",
-          "animal nutrition",
-          "research"
-        ],
-        "metadata": {
-          "query": "GABA heat stress broiler pig cattle",
-          "type": "journal-article"
-        }
-      },
-      {
-        "item_id": "research-3c6848abbe9d677749e4",
-        "category": "research",
-        "source_type": "crossref",
-        "title": "Impact du stress professionnel sur la santé physique des travailleurs : une revue systématique utilisant la méthode PRISMA",
-        "summary": "Plusieurs études de la littérature ont affirmé l’incidence substantielle du stress professionnel (SP) sur la santé physique des travailleurs, le définissant comme un problème de santé publique grave à l’échelle internationale.",
-        "source_name": "Santé Publique",
-        "source_url": "https://doi.org/10.3917/spub.pr2.0055",
-        "published_at": "2030-01-01",
-        "detected_at": "2026-08-05T19:59:41.290060+00:00",
-        "doi": "10.3917/spub.pr2.0055",
+        "item_id": "curated-20196dfbfba42ac235c5",
+        "category": "policy",
+        "source_type": "curated",
+        "title": "대한민국 사료·축산 정책 공식 포털",
+        "summary": "농림축산식품부의 사료, 축산 및 동물복지 관련 정책 공지와 보도자료를 확인하는 공식 출처다. 제품의 품목, 수입, 제조 및 표시 적용은 관련 법령과 담당기관 해석을 함께 확인해야 한다.",
+        "source_name": "대한민국 농림축산식품부",
+        "source_url": "https://www.mafra.go.kr/",
+        "published_at": "2026",
+        "detected_at": "2026-08-06T00:00:00+00:00",
+        "doi": "",
         "pmid": "",
         "species": "Multi-species",
         "evidence_grade": "A",
         "confidence": "high",
         "auto_publish": true,
-        "official_source": false,
+        "official_source": true,
         "tags": [
-          "GABA",
-          "animal nutrition",
-          "research"
+          "policy",
+          "Korea",
+          "official source"
         ],
         "metadata": {
-          "query": "GABA heat stress broiler pig cattle",
-          "type": "journal-article"
+          "resource_type": "official portal"
         }
       },
       {
-        "item_id": "research-689ba81720792f6c9b62",
-        "category": "research",
-        "source_type": "crossref",
-        "title": "Transient Formulations for a Heat-Generating Fin with a Temperature-Dependent Heat Transfer Coefficient and Thermal Conductivity",
-        "summary": "Numerical calculations and scalar transport analyses are carried out for transient heat transfer in a heat generating fin with a temperature-dependent heat transfer and conduction coefficients.",
-        "source_name": "Advances in Theoretical & Computational Physics",
-        "source_url": "https://doi.org/10.33140/atcp.02.02.03",
-        "published_at": "2029-05-15",
-        "detected_at": "2026-08-05T19:59:41.290267+00:00",
-        "doi": "10.33140/atcp.02.02.03",
+        "item_id": "curated-83de428b2224e636c5e6",
+        "category": "policy",
+        "source_type": "curated",
+        "title": "사료관리법 현행 법령",
+        "summary": "대한민국 사료의 제조, 수입, 판매와 품질관리에 관한 현행 법령을 확인하는 공식 페이지다. 실제 사업 적용 시 법률, 시행령, 시행규칙과 사료 등의 기준 및 규격을 함께 검토해야 한다.",
+        "source_name": "국가법령정보센터",
+        "source_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
+        "published_at": "2026",
+        "detected_at": "2026-08-06T00:00:00+00:00",
+        "doi": "",
         "pmid": "",
         "species": "Multi-species",
-        "evidence_grade": "C",
-        "confidence": "medium",
+        "evidence_grade": "A",
+        "confidence": "high",
         "auto_publish": true,
-        "official_source": false,
+        "official_source": true,
         "tags": [
-          "GABA",
-          "animal nutrition",
-          "research"
+          "regulation",
+          "Korea",
+          "feed control act"
         ],
         "metadata": {
-          "query": "GABA heat stress broiler pig cattle",
-          "type": "journal-article"
+          "resource_type": "official law"
         }
       },
       {
-        "item_id": "research-da071c7431989d09a861",
-        "category": "research",
-        "source_type": "crossref",
-        "title": "Risk factors of exposure to Brucella through milk consumption in cattle keeping households in Rwanda",
-        "summary": "Milk produced in Rwanda and consumed in cattle keeping households poses undocumented food safety risks including the transmission of the zoonotic brucellosis from animals to humans. The aim of this study was, therefore, to determine the risk factors of exposure to Brucella species through milk consumption in zero grazing and open grazing cattle keeping households in Rwanda.",
-        "source_name": "African Journal of Food, Agriculture, Nutrition and Development",
-        "source_url": "https://doi.org/10.18697/ajfand.132.22880",
-        "published_at": "2027-07-27",
-        "detected_at": "2026-08-05T19:59:40.103916+00:00",
-        "doi": "10.18697/ajfand.132.22880",
+        "item_id": "curated-5315556c8ab5a41d6389",
+        "category": "policy",
+        "source_type": "curated",
+        "title": "EFSA Feed Additives",
+        "summary": "유럽연합 사료첨가제의 안전성과 유효성 평가 맥락을 확인하는 EFSA 공식 주제 페이지다. 특정 GABA 제품의 허용 여부와 용도는 EU 등록부와 개별 의견서를 별도로 확인해야 한다.",
+        "source_name": "European Food Safety Authority",
+        "source_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
+        "published_at": "2026",
+        "detected_at": "2026-08-06T00:00:00+00:00",
+        "doi": "",
         "pmid": "",
         "species": "Multi-species",
-        "evidence_grade": "C",
-        "confidence": "medium",
+        "evidence_grade": "A",
+        "confidence": "high",
         "auto_publish": true,
-        "official_source": false,
+        "official_source": true,
         "tags": [
-          "GABA",
-          "animal nutrition",
-          "research"
+          "policy",
+          "EU",
+          "feed additives"
         ],
         "metadata": {
-          "query": "GABA animal feed nutrition",
-          "type": "journal-article"
+          "resource_type": "official regulatory portal"
         }
       },
       {
-        "item_id": "statistics-3e0f2b7cc853ef42fca1",
+        "item_id": "curated-3c937111b8f2650e9d45",
+        "category": "policy",
+        "source_type": "curated",
+        "title": "APVMA Animal Feed Products",
+        "summary": "호주에서 동물용 사료제품이 영양 목적과 치료 목적 중 어디에 해당하는지 판단할 때 참고하는 APVMA 공식 안내다. 스트레스 완화나 생산성 개선 문구는 제품 분류와 등록 필요성에 영향을 줄 수 있다.",
+        "source_name": "Australian Pesticides and Veterinary Medicines Authority",
+        "source_url": "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products",
+        "published_at": "2026",
+        "detected_at": "2026-08-06T00:00:00+00:00",
+        "doi": "",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "A",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": true,
+        "tags": [
+          "policy",
+          "Australia",
+          "animal feed"
+        ],
+        "metadata": {
+          "resource_type": "official regulatory guidance"
+        }
+      },
+      {
+        "item_id": "curated-47c25ca4689902d689eb",
         "category": "statistics",
-        "source_type": "official_monitor",
-        "title": "FAO Animal Production and Health 공식 페이지 변경 감지",
-        "summary": "공식 출처의 페이지 내용이 이전 점검본과 달라졌습니다. 변경 세부사항은 원문에서 확인해야 하며, 자동 감지는 법적 해석을 대신하지 않습니다.",
-        "source_name": "FAO Animal Production and Health",
-        "source_url": "https://www.fao.org/animal-production/en",
-        "published_at": "2026-08-05",
-        "detected_at": "2026-08-05T19:59:48.251537+00:00",
+        "source_type": "curated",
+        "title": "FAOSTAT Crops and Livestock Products",
+        "summary": "국가별 축산물 생산량과 장기 시계열을 확인할 수 있는 FAO 공식 통계 데이터베이스다. 시장규모 산정에는 대상 축종, 국가, 기준연도와 단위를 고정해 추출해야 한다.",
+        "source_name": "Food and Agriculture Organization of the United Nations",
+        "source_url": "https://www.fao.org/faostat/en/#data/QCL",
+        "published_at": "2026",
+        "detected_at": "2026-08-06T00:00:00+00:00",
         "doi": "",
         "pmid": "",
         "species": "Multi-species",
@@ -1777,24 +1774,51 @@
         "official_source": true,
         "tags": [
           "statistics",
-          "official source",
-          "change detection"
+          "FAO",
+          "livestock"
         ],
         "metadata": {
-          "source_id": "fao-animal-production",
-          "content_hash": "fc637f2f60690155655d2c24510a05e459db39d6b61f18d9bf2c1fdecbb4d813"
+          "resource_type": "official statistics portal"
         }
       },
       {
-        "item_id": "policy-7c64db14fdcffbe0c977",
-        "category": "policy",
-        "source_type": "official_monitor",
-        "title": "European Food Safety Authority 공식 페이지 변경 감지",
-        "summary": "공식 출처의 페이지 내용이 이전 점검본과 달라졌습니다. 변경 세부사항은 원문에서 확인해야 하며, 자동 감지는 법적 해석을 대신하지 않습니다.",
-        "source_name": "European Food Safety Authority",
-        "source_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
-        "published_at": "2026-08-05",
-        "detected_at": "2026-08-05T19:59:47.426625+00:00",
+        "item_id": "curated-a8a03b8b5841149aaafc",
+        "category": "research",
+        "source_type": "curated",
+        "title": "The effects of gamma-aminobutyric acid on growth performance, diarrhoea, ruminal fermentation, and antioxidant capacity in pre-weaned calves",
+        "summary": "포유기 송아지에 GABA(가바)를 영양 보충해 성장, 설사, 반추위 발효와 항산화 지표를 평가한 2025년 연구이다. 성장과 항산화 능력의 개선 가능성을 제시하며, 실제 농장 적용에는 급여형태와 기초 사양조건의 확인이 필요하다.",
+        "source_name": "Animal",
+        "source_url": "https://doi.org/10.1016/j.animal.2025.101493",
+        "published_at": "2025",
+        "detected_at": "2026-08-06T00:00:00+00:00",
+        "doi": "10.1016/j.animal.2025.101493",
+        "pmid": "",
+        "species": "Calf",
+        "evidence_grade": "B",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": false,
+        "tags": [
+          "GABA",
+          "calf",
+          "growth",
+          "antioxidant",
+          "rumen"
+        ],
+        "metadata": {
+          "curation_basis": "peer-reviewed feeding study"
+        }
+      },
+      {
+        "item_id": "curated-6a8de2eb14e1b90d9a8a",
+        "category": "market",
+        "source_type": "curated",
+        "title": "OECD-FAO Agricultural Outlook 2025-2034",
+        "summary": "육류, 유제품, 곡물과 사료원료의 중기 수급 전망을 확인하는 OECD와 FAO의 공식 전망 자료다. GABA 사료첨가제 자체 시장규모가 아니라 축산 수요와 사료산업의 외부 환경을 판단하는 기반자료로 사용한다.",
+        "source_name": "OECD and FAO",
+        "source_url": "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2025-2034_601276cd-en.html",
+        "published_at": "2025",
+        "detected_at": "2026-08-06T00:00:00+00:00",
         "doi": "",
         "pmid": "",
         "species": "Multi-species",
@@ -1803,43 +1827,130 @@
         "auto_publish": true,
         "official_source": true,
         "tags": [
-          "policy",
-          "official source",
-          "change detection"
+          "market",
+          "outlook",
+          "livestock",
+          "feed"
         ],
         "metadata": {
-          "source_id": "efsa-feed-additives",
-          "content_hash": "66e7f1255bb2265efcefb807db487a71cc04e4db469336866b507fbe9d5ea29c"
+          "resource_type": "official market outlook"
         }
       },
       {
-        "item_id": "policy-a5496fdab730f44d541e",
-        "category": "policy",
-        "source_type": "official_monitor",
-        "title": "대한민국 식품의약품안전처 공식 페이지 변경 감지",
-        "summary": "공식 출처의 페이지 내용이 이전 점검본과 달라졌습니다. 변경 세부사항은 원문에서 확인해야 하며, 자동 감지는 법적 해석을 대신하지 않습니다.",
-        "source_name": "대한민국 식품의약품안전처",
-        "source_url": "https://www.mfds.go.kr/",
-        "published_at": "2026-08-05",
-        "detected_at": "2026-08-05T19:59:44.346121+00:00",
-        "doi": "",
+        "item_id": "curated-36eccf0746c364c5b335",
+        "category": "research",
+        "source_type": "curated",
+        "title": "The effect of rumen-protected γ-aminobutyric acid supplementation on growth performance, apparent digestibility, and meat quality of Hanwoo steers under heat stress",
+        "summary": "고온 스트레스 조건의 한우 거세우에 반추위 보호 GABA(가바)를 사료 급여해 성장, 소화율, 항산화 및 육질 지표를 평가했다. 일부 급여수준에서 증체와 항산화 효소, 지질산화 및 육색 안정성에 긍정적 방향이 보고되었다.",
+        "source_name": "Animal Bioscience",
+        "source_url": "https://doi.org/10.5713/ajas.20.0224",
+        "published_at": "2021",
+        "detected_at": "2026-08-06T00:00:00+00:00",
+        "doi": "10.5713/ajas.20.0224",
         "pmid": "",
-        "species": "Multi-species",
-        "evidence_grade": "A",
+        "species": "Beef Cattle",
+        "evidence_grade": "B",
         "confidence": "high",
         "auto_publish": true,
-        "official_source": true,
+        "official_source": false,
         "tags": [
-          "policy",
-          "official source",
-          "change detection"
+          "GABA",
+          "Hanwoo",
+          "heat stress",
+          "meat quality",
+          "antioxidant"
         ],
         "metadata": {
-          "source_id": "mfds-feed-policy",
-          "content_hash": "7703bb0033ac26357f40766c84b4f278a0b72d0b44bae8ea72116bda764497e6"
+          "curation_basis": "peer-reviewed feeding study",
+          "form_note": "rumen-protected GABA"
+        }
+      },
+      {
+        "item_id": "curated-ee9403830be262e7ed66",
+        "category": "research",
+        "source_type": "curated",
+        "title": "Effects of γ-aminobutyric acid and hydrochloric acid on growth performance, nutrient digestibility and fecal score of growing pigs",
+        "summary": "육성돈 사료에 GABA(가바) 0.05%를 6주간 급여한 연구로, 일당증체량과 건물 소화율이 대조군보다 유의하게 증가한 결과가 보고되었다. 상업 적용 전에는 농장 조건과 기초 사료를 반영한 재현시험이 필요하다.",
+        "source_name": "Korean Journal of Agricultural Science",
+        "source_url": "https://doi.org/10.7744/kjoas.20190032",
+        "published_at": "2019",
+        "detected_at": "2026-08-06T00:00:00+00:00",
+        "doi": "10.7744/kjoas.20190032",
+        "pmid": "",
+        "species": "Pig",
+        "evidence_grade": "B",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": false,
+        "tags": [
+          "GABA",
+          "pig",
+          "ADG",
+          "digestibility"
+        ],
+        "metadata": {
+          "curation_basis": "peer-reviewed feeding study",
+          "dose": "0.05% of diet"
+        }
+      },
+      {
+        "item_id": "curated-f37750cfe4f68432e1cf",
+        "category": "research",
+        "source_type": "curated",
+        "title": "Effects of dietary gamma-aminobutyric acid supplementation on the intestinal functions in weaning piglets",
+        "summary": "이유자돈 사료에 GABA(가바)를 급여해 장 점막 구조, 염증성 지표와 장내 미생물 변화를 평가한 연구이다. 장 장벽과 국소 면역을 안정화할 가능성을 제시하지만, 제품 문구와 급여량은 원문 시험조건을 확인해 별도로 확정해야 한다.",
+        "source_name": "Food & Function",
+        "source_url": "https://doi.org/10.1039/C8FO02161A",
+        "published_at": "2019",
+        "detected_at": "2026-08-06T00:00:00+00:00",
+        "doi": "10.1039/C8FO02161A",
+        "pmid": "",
+        "species": "Pig",
+        "evidence_grade": "B",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": false,
+        "tags": [
+          "GABA",
+          "piglet",
+          "intestinal function",
+          "microbiota"
+        ],
+        "metadata": {
+          "curation_basis": "peer-reviewed feeding study",
+          "dose_note": "원문 시험군별 조건 확인 필요"
+        }
+      },
+      {
+        "item_id": "curated-c772ee71271b51be3a01",
+        "category": "research",
+        "source_type": "curated",
+        "title": "Effect of γ-aminobutyric acid on growth performance, behavior and plasma hormones in weaned pigs",
+        "summary": "이유자돈 96두에 GABA(가바) 30 mg/kg 사료를 35일간 급여한 시험이다. 성장량과 사료섭취량의 유의차는 제한적이었으나 공격행동이 감소했고, 혈장 GH와 NPY는 증가하며 ACTH와 cortisol은 감소하는 방향이 보고되었다.",
+        "source_name": "Canadian Journal of Animal Science",
+        "source_url": "https://doi.org/10.4141/cjas2013-148",
+        "published_at": "2015",
+        "detected_at": "2026-08-06T00:00:00+00:00",
+        "doi": "10.4141/cjas2013-148",
+        "pmid": "",
+        "species": "Pig",
+        "evidence_grade": "B",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": false,
+        "tags": [
+          "GABA",
+          "pig",
+          "stress",
+          "cortisol",
+          "behavior"
+        ],
+        "metadata": {
+          "curation_basis": "peer-reviewed controlled feeding study",
+          "application_note": "씨돼지 직접 번식효능이 아니라 돼지 스트레스·호르몬 근거로 해석"
         }
       }
     ]
   },
-  "auto_intelligence_updated_at": "2026-08-05T19:59:48.273174+00:00"
+  "auto_intelligence_updated_at": "2026-08-06T01:40:43+00:00"
 }

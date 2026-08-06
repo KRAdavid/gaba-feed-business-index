@@ -1,0 +1,145 @@
+{
+  "schema_version": "2.0.0",
+  "updated_at": "2026-08-06T01:40:43+00:00",
+  "count": 11,
+  "counts": {
+    "paper": 5,
+    "policy": 4,
+    "statistics": 1,
+    "market": 1
+  },
+  "items": [
+    {
+      "id": "curated-20196dfbfba42ac235c5",
+      "type": "policy",
+      "category": "policy · 대한민국 농림축산식품부",
+      "date": "2026",
+      "title": "대한민국 사료·축산 정책 공식 포털",
+      "summary": "농림축산식품부의 사료, 축산 및 동물복지 관련 정책 공지와 보도자료를 확인하는 공식 출처다. 제품의 품목, 수입, 제조 및 표시 적용은 관련 법령과 담당기관 해석을 함께 확인해야 한다.",
+      "url": "https://www.mafra.go.kr/",
+      "source": "대한민국 농림축산식품부",
+      "evidence_grade": "A",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-83de428b2224e636c5e6",
+      "type": "policy",
+      "category": "policy · 국가법령정보센터",
+      "date": "2026",
+      "title": "사료관리법 현행 법령",
+      "summary": "대한민국 사료의 제조, 수입, 판매와 품질관리에 관한 현행 법령을 확인하는 공식 페이지다. 실제 사업 적용 시 법률, 시행령, 시행규칙과 사료 등의 기준 및 규격을 함께 검토해야 한다.",
+      "url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
+      "source": "국가법령정보센터",
+      "evidence_grade": "A",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-5315556c8ab5a41d6389",
+      "type": "policy",
+      "category": "policy · European Food Safety Authority",
+      "date": "2026",
+      "title": "EFSA Feed Additives",
+      "summary": "유럽연합 사료첨가제의 안전성과 유효성 평가 맥락을 확인하는 EFSA 공식 주제 페이지다. 특정 GABA 제품의 허용 여부와 용도는 EU 등록부와 개별 의견서를 별도로 확인해야 한다.",
+      "url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
+      "source": "European Food Safety Authority",
+      "evidence_grade": "A",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-3c937111b8f2650e9d45",
+      "type": "policy",
+      "category": "policy · Australian Pesticides and Veterinary Medicines Authority",
+      "date": "2026",
+      "title": "APVMA Animal Feed Products",
+      "summary": "호주에서 동물용 사료제품이 영양 목적과 치료 목적 중 어디에 해당하는지 판단할 때 참고하는 APVMA 공식 안내다. 스트레스 완화나 생산성 개선 문구는 제품 분류와 등록 필요성에 영향을 줄 수 있다.",
+      "url": "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products",
+      "source": "Australian Pesticides and Veterinary Medicines Authority",
+      "evidence_grade": "A",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-47c25ca4689902d689eb",
+      "type": "statistics",
+      "category": "statistics · Food and Agriculture Organization of the United Nations",
+      "date": "2026",
+      "title": "FAOSTAT Crops and Livestock Products",
+      "summary": "국가별 축산물 생산량과 장기 시계열을 확인할 수 있는 FAO 공식 통계 데이터베이스다. 시장규모 산정에는 대상 축종, 국가, 기준연도와 단위를 고정해 추출해야 한다.",
+      "url": "https://www.fao.org/faostat/en/#data/QCL",
+      "source": "Food and Agriculture Organization of the United Nations",
+      "evidence_grade": "A",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-a8a03b8b5841149aaafc",
+      "type": "paper",
+      "category": "research · Calf",
+      "date": "2025",
+      "title": "The effects of gamma-aminobutyric acid on growth performance, diarrhoea, ruminal fermentation, and antioxidant capacity in pre-weaned calves",
+      "summary": "포유기 송아지에 GABA(가바)를 영양 보충해 성장, 설사, 반추위 발효와 항산화 지표를 평가한 2025년 연구이다. 성장과 항산화 능력의 개선 가능성을 제시하며, 실제 농장 적용에는 급여형태와 기초 사양조건의 확인이 필요하다.",
+      "url": "https://doi.org/10.1016/j.animal.2025.101493",
+      "source": "Animal",
+      "evidence_grade": "B",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-6a8de2eb14e1b90d9a8a",
+      "type": "market",
+      "category": "market · OECD and FAO",
+      "date": "2025",
+      "title": "OECD-FAO Agricultural Outlook 2025-2034",
+      "summary": "육류, 유제품, 곡물과 사료원료의 중기 수급 전망을 확인하는 OECD와 FAO의 공식 전망 자료다. GABA 사료첨가제 자체 시장규모가 아니라 축산 수요와 사료산업의 외부 환경을 판단하는 기반자료로 사용한다.",
+      "url": "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2025-2034_601276cd-en.html",
+      "source": "OECD and FAO",
+      "evidence_grade": "A",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-36eccf0746c364c5b335",
+      "type": "paper",
+      "category": "research · Beef Cattle",
+      "date": "2021",
+      "title": "The effect of rumen-protected γ-aminobutyric acid supplementation on growth performance, apparent digestibility, and meat quality of Hanwoo steers under heat stress",
+      "summary": "고온 스트레스 조건의 한우 거세우에 반추위 보호 GABA(가바)를 사료 급여해 성장, 소화율, 항산화 및 육질 지표를 평가했다. 일부 급여수준에서 증체와 항산화 효소, 지질산화 및 육색 안정성에 긍정적 방향이 보고되었다.",
+      "url": "https://doi.org/10.5713/ajas.20.0224",
+      "source": "Animal Bioscience",
+      "evidence_grade": "B",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-ee9403830be262e7ed66",
+      "type": "paper",
+      "category": "research · Pig",
+      "date": "2019",
+      "title": "Effects of γ-aminobutyric acid and hydrochloric acid on growth performance, nutrient digestibility and fecal score of growing pigs",
+      "summary": "육성돈 사료에 GABA(가바) 0.05%를 6주간 급여한 연구로, 일당증체량과 건물 소화율이 대조군보다 유의하게 증가한 결과가 보고되었다. 상업 적용 전에는 농장 조건과 기초 사료를 반영한 재현시험이 필요하다.",
+      "url": "https://doi.org/10.7744/kjoas.20190032",
+      "source": "Korean Journal of Agricultural Science",
+      "evidence_grade": "B",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-f37750cfe4f68432e1cf",
+      "type": "paper",
+      "category": "research · Pig",
+      "date": "2019",
+      "title": "Effects of dietary gamma-aminobutyric acid supplementation on the intestinal functions in weaning piglets",
+      "summary": "이유자돈 사료에 GABA(가바)를 급여해 장 점막 구조, 염증성 지표와 장내 미생물 변화를 평가한 연구이다. 장 장벽과 국소 면역을 안정화할 가능성을 제시하지만, 제품 문구와 급여량은 원문 시험조건을 확인해 별도로 확정해야 한다.",
+      "url": "https://doi.org/10.1039/C8FO02161A",
+      "source": "Food & Function",
+      "evidence_grade": "B",
+      "confidence": "high"
+    },
+    {
+      "id": "curated-c772ee71271b51be3a01",
+      "type": "paper",
+      "category": "research · Pig",
+      "date": "2015",
+      "title": "Effect of γ-aminobutyric acid on growth performance, behavior and plasma hormones in weaned pigs",
+      "summary": "이유자돈 96두에 GABA(가바) 30 mg/kg 사료를 35일간 급여한 시험이다. 성장량과 사료섭취량의 유의차는 제한적이었으나 공격행동이 감소했고, 혈장 GH와 NPY는 증가하며 ACTH와 cortisol은 감소하는 방향이 보고되었다.",
+      "url": "https://doi.org/10.4141/cjas2013-148",
+      "source": "Canadian Journal of Animal Science",
+      "evidence_grade": "B",
+      "confidence": "high"
+    }
+  ]
+}
