@@ -13,9 +13,13 @@
 
 ## 공개 화면
 
-서비스 주소: [https://gaba-feed-business-index.dubaissday.chatgpt.site](https://gaba-feed-business-index.dubaissday.chatgpt.site)
+자동 갱신되는 기본 공개 주소:
 
-공개 화면은 매주 월요일 오전에 정책·연구·원료시장 자료를 다시 확인합니다. 외부 자료를 받지 못하면 직전 자료를 유지하고 화면에 자료 상태를 알립니다. 자동 수집 자료는 검토 대기 항목으로 표시하며, 전문가가 확인하기 전에는 준비도 점수에 반영하지 않습니다.
+- https://kradavid.github.io/gaba-feed-business-index/
+
+기존 `https://gaba-feed-business-index.dubaissday.chatgpt.site` 주소는 별도로 생성된 ChatGPT Sites 배포본입니다. GitHub의 파일과 Actions가 갱신되어도 해당 주소는 자동으로 바뀌지 않을 수 있으므로, 최신 주문 가이드·문의 폼·자동 인텔리전스는 위 GitHub Pages 주소에서 확인합니다.
+
+공개 화면은 매일 오전 03:20(KST)에 논문과 공식 출처를 다시 확인합니다. 외부 자료를 받지 못하면 직전 자료를 유지하고 화면에 자료 상태를 알립니다. 자동 수집 자료는 공개 기준을 통과한 항목만 표시하며, 기준 미충족 자료는 검토 대기 항목으로 관리합니다.
 
 ## 핵심 산출물
 
