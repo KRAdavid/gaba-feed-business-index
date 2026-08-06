@@ -1,0 +1,69 @@
+name: Install selectable calculator scenarios
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/assets/calculator-scenarios.css"
+      - "docs/assets/calculator-scenarios.js"
+      - "scripts/patch_calculator_scenarios.py"
+      - "tests/test_patch_calculator_scenarios.py"
+      - ".github/workflows/install-calculator-scenarios.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: selectable-calculator-scenarios
+  cancel-in-progress: true
+
+jobs:
+  install-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate calculator scenario assets
+        run: |
+          node --check docs/assets/calculator-scenarios.js
+          python -m py_compile scripts/patch_calculator_scenarios.py
+          python -m unittest tests/test_patch_calculator_scenarios.py -v
+
+      - name: Install calculator scenario references
+        run: python scripts/patch_calculator_scenarios.py
+
+      - name: Commit patched public page
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "Calculator scenario references already installed"
+          else
+            git commit -m "feat: activate selectable calculator assumptions"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Verify installed calculator controls
+        run: |
+          test -f docs/assets/calculator-scenarios.css
+          test -f docs/assets/calculator-scenarios.js
+          grep -q 'assets/calculator-scenarios.css' docs/index.html
+          grep -q 'assets/calculator-scenarios.js' docs/index.html
+          grep -q 'growthImprovementPct' docs/assets/calculator-scenarios.js
+          grep -q 'fcrImprovementPct' docs/assets/calculator-scenarios.js
+          python scripts/patch_calculator_scenarios.py --check
