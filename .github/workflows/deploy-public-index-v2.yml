@@ -1,0 +1,77 @@
+name: Deploy GABA public index v2
+
+on:
+  workflow_run:
+    workflows:
+      - "Auto-update GABA feed intelligence v2"
+    types:
+      - completed
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+      - ".github/workflows/deploy-public-index-v2.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages-v2
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: >
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Check out latest main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Verify public index files
+        run: |
+          test -f docs/index.html
+          test -f docs/data/index.json
+          test -f docs/data/auto_intelligence.json
+          test -f docs/data/knowledge_base.json
+          test -f docs/data/update_status.json
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          required_json = [
+              Path("docs/data/index.json"),
+              Path("docs/data/auto_intelligence.json"),
+              Path("docs/data/knowledge_base.json"),
+              Path("docs/data/update_status.json"),
+          ]
+
+          for path in required_json:
+              json.loads(path.read_text(encoding="utf-8"))
+              print("validated", path)
+          PY
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload public index
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
