@@ -9,14 +9,15 @@ spec.loader.exec_module(module)
 
 
 class PatchInquiryAppsScriptTest(unittest.TestCase):
-    def test_installs_after_delivery_override(self):
+    def test_replaces_old_delivery_client(self):
         source = f"<html><body>{module.INQUIRY_SCRIPT}{module.DELIVERY_SCRIPT}</body></html>"
         patched, changed = module.patch_text(source)
         self.assertTrue(changed)
-        self.assertIn(module.DELIVERY_SCRIPT + module.SCRIPT_TAG, patched)
+        self.assertNotIn(module.DELIVERY_SCRIPT, patched)
+        self.assertIn(module.SCRIPT_TAG, patched)
 
     def test_is_idempotent(self):
-        source = f"<html><body>{module.INQUIRY_SCRIPT}{module.DELIVERY_SCRIPT}{module.SCRIPT_TAG}</body></html>"
+        source = f"<html><body>{module.INQUIRY_SCRIPT}{module.SCRIPT_TAG}</body></html>"
         patched, changed = module.patch_text(source)
         self.assertFalse(changed)
         self.assertEqual(source, patched)
