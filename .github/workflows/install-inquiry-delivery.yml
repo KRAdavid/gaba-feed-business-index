@@ -1,0 +1,105 @@
+name: Install reliable inquiry email delivery
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/assets/inquiry-delivery-fix.css"
+      - "docs/assets/inquiry-delivery-fix.js"
+      - "scripts/patch_inquiry_delivery.py"
+      - "tests/test_patch_inquiry_delivery.py"
+      - ".github/workflows/install-inquiry-delivery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: inquiry-email-delivery
+  cancel-in-progress: true
+
+jobs:
+  install-and-test-delivery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate delivery assets
+        run: |
+          node --check docs/assets/inquiry-delivery-fix.js
+          python -m py_compile scripts/patch_inquiry_delivery.py
+          python -m unittest tests/test_patch_inquiry_delivery.py -v
+
+      - name: Install delivery asset references
+        run: python scripts/patch_inquiry_delivery.py
+
+      - name: Commit patched public page
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "Inquiry delivery override already installed"
+          else
+            git commit -m "fix: activate dual-recipient inquiry delivery [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Trigger FormSubmit activation and diagnostic submission
+        shell: bash
+        run: |
+          set +e
+          HTTP_CODE=$(curl -sS -o /tmp/formsubmit-response.json -w "%{http_code}" \
+            --retry 2 --retry-delay 2 \
+            -X POST "https://formsubmit.co/ajax/dubaissday@gmail.com" \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/json" \
+            -H "Origin: https://kradavid.github.io" \
+            -H "Referer: https://kradavid.github.io/gaba-feed-business-index/" \
+            --data '{
+              "name":"Cellpinda inquiry delivery diagnostics",
+              "email":"dubaissday@gmail.com",
+              "message":"GABA Feed business inquiry form activation and dual-recipient delivery diagnostic. This is an automated setup test.",
+              "_subject":"[GABA Feed 문의폼 진단] FormSubmit 활성화 및 이중수신 확인",
+              "_cc":"dubaissday@cellpinda.com",
+              "_captcha":"false",
+              "_template":"table",
+              "_url":"https://kradavid.github.io/gaba-feed-business-index/"
+            }')
+          echo "FormSubmit HTTP status: ${HTTP_CODE}"
+          cat /tmp/formsubmit-response.json || true
+          {
+            echo "## Inquiry email delivery diagnostic"
+            echo "- FormSubmit HTTP status: **${HTTP_CODE}**"
+            echo "- Primary activation mailbox: \`dubaissday@gmail.com\`"
+            echo "- Business CC mailbox: \`dubaissday@cellpinda.com\`"
+            echo "- Check the Gmail inbox and spam folder for the one-time FormSubmit activation email."
+            echo '```json'
+            cat /tmp/formsubmit-response.json 2>/dev/null || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [[ "$HTTP_CODE" -ge 400 || "$HTTP_CODE" == "000" ]]; then
+            echo "::warning::FormSubmit diagnostic did not return a successful HTTP status"
+          fi
+          exit 0
+
+      - name: Verify installed delivery route
+        run: |
+          test -f docs/assets/inquiry-delivery-fix.css
+          test -f docs/assets/inquiry-delivery-fix.js
+          grep -q 'assets/inquiry-delivery-fix.js' docs/index.html
+          grep -q 'assets/inquiry-delivery-fix.css' docs/index.html
+          python scripts/patch_inquiry_delivery.py --check
