@@ -13,15 +13,24 @@ INQUIRY_SCRIPT = '<script src="assets/inquiry-form.js" defer data-inquiry-form="
 
 
 def patch_text(text: str) -> tuple[str, bool]:
-    if SCRIPT_TAG in text:
-        return text, False
+    changed = False
+
+    # FormSubmit is retired. Leaving its capture-phase listener installed can
+    # overwrite the Apps Script action immediately before a valid submission.
     if DELIVERY_SCRIPT in text:
-        return text.replace(DELIVERY_SCRIPT, DELIVERY_SCRIPT + SCRIPT_TAG, 1), True
-    if INQUIRY_SCRIPT in text:
-        return text.replace(INQUIRY_SCRIPT, INQUIRY_SCRIPT + SCRIPT_TAG, 1), True
-    if "</body>" in text:
-        return text.replace("</body>", SCRIPT_TAG + "\n</body>", 1), True
-    raise RuntimeError("docs/index.html is missing a script insertion point")
+        text = text.replace(DELIVERY_SCRIPT, "", 1)
+        changed = True
+
+    if SCRIPT_TAG not in text:
+        if INQUIRY_SCRIPT in text:
+            text = text.replace(INQUIRY_SCRIPT, INQUIRY_SCRIPT + SCRIPT_TAG, 1)
+        elif "</body>" in text:
+            text = text.replace("</body>", SCRIPT_TAG + "\n</body>", 1)
+        else:
+            raise RuntimeError("docs/index.html is missing a script insertion point")
+        changed = True
+
+    return text, changed
 
 
 def main() -> int:
@@ -32,12 +41,14 @@ def main() -> int:
     patched, changed = patch_text(text)
     if args.check:
         if changed:
-            raise SystemExit("Apps Script inquiry client is not installed")
-        print("Apps Script inquiry client installed")
+            raise SystemExit("Apps Script inquiry client is not cleanly installed")
+        if DELIVERY_SCRIPT in text:
+            raise SystemExit("obsolete FormSubmit runtime is still installed")
+        print("Apps Script inquiry client installed; FormSubmit runtime removed")
         return 0
     if changed:
         TARGET.write_text(patched, encoding="utf-8")
-        print("installed Apps Script inquiry client")
+        print("installed Apps Script inquiry client and removed FormSubmit runtime")
     else:
         print("Apps Script inquiry client already installed")
     return 0
