@@ -4,7 +4,7 @@
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnLIZGWbJDiDPMlUJ3yef8cXI1jgZC5cZsaCBUbYBR6bNAdXskVTZBSrxSHZiIpCDYPA/exec';
   const MESSAGE_SOURCE = 'cellpinda-gaba-inquiry';
   const IFRAME_NAME = 'cellpindaInquiryReceiver';
-  const RESPONSE_TIMEOUT_MS = 30000;
+  const RESPONSE_TIMEOUT_MS = 60000;
   let responseTimer = null;
 
   function ensureHidden(form, name, value) {
@@ -55,18 +55,17 @@
     form.target = IFRAME_NAME;
     form.dataset.deliveryRoute = 'google-apps-script';
     ensureHidden(form, 'action', 'inquiry');
-    ensureHidden(form, 'form_version', 'GABA_FEED_INQUIRY_V2');
+    ensureHidden(form, 'form_version', 'GABA_FEED_INQUIRY_V3');
     ensureHidden(form, 'source_page', window.location.href.split('#')[0]);
     updateDeliveryNotice(form);
 
     if (!form.dataset.appsScriptBound) {
       form.addEventListener('submit', (event) => {
-        // inquiry-form.js performs validation first. Do nothing when it rejected the form.
         if (event.defaultPrevented) return;
         form.action = APPS_SCRIPT_URL;
         form.target = IFRAME_NAME;
         ensureHidden(form, 'action', 'inquiry');
-        ensureHidden(form, 'form_version', 'GABA_FEED_INQUIRY_V2');
+        ensureHidden(form, 'form_version', 'GABA_FEED_INQUIRY_V3');
         ensureHidden(form, 'source_page', window.location.href.split('#')[0]);
         ensureHidden(form, 'client_timestamp', new Date().toISOString());
         startWaiting(form);
@@ -79,9 +78,17 @@
   function startWaiting(form) {
     window.clearTimeout(responseTimer);
     const errorBox = form.querySelector('#inquiryError');
-    if (errorBox) errorBox.hidden = true;
+    const submit = form.querySelector('#inquirySubmit');
+    if (errorBox) {
+      errorBox.textContent = '문의 내용을 셀핀다 메일 서버로 전송하고 있습니다. 잠시만 기다려 주세요.';
+      errorBox.hidden = false;
+    }
+    if (submit) {
+      submit.disabled = true;
+      submit.textContent = '전송 확인 중…';
+    }
     responseTimer = window.setTimeout(() => {
-      showFailure(form, '메일 서버 응답이 지연되고 있습니다. 입력 내용은 유지되어 있으므로 “메일 앱으로 보내기”를 눌러 주세요.');
+      showFailure(form, '서버의 접수 확인이 60초 안에 도착하지 않았습니다. 중복 제출을 피하기 위해 먼저 메일함과 Master DB의 Inquiries 시트를 확인한 뒤, 기록이 없을 때만 “협업문의 다시 전송” 또는 “메일 앱으로 보내기”를 이용해 주세요.');
     }, RESPONSE_TIMEOUT_MS);
   }
 
@@ -100,7 +107,11 @@
 
   function handleResponse(event) {
     const data = event.data;
-    if (!data || data.source !== MESSAGE_SOURCE || !trustedGoogleOrigin(event.origin)) return;
+    const frame = document.querySelector(`iframe[name="${IFRAME_NAME}"]`);
+    const fromReceiverFrame = Boolean(frame && frame.contentWindow && event.source === frame.contentWindow);
+    const trustedOrigin = event.origin === 'null' || trustedGoogleOrigin(event.origin);
+    if (!data || data.source !== MESSAGE_SOURCE || !fromReceiverFrame || !trustedOrigin) return;
+
     const form = document.getElementById('businessInquiryForm');
     if (!form) return;
     window.clearTimeout(responseTimer);
