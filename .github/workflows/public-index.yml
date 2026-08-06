@@ -1,71 +1,18 @@
-name: Refresh and publish public index
+name: Legacy public index refresh (manual only)
 
 on:
-  push:
-    branches: [main, master]
-  schedule:
-    - cron: "17 0 * * 1"
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  build:
+  notice:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Refresh public sources
-        run: python scripts/update_public_index.py
-
-      - name: Validate index and updater
+      - name: Explain replacement workflow
         run: |
-          python scripts/validate_public_index.py
-          python -m unittest discover -s tests -v
-
-      - name: Prepare public downloads
-        run: python scripts/prepare_public_site.py
-
-      - name: Validate deployable site
-        run: python scripts/validate_public_site.py --max-age-hours 2
-
-      - name: Save refreshed snapshot
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/index.json docs/downloads
-          git diff --cached --quiet || git commit -m "chore: refresh public index [skip ci]"
-          git push
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: docs
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          echo "This legacy workflow is intentionally disabled for push and schedule events."
+          echo "Use 'Auto-update GABA feed intelligence v2' for data refreshes."
+          echo "Use 'Deploy GABA public index v2' for GitHub Pages deployment."
+          echo "Use 'Install guided product ordering' for the product order guide."
