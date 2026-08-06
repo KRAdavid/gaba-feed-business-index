@@ -1,0 +1,78 @@
+name: Install visitor decision cards
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/assets/visitor-decision-cards.css"
+      - "docs/assets/visitor-decision-cards.js"
+      - "scripts/patch_visitor_decision_cards.py"
+      - "tests/test_patch_visitor_decision_cards.py"
+      - ".github/workflows/install-visitor-decision-cards.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: visitor-decision-cards
+  cancel-in-progress: true
+
+jobs:
+  install-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate decision-card assets
+        run: |
+          node --check docs/assets/visitor-decision-cards.js
+          python -m py_compile scripts/patch_visitor_decision_cards.py
+          python -m unittest tests/test_patch_visitor_decision_cards.py -v
+
+      - name: Install asset references
+        run: python scripts/patch_visitor_decision_cards.py
+
+      - name: Commit patched public page
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "Visitor decision-card references already installed"
+          else
+            git commit -m "feat: activate visitor decision cards"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Verify installed session
+        run: |
+          test -f docs/assets/visitor-decision-cards.css
+          test -f docs/assets/visitor-decision-cards.js
+          grep -q 'assets/visitor-decision-cards.css' docs/index.html
+          grep -q 'assets/visitor-decision-cards.js' docs/index.html
+          python scripts/patch_visitor_decision_cards.py --check
+
+      - name: Write workflow summary
+        run: |
+          {
+            echo "## Visitor decision-card session"
+            echo "- Six objective multiple-choice questions: installed"
+            echo "- Role-specific recommendation: installed"
+            echo "- Product/order-guide handoff: installed"
+            echo "- Inquiry-form prefilling: installed"
+            echo "- GitHub Pages deployment will run on the generated docs/index.html commit."
+          } >> "$GITHUB_STEP_SUMMARY"
