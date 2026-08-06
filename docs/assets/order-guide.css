@@ -1,0 +1,58 @@
+.order-guide-section{padding:100px 0;background:linear-gradient(180deg,#f7faf8 0,#eef5f1 100%);scroll-margin-top:82px}
+.order-guide-container{display:grid;gap:34px}
+.order-guide-heading{max-width:780px}
+.order-guide-eyebrow{display:inline-block;margin-bottom:13px;color:var(--green,#0b6c4f);font-size:12px;font-weight:900;letter-spacing:.13em}
+.order-guide-heading h2{margin:0 0 16px;font-size:clamp(34px,5vw,58px);line-height:1.12;letter-spacing:-2.5px}
+.order-guide-heading p{margin:0;color:var(--muted,#68776f);font-size:17px;line-height:1.72}
+.order-product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.order-product-card{min-height:230px;padding:24px;border:1px solid var(--line,#dfe8e3);border-radius:20px;background:#fff;text-align:left;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;box-shadow:0 14px 34px rgba(20,74,52,.05);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.order-product-card:hover{transform:translateY(-3px);border-color:#85b8a3;box-shadow:0 20px 42px rgba(20,74,52,.1)}
+.order-product-card:focus-visible{outline:3px solid rgba(11,108,79,.24);outline-offset:3px}
+.order-product-card.is-selected{border-color:var(--green,#0b6c4f);box-shadow:0 0 0 2px rgba(11,108,79,.11),0 20px 45px rgba(20,74,52,.11)}
+.order-product-card>span{display:inline-flex;padding:7px 10px;border-radius:999px;background:#edf7f2;color:var(--green,#0b6c4f);font-size:11px;font-weight:900}
+.order-product-card>strong{margin:18px 0 10px;font-size:21px;line-height:1.3;letter-spacing:-.6px}
+.order-product-card>small{color:var(--muted,#68776f);font-size:13px;line-height:1.62}
+.order-product-card>b{margin-top:auto;padding-top:18px;color:var(--green,#0b6c4f);font-size:13px}
+.order-guide-panel{display:grid;grid-template-columns:minmax(0,.87fr) minmax(0,1.13fr);overflow:hidden;border:1px solid #d9e6df;border-radius:28px;background:#fff;box-shadow:0 26px 70px rgba(19,67,48,.1)}
+.order-guide-config{padding:38px}
+.order-guide-selected>span{display:inline-flex;padding:7px 10px;border-radius:8px;background:#123e31;color:#fff;font-size:11px;font-weight:850}
+.order-guide-selected h3{margin:15px 0 10px;font-size:32px;line-height:1.2;letter-spacing:-1.2px}
+.order-guide-selected>p{margin:0;color:var(--muted,#68776f);font-size:15px;line-height:1.68}
+.order-guide-fit{margin-top:20px;padding:15px 16px;border-left:3px solid var(--green,#0b6c4f);background:#f2f7f4;border-radius:0 12px 12px 0;display:grid;gap:4px}
+.order-guide-fit strong{font-size:11px;color:var(--green,#0b6c4f)}
+.order-guide-fit span{font-size:13px;line-height:1.5;color:#41574d}
+.order-guide-fields{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:28px}
+.order-guide-field{display:grid;gap:7px}
+.order-guide-field>span{font-size:12px;font-weight:850;color:#42584e}
+.order-guide-field input,.order-guide-field select{width:100%;height:48px;border:1px solid var(--line,#dfe8e3);border-radius:11px;background:#fff;padding:0 12px;color:var(--ink,#14241d);outline:none}
+.order-guide-field input:focus,.order-guide-field select:focus{border-color:var(--green,#0b6c4f);box-shadow:0 0 0 3px rgba(11,108,79,.12)}
+.order-guide-checklist{margin-top:24px}
+.order-guide-checklist>strong{display:block;margin-bottom:10px;font-size:13px}
+.order-guide-checklist>div{display:flex;flex-wrap:wrap;gap:7px}
+.order-guide-checklist span{padding:7px 10px;border:1px solid #d9e6df;border-radius:999px;background:#fff;color:#53665d;font-size:11px;font-weight:750}
+.order-guide-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}
+.order-guide-primary,.order-guide-secondary,.order-guide-shortcut{border-radius:11px;padding:13px 15px;font-weight:850;cursor:pointer}
+.order-guide-primary{border:1px solid var(--green,#0b6c4f);background:var(--green,#0b6c4f);color:#fff}
+.order-guide-secondary{border:1px solid #b9cbc2;background:#fff;color:#29493b}
+.order-guide-primary:hover{background:#07593f}.order-guide-secondary:hover{border-color:#7fae99;background:#f4f8f6}
+.order-guide-status{min-height:20px;margin:12px 0 0;color:#4f665b;font-size:12px;line-height:1.5}
+.order-guide-timeline{padding:38px;background:#113f31;color:#fff}
+.order-guide-timeline-head{display:flex;justify-content:space-between;align-items:end;gap:18px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.16)}
+.order-guide-timeline-head span{color:#a9d5c1;font-size:11px;font-weight:900;letter-spacing:.08em}
+.order-guide-timeline-head strong{font-size:22px;text-align:right;letter-spacing:-.6px}
+.order-guide-timeline ol{list-style:none;margin:0;padding:8px 0 0}
+.order-guide-timeline li{display:grid;grid-template-columns:44px 1fr;gap:15px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.order-guide-timeline li i{width:38px;height:38px;border:1px solid rgba(175,224,201,.55);border-radius:12px;display:grid;place-items:center;color:#bde2d1;font-style:normal;font-size:12px;font-weight:900}
+.order-guide-timeline li strong{display:block;margin-bottom:6px;font-size:16px}
+.order-guide-timeline li p{margin:0;color:rgba(255,255,255,.7);font-size:13px;line-height:1.62}
+.order-guide-note{margin-top:22px;padding:17px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.06)}
+.order-guide-note strong{display:block;margin-bottom:7px;font-size:13px}
+.order-guide-note p{margin:0;color:rgba(255,255,255,.68);font-size:12px;line-height:1.65}
+.order-guide-shortcut{margin-top:18px;border:1px solid var(--green,#0b6c4f);background:#fff;color:var(--green,#0b6c4f)}
+.order-guide-shortcut:hover{background:#edf7f2}
+.order-prefill-banner{margin-bottom:17px;padding:14px 15px;border:1px solid #cfe5d9;border-radius:13px;background:#eef8f3;display:grid;gap:4px}
+.order-prefill-banner strong{color:var(--green,#0b6c4f);font-size:13px}
+.order-prefill-banner span{color:#53675d;font-size:12px;line-height:1.5}
+@media(max-width:1020px){.order-product-grid{grid-template-columns:1fr 1fr}.order-guide-panel{grid-template-columns:1fr}.order-guide-timeline{order:2}}
+@media(max-width:680px){.order-guide-section{padding:72px 0}.order-guide-heading h2{letter-spacing:-1.8px}.order-product-grid{grid-template-columns:1fr}.order-product-card{min-height:0}.order-guide-config,.order-guide-timeline{padding:25px 20px}.order-guide-fields{grid-template-columns:1fr}.order-guide-actions{display:grid}.order-guide-primary,.order-guide-secondary{width:100%}.order-guide-timeline-head{display:grid;align-items:start}.order-guide-timeline-head strong{text-align:left}.order-guide-timeline li{grid-template-columns:38px 1fr;gap:11px}}
+@media(prefers-reduced-motion:reduce){.order-product-card{transition:none}}
