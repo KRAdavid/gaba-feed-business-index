@@ -1,6 +1,25 @@
 (() => {
   'use strict';
 
+  function ensureB2BOperationsAssets() {
+    if (!document.querySelector('link[data-b2b-operations]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'assets/b2b-operations.css';
+      link.dataset.b2bOperations = 'v1';
+      document.head.append(link);
+    }
+    if (!document.querySelector('script[data-b2b-operations]')) {
+      const script = document.createElement('script');
+      script.src = 'assets/b2b-operations.js';
+      script.dataset.b2bOperations = 'v1';
+      script.async = false;
+      document.head.append(script);
+    }
+  }
+
+  ensureB2BOperationsAssets();
+
   const DATA_URL = 'data/technical_documents.json';
   let items = [];
   let activeCategory = '전체';
