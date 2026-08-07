@@ -25,6 +25,7 @@ const publicFiles = [
   ["/assets/cta-emphasis.css", "assets/cta-emphasis.css", "text/css; charset=utf-8"],
   ["/assets/cta-emphasis.js", "assets/cta-emphasis.js", "text/javascript; charset=utf-8"],
   ["/assets/hero-banner-rotator.css", "assets/hero-banner-rotator.css", "text/css; charset=utf-8"],
+  ["/assets/hero-title-focus.css", "assets/hero-title-focus.css", "text/css; charset=utf-8"],
   ["/assets/hero-banner-rotator.js", "assets/hero-banner-rotator.js", "text/javascript; charset=utf-8"],
   ["/assets/product-split-selector.css", "assets/product-split-selector.css", "text/css; charset=utf-8"],
   ["/assets/product-split-selector.js", "assets/product-split-selector.js", "text/javascript; charset=utf-8"],

@@ -57,6 +57,7 @@ jobs:
           test -f docs/assets/cta-emphasis.css
           test -f docs/assets/cta-emphasis.js
           test -f docs/assets/hero-banner-rotator.css
+          test -f docs/assets/hero-title-focus.css
           test -f docs/assets/hero-banner-rotator.js
           test -f docs/assets/product-split-selector.css
           test -f docs/assets/product-split-selector.js
