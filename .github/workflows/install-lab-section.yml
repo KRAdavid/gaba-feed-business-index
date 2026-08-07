@@ -1,0 +1,89 @@
+name: Install Life Science Lab section
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/assets/lab-section.css"
+      - "docs/assets/lab-section.js"
+      - "docs/materials/cellpinda-life-science-lab.html"
+      - "docs/data/technical_documents.json"
+      - "scripts/patch_lab_section.py"
+      - "tests/test_patch_lab_section.py"
+      - ".github/workflows/install-lab-section.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: life-science-lab-section
+  cancel-in-progress: true
+
+jobs:
+  install-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate Lab assets and detailed page
+        run: |
+          node --check docs/assets/lab-section.js
+          python -m py_compile scripts/patch_lab_section.py
+          python -m unittest tests/test_patch_lab_section.py -v
+          test -f docs/materials/cellpinda-life-science-lab.html
+          grep -q 'CELLPINDA LIFE SCIENCE LAB' docs/materials/cellpinda-life-science-lab.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('docs/data/technical_documents.json').read_text(encoding='utf-8'))
+          assert any(item.get('id') == 'life-science-lab' for item in data.get('items', []))
+          print('technical document entry verified')
+          PY
+
+      - name: Install Lab section asset references
+        run: python scripts/patch_lab_section.py
+
+      - name: Commit patched public page
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "Life Science Lab references already installed"
+          else
+            git commit -m "feat: activate Cellpinda Life Science Lab section"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Verify installed section
+        run: |
+          test -f docs/assets/lab-section.css
+          test -f docs/assets/lab-section.js
+          grep -q 'assets/lab-section.css' docs/index.html
+          grep -q 'assets/lab-section.js' docs/index.html
+          python scripts/patch_lab_section.py --check
+
+      - name: Write workflow summary
+        run: |
+          {
+            echo "## Cellpinda Life Science Lab"
+            echo "- Interactive 6-step R&D workflow: installed"
+            echo "- Four research capabilities: installed"
+            echo "- Equipment highlights and detailed equipment page: installed"
+            echo "- Research lab navigation and inquiry CTA: installed"
+            echo "- GitHub Pages deployment will run on the generated docs/index.html commit."
+          } >> "$GITHUB_STEP_SUMMARY"
