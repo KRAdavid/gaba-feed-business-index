@@ -1,6 +1,15 @@
 (() => {
   'use strict';
 
+  const focusStyleHref = 'assets/hero-title-focus.css';
+  if (!document.querySelector('link[data-hero-title-focus]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = focusStyleHref;
+    link.dataset.heroTitleFocus = 'v1';
+    document.head.append(link);
+  }
+
   const SLIDES = [
     {
       kicker: 'FERMENTED GABA 20',
