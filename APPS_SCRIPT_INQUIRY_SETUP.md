@@ -1,5 +1,11 @@
 # GABA Feed 문의메일 직접수신 설정
 
+## 현재 수신 경로
+
+- 기본 수신함: `feed@cellpinda.com`
+- 백업 CC: `dubaissday@gmail.com`
+- 문의 기록: `GABA_Feed_Intelligence_Master_DB`의 `Inquiries` 시트
+
 ## 현재 오류의 의미
 
 페이지에 `메일 서버 응답이 지연되고 있습니다`가 표시되면 프런트엔드 문의폼은 실행됐지만, Google Apps Script 웹 앱의 `doPost(e)`가 현재 배포본에서 응답하지 않았다는 뜻입니다. 가장 흔한 원인은 다음 세 가지입니다.
@@ -18,7 +24,7 @@
 6. 상단 함수 선택에서 `setupGabaInquiryReceiver`를 선택하고 **실행**합니다.
 7. 권한 요청에서 스프레드시트 편집과 이메일 발송을 승인합니다.
 8. 실행 결과로 Master DB에 `Inquiries` 시트가 생기고 다음 두 주소로 테스트 메일이 와야 합니다.
-   - `dubaissday@cellpinda.com`
+   - `feed@cellpinda.com`
    - `dubaissday@gmail.com`
 9. 우측 상단 **배포 → 배포 관리**를 엽니다.
 10. 기존 웹 앱의 연필 아이콘을 누릅니다.
@@ -27,12 +33,21 @@
 
 기존 배포를 새 버전으로 갱신하면 현재 `/exec` URL은 유지됩니다.
 
+## 수신 주소만 변경할 때
+
+기존 `Inquiry.gs`가 이미 설치되어 있다면 다음 한 줄만 수정할 수 있습니다.
+
+```javascript
+TO: 'feed@cellpinda.com',
+```
+
+수정 후 저장하고 `setupGabaInquiryReceiver`를 한 번 실행해 테스트메일을 확인한 뒤, 기존 웹 앱을 **새 버전으로 재배포**합니다.
+
 ## 이번 v2 수정사항
 
-- FormSubmit 중계서비스를 완전히 제거했습니다.
-- Apps Script가 문의를 직접 이메일로 발송합니다.
+- FormSubmit 중계서비스를 제거하고 Apps Script가 문의를 직접 이메일로 발송합니다.
 - `HtmlService.XFrameOptionsMode.ALLOWALL`을 적용해 공개 페이지의 숨김 응답 프레임이 접수 결과를 받을 수 있게 했습니다.
-- 응답 대기시간을 60초로 늘렸습니다.
+- 응답 대기시간은 60초입니다.
 - 문의자 이메일을 Reply-To로 사용합니다.
 - 모든 답변과 메일 발송 상태를 `Inquiries` 시트에 기록합니다.
 - 문의번호 `INQ-YYYYMMDD-HHMMSS-XXXXXX`를 발급합니다.
@@ -42,7 +57,7 @@
 1. 공개 페이지를 `Ctrl + F5`로 새로고침합니다.
 2. 테스트 문의를 전송합니다.
 3. 페이지에 `문의가 정상 접수되었습니다`와 문의번호가 표시되는지 확인합니다.
-4. 두 수신함과 스팸함을 확인합니다.
+4. `feed@cellpinda.com`과 백업 Gmail의 받은편지함·스팸함을 확인합니다.
 5. `Inquiries` 시트에 한 행이 추가됐는지 확인합니다.
 
 ## 결과별 진단
