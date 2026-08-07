@@ -1,0 +1,108 @@
+name: Publish complete technical business materials
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/assets/material-page.css"
+      - "docs/assets/technical-documents.css"
+      - "docs/assets/technical-documents.js"
+      - "docs/data/technical_documents.json"
+      - "docs/materials/**"
+      - "scripts/generate_gaba_crude_spec_pdf.py"
+      - "scripts/patch_technical_documents.py"
+      - "tests/test_patch_technical_documents.py"
+      - ".github/workflows/install-technical-materials.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: complete-technical-materials
+  cancel-in-progress: true
+
+jobs:
+  generate-install-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PDF dependencies and Korean fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-nanum
+          python -m pip install --upgrade pip
+          python -m pip install reportlab
+
+      - name: Validate source assets
+        run: |
+          node --check docs/assets/technical-documents.js
+          python -m py_compile scripts/generate_gaba_crude_spec_pdf.py scripts/patch_technical_documents.py
+          python -m unittest tests/test_patch_technical_documents.py -v
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('docs/data/technical_documents.json').read_text(encoding='utf-8'))
+          assert data['schema_version'] == '1.0.0'
+          assert len(data['items']) >= 6
+          assert any(item['id'] == 'gaba-crude-spec' for item in data['items'])
+          print('technical document index validated:', len(data['items']))
+          PY
+
+      - name: Generate GABA Crude specification PDF
+        run: python scripts/generate_gaba_crude_spec_pdf.py
+
+      - name: Install public page references
+        run: python scripts/patch_technical_documents.py
+
+      - name: Verify generated materials
+        run: |
+          test -s docs/downloads/GABA_Crude_Specification_v1.pdf
+          test -f docs/downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf
+          test -f docs/downloads/GABA_Caremix_Specification_v1.pdf
+          test -f docs/materials/gaba-crude-specification.html
+          test -f docs/materials/breeder-pig-gaba-proposal.html
+          test -f docs/materials/australia-wagyu-gaba-assessment.html
+          test -f docs/materials/gaba-feed-introduction.html
+          grep -q 'assets/technical-documents.css' docs/index.html
+          grep -q 'assets/technical-documents.js' docs/index.html
+          python scripts/patch_technical_documents.py --check
+          file docs/downloads/GABA_Crude_Specification_v1.pdf | grep -q PDF
+
+      - name: Commit generated PDF and activated document center
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add docs/index.html docs/downloads/GABA_Crude_Specification_v1.pdf
+          if git diff --cached --quiet; then
+            echo "Technical materials already current"
+          else
+            git commit -m "feat: publish complete technical business materials"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Write summary
+        run: |
+          {
+            echo "## Complete technical business materials"
+            echo "- GABA Crude 20 technical/commercial PDF: generated"
+            echo "- GABA Crude web specification: available"
+            echo "- Breeder-pig application proposal: available"
+            echo "- Australia Wagyu feasibility assessment: available"
+            echo "- General GABA feed introduction guide: available"
+            echo "- Curated category/filter download center: activated"
+          } >> "$GITHUB_STEP_SUMMARY"
