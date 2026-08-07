@@ -58,6 +58,8 @@ jobs:
           test -f docs/assets/cta-emphasis.js
           test -f docs/assets/product-split-selector.css
           test -f docs/assets/product-split-selector.js
+          test -f docs/assets/lab-section.css
+          test -f docs/assets/lab-section.js
           test -f docs/assets/material-page.css
           test -f docs/assets/technical-documents.css
           test -f docs/assets/technical-documents.js
@@ -73,6 +75,7 @@ jobs:
           test -f docs/materials/breeder-pig-gaba-proposal.html
           test -f docs/materials/australia-wagyu-gaba-assessment.html
           test -f docs/materials/gaba-feed-introduction.html
+          test -f docs/materials/cellpinda-life-science-lab.html
 
           grep -q 'assets/inquiry-form.js' docs/index.html
           grep -q 'assets/inquiry-apps-script.js' docs/index.html
@@ -81,6 +84,7 @@ jobs:
           grep -q 'assets/visitor-decision-cards.js' docs/index.html
           grep -q 'assets/cta-emphasis.js' docs/index.html
           grep -q 'assets/product-split-selector.js' docs/index.html
+          grep -q 'assets/lab-section.js' docs/index.html
           grep -q 'assets/technical-documents.js' docs/index.html
 
           node --check docs/assets/inquiry-form.js
@@ -90,6 +94,7 @@ jobs:
           node --check docs/assets/visitor-decision-cards.js
           node --check docs/assets/cta-emphasis.js
           node --check docs/assets/product-split-selector.js
+          node --check docs/assets/lab-section.js
           node --check docs/assets/technical-documents.js
 
           python - <<'PY'
