@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-08-07T07:10:51+00:00",
+  "updated_at": "2026-08-07T19:28:55+00:00",
   "status": "partial",
-  "semantic_digest": "5968104292e98a945e4dfe41b97fc512f62a2cd4a43b7f61783896cc3e48652e",
+  "semantic_digest": "596677e4c6ea9578f030939851fb1aac6ac26fe6feaa7b54756e37cd1c3c4ab5",
   "counts": {
     "collected_this_run": 12,
     "auto_published": 12,
@@ -11,64 +11,20 @@
   "failures": [
     {
       "source": "au-apvma-animal-feed",
-      "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products: The read operation timed out"
+      "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
+      "attempted_urls": [
+        "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products",
+        "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages"
+      ]
     },
     {
       "source": "oecd-fao-agricultural-outlook",
-      "error": "request failed after 3 attempts: https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html: HTTP Error 403: Forbidden"
+      "error": "request failed after 3 attempts: https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report/key-messages_600831c0.html: HTTP Error 403: Forbidden",
+      "attempted_urls": [
+        "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html",
+        "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report/key-messages_600831c0.html"
+      ]
     }
   ],
-  "next_schedule": "daily 03:20 Asia/Seoul",
-  "route_checked_at": "2026-08-07T07:20:21+00:00",
-  "source_routes": [
-    {
-      "source": "kr-mafra-feed-policy",
-      "reachable": true,
-      "selected_url": "https://www.mafra.go.kr/",
-      "attempt_count": 1,
-      "last_result": "HTTP 206"
-    },
-    {
-      "source": "kr-feed-control-act",
-      "reachable": true,
-      "selected_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
-      "attempt_count": 1,
-      "last_result": "HTTP 206"
-    },
-    {
-      "source": "eu-efsa-feed-additives",
-      "reachable": true,
-      "selected_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
-      "attempt_count": 1,
-      "last_result": "HTTP 206"
-    },
-    {
-      "source": "us-fda-animal-food",
-      "reachable": true,
-      "selected_url": "https://www.fda.gov/animal-food-feeds",
-      "attempt_count": 1,
-      "last_result": "HTTP 200"
-    },
-    {
-      "source": "au-apvma-animal-feed",
-      "reachable": false,
-      "selected_url": "",
-      "attempt_count": 2,
-      "last_result": "The read operation timed out"
-    },
-    {
-      "source": "fao-animal-production",
-      "reachable": true,
-      "selected_url": "https://www.fao.org/animal-production/en",
-      "attempt_count": 1,
-      "last_result": "HTTP 200"
-    },
-    {
-      "source": "oecd-fao-agricultural-outlook",
-      "reachable": false,
-      "selected_url": "",
-      "attempt_count": 2,
-      "last_result": "HTTP 403"
-    }
-  ]
+  "next_schedule": "daily 03:20 Asia/Seoul"
 }
