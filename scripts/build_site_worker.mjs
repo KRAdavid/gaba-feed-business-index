@@ -26,6 +26,8 @@ const publicFiles = [
   ["/assets/cta-emphasis.js", "assets/cta-emphasis.js", "text/javascript; charset=utf-8"],
   ["/assets/product-split-selector.css", "assets/product-split-selector.css", "text/css; charset=utf-8"],
   ["/assets/product-split-selector.js", "assets/product-split-selector.js", "text/javascript; charset=utf-8"],
+  ["/assets/lab-section.css", "assets/lab-section.css", "text/css; charset=utf-8"],
+  ["/assets/lab-section.js", "assets/lab-section.js", "text/javascript; charset=utf-8"],
   ["/assets/material-page.css", "assets/material-page.css", "text/css; charset=utf-8"],
   ["/assets/technical-documents.css", "assets/technical-documents.css", "text/css; charset=utf-8"],
   ["/assets/technical-documents.js", "assets/technical-documents.js", "text/javascript; charset=utf-8"],
@@ -38,6 +40,7 @@ const publicFiles = [
   ["/materials/breeder-pig-gaba-proposal.html", "materials/breeder-pig-gaba-proposal.html", "text/html; charset=utf-8"],
   ["/materials/australia-wagyu-gaba-assessment.html", "materials/australia-wagyu-gaba-assessment.html", "text/html; charset=utf-8"],
   ["/materials/gaba-feed-introduction.html", "materials/gaba-feed-introduction.html", "text/html; charset=utf-8"],
+  ["/materials/cellpinda-life-science-lab.html", "materials/cellpinda-life-science-lab.html", "text/html; charset=utf-8"],
   ["/downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf", "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf", "application/pdf"],
   ["/downloads/GABA_Crude_Specification_v1.pdf", "downloads/GABA_Crude_Specification_v1.pdf", "application/pdf"],
   ["/downloads/GABA_Caremix_Specification_v1.pdf", "downloads/GABA_Caremix_Specification_v1.pdf", "application/pdf"]
