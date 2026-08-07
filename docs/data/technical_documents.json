@@ -4,6 +4,17 @@
   "title": "GABA Feed 기술·사업 자료",
   "items": [
     {
+      "id": "life-science-lab",
+      "category": "연구소·역량",
+      "title": "셀핀다 생명과학연구소 연구역량·장비",
+      "description": "균주 보존, 5 L 정밀발효, 분리·회수, Shimadzu HPLC·아미노산 분석 및 원료 표준화를 연결한 연구 플랫폼",
+      "format": "WEB",
+      "version": "1.0",
+      "language": "KO",
+      "url": "materials/cellpinda-life-science-lab.html",
+      "status": "NEW"
+    },
+    {
       "id": "gaba-crude-spec",
       "category": "제품·규격",
       "title": "가바크루드 20 기술·사업 사양서",
