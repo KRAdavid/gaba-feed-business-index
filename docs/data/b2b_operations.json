@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-08-07",
+  "platform_goal": {
+    "title": "제품 정보에서 구매 실행까지",
+    "summary": "방문자가 자신의 역할과 도입 단계에 맞는 자료·샘플·파일럿·견적 경로를 선택하고, 입력 내용을 반복하지 않은 채 셀핀다 담당자에게 전달하는 B2B 운영 플랫폼입니다.",
+    "flow": [
+      "Discover",
+      "Qualify",
+      "Technical Review",
+      "Sample / Pilot",
+      "Quote / PO",
+      "Lot Release",
+      "Reorder"
+    ]
+  },
+  "service_targets": [
+    {
+      "label": "자동 접수",
+      "target": "즉시",
+      "note": "문의번호와 접수 안내"
+    },
+    {
+      "label": "담당자 1차 회신",
+      "target": "1영업일 이내",
+      "note": "운영 목표 · 계약상 보장 아님"
+    },
+    {
+      "label": "기술자료팩",
+      "target": "2영업일 이내",
+      "note": "요청 범위와 공개 가능 자료 기준"
+    },
+    {
+      "label": "샘플·파일럿 판단",
+      "target": "5영업일 이내",
+      "note": "필수조건이 모두 입력된 후"
+    }
+  ],
+  "stages": [
+    {
+      "id": "qualify",
+      "no": "01",
+      "name": "Buyer Qualification",
+      "ko": "바이어 조건 확인",
+      "description": "회사, 역할, 축종, 과제, 국가, 예상 물량과 일정부터 확인합니다.",
+      "exit": "필수 조건 입력 완료"
+    },
+    {
+      "id": "review",
+      "no": "02",
+      "name": "Technical Review",
+      "ko": "기술·규격 검토",
+      "description": "제품 규격, 근거, 제조·분석 역량과 국가별 검토사항을 확인합니다.",
+      "exit": "적합성 또는 추가 질문 확인"
+    },
+    {
+      "id": "pilot",
+      "no": "03",
+      "name": "Sample / Pilot",
+      "ko": "샘플·파일럿",
+      "description": "샘플, 대조군, 적용기간, 급여수준, KPI와 중단기준을 문서화합니다.",
+      "exit": "시험 착수 승인"
+    },
+    {
+      "id": "commercial",
+      "no": "04",
+      "name": "Quote / PO",
+      "ko": "견적·발주",
+      "description": "MOQ, 단가, 포장, 납기, 운송, 결제조건과 PO 요건을 확정합니다.",
+      "exit": "견적 승인 또는 PO 접수"
+    },
+    {
+      "id": "supply",
+      "no": "05",
+      "name": "Lot Release",
+      "ko": "로트 승인·공급",
+      "description": "로트 시험성적서, 출고정보와 추적성 자료를 확인하고 공급합니다.",
+      "exit": "납품 및 수령 확인"
+    },
+    {
+      "id": "reorder",
+      "no": "06",
+      "name": "Performance / Reorder",
+      "ko": "성과검토·재주문",
+      "description": "현장 결과, 품질, 경제성과 공급경험을 검토해 재주문 또는 추가시험을 결정합니다.",
+      "exit": "반복 주문 또는 No-Go 기록"
+    }
+  ],
+  "buyer_packs": [
+    {
+      "id": "technical",
+      "role": "R&D·제품기획",
+      "title": "Technical Validation Pack",
+      "subtitle": "제품 규격과 시험설계를 먼저 검토하는 바이어",
+      "items": [
+        "가바크루드 20 기술·사업 사양서",
+        "대표 CoA 요청",
+        "배합량 환산·혼합 원칙",
+        "축종별 연구근거와 한계",
+        "샘플·대조시험 설계"
+      ],
+      "product": "가바크루드 20% 기준품",
+      "stage": "샘플·규격서 검토 단계",
+      "request": "기술검토팩 요청"
+    },
+    {
+      "id": "procurement",
+      "role": "구매·원료조달",
+      "title": "Commercial Supply Pack",
+      "subtitle": "MOQ·가격·납기와 품질책임을 확인하는 바이어",
+      "items": [
+        "규격·포장·보관조건",
+        "MOQ·초도·연간 물량",
+        "가격 기준일과 포함·제외 조건",
+        "생산 리드타임·공급계획",
+        "로트 CoA·추적·회수 기준"
+      ],
+      "product": "가바크루드 20% 기준품",
+      "stage": "상업 발주·유통 협의 단계",
+      "request": "상업견적팩 요청"
+    },
+    {
+      "id": "pilot",
+      "role": "농장·연구기관",
+      "title": "Farm Pilot Pack",
+      "subtitle": "효과를 단정하지 않고 현장 데이터로 판단하는 파트너",
+      "items": [
+        "기초 사양·환경조건 양식",
+        "대조군·급여수준·기간",
+        "ADG·FCR·섭취·스트레스 KPI",
+        "안전성·중단기준",
+        "결과검토·사업전환 기준"
+      ],
+      "product": "농장 파일럿·공동실증",
+      "stage": "파일럿 설계 단계",
+      "request": "파일럿팩 요청"
+    },
+    {
+      "id": "importer",
+      "role": "해외 수입·유통",
+      "title": "Importer Readiness Pack",
+      "subtitle": "국가별 분류·표시와 공급조건을 검토하는 파트너",
+      "items": [
+        "영문 제품 규격·기술자료",
+        "원산지·제조공정·성분정보",
+        "국가별 사료 분류 검토",
+        "표시·효능문구 검토",
+        "Incoterms·MOQ·샘플 계획"
+      ],
+      "product": "가바크루드 20% 기준품",
+      "stage": "정보 수집 단계",
+      "request": "수입·규제팩 요청"
+    }
+  ],
+  "document_status": [
+    {
+      "name": "가바크루드 20 기술·사업 사양서",
+      "status": "AVAILABLE",
+      "url": "downloads/GABA_Crude_Specification_v1.pdf"
+    },
+    {
+      "name": "셀핀다 생명과학연구소 연구역량·장비",
+      "status": "AVAILABLE",
+      "url": "materials/cellpinda-life-science-lab.html"
+    },
+    {
+      "name": "GABA Care Mix 사양서",
+      "status": "AVAILABLE",
+      "url": "downloads/GABA_Caremix_Specification_v1.pdf"
+    },
+    {
+      "name": "로트별 CoA",
+      "status": "REQUEST",
+      "url": "#contact"
+    },
+    {
+      "name": "국가별 규제 포지션",
+      "status": "COUNTRY REVIEW",
+      "url": "#contact"
+    }
+  ],
+  "claim_guardrails": [
+    "성장·FCR·장 건강·육질 결과는 연구조건과 농장환경에 따라 달라질 수 있습니다.",
+    "메탄저감과 탄소배출권은 제품특이 검증 전까지 신사업 연구프로젝트로만 관리합니다.",
+    "항생제 사용 저감은 지속가능한 사양전략의 목표이며 직접적인 대체효능을 의미하지 않습니다.",
+    "실제 가격·MOQ·납기·규제 적용은 유효한 견적서와 국가별 검토결과로 확정합니다."
+  ]
+}
