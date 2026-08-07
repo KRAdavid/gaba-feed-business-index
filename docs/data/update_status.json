@@ -1,10 +1,10 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-08-07T19:28:55+00:00",
+  "updated_at": "2026-08-07T19:45:14+00:00",
   "status": "partial",
-  "semantic_digest": "596677e4c6ea9578f030939851fb1aac6ac26fe6feaa7b54756e37cd1c3c4ab5",
+  "semantic_digest": "fe08e876808ed38f9facb888843ca21951de5726de5c1063e2f4d05ee40f9feb",
   "counts": {
-    "collected_this_run": 12,
+    "collected_this_run": 13,
     "auto_published": 12,
     "review_queue": 1
   },
@@ -26,5 +26,57 @@
       ]
     }
   ],
-  "next_schedule": "daily 03:20 Asia/Seoul"
+  "next_schedule": "daily 03:20 Asia/Seoul",
+  "route_checked_at": "2026-08-07T19:45:14+00:00",
+  "source_routes": [
+    {
+      "source": "kr-mafra-feed-policy",
+      "reachable": true,
+      "selected_url": "https://www.mafra.go.kr/",
+      "attempt_count": 1,
+      "last_result": "HTTP 206"
+    },
+    {
+      "source": "kr-feed-control-act",
+      "reachable": true,
+      "selected_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
+      "attempt_count": 1,
+      "last_result": "HTTP 206"
+    },
+    {
+      "source": "eu-efsa-feed-additives",
+      "reachable": true,
+      "selected_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
+      "attempt_count": 1,
+      "last_result": "HTTP 206"
+    },
+    {
+      "source": "us-fda-animal-food",
+      "reachable": true,
+      "selected_url": "https://www.fda.gov/animal-food-feeds",
+      "attempt_count": 1,
+      "last_result": "HTTP 200"
+    },
+    {
+      "source": "au-apvma-animal-feed",
+      "reachable": false,
+      "selected_url": "",
+      "attempt_count": 2,
+      "last_result": "The read operation timed out"
+    },
+    {
+      "source": "fao-animal-production",
+      "reachable": true,
+      "selected_url": "https://www.fao.org/animal-production/en",
+      "attempt_count": 1,
+      "last_result": "HTTP 200"
+    },
+    {
+      "source": "oecd-fao-agricultural-outlook",
+      "reachable": false,
+      "selected_url": "",
+      "attempt_count": 2,
+      "last_result": "HTTP 403"
+    }
+  ]
 }
