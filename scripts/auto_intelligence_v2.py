@@ -418,23 +418,38 @@ def collect_official_monitors(monitors: list[dict[str, Any]], old_state: dict[st
     failures: list[dict[str, str]] = []
     for source in monitors:
         sid = source["id"]
+        urls = [url for url in (source.get("urls") or [source.get("url")]) if url]
+        active_url = ""
+        last_error: Exception | None = None
         try:
-            digest = visible_text_digest(request_bytes(source["url"]), source.get("keywords", []))
+            raw: bytes | None = None
+            for candidate_url in urls:
+                try:
+                    raw = request_bytes(candidate_url)
+                    active_url = candidate_url
+                    break
+                except Exception as exc:
+                    last_error = exc
+            if raw is None:
+                raise last_error or RuntimeError(f"no monitor URL configured for {sid}")
+
+            digest = visible_text_digest(raw, source.get("keywords", []))
             next_state, confirmed = advance_monitor_state(state.get(sid, {}), digest, int(source.get("confirmation_runs", 2)))
-            next_state["url"] = source["url"]
+            next_state["url"] = active_url
+            next_state["fallback_count"] = max(0, urls.index(active_url)) if active_url in urls else 0
             state[sid] = next_state
             if confirmed or (not old_state.get(sid) and source.get("publish_initial", False)):
                 category = source.get("category", "policy")
                 item = Item(
                     item_id=f"{category}-{stable_id(sid, digest)}", category=category, source_type="official_monitor",
                     title=f"{source['name']} 관련 페이지 변경 확인 필요", summary="공식 출처의 관련 페이지에서 두 차례 연속 동일한 변경이 감지되었습니다. 변경 내용은 원문과 시행일을 확인한 뒤 사업 자료에 반영해야 합니다.",
-                    source_name=source["name"], source_url=source["url"], published_at=now_utc().date().isoformat(), detected_at=iso_now(),
+                    source_name=source["name"], source_url=active_url, published_at=now_utc().date().isoformat(), detected_at=iso_now(),
                     species=source.get("species", "Multi-species"), evidence_grade="A", confidence="high", official_source=True,
-                    tags=[category, "official source", "confirmed change"], metadata={"source_id": sid, "content_hash": digest, "confirmation_runs": source.get("confirmation_runs", 2)},
+                    tags=[category, "official source", "confirmed change"], metadata={"source_id": sid, "content_hash": digest, "confirmation_runs": source.get("confirmation_runs", 2), "fallback_count": next_state["fallback_count"]},
                 )
                 items.append(quality_gate(item, config))
         except Exception as exc:  # monitoring must not stop research collection
-            failures.append({"source": sid, "error": str(exc)[:300]})
+            failures.append({"source": sid, "error": str(exc)[:300], "attempted_urls": urls})
     return items, state, failures
 
 

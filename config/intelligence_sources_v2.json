@@ -42,7 +42,12 @@
         "https://www.mafra.go.kr/"
       ],
       "official": true,
-      "keywords": ["사료관리", "배합사료", "사료첨가제", "축산"],
+      "keywords": [
+        "사료관리",
+        "배합사료",
+        "사료첨가제",
+        "축산"
+      ],
       "confirmation_runs": 2,
       "publish_initial": false
     },
@@ -55,7 +60,12 @@
         "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95"
       ],
       "official": true,
-      "keywords": ["사료관리법", "사료", "제조업", "수입"],
+      "keywords": [
+        "사료관리법",
+        "사료",
+        "제조업",
+        "수입"
+      ],
       "confirmation_runs": 2,
       "publish_initial": false
     },
@@ -69,7 +79,12 @@
         "https://www.efsa.europa.eu/en/applications/feedadditives"
       ],
       "official": true,
-      "keywords": ["feed additives", "authorisation", "safety", "efficacy"],
+      "keywords": [
+        "feed additives",
+        "authorisation",
+        "safety",
+        "efficacy"
+      ],
       "confirmation_runs": 2,
       "publish_initial": false
     },
@@ -79,11 +94,15 @@
       "category": "policy",
       "url": "https://www.fda.gov/animal-food-feeds",
       "urls": [
-        "https://www.fda.gov/animal-food-feeds",
-        "https://www.fda.gov/animal-veterinary/animal-food-feeds"
+        "https://www.fda.gov/animal-food-feeds"
       ],
       "official": true,
-      "keywords": ["animal food", "feed ingredients", "food additive", "GRAS"],
+      "keywords": [
+        "animal food",
+        "feed ingredients",
+        "food additive",
+        "GRAS"
+      ],
       "confirmation_runs": 2,
       "publish_initial": false
     },
@@ -97,7 +116,12 @@
         "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages"
       ],
       "official": true,
-      "keywords": ["animal feed products", "nutritional", "therapeutic", "registration"],
+      "keywords": [
+        "animal feed products",
+        "nutritional",
+        "therapeutic",
+        "registration"
+      ],
       "confirmation_runs": 2,
       "publish_initial": false
     },
@@ -111,7 +135,12 @@
         "https://www.fao.org/faostat/en/#data/QCL"
       ],
       "official": true,
-      "keywords": ["animal production", "livestock", "feed", "statistics"],
+      "keywords": [
+        "animal production",
+        "livestock",
+        "feed",
+        "statistics"
+      ],
       "confirmation_runs": 2,
       "publish_initial": false
     },
@@ -125,7 +154,12 @@
         "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report/key-messages_600831c0.html"
       ],
       "official": true,
-      "keywords": ["meat", "livestock", "agricultural outlook", "feed"],
+      "keywords": [
+        "meat",
+        "livestock",
+        "agricultural outlook",
+        "feed"
+      ],
       "confirmation_runs": 2,
       "publish_initial": false
     }

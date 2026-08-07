@@ -1,10 +1,10 @@
 {
   "schema_version": "1.1.0",
-  "generated_at": "2026-08-07T07:20:22+00:00",
+  "generated_at": "2026-08-07T07:32:05+00:00",
   "status": "partial",
   "summary": {
     "critical_failed": 0,
-    "warnings": 3,
+    "warnings": 2,
     "checks": 10,
     "documents": 7,
     "operating_stages": 6,
@@ -23,7 +23,7 @@
       "label": "B2B 운영모듈 연결",
       "ok": true,
       "severity": "critical",
-      "message": "기술자료 로더를 통해 연결됨"
+      "message": "직접 연결됨"
     },
     {
       "id": "inquiry_runtime_route",
@@ -35,9 +35,9 @@
     {
       "id": "legacy_inquiry_transport",
       "label": "구형 문의전송 코드",
-      "ok": false,
+      "ok": true,
       "severity": "warning",
-      "message": "구형 FormSubmit 코드가 원본 UI에 남아 있으나 신규 Apps Script 라우터가 실행 시 덮어씀. 완전 제거 필요"
+      "message": "구형 전송경로 제거됨"
     },
     {
       "id": "operating_model",
@@ -65,7 +65,7 @@
       "label": "자동자료 최신성",
       "ok": true,
       "severity": "warning",
-      "message": "마지막 갱신 0.2시간 전"
+      "message": "마지막 갱신 0.4시간 전"
     },
     {
       "id": "intelligence_sources",

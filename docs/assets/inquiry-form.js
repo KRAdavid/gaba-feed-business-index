@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  const RECIPIENT = 'dubaissday@cellpinda.com';
-  const FORM_ENDPOINT = `https://formsubmit.co/${RECIPIENT}`;
+  const RECIPIENT = 'feed@cellpinda.com';
+  const FORM_ENDPOINT = '#';
   const STEP_TITLES = ['기본 정보', '협업 목표', '도입 조건', '검토·전송'];
 
   function init() {
