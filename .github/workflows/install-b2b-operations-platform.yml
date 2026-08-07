@@ -80,14 +80,15 @@ jobs:
         run: |
           git config user.name "cellpinda-platform-bot"
           git config user.email "cellpinda-platform-bot@users.noreply.github.com"
+          # Workflow files are maintained by the authenticated user because the
+          # default Actions token cannot update workflows without workflow scope.
           git add \
             docs/index.html \
             docs/assets/inquiry-form.js \
             docs/data/platform_health.json \
             config/intelligence_sources_v2.json \
             scripts/auto_intelligence_v2.py \
-            scripts/build_site_worker.mjs \
-            .github/workflows/deploy-public-index-v2.yml
+            scripts/build_site_worker.mjs
           if git diff --cached --quiet; then
             echo "B2B platform is already installed and health is unchanged"
           else
