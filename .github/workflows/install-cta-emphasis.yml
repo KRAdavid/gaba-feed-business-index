@@ -1,0 +1,79 @@
+name: Install prominent CTA buttons
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/assets/cta-emphasis.css"
+      - "docs/assets/cta-emphasis.js"
+      - "scripts/patch_cta_emphasis.py"
+      - "tests/test_patch_cta_emphasis.py"
+      - ".github/workflows/install-cta-emphasis.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cta-emphasis
+  cancel-in-progress: true
+
+jobs:
+  install-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate CTA assets
+        run: |
+          node --check docs/assets/cta-emphasis.js
+          python -m py_compile scripts/patch_cta_emphasis.py
+          python -m unittest tests/test_patch_cta_emphasis.py -v
+
+      - name: Install CTA asset references
+        run: python scripts/patch_cta_emphasis.py
+
+      - name: Commit patched public page
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "CTA emphasis references already installed"
+          else
+            git commit -m "feat: activate prominent CTA buttons"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Verify installed CTA system
+        run: |
+          test -f docs/assets/cta-emphasis.css
+          test -f docs/assets/cta-emphasis.js
+          grep -q 'assets/cta-emphasis.css' docs/index.html
+          grep -q 'assets/cta-emphasis.js' docs/index.html
+          python scripts/patch_cta_emphasis.py --check
+
+      - name: Write workflow summary
+        run: |
+          {
+            echo "## Prominent CTA buttons"
+            echo "- Larger primary and secondary action buttons: installed"
+            echo "- Action-oriented Korean labels: installed"
+            echo "- Visitor/order/inquiry helper copy: installed"
+            echo "- Mobile sticky diagnosis and inquiry buttons: installed"
+            echo "- Reduced-motion and keyboard focus support: installed"
+            echo "- GitHub Pages deployment will run after docs/index.html is updated."
+          } >> "$GITHUB_STEP_SUMMARY"
