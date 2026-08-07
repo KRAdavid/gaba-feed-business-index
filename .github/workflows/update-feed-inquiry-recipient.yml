@@ -1,0 +1,73 @@
+name: Update GABA Feed inquiry recipient
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/update_feed_inquiry_recipient.py"
+      - ".github/workflows/update-feed-inquiry-recipient.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-feed-inquiry-recipient
+  cancel-in-progress: true
+
+jobs:
+  update-recipient:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Replace inquiry recipient
+        run: python scripts/update_feed_inquiry_recipient.py
+
+      - name: Validate JavaScript
+        run: |
+          node --check docs/assets/inquiry-form.js
+          node --check docs/assets/inquiry-apps-script.js
+          node --check docs/assets/inquiry-delivery-fix.js
+
+      - name: Commit updated recipient
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add \
+            apps-script/Inquiry.gs \
+            apps-script/Inquiry_v2.gs \
+            docs/assets/inquiry-form.js \
+            docs/assets/inquiry-apps-script.js \
+            docs/assets/inquiry-delivery-fix.js \
+            APPS_SCRIPT_INQUIRY_SETUP.md \
+            .github/workflows/install-inquiry-delivery.yml
+          if git diff --cached --quiet; then
+            echo "Recipient already updated"
+          else
+            git commit -m "fix: route GABA Feed inquiries to feed@cellpinda.com [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Summary
+        run: |
+          {
+            echo "## GABA Feed inquiry recipient"
+            echo "- Primary recipient: \`feed@cellpinda.com\`"
+            echo "- Backup CC remains: \`dubaissday@gmail.com\`"
+            echo "- Repository source and public-page fallback updated"
+            echo "- Manual Apps Script redeployment is still required for the live MailApp receiver"
+          } >> "$GITHUB_STEP_SUMMARY"
