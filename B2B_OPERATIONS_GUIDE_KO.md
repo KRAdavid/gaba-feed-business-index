@@ -112,4 +112,4 @@
 - `feed@cellpinda.com` 수신 확인
 - 백업 Gmail 수신 확인
 - `Inquiries` 행과 `Lead_Pipeline` 자동 동기화 확인
-- 구형 FormSubmit 코드의 원본 파일 완전 삭제
+- APVMA·OECD-FAO 공식 페이지의 외부 접근 제한에 대한 지속 모니터링
