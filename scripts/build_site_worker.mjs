@@ -34,11 +34,15 @@ const publicFiles = [
   ["/assets/material-page.css", "assets/material-page.css", "text/css; charset=utf-8"],
   ["/assets/technical-documents.css", "assets/technical-documents.css", "text/css; charset=utf-8"],
   ["/assets/technical-documents.js", "assets/technical-documents.js", "text/javascript; charset=utf-8"],
+  ["/assets/b2b-operations.css", "assets/b2b-operations.css", "text/css; charset=utf-8"],
+  ["/assets/b2b-operations.js", "assets/b2b-operations.js", "text/javascript; charset=utf-8"],
   ["/data/index.json", "data/index.json", "application/json; charset=utf-8"],
   ["/data/auto_intelligence.json", "data/auto_intelligence.json", "application/json; charset=utf-8"],
   ["/data/knowledge_base.json", "data/knowledge_base.json", "application/json; charset=utf-8"],
   ["/data/update_status.json", "data/update_status.json", "application/json; charset=utf-8"],
   ["/data/technical_documents.json", "data/technical_documents.json", "application/json; charset=utf-8"],
+  ["/data/b2b_operations.json", "data/b2b_operations.json", "application/json; charset=utf-8"],
+  ["/data/platform_health.json", "data/platform_health.json", "application/json; charset=utf-8"],
   ["/materials/gaba-crude-specification.html", "materials/gaba-crude-specification.html", "text/html; charset=utf-8"],
   ["/materials/breeder-pig-gaba-proposal.html", "materials/breeder-pig-gaba-proposal.html", "text/html; charset=utf-8"],
   ["/materials/australia-wagyu-gaba-assessment.html", "materials/australia-wagyu-gaba-assessment.html", "text/html; charset=utf-8"],
@@ -60,12 +64,15 @@ for (const [publicPath, relativePath, contentType] of publicFiles) {
 }
 
 const indexData = JSON.parse(await readFile(resolve(docs, "data", "index.json"), "utf8"));
+const platformHealth = JSON.parse(await readFile(resolve(docs, "data", "platform_health.json"), "utf8"));
 const health = {
-  ok: true,
+  ok: platformHealth.status !== "degraded",
   generated_at: indexData.meta.generated_at,
   readiness_score: indexData.readiness.score,
   signals: indexData.signals.length,
-  source_health: indexData.automation.source_health
+  source_health: indexData.automation.source_health,
+  b2b_platform_status: platformHealth.status,
+  b2b_platform_checks: platformHealth.summary
 };
 const buildId = `${indexData.meta.generated_at}-${Buffer.byteLength(JSON.stringify(assets))}`;
 
@@ -89,5 +96,6 @@ console.log(JSON.stringify({
   output: resolve(dist, "server", "index.js"),
   assets: Object.keys(assets).length,
   bytes: Buffer.byteLength(worker),
-  generated_at: health.generated_at
+  generated_at: health.generated_at,
+  b2b_platform_status: health.b2b_platform_status
 }));
