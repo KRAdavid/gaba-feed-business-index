@@ -2,6 +2,8 @@
   'use strict';
 
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnLIZGWbJDiDPMlUJ3yef8cXI1jgZC5cZsaCBUbYBR6bNAdXskVTZBSrxSHZiIpCDYPA/exec';
+  const PRIMARY_RECIPIENT = 'feed@cellpinda.com';
+  const LEGACY_RECIPIENT = 'dubaissday@cellpinda.com';
   const MESSAGE_SOURCE = 'cellpinda-gaba-inquiry';
   const IFRAME_NAME = 'cellpindaInquiryReceiver';
   const RESPONSE_TIMEOUT_MS = 60000;
@@ -31,6 +33,20 @@
     return frame;
   }
 
+  function replaceLegacyRecipient(root) {
+    if (!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let node = walker.nextNode();
+    while (node) {
+      if (node.nodeValue && node.nodeValue.includes(LEGACY_RECIPIENT)) nodes.push(node);
+      node = walker.nextNode();
+    }
+    nodes.forEach((textNode) => {
+      textNode.nodeValue = textNode.nodeValue.replaceAll(LEGACY_RECIPIENT, PRIMARY_RECIPIENT);
+    });
+  }
+
   function updateDeliveryNotice(form) {
     let note = form.querySelector('.inquiry-delivery-route');
     if (!note) {
@@ -41,8 +57,64 @@
       else form.append(note);
     }
     note.innerHTML = `
-      <strong>셀핀다 직접 수신</strong>
-      <span>문의는 셀핀다 Google 시스템에서 처리되어 <b>dubaissday@cellpinda.com</b>과 백업 수신함으로 전달되고, Master DB의 Inquiries 시트에도 기록됩니다.</span>`;
+      <strong>셀핀다 사료사업 전용 수신</strong>
+      <span>문의는 셀핀다 Google 시스템에서 처리되어 <b>${PRIMARY_RECIPIENT}</b>과 백업 수신함으로 전달되고, Master DB의 Inquiries 시트에도 기록됩니다.</span>`;
+    replaceLegacyRecipient(form.closest('.inquiry-section') || form);
+  }
+
+  function values(form, name) {
+    return [...form.querySelectorAll(`[name="${name}"]:checked`)].map((field) => field.value);
+  }
+
+  function buildFallbackBody(form) {
+    const data = new FormData(form);
+    const grouped = new Map();
+    for (const [key, raw] of data.entries()) {
+      if (key.startsWith('_') || key === 'action' || key === 'form_version') continue;
+      const value = String(raw).trim();
+      if (!value) continue;
+      if (!grouped.has(key)) grouped.set(key, []);
+      grouped.get(key).push(value);
+    }
+    return [...grouped.entries()]
+      .map(([key, entries]) => `${key.replaceAll('_', ' ')}: ${entries.join(', ')}`)
+      .join('\n\n');
+  }
+
+  function bindFallbackRecipient(form) {
+    const fallback = form.querySelector('#inquiryMailFallback');
+    if (!fallback || fallback.dataset.feedRecipientBound === 'true') return;
+
+    fallback.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const emptyGroup = [...form.querySelectorAll('[data-required-group]')]
+        .find((group) => !group.querySelector('input[type="checkbox"]:checked'));
+      if (emptyGroup) {
+        const errorBox = form.querySelector('#inquiryError');
+        if (errorBox) {
+          errorBox.textContent = '필수 선택 항목에서 한 가지 이상 선택해 주세요.';
+          errorBox.hidden = false;
+        }
+        emptyGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        emptyGroup.querySelector('input')?.focus();
+        return;
+      }
+
+      const company = form.querySelector('#inquiryCompany')?.value.trim() || '회사 미입력';
+      const species = form.querySelector('#inquirySpecies')?.value || '축종 미정';
+      const collaboration = values(form, '협업_유형').join('·') || '협업';
+      const subject = `[GABA Feed 협업문의] ${company} · ${collaboration} · ${species}`;
+      const body = buildFallbackBody(form);
+      window.location.href = `mailto:${PRIMARY_RECIPIENT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }, { capture: true });
+
+    fallback.dataset.feedRecipientBound = 'true';
   }
 
   function patchForm() {
@@ -54,10 +126,12 @@
     form.method = 'POST';
     form.target = IFRAME_NAME;
     form.dataset.deliveryRoute = 'google-apps-script';
+    form.dataset.primaryRecipient = PRIMARY_RECIPIENT;
     ensureHidden(form, 'action', 'inquiry');
     ensureHidden(form, 'form_version', 'GABA_FEED_INQUIRY_V3');
     ensureHidden(form, 'source_page', window.location.href.split('#')[0]);
     updateDeliveryNotice(form);
+    bindFallbackRecipient(form);
 
     if (!form.dataset.appsScriptBound) {
       form.addEventListener('submit', (event) => {
