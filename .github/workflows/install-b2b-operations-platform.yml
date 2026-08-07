@@ -1,0 +1,110 @@
+name: Install and monitor B2B operating platform
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "B2B_OPERATING_MODEL.md"
+      - "docs/assets/b2b-operations.css"
+      - "docs/assets/b2b-operations.js"
+      - "docs/data/b2b_operations.json"
+      - "docs/data/update_status.json"
+      - "scripts/check_b2b_platform.py"
+      - "scripts/patch_b2b_platform.py"
+      - "tests/test_patch_b2b_platform.py"
+      - ".github/workflows/install-b2b-operations-platform.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: b2b-operations-platform
+  cancel-in-progress: true
+
+jobs:
+  install-test-and-publish-health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate source assets
+        run: |
+          node --check docs/assets/b2b-operations.js
+          python -m py_compile scripts/patch_b2b_platform.py scripts/check_b2b_platform.py
+          python -m unittest tests/test_patch_b2b_platform.py -v
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in (
+              Path('docs/data/b2b_operations.json'),
+              Path('docs/data/platform_health.json'),
+          ):
+              json.loads(path.read_text(encoding='utf-8'))
+              print('validated', path)
+          PY
+
+      - name: Install platform references and hardening
+        run: python scripts/patch_b2b_platform.py
+
+      - name: Generate platform health snapshot
+        run: python scripts/check_b2b_platform.py
+
+      - name: Validate installed platform
+        run: |
+          python scripts/patch_b2b_platform.py --check
+          node --check docs/assets/inquiry-form.js
+          node --check docs/assets/inquiry-apps-script.js
+          node --check docs/assets/b2b-operations.js
+          grep -q 'assets/b2b-operations.css' docs/index.html
+          grep -q 'assets/b2b-operations.js' docs/index.html
+          grep -q 'feed@cellpinda.com' docs/assets/inquiry-form.js
+          ! grep -qi 'formsubmit.co' docs/assets/inquiry-form.js
+          ! grep -qi 'dubaissday@cellpinda.com' docs/assets/inquiry-form.js
+          grep -q 'https://www.fda.gov/animal-food-feeds' config/intelligence_sources_v2.json
+          grep -q '2026-2035' config/intelligence_sources_v2.json
+
+      - name: Commit generated platform state
+        run: |
+          git config user.name "cellpinda-platform-bot"
+          git config user.email "cellpinda-platform-bot@users.noreply.github.com"
+          git add \
+            docs/index.html \
+            docs/assets/inquiry-form.js \
+            docs/data/platform_health.json \
+            config/intelligence_sources_v2.json \
+            scripts/auto_intelligence_v2.py \
+            scripts/build_site_worker.mjs \
+            .github/workflows/deploy-public-index-v2.yml
+          if git diff --cached --quiet; then
+            echo "B2B platform is already installed and health is unchanged"
+          else
+            git commit -m "ops: activate and health-check B2B platform"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Write operating summary
+        run: |
+          {
+            echo "## Cellpinda B2B operating platform"
+            echo "- Buyer Deal Room: installed"
+            echo "- Six-stage buyer-to-reorder workflow: installed"
+            echo "- Role-specific document packs: installed"
+            echo "- Legacy FormSubmit route: removed"
+            echo "- Inquiry recipient: feed@cellpinda.com"
+            echo "- Official source fallback monitoring: installed"
+            echo "- Public platform health snapshot: generated"
+          } >> "$GITHUB_STEP_SUMMARY"
