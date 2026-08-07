@@ -1,11 +1,11 @@
 {
   "schema_version": "1.1.0",
-  "generated_at": "2026-08-07T07:15:18+00:00",
+  "generated_at": "2026-08-07T07:20:22+00:00",
   "status": "partial",
   "summary": {
     "critical_failed": 0,
     "warnings": 3,
-    "checks": 9,
+    "checks": 10,
     "documents": 7,
     "operating_stages": 6,
     "buyer_packs": 4
@@ -16,64 +16,71 @@
       "label": "필수 공개자산",
       "ok": true,
       "severity": "critical",
-      "message": "Buyer Deal Room CSS·JavaScript·데이터와 기술자료가 저장소에 존재합니다."
+      "message": "모든 필수자산 존재"
     },
     {
       "id": "asset_references",
       "label": "B2B 운영모듈 연결",
       "ok": true,
       "severity": "critical",
-      "message": "기술자료 로더가 Buyer Deal Room CSS·JavaScript를 공개페이지에 연결합니다."
+      "message": "기술자료 로더를 통해 연결됨"
     },
     {
       "id": "inquiry_runtime_route",
       "label": "실제 문의 수신경로",
       "ok": true,
       "severity": "critical",
-      "message": "Google Apps Script 웹 앱과 feed@cellpinda.com 수신경로가 활성화되어 있습니다."
+      "message": "Apps Script → feed@cellpinda.com"
+    },
+    {
+      "id": "legacy_inquiry_transport",
+      "label": "구형 문의전송 코드",
+      "ok": false,
+      "severity": "warning",
+      "message": "구형 FormSubmit 코드가 원본 UI에 남아 있으나 신규 Apps Script 라우터가 실행 시 덮어씀. 완전 제거 필요"
     },
     {
       "id": "operating_model",
       "label": "바이어 운영모델",
       "ok": true,
       "severity": "critical",
-      "message": "운영단계 6개 · 역할별 바이어팩 4개가 구성되어 있습니다."
+      "message": "운영단계 6개 · 바이어팩 4개"
     },
     {
       "id": "documents",
       "label": "기술·사업 자료",
       "ok": true,
       "severity": "warning",
-      "message": "공개 기술·사업 자료 7건이 연결되어 있습니다."
+      "message": "공개 자료 7건"
     },
     {
       "id": "official_source_fallbacks",
       "label": "공식출처 대체경로",
       "ok": true,
       "severity": "warning",
-      "message": "FDA·APVMA·OECD-FAO 공식 출처에 기본 및 대체 URL을 구성했습니다."
+      "message": "FDA·APVMA·OECD 기본·대체 URL 구성"
     },
     {
       "id": "data_freshness",
       "label": "자동자료 최신성",
       "ok": true,
       "severity": "warning",
-      "message": "자동자료는 72시간 이내 갱신 기준으로 운영합니다."
+      "message": "마지막 갱신 0.2시간 전"
     },
     {
-      "id": "legacy_inquiry_transport",
-      "label": "구형 문의 UI 정리",
+      "id": "intelligence_sources",
+      "label": "외부 인텔리전스 수집",
       "ok": false,
       "severity": "warning",
-      "message": "구형 FormSubmit 상수는 원본 UI 파일에 남아 있으나 신규 Apps Script 라우터가 실행 시 폼 action과 수신주소를 덮어씁니다. 완전 삭제 작업이 남아 있습니다."
+      "message": "상태 partial · 실패 소스 2개"
     },
     {
       "id": "inquiry_e2e",
       "label": "문의 종단간 운영시험",
       "ok": false,
       "severity": "warning",
-      "message": "통제된 테스트 문의로 페이지 문의번호·feed 메일·백업메일·Inquiries 행을 동시에 확인해야 합니다."
+      "message": "통제된 테스트 문의로 페이지 문의번호·feed 메일·백업메일·Inquiries 행을 함께 확인해야 함"
     }
   ],
-  "public_note": "핵심 B2B 운영모듈은 활성화되었으며 현재 상태는 부분 정상입니다. 구형 문의 UI 코드의 완전 제거와 실제 문의 종단간 시험이 완료되면 정상 상태로 전환합니다."
+  "public_note": "본 상태는 공개자산·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다."
 }
