@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OLD = "dubaissday" + "@cellpinda.com"
 NEW = "feed@cellpinda.com"
 
+# Keep this target list explicit so historical records are not rewritten.
 TARGETS = [
     "apps-script/Inquiry.gs",
     "apps-script/Inquiry_v2.gs",
