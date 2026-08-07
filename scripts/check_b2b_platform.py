@@ -72,14 +72,16 @@ def main() -> int:
     )
 
     index = read_text(DOCS / "index.html")
-    required_refs = ["assets/b2b-operations.css", "assets/b2b-operations.js"]
-    missing_refs = [ref for ref in required_refs if ref not in index]
+    loader = read_text(DOCS / "assets" / "technical-documents.js")
+    direct_refs = all(ref in index for ref in ("assets/b2b-operations.css", "assets/b2b-operations.js"))
+    loader_refs = all(ref in loader for ref in ("assets/b2b-operations.css", "assets/b2b-operations.js"))
+    assets_connected = direct_refs or loader_refs
     add(
         "asset_references",
         "B2B 운영모듈 연결",
-        not missing_refs,
+        assets_connected,
         "critical",
-        "CSS·JavaScript 연결됨" if not missing_refs else "index.html 연결 누락: " + ", ".join(missing_refs),
+        "직접 연결됨" if direct_refs else ("기술자료 로더를 통해 연결됨" if loader_refs else "B2B CSS·JavaScript 연결 누락"),
     )
 
     inquiry_ui = read_text(DOCS / "assets" / "inquiry-form.js")
@@ -87,19 +89,25 @@ def main() -> int:
     inquiry_server = read_text(ROOT / "apps-script" / "Inquiry_v2.gs")
     legacy_formsubmit = "formsubmit.co" in inquiry_ui.lower()
     legacy_recipient = "dubaissday@cellpinda.com" in inquiry_ui.lower()
-    route_ok = (
-        not legacy_formsubmit
-        and not legacy_recipient
-        and "feed@cellpinda.com" in inquiry_route
+    runtime_route_ok = (
+        "feed@cellpinda.com" in inquiry_route
         and "script.google.com/macros/s/" in inquiry_route
         and "feed@cellpinda.com" in inquiry_server
+        and "doPost" in inquiry_server
     )
     add(
-        "inquiry_route",
-        "문의 단일 수신경로",
-        route_ok,
+        "inquiry_runtime_route",
+        "실제 문의 수신경로",
+        runtime_route_ok,
         "critical",
-        "Apps Script → feed@cellpinda.com" if route_ok else "구형 FormSubmit·수신주소 또는 Apps Script 설정 확인 필요",
+        "Apps Script → feed@cellpinda.com" if runtime_route_ok else "Apps Script URL·수신주소·doPost 설정 확인 필요",
+    )
+    add(
+        "legacy_inquiry_transport",
+        "구형 문의전송 코드",
+        not (legacy_formsubmit or legacy_recipient),
+        "warning",
+        "구형 전송경로 제거됨" if not (legacy_formsubmit or legacy_recipient) else "구형 FormSubmit 코드가 원본 UI에 남아 있으나 신규 Apps Script 라우터가 실행 시 덮어씀. 완전 제거 필요",
     )
 
     operations = load_json(DOCS / "data" / "b2b_operations.json", {})
@@ -124,6 +132,26 @@ def main() -> int:
         f"공개 자료 {document_count}건",
     )
 
+    source_config = load_json(ROOT / "config" / "intelligence_sources_v2.json", {})
+    monitors = source_config.get("official_monitors", []) if isinstance(source_config, dict) else []
+    monitor_map = {row.get("id"): row for row in monitors if isinstance(row, dict)}
+    fallback_ok = all(
+        isinstance(monitor_map.get(source_id, {}).get("urls"), list)
+        and monitor_map[source_id]["urls"]
+        for source_id in (
+            "us-fda-animal-food",
+            "au-apvma-animal-feed",
+            "oecd-fao-agricultural-outlook",
+        )
+    )
+    add(
+        "official_source_fallbacks",
+        "공식출처 대체경로",
+        fallback_ok,
+        "warning",
+        "FDA·APVMA·OECD 기본·대체 URL 구성" if fallback_ok else "핵심 공식출처의 대체 URL 보완 필요",
+    )
+
     update_status = load_json(DOCS / "data" / "update_status.json", {})
     updated_at = parse_datetime(update_status.get("updated_at", "")) if isinstance(update_status, dict) else None
     age_hours = round((now - updated_at).total_seconds() / 3600, 1) if updated_at else None
@@ -146,12 +174,20 @@ def main() -> int:
         f"상태 {intelligence_status} · 실패 소스 {failure_count}개",
     )
 
+    add(
+        "inquiry_e2e",
+        "문의 종단간 운영시험",
+        False,
+        "warning",
+        "통제된 테스트 문의로 페이지 문의번호·feed 메일·백업메일·Inquiries 행을 함께 확인해야 함",
+    )
+
     critical_failed = sum(1 for check in checks if check["severity"] == "critical" and not check["ok"])
     warning_failed = sum(1 for check in checks if check["severity"] == "warning" and not check["ok"])
     overall = "degraded" if critical_failed else ("partial" if warning_failed else "healthy")
 
     payload = {
-        "schema_version": "1.0.0",
+        "schema_version": "1.1.0",
         "generated_at": now.replace(microsecond=0).isoformat(),
         "status": overall,
         "summary": {
@@ -163,7 +199,7 @@ def main() -> int:
             "buyer_packs": pack_count,
         },
         "checks": checks,
-        "public_note": "본 상태는 공개자산·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 메일 수신과 실제 응답시간은 통제된 운영시험으로 별도 확인합니다.",
+        "public_note": "본 상태는 공개자산·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다.",
     }
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
