@@ -1,0 +1,109 @@
+name: Resilient GABA intelligence refresh
+
+on:
+  schedule:
+    - cron: "50 18 * * *" # 03:50 Asia/Seoul, after the primary 03:20 run
+  workflow_dispatch:
+    inputs:
+      since_days:
+        description: "Research lookback period in days"
+        required: false
+        default: "30"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/resilient-intelligence.yml"
+      - "scripts/run_resilient_intelligence.py"
+      - "config/intelligence_sources_v2.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: resilient-gaba-intelligence
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate resilient route selector
+        run: |
+          python -m py_compile scripts/run_resilient_intelligence.py scripts/auto_intelligence_v2.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          config = json.loads(Path('config/intelligence_sources_v2.json').read_text(encoding='utf-8'))
+          required = {'us-fda-animal-food', 'au-apvma-animal-feed', 'oecd-fao-agricultural-outlook'}
+          monitors = {row.get('id'): row for row in config.get('official_monitors', [])}
+          assert required <= set(monitors)
+          for key in required:
+              assert monitors[key].get('urls')
+          print('official source fallback routes validated')
+          PY
+
+      - name: Select reachable official routes and refresh data
+        env:
+          SINCE_DAYS: ${{ github.event.inputs.since_days || '30' }}
+        run: python scripts/run_resilient_intelligence.py --since-days "$SINCE_DAYS"
+
+      - name: Validate public outputs
+        run: |
+          python scripts/auto_intelligence_v2.py --validate-only
+          python scripts/check_b2b_platform.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in (
+              Path('docs/data/auto_intelligence.json'),
+              Path('docs/data/knowledge_base.json'),
+              Path('docs/data/update_status.json'),
+              Path('docs/data/platform_health.json'),
+          ):
+              json.loads(path.read_text(encoding='utf-8'))
+              print('validated', path)
+          PY
+
+      - name: Commit changed public snapshots
+        run: |
+          git config user.name "cellpinda-intelligence-bot"
+          git config user.email "cellpinda-intelligence-bot@users.noreply.github.com"
+          git add \
+            data/auto_intelligence_state.json \
+            data/auto_review_queue.json \
+            docs/data/auto_intelligence.json \
+            docs/data/knowledge_base.json \
+            docs/data/update_status.json \
+            docs/data/platform_health.json \
+            docs/data/index.json
+          if git diff --cached --quiet; then
+            echo "No public intelligence changes"
+          else
+            git commit -m "data: refresh resilient GABA intelligence [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Write summary
+        run: |
+          {
+            echo "## Resilient GABA intelligence"
+            echo "- Official URL selection: completed"
+            echo "- PubMed / Europe PMC / Crossref: refreshed"
+            echo "- Public snapshots: validated"
+            echo "- B2B platform health: regenerated"
+          } >> "$GITHUB_STEP_SUMMARY"
