@@ -1,0 +1,277 @@
+:root{
+  --cta-green:#0b6c4f;
+  --cta-green-dark:#07533d;
+  --cta-green-soft:#eaf6f0;
+  --cta-ink:#17372b;
+  --cta-radius:16px;
+  --cta-shadow:0 14px 32px rgba(11,108,79,.22);
+  --cta-shadow-hover:0 20px 40px rgba(11,108,79,.28);
+}
+
+/* Primary actions: visually dominant and comfortably tappable. */
+.hero .primary,
+.nav-cta,
+.visitor-primary,
+.order-guide-primary,
+.inquiry-button.primary,
+.calc-actions .csv{
+  min-height:58px;
+  padding:16px 22px;
+  border:1px solid var(--cta-green)!important;
+  border-radius:var(--cta-radius)!important;
+  background:var(--cta-green)!important;
+  color:#fff!important;
+  font-size:16px!important;
+  font-weight:850!important;
+  line-height:1.2;
+  box-shadow:var(--cta-shadow)!important;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease!important;
+}
+
+.hero .primary:hover,
+.nav-cta:hover,
+.visitor-primary:hover,
+.order-guide-primary:hover,
+.inquiry-button.primary:hover,
+.calc-actions .csv:hover{
+  background:var(--cta-green-dark)!important;
+  transform:translateY(-2px);
+  box-shadow:var(--cta-shadow-hover)!important;
+}
+
+/* Keep the top navigation CTA prominent without becoming oversized. */
+.nav-cta{
+  min-height:46px;
+  padding:12px 18px!important;
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+/* Secondary actions remain obvious but subordinate to the main CTA. */
+.hero .secondary,
+.visitor-secondary,
+.order-guide-secondary,
+.order-guide-shortcut,
+.inquiry-button.secondary,
+.inquiry-button.ghost,
+.calc-actions .print{
+  min-height:54px;
+  padding:14px 20px!important;
+  border:1.5px solid var(--cta-green)!important;
+  border-radius:var(--cta-radius)!important;
+  background:#fff!important;
+  color:var(--cta-green)!important;
+  font-size:15px!important;
+  font-weight:820!important;
+  line-height:1.2;
+  box-shadow:0 8px 20px rgba(20,74,52,.08);
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease!important;
+}
+
+.hero .secondary:hover,
+.visitor-secondary:hover,
+.order-guide-secondary:hover,
+.order-guide-shortcut:hover,
+.inquiry-button.secondary:hover,
+.inquiry-button.ghost:hover,
+.calc-actions .print:hover{
+  background:var(--cta-green-soft)!important;
+  transform:translateY(-1px);
+  box-shadow:0 12px 26px rgba(20,74,52,.12);
+}
+
+.cta-arrow{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.cta-arrow::after{
+  content:"→";
+  display:inline-block;
+  font-size:1.12em;
+  font-weight:900;
+  transition:transform .18s ease;
+}
+
+.cta-arrow:hover::after{
+  transform:translateX(4px);
+}
+
+.cta-helper{
+  margin:18px 0 10px;
+  padding:12px 15px;
+  border-left:3px solid var(--cta-green);
+  border-radius:0 12px 12px 0;
+  background:#f1f8f4;
+  color:#4e665a;
+  font-size:13px;
+  font-weight:720;
+  line-height:1.55;
+}
+
+/* Make the multiple-choice cards feel unmistakably clickable. */
+.visitor-option{
+  border-width:1.5px!important;
+  box-shadow:0 8px 20px rgba(18,73,51,.06);
+}
+
+.visitor-option>b{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:7px 9px;
+  border-radius:999px;
+  background:var(--cta-green-soft);
+  color:var(--cta-green)!important;
+  font-size:11px!important;
+  font-weight:900!important;
+}
+
+.visitor-option>b::after{content:"→"}
+
+.visitor-option:hover{
+  border-color:var(--cta-green)!important;
+  box-shadow:0 16px 34px rgba(18,73,51,.13)!important;
+}
+
+/* Product selection cards also receive a clear selection affordance. */
+.order-product-card>b{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:auto;
+  padding:9px 12px!important;
+  border-radius:999px;
+  background:var(--cta-green-soft);
+  color:var(--cta-green)!important;
+  font-size:12px!important;
+  font-weight:900!important;
+}
+
+.order-product-card.is-selected>b{
+  background:var(--cta-green);
+  color:#fff!important;
+}
+
+.visitor-result-actions,
+.order-guide-actions,
+.inquiry-actions,
+.hero-actions,
+.calc-actions{
+  gap:12px!important;
+}
+
+.visitor-result-actions,
+.order-guide-actions{
+  margin-top:26px!important;
+}
+
+.inquiry-actions{
+  margin-top:32px!important;
+  padding-top:24px!important;
+}
+
+/* Attention is finite: three gentle pulses, disabled for reduced motion. */
+.cta-attention{
+  animation:ctaAttention 2.2s ease-in-out 3;
+}
+
+@keyframes ctaAttention{
+  0%,100%{box-shadow:var(--cta-shadow)}
+  50%{box-shadow:0 0 0 7px rgba(11,108,79,.12),var(--cta-shadow-hover)}
+}
+
+/* Mobile persistent actions help non-technical visitors find the two key paths. */
+.mobile-action-bar{
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:calc(10px + env(safe-area-inset-bottom));
+  z-index:120;
+  display:none;
+  grid-template-columns:1.15fr .85fr;
+  gap:9px;
+  padding:9px;
+  border:1px solid rgba(201,218,209,.92);
+  border-radius:18px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 18px 48px rgba(16,60,47,.24);
+  backdrop-filter:blur(14px);
+  transition:opacity .2s ease,transform .2s ease;
+}
+
+.mobile-action-bar.is-hidden{
+  opacity:0;
+  transform:translateY(120%);
+  pointer-events:none;
+}
+
+.mobile-action-bar button{
+  min-height:52px;
+  border-radius:13px;
+  font:inherit;
+  font-size:14px;
+  font-weight:850;
+  cursor:pointer;
+}
+
+.mobile-action-primary{
+  border:1px solid var(--cta-green);
+  background:var(--cta-green);
+  color:#fff;
+  box-shadow:0 9px 20px rgba(11,108,79,.2);
+}
+
+.mobile-action-secondary{
+  border:1.5px solid var(--cta-green);
+  background:#fff;
+  color:var(--cta-green);
+}
+
+.hero .primary:focus-visible,
+.hero .secondary:focus-visible,
+.nav-cta:focus-visible,
+.visitor-primary:focus-visible,
+.visitor-secondary:focus-visible,
+.order-guide-primary:focus-visible,
+.order-guide-secondary:focus-visible,
+.order-guide-shortcut:focus-visible,
+.inquiry-button:focus-visible,
+.calc-actions button:focus-visible,
+.mobile-action-bar button:focus-visible{
+  outline:4px solid rgba(11,108,79,.22)!important;
+  outline-offset:3px!important;
+}
+
+@media(max-width:760px){
+  body.has-mobile-action-bar{padding-bottom:94px}
+  .mobile-action-bar{display:grid}
+  .hero-actions,
+  .visitor-result-actions,
+  .order-guide-actions,
+  .inquiry-actions,
+  .calc-actions{display:grid!important;grid-template-columns:1fr!important}
+  .hero .primary,
+  .hero .secondary,
+  .visitor-primary,
+  .visitor-secondary,
+  .order-guide-primary,
+  .order-guide-secondary,
+  .order-guide-shortcut,
+  .inquiry-button,
+  .calc-actions button{width:100%!important;min-height:58px}
+  .visitor-option>b{display:inline-flex!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .cta-attention{animation:none}
+  .cta-arrow::after,
+  .mobile-action-bar{transition:none}
+}
+
+@media print{
+  .mobile-action-bar{display:none!important}
+  body.has-mobile-action-bar{padding-bottom:0}
+}
