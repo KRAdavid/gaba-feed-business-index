@@ -80,8 +80,10 @@ jobs:
         run: |
           git config user.name "cellpinda-platform-bot"
           git config user.email "cellpinda-platform-bot@users.noreply.github.com"
-          # Workflow files are maintained by the authenticated user because the
-          # default Actions token cannot update workflows without workflow scope.
+          # patch_b2b_platform validates the deployment workflow, but the default
+          # Actions token cannot publish workflow-file changes. The authenticated
+          # user maintains that file separately, so restore it before committing.
+          git restore --worktree .github/workflows/deploy-public-index-v2.yml || true
           git add \
             docs/index.html \
             docs/assets/inquiry-form.js \
