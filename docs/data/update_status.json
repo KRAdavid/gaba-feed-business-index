@@ -1,25 +1,21 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-08-07T00:21:53+00:00",
+  "updated_at": "2026-08-07T07:10:51+00:00",
   "status": "partial",
-  "semantic_digest": "372121f93e4def4f12eff867bf4e09604d98a1ad201fad5058e72b881f3983c4",
+  "semantic_digest": "5968104292e98a945e4dfe41b97fc512f62a2cd4a43b7f61783896cc3e48652e",
   "counts": {
-    "collected_this_run": 12,
-    "auto_published": 11,
+    "collected_this_run": 13,
+    "auto_published": 12,
     "review_queue": 1
   },
   "failures": [
-    {
-      "source": "us-fda-animal-food",
-      "error": "request failed after 3 attempts: https://www.fda.gov/animal-veterinary/animal-food-feeds: HTTP Error 404: Not Found"
-    },
     {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products: The read operation timed out"
     },
     {
       "source": "oecd-fao-agricultural-outlook",
-      "error": "request failed after 3 attempts: https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2025-2034_601276cd-en.html: HTTP Error 403: Forbidden"
+      "error": "request failed after 3 attempts: https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html: HTTP Error 403: Forbidden"
     }
   ],
   "next_schedule": "daily 03:20 Asia/Seoul"

@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-08-07T00:21:53+00:00",
+  "generated_at": "2026-08-07T07:10:51+00:00",
   "status": "partial",
   "sources": {
     "pubmed": true,
@@ -10,11 +10,39 @@
     "curated": 11
   },
   "counts": {
-    "collected_this_run": 12,
-    "auto_published": 11,
+    "collected_this_run": 13,
+    "auto_published": 12,
     "review_queue": 1
   },
   "items": [
+    {
+      "item_id": "policy-26ecd08c30079e0d8034",
+      "category": "policy",
+      "source_type": "official_monitor",
+      "title": "European Food Safety Authority 관련 페이지 변경 확인 필요",
+      "summary": "공식 출처의 관련 페이지에서 두 차례 연속 동일한 변경이 감지되었습니다. 변경 내용은 원문과 시행일을 확인한 뒤 사업 자료에 반영해야 합니다.",
+      "source_name": "European Food Safety Authority",
+      "source_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
+      "published_at": "2026-08-07",
+      "detected_at": "2026-08-07T07:08:56+00:00",
+      "doi": "",
+      "pmid": "",
+      "species": "Multi-species",
+      "evidence_grade": "A",
+      "confidence": "high",
+      "auto_publish": true,
+      "official_source": true,
+      "tags": [
+        "policy",
+        "official source",
+        "confirmed change"
+      ],
+      "metadata": {
+        "source_id": "eu-efsa-feed-additives",
+        "content_hash": "77b02e78a3be46a014ca7cf20025474f7f2dedc7697a9af1bf62a599368762fb",
+        "confirmation_runs": 2
+      }
+    },
     {
       "item_id": "curated-20196dfbfba42ac235c5",
       "category": "policy",
@@ -317,16 +345,12 @@
   ],
   "failures": [
     {
-      "source": "us-fda-animal-food",
-      "error": "request failed after 3 attempts: https://www.fda.gov/animal-veterinary/animal-food-feeds: HTTP Error 404: Not Found"
-    },
-    {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products: The read operation timed out"
     },
     {
       "source": "oecd-fao-agricultural-outlook",
-      "error": "request failed after 3 attempts: https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2025-2034_601276cd-en.html: HTTP Error 403: Forbidden"
+      "error": "request failed after 3 attempts: https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html: HTTP Error 403: Forbidden"
     }
   ],
   "disclaimer": "자동 수집·분류 결과입니다. 규제 해석, 제품 효능, 최적 급여량은 공식 원문과 시험조건을 확인한 뒤 확정해야 합니다."

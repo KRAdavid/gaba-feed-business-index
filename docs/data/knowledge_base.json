@@ -1,14 +1,26 @@
 {
   "schema_version": "2.0.0",
-  "updated_at": "2026-08-07T00:21:53+00:00",
-  "count": 11,
+  "updated_at": "2026-08-07T07:10:51+00:00",
+  "count": 12,
   "counts": {
     "paper": 5,
-    "policy": 4,
+    "policy": 5,
     "statistics": 1,
     "market": 1
   },
   "items": [
+    {
+      "id": "policy-26ecd08c30079e0d8034",
+      "type": "policy",
+      "category": "policy · European Food Safety Authority",
+      "date": "2026-08-07",
+      "title": "European Food Safety Authority 관련 페이지 변경 확인 필요",
+      "summary": "공식 출처의 관련 페이지에서 두 차례 연속 동일한 변경이 감지되었습니다. 변경 내용은 원문과 시행일을 확인한 뒤 사업 자료에 반영해야 합니다.",
+      "url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
+      "source": "European Food Safety Authority",
+      "evidence_grade": "A",
+      "confidence": "high"
+    },
     {
       "id": "curated-20196dfbfba42ac235c5",
       "type": "policy",
