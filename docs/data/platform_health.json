@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-07T00:00:00+00:00",
+  "status": "partial",
+  "summary": {
+    "critical_failed": 0,
+    "warnings": 1,
+    "checks": 1,
+    "documents": 7,
+    "operating_stages": 6,
+    "buyer_packs": 4
+  },
+  "checks": [
+    {
+      "id": "initializing",
+      "label": "운영점검 초기화",
+      "ok": true,
+      "severity": "warning",
+      "message": "자동 건강점검 워크플로가 첫 실행 후 갱신합니다."
+    }
+  ],
+  "public_note": "B2B 운영상태 자동점검을 초기화하고 있습니다. 첫 건강점검 실행 후 최신 상태로 갱신됩니다."
+}
