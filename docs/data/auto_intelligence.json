@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-08-06T01:40:43+00:00",
+  "generated_at": "2026-08-07T00:21:53+00:00",
   "status": "partial",
   "sources": {
     "pubmed": true,
@@ -316,14 +316,6 @@
     }
   ],
   "failures": [
-    {
-      "source": "kr-mafra-feed-policy",
-      "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>"
-    },
-    {
-      "source": "kr-feed-control-act",
-      "error": "request failed after 3 attempts: https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95: <urlopen error timed out>"
-    },
     {
       "source": "us-fda-animal-food",
       "error": "request failed after 3 attempts: https://www.fda.gov/animal-veterinary/animal-food-feeds: HTTP Error 404: Not Found"

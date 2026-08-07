@@ -1,11 +1,11 @@
 {
   "version": "2.0.0",
-  "semantic_digest": "1116db6624df5ed7b478d987b557e4bc8a06523de0523f302adaaaf083e4cf39",
+  "semantic_digest": "372121f93e4def4f12eff867bf4e09604d98a1ad201fad5058e72b881f3983c4",
   "official_monitors": {
     "eu-efsa-feed-additives": {
       "digest": "cc7d9e7d660585a5548cccb049a23c272aa29161bcde4ab40a105eccb538a912",
-      "candidate_digest": "",
-      "candidate_count": 0,
+      "candidate_digest": "77b02e78a3be46a014ca7cf20025474f7f2dedc7697a9af1bf62a599368762fb",
+      "candidate_count": 1,
       "url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives"
     },
     "fao-animal-production": {
@@ -13,6 +13,18 @@
       "candidate_digest": "",
       "candidate_count": 0,
       "url": "https://www.fao.org/animal-production/en"
+    },
+    "kr-mafra-feed-policy": {
+      "digest": "3ebc5725a50b0112ded7d68a06e6c3061a83d6a1d8e18dca124eefe7824dcc5d",
+      "candidate_digest": "",
+      "candidate_count": 0,
+      "url": "https://www.mafra.go.kr/"
+    },
+    "kr-feed-control-act": {
+      "digest": "5a1310ddc4d12fbe51bf64098c039a7fee56013633574bc2c1c65fa8fed937e5",
+      "candidate_digest": "",
+      "candidate_count": 0,
+      "url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95"
     }
   }
 }
