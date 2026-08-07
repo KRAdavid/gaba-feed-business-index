@@ -1,0 +1,81 @@
+name: Install rotating hero banner
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/assets/hero-banner-rotator.css"
+      - "docs/assets/hero-banner-rotator.js"
+      - "scripts/patch_hero_banner_rotator.py"
+      - "tests/test_patch_hero_banner_rotator.py"
+      - ".github/workflows/install-hero-banner-rotator.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rotating-hero-banner
+  cancel-in-progress: true
+
+jobs:
+  install-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate hero-banner assets
+        run: |
+          node --check docs/assets/hero-banner-rotator.js
+          python -m py_compile scripts/patch_hero_banner_rotator.py
+          python -m unittest tests/test_patch_hero_banner_rotator.py -v
+
+      - name: Install hero-banner asset references
+        run: python scripts/patch_hero_banner_rotator.py
+
+      - name: Commit patched public page
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "Rotating hero-banner references already installed"
+          else
+            git commit -m "feat: activate rotating hero banner"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Verify installed banner
+        run: |
+          test -f docs/assets/hero-banner-rotator.css
+          test -f docs/assets/hero-banner-rotator.js
+          grep -q 'assets/hero-banner-rotator.css' docs/index.html
+          grep -q 'assets/hero-banner-rotator.js' docs/index.html
+          grep -q '유산균 발효' docs/assets/hero-banner-rotator.js
+          grep -q '항생제 사용 저감을 지향하는' docs/assets/hero-banner-rotator.js
+          python scripts/patch_hero_banner_rotator.py --check
+
+      - name: Write workflow summary
+        run: |
+          {
+            echo "## Rotating hero banner"
+            echo "- Three messages: installed"
+            echo "- Rotation interval: 3 seconds"
+            echo "- Direct 01/02/03 controls: installed"
+            echo "- Hover/focus pause: installed"
+            echo "- Mobile responsive and reduced-motion handling: installed"
+            echo "- Existing solution and document CTAs: preserved"
+          } >> "$GITHUB_STEP_SUMMARY"
