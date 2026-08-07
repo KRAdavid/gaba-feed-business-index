@@ -1,5 +1,7 @@
 # Cellpinda GABA Feed B2B Operating Model
 
+> Phase 1 activation status: source modules and Google Sheets operating master aligned on 2026-08-07. The installation workflow now applies public-page references, inquiry hardening, source-monitor fallbacks and the platform health snapshot.
+
 ## 1. Platform goal
 
 Convert the public index from a product-information website into an operating platform that moves a qualified buyer through one controlled workflow:
