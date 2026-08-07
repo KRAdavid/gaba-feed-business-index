@@ -4,20 +4,20 @@
   const SLIDES = [
     {
       kicker: 'FERMENTED GABA 20',
-      title: '유산균 발효 <span>GABA 20</span>',
-      subtitle: '차세대 바이오액티브 올인원 사료 솔루션',
+      title: '<span class="hero-banner-phrase">유산균 발효 <span class="hero-banner-accent">GABA 20</span></span>',
+      subtitle: '발효 유래 GABA를 20% 기준으로 표준화한 바이오액티브 사료 솔루션',
       caption: 'FERMENTED GABA 20'
     },
     {
       kicker: 'INTEGRATED NUTRITION',
-      title: '스트레스 대응부터<br><span>사료효율·장 건강 관리까지</span>',
-      subtitle: '지속가능한 축산을 위한 통합 영양 솔루션',
+      title: '<span class="hero-banner-phrase">스트레스 대응부터</span><br><span class="hero-banner-phrase hero-banner-accent">사료효율·장 건강 관리까지</span>',
+      subtitle: '축종별 파일럿과 데이터로 검증하는 통합 영양 솔루션',
       caption: 'INTEGRATED FEED SOLUTION'
     },
     {
       kicker: 'SUSTAINABLE FEED STRATEGY',
-      title: '항생제 사용 저감을 지향하는',
-      subtitle: '지속가능한 사양전략',
+      title: '<span class="hero-banner-phrase">항생제 사용 저감을 지향하는</span>',
+      subtitle: '동물의 컨디션과 생산성을 함께 고려하는 지속가능한 사양전략',
       caption: 'SUSTAINABLE FEED STRATEGY'
     }
   ];
