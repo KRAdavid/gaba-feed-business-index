@@ -16,8 +16,8 @@
     },
     {
       kicker: 'SUSTAINABLE FEED STRATEGY',
-      title: '항생제 사용 저감을 지향하는<br><span>지속가능한 사양전략</span>',
-      subtitle: '지속가능한 축산을 위한 책임 있는 영양 설계',
+      title: '항생제 사용 저감을 지향하는',
+      subtitle: '지속가능한 사양전략',
       caption: 'SUSTAINABLE FEED STRATEGY'
     }
   ];
