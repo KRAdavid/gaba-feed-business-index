@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "settings": {
     "default_lookback_days": 30,
     "max_items_per_query": 20,
@@ -38,6 +38,9 @@
       "name": "대한민국 농림축산식품부",
       "category": "policy",
       "url": "https://www.mafra.go.kr/",
+      "urls": [
+        "https://www.mafra.go.kr/"
+      ],
       "official": true,
       "keywords": ["사료관리", "배합사료", "사료첨가제", "축산"],
       "confirmation_runs": 2,
@@ -48,6 +51,9 @@
       "name": "국가법령정보센터 사료관리법",
       "category": "policy",
       "url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
+      "urls": [
+        "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95"
+      ],
       "official": true,
       "keywords": ["사료관리법", "사료", "제조업", "수입"],
       "confirmation_runs": 2,
@@ -58,6 +64,10 @@
       "name": "European Food Safety Authority",
       "category": "policy",
       "url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
+      "urls": [
+        "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
+        "https://www.efsa.europa.eu/en/applications/feedadditives"
+      ],
       "official": true,
       "keywords": ["feed additives", "authorisation", "safety", "efficacy"],
       "confirmation_runs": 2,
@@ -65,9 +75,13 @@
     },
     {
       "id": "us-fda-animal-food",
-      "name": "U.S. FDA Animal Food",
+      "name": "U.S. FDA Animal Foods & Feeds",
       "category": "policy",
-      "url": "https://www.fda.gov/animal-veterinary/animal-food-feeds",
+      "url": "https://www.fda.gov/animal-food-feeds",
+      "urls": [
+        "https://www.fda.gov/animal-food-feeds",
+        "https://www.fda.gov/animal-veterinary/animal-food-feeds"
+      ],
       "official": true,
       "keywords": ["animal food", "feed ingredients", "food additive", "GRAS"],
       "confirmation_runs": 2,
@@ -78,6 +92,10 @@
       "name": "Australian Pesticides and Veterinary Medicines Authority",
       "category": "policy",
       "url": "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products",
+      "urls": [
+        "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products",
+        "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages"
+      ],
       "official": true,
       "keywords": ["animal feed products", "nutritional", "therapeutic", "registration"],
       "confirmation_runs": 2,
@@ -88,6 +106,10 @@
       "name": "FAO Animal Production and Health",
       "category": "statistics",
       "url": "https://www.fao.org/animal-production/en",
+      "urls": [
+        "https://www.fao.org/animal-production/en",
+        "https://www.fao.org/faostat/en/#data/QCL"
+      ],
       "official": true,
       "keywords": ["animal production", "livestock", "feed", "statistics"],
       "confirmation_runs": 2,
@@ -97,7 +119,11 @@
       "id": "oecd-fao-agricultural-outlook",
       "name": "OECD-FAO Agricultural Outlook",
       "category": "market",
-      "url": "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2025-2034_601276cd-en.html",
+      "url": "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html",
+      "urls": [
+        "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html",
+        "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report/key-messages_600831c0.html"
+      ],
       "official": true,
       "keywords": ["meat", "livestock", "agricultural outlook", "feed"],
       "confirmation_runs": 2,
