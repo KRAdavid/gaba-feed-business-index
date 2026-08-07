@@ -1,0 +1,78 @@
+name: Install split product selector
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/assets/product-split-selector.css"
+      - "docs/assets/product-split-selector.js"
+      - "scripts/patch_product_split_selector.py"
+      - "tests/test_patch_product_split_selector.py"
+      - ".github/workflows/install-product-split-selector.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: split-product-selector
+  cancel-in-progress: true
+
+jobs:
+  install-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate selector assets
+        run: |
+          node --check docs/assets/product-split-selector.js
+          python -m py_compile scripts/patch_product_split_selector.py
+          python -m unittest tests/test_patch_product_split_selector.py -v
+
+      - name: Install selector asset references
+        run: python scripts/patch_product_split_selector.py
+
+      - name: Commit patched public page
+        run: |
+          git config user.name "cellpinda-site-bot"
+          git config user.email "cellpinda-site-bot@users.noreply.github.com"
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "Split product selector references already installed"
+          else
+            git commit -m "feat: activate split product selector"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Verify installed selector
+        run: |
+          test -f docs/assets/product-split-selector.css
+          test -f docs/assets/product-split-selector.js
+          grep -q 'assets/product-split-selector.css' docs/index.html
+          grep -q 'assets/product-split-selector.js' docs/index.html
+          python scripts/patch_product_split_selector.py --check
+
+      - name: Write workflow summary
+        run: |
+          {
+            echo "## Split product selector"
+            echo "- Left: GABA Crude raw-material path"
+            echo "- Right: GABA Care Mix OEM/ODM path"
+            echo "- Whole-card click affordance: enabled"
+            echo "- Existing product detail switching: preserved"
+            echo "- Mobile: stacked large touch cards"
+          } >> "$GITHUB_STEP_SUMMARY"
