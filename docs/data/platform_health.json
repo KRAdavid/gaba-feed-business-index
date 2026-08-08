@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1.0",
-  "generated_at": "2026-08-07T19:45:14+00:00",
+  "generated_at": "2026-08-08T19:27:49+00:00",
   "status": "partial",
   "summary": {
     "critical_failed": 0,
@@ -72,7 +72,7 @@
       "label": "외부 인텔리전스 수집",
       "ok": false,
       "severity": "warning",
-      "message": "상태 partial · 실패 소스 2개"
+      "message": "상태 partial · 실패 소스 4개"
     },
     {
       "id": "inquiry_e2e",

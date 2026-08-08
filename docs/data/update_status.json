@@ -1,14 +1,28 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-08-07T19:45:14+00:00",
+  "updated_at": "2026-08-08T19:27:49+00:00",
   "status": "partial",
-  "semantic_digest": "fe08e876808ed38f9facb888843ca21951de5726de5c1063e2f4d05ee40f9feb",
+  "semantic_digest": "da53920a1e3cd1ccce29764691e8bed66d41c1765dcb9487344d166749f1e041",
   "counts": {
     "collected_this_run": 12,
     "auto_published": 12,
     "review_queue": 1
   },
   "failures": [
+    {
+      "source": "kr-mafra-feed-policy",
+      "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>",
+      "attempted_urls": [
+        "https://www.mafra.go.kr/"
+      ]
+    },
+    {
+      "source": "kr-feed-control-act",
+      "error": "request failed after 3 attempts: https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95: <urlopen error timed out>",
+      "attempted_urls": [
+        "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95"
+      ]
+    },
     {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
@@ -26,5 +40,57 @@
       ]
     }
   ],
-  "next_schedule": "daily 03:20 Asia/Seoul"
+  "next_schedule": "daily 03:20 Asia/Seoul",
+  "route_checked_at": "2026-08-08T19:27:49+00:00",
+  "source_routes": [
+    {
+      "source": "kr-mafra-feed-policy",
+      "reachable": false,
+      "selected_url": "",
+      "attempt_count": 1,
+      "last_result": "<urlopen error timed out>"
+    },
+    {
+      "source": "kr-feed-control-act",
+      "reachable": false,
+      "selected_url": "",
+      "attempt_count": 1,
+      "last_result": "<urlopen error timed out>"
+    },
+    {
+      "source": "eu-efsa-feed-additives",
+      "reachable": true,
+      "selected_url": "https://www.efsa.europa.eu/en/applications/feedadditives",
+      "attempt_count": 2,
+      "last_result": "HTTP 206"
+    },
+    {
+      "source": "us-fda-animal-food",
+      "reachable": true,
+      "selected_url": "https://www.fda.gov/animal-food-feeds",
+      "attempt_count": 1,
+      "last_result": "HTTP 200"
+    },
+    {
+      "source": "au-apvma-animal-feed",
+      "reachable": false,
+      "selected_url": "",
+      "attempt_count": 2,
+      "last_result": "The read operation timed out"
+    },
+    {
+      "source": "fao-animal-production",
+      "reachable": true,
+      "selected_url": "https://www.fao.org/animal-production/en",
+      "attempt_count": 1,
+      "last_result": "HTTP 200"
+    },
+    {
+      "source": "oecd-fao-agricultural-outlook",
+      "reachable": false,
+      "selected_url": "",
+      "attempt_count": 2,
+      "last_result": "HTTP 403"
+    }
+  ]
 }

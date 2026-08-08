@@ -1648,7 +1648,7 @@
   },
   "auto_intelligence": {
     "version": "2.0.0",
-    "generated_at": "2026-08-07T19:45:14+00:00",
+    "generated_at": "2026-08-08T19:27:49+00:00",
     "count": 12,
     "items": [
       {
@@ -1980,5 +1980,5 @@
       }
     ]
   },
-  "auto_intelligence_updated_at": "2026-08-07T19:45:14+00:00"
+  "auto_intelligence_updated_at": "2026-08-08T19:27:49+00:00"
 }
