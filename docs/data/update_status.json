@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-08-08T19:27:49+00:00",
+  "updated_at": "2026-08-09T19:12:32+00:00",
   "status": "partial",
-  "semantic_digest": "da53920a1e3cd1ccce29764691e8bed66d41c1765dcb9487344d166749f1e041",
+  "semantic_digest": "c1ff3fc3e963893514e91f90616602a98b5acebc3033b5eac75968ba40490e9c",
   "counts": {
     "collected_this_run": 12,
     "auto_published": 12,
@@ -14,13 +14,6 @@
       "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>",
       "attempted_urls": [
         "https://www.mafra.go.kr/"
-      ]
-    },
-    {
-      "source": "kr-feed-control-act",
-      "error": "request failed after 3 attempts: https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95"
       ]
     },
     {
@@ -40,57 +33,5 @@
       ]
     }
   ],
-  "next_schedule": "daily 03:20 Asia/Seoul",
-  "route_checked_at": "2026-08-08T19:27:49+00:00",
-  "source_routes": [
-    {
-      "source": "kr-mafra-feed-policy",
-      "reachable": false,
-      "selected_url": "",
-      "attempt_count": 1,
-      "last_result": "<urlopen error timed out>"
-    },
-    {
-      "source": "kr-feed-control-act",
-      "reachable": false,
-      "selected_url": "",
-      "attempt_count": 1,
-      "last_result": "<urlopen error timed out>"
-    },
-    {
-      "source": "eu-efsa-feed-additives",
-      "reachable": true,
-      "selected_url": "https://www.efsa.europa.eu/en/applications/feedadditives",
-      "attempt_count": 2,
-      "last_result": "HTTP 206"
-    },
-    {
-      "source": "us-fda-animal-food",
-      "reachable": true,
-      "selected_url": "https://www.fda.gov/animal-food-feeds",
-      "attempt_count": 1,
-      "last_result": "HTTP 200"
-    },
-    {
-      "source": "au-apvma-animal-feed",
-      "reachable": false,
-      "selected_url": "",
-      "attempt_count": 2,
-      "last_result": "The read operation timed out"
-    },
-    {
-      "source": "fao-animal-production",
-      "reachable": true,
-      "selected_url": "https://www.fao.org/animal-production/en",
-      "attempt_count": 1,
-      "last_result": "HTTP 200"
-    },
-    {
-      "source": "oecd-fao-agricultural-outlook",
-      "reachable": false,
-      "selected_url": "",
-      "attempt_count": 2,
-      "last_result": "HTTP 403"
-    }
-  ]
+  "next_schedule": "daily 03:20 Asia/Seoul"
 }
