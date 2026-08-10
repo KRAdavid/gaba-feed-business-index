@@ -56,6 +56,9 @@ def main() -> int:
         DOCS / "index.html",
         DOCS / "assets" / "b2b-operations.css",
         DOCS / "assets" / "b2b-operations.js",
+        DOCS / "assets" / "smart-consultation.css",
+        DOCS / "assets" / "smart-consultation.js",
+        DOCS / "assets" / "technical-documents.js",
         DOCS / "data" / "b2b_operations.json",
         DOCS / "data" / "technical_documents.json",
         DOCS / "data" / "update_status.json",
@@ -82,6 +85,21 @@ def main() -> int:
         assets_connected,
         "critical",
         "직접 연결됨" if direct_refs else ("기술자료 로더를 통해 연결됨" if loader_refs else "B2B CSS·JavaScript 연결 누락"),
+    )
+
+    smart_js = read_text(DOCS / "assets" / "smart-consultation.js")
+    smart_connected = (
+        "assets/smart-consultation.js" in loader
+        and "조건 검토 후 상담요청" in smart_js
+        and "스마트상담_진입경로" in smart_js
+        and "smartConditionalFields" in smart_js
+    )
+    add(
+        "smart_consultation",
+        "조건기반 스마트 상담",
+        smart_connected,
+        "critical",
+        "도입진단·주문가이드·Buyer Pack 조건 자동반영" if smart_connected else "스마트 상담 로더·자동설정 필드 확인 필요",
     )
 
     inquiry_ui = read_text(DOCS / "assets" / "inquiry-form.js")
@@ -187,7 +205,7 @@ def main() -> int:
     overall = "degraded" if critical_failed else ("partial" if warning_failed else "healthy")
 
     payload = {
-        "schema_version": "1.1.0",
+        "schema_version": "1.2.0",
         "generated_at": now.replace(microsecond=0).isoformat(),
         "status": overall,
         "summary": {
@@ -197,9 +215,10 @@ def main() -> int:
             "documents": document_count,
             "operating_stages": stage_count,
             "buyer_packs": pack_count,
+            "smart_consultation": smart_connected,
         },
         "checks": checks,
-        "public_note": "본 상태는 공개자산·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다.",
+        "public_note": "본 상태는 공개자산·스마트 상담·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다.",
     }
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)

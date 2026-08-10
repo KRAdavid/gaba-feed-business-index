@@ -122,6 +122,28 @@
     }
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load);
-  else load();
+  function loadSmartConsultation() {
+    if (!document.querySelector('script[data-smart-consultation-loader]')) {
+      const script = document.createElement('script');
+      script.src = 'assets/smart-consultation.js';
+      script.defer = true;
+      script.dataset.smartConsultationLoader = 'v1';
+      document.body.append(script);
+    }
+    if (!document.querySelector('script[data-smart-consultation-sync-loader]')) {
+      const sync = document.createElement('script');
+      sync.src = 'assets/smart-consultation-sync.js';
+      sync.defer = true;
+      sync.dataset.smartConsultationSyncLoader = 'v1';
+      document.body.append(sync);
+    }
+  }
+
+  function init() {
+    load();
+    loadSmartConsultation();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
