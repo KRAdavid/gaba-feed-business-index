@@ -510,13 +510,6 @@
       "unlock": "시험생산 실수율로 보정"
     },
     {
-      "metric": "가바크루드 표준품 원가",
-      "value": "7,000원/kg",
-      "state": "사용자 제공 기준",
-      "formula": "표준품 1kg 기준",
-      "unlock": "실제 제조·검사·포장 원가로 확정"
-    },
-    {
       "metric": "가바크루드 최종 매출원가",
       "value": "견적 입력 후 확정",
       "state": "계산 대기",
@@ -526,9 +519,9 @@
     {
       "metric": "가바크루드 판매가격",
       "value": "18,000원/kg",
-      "state": "검증 필요",
-      "formula": "입력",
-      "unlock": "고객 견적과 가격 수용성"
+      "state": "사용자 확정 공개 기준",
+      "formula": "Care Mix 공개 산술에 적용; VAT·운송·고객별 거래조건 별도",
+      "unlock": "고객별 유효 견적서와 거래조건"
     },
     {
       "metric": "가바크루드 매출총이익",
@@ -553,17 +546,10 @@
     },
     {
       "metric": "가바케어믹스 혼합비·원료 투입원가",
-      "value": "가바크루드 50% + 미네랄매트릭스 50% · 5,000원/kg",
-      "state": "표준품 단가 기준 이론 계산",
-      "formula": "GABA 20% 가바크루드 0.5kg×7,000원/kg + 미네랄매트릭스 0.5kg×3,000원/kg = 5,000원/kg; 사료 1톤당 5,000원",
-      "unlock": "제조·검사·포장·수율손실·축종별 실제 섭취량 확인"
-    },
-    {
-      "metric": "내부 제조 시 원가 하한 참고",
-      "value": "3,500원/kg",
-      "state": "배양액 원가 하한만 반영",
-      "formula": "가바크루드 원가 하한 4,000원/kg×50% + 미네랄매트릭스 3,000원/kg×50%; 최종 매출원가는 제조·검사·포장·수율 반영 후 확정",
-      "unlock": "말토덱스트린·건조·검사·포장 견적과 실제 공정수율"
+      "value": "가바크루드 50% + 미네랄매트릭스 50% · 11,500원/kg",
+      "state": "사용자 확정 기준가의 이론 계산",
+      "formula": "GABA 20% 가바크루드 0.5kg×18,000원/kg = 9,000원 + 미네랄매트릭스 0.5kg×5,000원/kg = 2,500원; 합계 11,500원/kg, 사료 1톤당 11,500원",
+      "unlock": "혼합·제조·검사·포장·수율손실·물류·고객별 거래조건 확인"
     },
     {
       "metric": "고객가치",
@@ -571,6 +557,20 @@
       "state": "가설",
       "formula": "손실회피 가정",
       "unlock": "유료 비교시험에서 경제 효과 측정"
+    },
+    {
+      "metric": "미네랄매트릭스 기준가격",
+      "value": "5,000원/kg",
+      "state": "사용자 확정 공개 기준",
+      "formula": "Care Mix 50% 배합 산술에 적용; VAT·운송·고객별 거래조건 별도",
+      "unlock": "실제 구매·공급 견적서와 거래조건"
+    },
+    {
+      "metric": "가바케어믹스 최종 매출원가·공급단가",
+      "value": "시험생산·견적 후 확정",
+      "state": "계산 대기",
+      "formula": "원료 투입 이론값 11,500원/kg + 혼합·제조·검사·포장·수율손실·물류·거래조건",
+      "unlock": "OEM 견적·시험생산 실수율·검사·포장·물류비와 고객별 공급조건"
     }
   ],
   "project_timeline": [
@@ -2035,5 +2035,46 @@
       }
     ]
   },
-  "auto_intelligence_updated_at": "2026-08-10T03:38:34+00:00"
+  "auto_intelligence_updated_at": "2026-08-10T03:38:34+00:00",
+  "pricing_reference": {
+    "schema_version": "1.2.0",
+    "effective_date": "2026-08-10",
+    "currency": "KRW",
+    "gaba_crude": {
+      "product": "GABA Crude 20",
+      "gaba_fraction": 0.2,
+      "public_supply_price_krw_per_kg": 18000,
+      "status": "user_confirmed_public_basis",
+      "exclusions": [
+        "VAT",
+        "운송",
+        "고객별 거래조건"
+      ]
+    },
+    "mineral_matrix": {
+      "price_krw_per_kg": 5000,
+      "status": "user_confirmed_public_basis",
+      "exclusions": [
+        "VAT",
+        "운송",
+        "고객별 거래조건"
+      ],
+      "note": "사용자 확정 공개 산술 기준. 실제 구매·공급 조건은 유효 견적서로 확정"
+    },
+    "care_mix": {
+      "gaba_crude_fraction": 0.5,
+      "mineral_matrix_fraction": 0.5,
+      "gaba_fraction": 0.1,
+      "application_kg_per_feed_ton": 1.0,
+      "nominal_final_gaba_mg_per_kg": 100,
+      "calculated_raw_material_cost_krw_per_kg": 11500,
+      "calculated_raw_material_cost_krw_per_feed_ton": 11500,
+      "gaba_crude_component_krw_per_kg": 9000,
+      "mineral_matrix_component_krw_per_kg": 2500,
+      "final_cogs_status": "pending_trial_batch_and_quotes",
+      "final_supply_price_status": "quote_required"
+    },
+    "formula": "0.5kg × 18,000원/kg + 0.5kg × 5,000원/kg = 11,500원/kg",
+    "public_disclaimer": "11,500원/kg은 원료 2종만 반영한 이론 원료비이며 가바케어믹스 최종 매출원가 또는 공급단가가 아닙니다. 혼합·제조·검사·포장·수율손실·물류·거래조건을 반영한 유효 견적서로 최종 단가를 확정합니다."
+  }
 }

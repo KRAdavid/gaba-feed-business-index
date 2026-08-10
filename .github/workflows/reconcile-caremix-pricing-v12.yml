@@ -1,0 +1,160 @@
+name: Reconcile Care Mix pricing v1.2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "config/caremix_pricing_v1.json"
+      - "scripts/reconcile_caremix_pricing.py"
+      - "scripts/patch_caremix_reconcile_detector.py"
+      - "scripts/generate_caremix_specification_pdf.py"
+      - "scripts/patch_caremix_generator_v12.py"
+      - "scripts/append_pricing_basis_to_pdfs.py"
+      - ".github/workflows/reconcile-caremix-pricing-v12.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: caremix-pricing-v12
+  cancel-in-progress: true
+
+jobs:
+  reconcile-generate-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out latest main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PDF dependencies and Korean fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-nanum poppler-utils
+          python -m pip install --upgrade pip
+          python -m pip install reportlab pymupdf pypdf
+
+      - name: Validate pricing source of truth
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          cfg = json.loads(Path('config/caremix_pricing_v1.json').read_text(encoding='utf-8'))
+          crude = int(cfg['gaba_crude']['public_supply_price_krw_per_kg'])
+          mineral = int(cfg['mineral_matrix']['price_krw_per_kg'])
+          caremix = int(cfg['care_mix']['calculated_raw_material_cost_krw_per_kg'])
+          feed_ton = int(cfg['care_mix']['calculated_raw_material_cost_krw_per_feed_ton'])
+          crude_part = int(cfg['care_mix']['gaba_crude_component_krw_per_kg'])
+          mineral_part = int(cfg['care_mix']['mineral_matrix_component_krw_per_kg'])
+
+          assert crude == 18000, crude
+          assert mineral == 5000, mineral
+          assert caremix == 11500, caremix
+          assert feed_ton == 11500, feed_ton
+          assert crude_part == 9000, crude_part
+          assert mineral_part == 2500, mineral_part
+          assert round(0.5 * crude + 0.5 * mineral) == caremix
+          print('validated: 18,000 + 5,000 at 50:50 = 11,500 KRW/kg')
+          PY
+
+      - name: Correct stale-price detector
+        run: python scripts/patch_caremix_reconcile_detector.py
+
+      - name: Reconcile web, JSON and document metadata
+        run: |
+          python scripts/reconcile_caremix_pricing.py
+          python scripts/patch_caremix_generator_v12.py
+
+      - name: Regenerate Care Mix specification PDF
+        run: python scripts/generate_caremix_specification_pdf.py
+
+      - name: Refresh pricing notices in other public PDFs
+        run: python scripts/append_pricing_basis_to_pdfs.py
+
+      - name: Validate reconciled web and PDFs
+        run: |
+          python scripts/patch_caremix_reconcile_detector.py --check
+          python scripts/reconcile_caremix_pricing.py --check
+          python scripts/patch_caremix_generator_v12.py --check
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import fitz
+
+          root = Path('.')
+          html = (root / 'docs/index.html').read_text(encoding='utf-8')
+          assert 'data-pricing-version="1.2"' in html
+          assert '11,500원/kg' in html
+          assert '미네랄매트릭스 50%' in html
+          assert '5,000원/kg' in html
+          assert '0.5kg×7,000원/kg' not in html
+          assert '10,500원/kg' not in html
+
+          public_cfg = json.loads((root / 'docs/data/caremix_pricing.json').read_text(encoding='utf-8'))
+          assert public_cfg['mineral_matrix']['price_krw_per_kg'] == 5000
+          assert public_cfg['care_mix']['calculated_raw_material_cost_krw_per_kg'] == 11500
+          assert public_cfg['calculation_check']['gaba_crude_component_krw'] == 9000
+          assert public_cfg['calculation_check']['mineral_component_krw'] == 2500
+
+          caremix_pdf = root / 'docs/downloads/GABA_Caremix_Specification_v1.pdf'
+          doc = fitz.open(caremix_pdf)
+          assert doc.page_count >= 4
+          text = '\n'.join(page.get_text('text') for page in doc)
+          doc.close()
+          for required in ('Pricing basis v1.2', '18,000원/kg', '5,000원/kg', '11,500원/kg'):
+              assert required in text, required
+
+          for pdf in sorted((root / 'docs/downloads').glob('*.pdf')):
+              check = fitz.open(pdf)
+              assert check.page_count > 0, pdf
+              check.close()
+              print('validated PDF', pdf)
+          PY
+
+      - name: Commit reconciled public state
+        run: |
+          git config user.name "cellpinda-pricing-bot"
+          git config user.email "cellpinda-pricing-bot@users.noreply.github.com"
+          git add \
+            config/caremix_pricing_v1.json \
+            data/base_index.json \
+            docs/data/index.json \
+            docs/data/caremix_pricing.json \
+            docs/data/technical_documents.json \
+            docs/index.html \
+            docs/materials \
+            docs/downloads \
+            scripts/reconcile_caremix_pricing.py \
+            scripts/generate_caremix_specification_pdf.py
+          if git diff --cached --quiet; then
+            echo "Care Mix pricing v1.2 is already fully reconciled"
+          else
+            git commit -m "fix: publish Care Mix pricing basis v1.2 [skip ci]"
+            git fetch origin main
+            git rebase --autostash origin/main
+            git push origin HEAD:main
+          fi
+
+      - name: Write workflow summary
+        run: |
+          {
+            echo "## Care Mix pricing basis v1.2"
+            echo "- GABA Crude 20: 18,000 KRW/kg"
+            echo "- Mineral Matrix: 5,000 KRW/kg"
+            echo "- 50:50 raw-material arithmetic: 11,500 KRW/kg"
+            echo "- Application at 1 kg/feed ton: 11,500 KRW/feed ton"
+            echo "- Final COGS and customer supply price: quotation required"
+            echo "- Web, JSON, Care Mix specification and price-bearing PDFs: reconciled"
+          } >> "$GITHUB_STEP_SUMMARY"

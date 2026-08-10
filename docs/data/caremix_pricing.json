@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.2.0",
+  "effective_date": "2026-08-10",
+  "currency": "KRW",
+  "gaba_crude": {
+    "product": "GABA Crude 20",
+    "gaba_fraction": 0.2,
+    "public_supply_price_krw_per_kg": 18000,
+    "status": "user_confirmed_public_basis",
+    "exclusions": [
+      "VAT",
+      "운송",
+      "고객별 거래조건"
+    ]
+  },
+  "mineral_matrix": {
+    "price_krw_per_kg": 5000,
+    "status": "user_confirmed_public_basis",
+    "exclusions": [
+      "VAT",
+      "운송",
+      "고객별 거래조건"
+    ],
+    "note": "사용자 확정 공개 산술 기준. 실제 구매·공급 조건은 유효 견적서로 확정"
+  },
+  "care_mix": {
+    "gaba_crude_fraction": 0.5,
+    "mineral_matrix_fraction": 0.5,
+    "gaba_fraction": 0.1,
+    "application_kg_per_feed_ton": 1.0,
+    "nominal_final_gaba_mg_per_kg": 100,
+    "calculated_raw_material_cost_krw_per_kg": 11500,
+    "calculated_raw_material_cost_krw_per_feed_ton": 11500,
+    "gaba_crude_component_krw_per_kg": 9000,
+    "mineral_matrix_component_krw_per_kg": 2500,
+    "final_cogs_status": "pending_trial_batch_and_quotes",
+    "final_supply_price_status": "quote_required"
+  },
+  "formula": "0.5kg × 18,000원/kg + 0.5kg × 5,000원/kg = 11,500원/kg",
+  "public_disclaimer": "11,500원/kg은 원료 2종만 반영한 이론 원료비이며 가바케어믹스 최종 매출원가 또는 공급단가가 아닙니다. 혼합·제조·검사·포장·수율손실·물류·거래조건을 반영한 유효 견적서로 최종 단가를 확정합니다.",
+  "calculation_check": {
+    "gaba_crude_component_krw": 9000,
+    "mineral_component_krw": 2500,
+    "total_krw_per_kg": 11500,
+    "total_krw_per_feed_ton": 11500
+  }
+}

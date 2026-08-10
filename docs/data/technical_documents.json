@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-08-07",
+  "updated_at": "2026-08-10",
   "title": "GABA Feed 기술·사업 자료",
   "items": [
     {
@@ -41,12 +41,12 @@
       "id": "caremix-spec",
       "category": "제품·규격",
       "title": "GABA Care Mix 사양서",
-      "description": "축종별 GABA·미네랄 매트릭스, OEM·ODM 제품 설계 및 검토용 기준안",
+      "description": "GABA 10% 설계, 사료 1톤당 1kg 적용, 가바크루드 18,000원/kg·미네랄매트릭스 5,000원/kg 기준의 이론 원료비 11,500원/kg 산술과 최종 견적 구분",
       "format": "PDF",
-      "version": "1.0",
+      "version": "1.2",
       "language": "KO",
       "url": "downloads/GABA_Caremix_Specification_v1.pdf",
-      "status": "AVAILABLE"
+      "status": "NEW"
     },
     {
       "id": "breeder-pig",

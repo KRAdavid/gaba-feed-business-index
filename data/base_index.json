@@ -12,10 +12,24 @@
       "headline": "GABA 20% 기준품과 5~20% 주문형 OEM 원료",
       "description": "GABA 20% 기준품을 품질 기준으로 관리하고, 고객이 원하는 농도는 주문을 받은 뒤 OEM 방식으로 생산합니다.",
       "revenue_model": "기준품·주문형 원료 판매",
-      "offerings": ["GABA 20% 기준품", "OEM 5~20% 맞춤 농도"],
+      "offerings": [
+        "GABA 20% 기준품",
+        "OEM 5~20% 맞춤 농도"
+      ],
       "quality_focus": "활성 GABA 함량, 로트별 시험성적서, 농도별 제품 규격",
-      "marketing_effects": ["규격이 선명한 GABA 원료 선택", "농도별 OEM으로 고객 배합 설계에 유연하게 대응", "로트·CoA 기반 품질관리로 구매 검토의 불확실성 완화"],
-      "expected_effect_directions": ["가축 스트레스 관리에 도움을 줄 가능성", "사료 효율과 증체 성과 개선 가능성", "시험 결과에 따라 출하 시기 단축 가능성", "폐사·이상반응 저감 여부 확인", "육질·축산물 품질 개선 가능성", "분뇨·장내 발효 조건에 따른 메탄 배출 저감 가능성"]
+      "marketing_effects": [
+        "규격이 선명한 GABA 원료 선택",
+        "농도별 OEM으로 고객 배합 설계에 유연하게 대응",
+        "로트·CoA 기반 품질관리로 구매 검토의 불확실성 완화"
+      ],
+      "expected_effect_directions": [
+        "가축 스트레스 관리에 도움을 줄 가능성",
+        "사료 효율과 증체 성과 개선 가능성",
+        "시험 결과에 따라 출하 시기 단축 가능성",
+        "폐사·이상반응 저감 여부 확인",
+        "육질·축산물 품질 개선 가능성",
+        "분뇨·장내 발효 조건에 따른 메탄 배출 저감 가능성"
+      ]
     },
     {
       "id": "gaba_care_mix",
@@ -24,10 +38,26 @@
       "headline": "육질과 생산성을 함께 검증하는 브랜드 축산용 배합사료",
       "description": "비육우·젖소·돼지·육계·산란계·염소·면양을 대상으로 제품 재현성, 생산성, 축산물 품질과 농가 경제성을 축종별 시험기간에 맞춰 확인합니다.",
       "revenue_model": "브랜드 축산용 배합사료 판매·유료 농장 실증",
-      "offerings": ["가바크루드", "미네랄매트릭스", "축종별 배합 설계", "농장·연구소 성과 측정"],
+      "offerings": [
+        "가바크루드",
+        "미네랄매트릭스",
+        "축종별 배합 설계",
+        "농장·연구소 성과 측정"
+      ],
       "quality_focus": "활성함량, 배합 균일도, 보관 안정성, 축종별 생산성, 축산물 품질",
-      "marketing_effects": ["축종별 생산주기에 맞춘 브랜드 축산 솔루션", "생산성·사료효율·축산물 품질을 하나의 시험 프레임으로 관리", "농장 데이터와 연구기관 검증을 연결해 재구매 판단을 돕는 구조"],
-      "expected_effect_directions": ["스트레스 지표와 행동 안정성 확인", "사료 효율·증체율 개선 가능성", "증체 결과에 따른 출하 시기 단축 가능성", "폐사량·이상반응 저감 여부 확인", "육질과 축산물 품질 개선 가능성", "사료·분뇨 관리 조건에 따른 메탄가스 저감 가능성"]
+      "marketing_effects": [
+        "축종별 생산주기에 맞춘 브랜드 축산 솔루션",
+        "생산성·사료효율·축산물 품질을 하나의 시험 프레임으로 관리",
+        "농장 데이터와 연구기관 검증을 연결해 재구매 판단을 돕는 구조"
+      ],
+      "expected_effect_directions": [
+        "스트레스 지표와 행동 안정성 확인",
+        "사료 효율·증체율 개선 가능성",
+        "증체 결과에 따른 출하 시기 단축 가능성",
+        "폐사량·이상반응 저감 여부 확인",
+        "육질과 축산물 품질 개선 가능성",
+        "사료·분뇨 관리 조건에 따른 메탄가스 저감 가능성"
+      ]
     }
   ],
   "future_project": {
@@ -37,12 +67,33 @@
     "stage": "검증 기획 단계",
     "summary": "가바케어믹스를 반추위동물 사료에 적용해 장내발효 메탄 배출량과 생산성 지표를 함께 확인하는 별도 프로젝트입니다. 메탄 저감 효과는 시험 결과가 나오기 전까지 제품 효능이나 탄소 감축 성과로 표시하지 않습니다.",
     "market_view": [
-      {"label": "시장성", "headline": "저메탄 사료와 생산성 검증 수요", "detail": "OECD·FAO는 축산 생산성 향상과 사료 고도화를 배출 저감 경로 중 하나로 제시합니다. 시장 진입은 ‘저감 주장’이 아니라 공인된 측정과 고객의 적용 가능성 확인부터 시작합니다."},
-      {"label": "사업 모델", "headline": "연구기관·농장 공동 실증", "detail": "가바케어믹스 적용군과 대조군의 섭취량, 증체·산유, 사료효율, 메탄 배출량을 같은 조건에서 비교한 뒤 유료 실증과 반복 주문 여부를 판단합니다."},
-      {"label": "확장 조건", "headline": "측정·규정·경제성의 동시 충족", "detail": "반추위 메탄 측정 방법, 축종별 장기 시험, 표시·인증 가능 문구, 사료 1톤당 추가 원가와 농가 경제성이 함께 확인될 때만 사업화합니다."}
+      {
+        "label": "시장성",
+        "headline": "저메탄 사료와 생산성 검증 수요",
+        "detail": "OECD·FAO는 축산 생산성 향상과 사료 고도화를 배출 저감 경로 중 하나로 제시합니다. 시장 진입은 ‘저감 주장’이 아니라 공인된 측정과 고객의 적용 가능성 확인부터 시작합니다."
+      },
+      {
+        "label": "사업 모델",
+        "headline": "연구기관·농장 공동 실증",
+        "detail": "가바케어믹스 적용군과 대조군의 섭취량, 증체·산유, 사료효율, 메탄 배출량을 같은 조건에서 비교한 뒤 유료 실증과 반복 주문 여부를 판단합니다."
+      },
+      {
+        "label": "확장 조건",
+        "headline": "측정·규정·경제성의 동시 충족",
+        "detail": "반추위 메탄 측정 방법, 축종별 장기 시험, 표시·인증 가능 문구, 사료 1톤당 추가 원가와 농가 경제성이 함께 확인될 때만 사업화합니다."
+      }
     ],
-    "milestones": ["시험 설계와 메탄 측정기관 선정", "비육우·젖소 우선 대조시험 착수", "생산성·메탄 결과와 사료 1톤당 경제성 통합 분석", "표시·인증·고객 계약 가능성 검토"],
-    "guardrails": ["메탄 저감률이나 탄소배출권 수익을 시험 전 숫자로 약속하지 않습니다.", "사료 효율 개선과 메탄 저감은 동일한 대조시험에서 함께 확인합니다.", "국가별 사료·표시·탄소 관련 규정은 현지 자문과 서면 검토 후 적용합니다."],
+    "milestones": [
+      "시험 설계와 메탄 측정기관 선정",
+      "비육우·젖소 우선 대조시험 착수",
+      "생산성·메탄 결과와 사료 1톤당 경제성 통합 분석",
+      "표시·인증·고객 계약 가능성 검토"
+    ],
+    "guardrails": [
+      "메탄 저감률이나 탄소배출권 수익을 시험 전 숫자로 약속하지 않습니다.",
+      "사료 효율 개선과 메탄 저감은 동일한 대조시험에서 함께 확인합니다.",
+      "국가별 사료·표시·탄소 관련 규정은 현지 자문과 서면 검토 후 적용합니다."
+    ],
     "source_name": "OECD-FAO Agricultural Outlook 2025-2034",
     "source_url": "https://www.oecd.org/en/publications/2025/07/oecd-fao-agricultural-outlook-2025-2034_3eb15914.html"
   },
@@ -51,19 +102,26 @@
       "name": "장순욱",
       "role": "분석기술 전문가",
       "current": "현 셀핀다 생명과학연구소 부사장",
-      "experience": ["전 해원바이오 전무", "전 한국신약 연구소장"]
+      "experience": [
+        "전 해원바이오 전무",
+        "전 한국신약 연구소장"
+      ]
     },
     {
       "name": "구자룡",
       "role": "분석기술 고문",
       "current": "현 국가공인 시험·검사기관 충남대 농업과학연구소 총괄책임",
-      "experience": ["전 우성사료 연구소장"]
+      "experience": [
+        "전 우성사료 연구소장"
+      ]
     },
     {
       "name": "박지호",
       "role": "정밀발효·정제 전문가",
       "current": "현 셀핀다 생명과학연구소 소장",
-      "experience": ["전 현대바이오랜드 재직"]
+      "experience": [
+        "전 현대바이오랜드 재직"
+      ]
     }
   ],
   "production_partners": [
@@ -94,7 +152,14 @@
   "caremix_advancement": {
     "goal": "가바케어믹스를 주요 가축의 생산성과 축산물 품질을 함께 검증하는 브랜드 축산용 배합사료로 고도화합니다.",
     "positioning": "축종별 생산주기에 맞춰 제품 재현성, 생산성, 축산물 품질과 농가 경제성을 연결해 확인하는 배합사료",
-    "validation_species": ["비육우", "젖소", "돼지", "육계", "산란계", "염소·면양"],
+    "validation_species": [
+      "비육우",
+      "젖소",
+      "돼지",
+      "육계",
+      "산란계",
+      "염소·면양"
+    ],
     "validation_scope_label": "6개 축종군",
     "scope_note": "효능을 미리 단정하지 않습니다. 30일은 시험 착수 준비기간이며, 효능 점수는 축종별 본시험과 최종 판정 증빙이 끝난 뒤 올립니다.",
     "validation_clock": [
@@ -118,27 +183,47 @@
       {
         "window": "0~7일",
         "theme": "규격과 축종별 시험계획 확정",
-        "outputs": ["가바케어믹스 제품 규격서", "품목·표시 문구 사전 검토", "6개 축종군의 대조군·판정지표·시험기간 설계"]
+        "outputs": [
+          "가바케어믹스 제품 규격서",
+          "품목·표시 문구 사전 검토",
+          "6개 축종군의 대조군·판정지표·시험기간 설계"
+        ]
       },
       {
         "window": "8~21일",
         "theme": "시험생산과 원가 확인",
-        "outputs": ["시험생산 1회", "3지점 시료의 활성함량·균일도·안정성 확인", "실제 견적과 사료 1톤당 원가"]
+        "outputs": [
+          "시험생산 1회",
+          "3지점 시료의 활성함량·균일도·안정성 확인",
+          "실제 견적과 사료 1톤당 원가"
+        ]
       },
       {
         "window": "22~30일",
         "theme": "유료 연구·농장 실증 착수",
-        "outputs": ["우선 축종의 유료 시험 계약과 발주서", "기초 생산성·건강 자료", "개체·군 식별과 최종 성과 연결 방식"]
+        "outputs": [
+          "우선 축종의 유료 시험 계약과 발주서",
+          "기초 생산성·건강 자료",
+          "개체·군 식별과 최종 성과 연결 방식"
+        ]
       },
       {
         "window": "축종별 35~168일 이상",
         "theme": "장기 효능시험 수행",
-        "outputs": ["축종별 사료섭취량과 생산성", "안전성·질병·폐사 기록", "대조군 대비 사료효율과 경제성"]
+        "outputs": [
+          "축종별 사료섭취량과 생산성",
+          "안전성·질병·폐사 기록",
+          "대조군 대비 사료효율과 경제성"
+        ]
       },
       {
         "window": "생산주기 종료",
         "theme": "축산물 품질과 경제성 최종 판단",
-        "outputs": ["도축·우유·계란 성적", "품질·생산성·사료비 통합 분석", "축종별 반복 주문과 브랜드 적용 여부"]
+        "outputs": [
+          "도축·우유·계란 성적",
+          "품질·생산성·사료비 통합 분석",
+          "축종별 반복 주문과 브랜드 적용 여부"
+        ]
       }
     ],
     "kpis": [
@@ -318,11 +403,46 @@
       "status": "증빙 확보 중",
       "policy": "목표점수는 100점이지만 현재점수는 41점으로 유지합니다. 아래 완료 증빙이 검토된 날에만 평가축별 점수를 올립니다.",
       "dimensions": [
-        {"id": "regulatory", "name": "규제·품목분류", "current": 6, "target": 20, "gain": 14, "unlock_evidence": "품목 분류·등록 경로·축종별 사용조건·표시 문구의 서면 확정"},
-        {"id": "product", "name": "제품근거·유효용량", "current": 8, "target": 20, "gain": 12, "unlock_evidence": "제품 규격·안정성·6개 축종군의 대조군 시험과 최종 성과 보고서"},
-        {"id": "supply", "name": "공급·QA", "current": 12, "target": 20, "gain": 8, "unlock_evidence": "OEM 실사·품질협약·실제 CAPA·MOQ·납기·추적·회수 모의훈련"},
-        {"id": "economics", "name": "단위 경제성", "current": 11, "target": 20, "gain": 9, "unlock_evidence": "실제 견적·시험생산 수율·축종별 매출원가·매출총이익의 감사 가능한 산식"},
-        {"id": "commercial", "name": "상업성 검증", "current": 4, "target": 20, "gain": 16, "unlock_evidence": "유료 시험, 실제 매출, 반복 발주와 해지·중단 사례가 포함된 고객 증빙"}
+        {
+          "id": "regulatory",
+          "name": "규제·품목분류",
+          "current": 6,
+          "target": 20,
+          "gain": 14,
+          "unlock_evidence": "품목 분류·등록 경로·축종별 사용조건·표시 문구의 서면 확정"
+        },
+        {
+          "id": "product",
+          "name": "제품근거·유효용량",
+          "current": 8,
+          "target": 20,
+          "gain": 12,
+          "unlock_evidence": "제품 규격·안정성·6개 축종군의 대조군 시험과 최종 성과 보고서"
+        },
+        {
+          "id": "supply",
+          "name": "공급·QA",
+          "current": 12,
+          "target": 20,
+          "gain": 8,
+          "unlock_evidence": "OEM 실사·품질협약·실제 CAPA·MOQ·납기·추적·회수 모의훈련"
+        },
+        {
+          "id": "economics",
+          "name": "단위 경제성",
+          "current": 11,
+          "target": 20,
+          "gain": 9,
+          "unlock_evidence": "실제 견적·시험생산 수율·축종별 매출원가·매출총이익의 감사 가능한 산식"
+        },
+        {
+          "id": "commercial",
+          "name": "상업성 검증",
+          "current": 4,
+          "target": 20,
+          "gain": 16,
+          "unlock_evidence": "유료 시험, 실제 매출, 반복 발주와 해지·중단 사례가 포함된 고객 증빙"
+        }
       ]
     }
   },
@@ -390,13 +510,6 @@
       "unlock": "시험생산 실수율로 보정"
     },
     {
-      "metric": "가바크루드 표준품 원가",
-      "value": "7,000원/kg",
-      "state": "사용자 제공 기준",
-      "formula": "표준품 1kg 기준",
-      "unlock": "실제 제조·검사·포장 원가로 확정"
-    },
-    {
       "metric": "가바크루드 최종 매출원가",
       "value": "견적 입력 후 확정",
       "state": "계산 대기",
@@ -406,9 +519,9 @@
     {
       "metric": "가바크루드 판매가격",
       "value": "18,000원/kg",
-      "state": "검증 필요",
-      "formula": "입력",
-      "unlock": "고객 견적과 가격 수용성"
+      "state": "사용자 확정 공개 기준",
+      "formula": "Care Mix 공개 산술에 적용; VAT·운송·고객별 거래조건 별도",
+      "unlock": "고객별 유효 견적서와 거래조건"
     },
     {
       "metric": "가바크루드 매출총이익",
@@ -433,17 +546,10 @@
     },
     {
       "metric": "가바케어믹스 혼합비·원료 투입원가",
-      "value": "가바크루드 50% + 미네랄매트릭스 50% · 5,000원/kg",
-      "state": "표준품 단가 기준 이론 계산",
-      "formula": "GABA 20% 가바크루드 0.5kg×7,000원/kg + 미네랄매트릭스 0.5kg×3,000원/kg = 5,000원/kg; 사료 1톤당 5,000원",
-      "unlock": "제조·검사·포장·수율손실·축종별 실제 섭취량 확인"
-    },
-    {
-      "metric": "내부 제조 시 원가 하한 참고",
-      "value": "3,500원/kg",
-      "state": "배양액 원가 하한만 반영",
-      "formula": "가바크루드 원가 하한 4,000원/kg×50% + 미네랄매트릭스 3,000원/kg×50%; 최종 매출원가는 제조·검사·포장·수율 반영 후 확정",
-      "unlock": "말토덱스트린·건조·검사·포장 견적과 실제 공정수율"
+      "value": "가바크루드 50% + 미네랄매트릭스 50% · 11,500원/kg",
+      "state": "사용자 확정 기준가의 이론 계산",
+      "formula": "GABA 20% 가바크루드 0.5kg×18,000원/kg = 9,000원 + 미네랄매트릭스 0.5kg×5,000원/kg = 2,500원; 합계 11,500원/kg, 사료 1톤당 11,500원",
+      "unlock": "혼합·제조·검사·포장·수율손실·물류·고객별 거래조건 확인"
     },
     {
       "metric": "고객가치",
@@ -451,6 +557,20 @@
       "state": "가설",
       "formula": "손실회피 가정",
       "unlock": "유료 비교시험에서 경제 효과 측정"
+    },
+    {
+      "metric": "미네랄매트릭스 기준가격",
+      "value": "5,000원/kg",
+      "state": "사용자 확정 공개 기준",
+      "formula": "Care Mix 50% 배합 산술에 적용; VAT·운송·고객별 거래조건 별도",
+      "unlock": "실제 구매·공급 견적서와 거래조건"
+    },
+    {
+      "metric": "가바케어믹스 최종 매출원가·공급단가",
+      "value": "시험생산·견적 후 확정",
+      "state": "계산 대기",
+      "formula": "원료 투입 이론값 11,500원/kg + 혼합·제조·검사·포장·수율손실·물류·거래조건",
+      "unlock": "OEM 견적·시험생산 실수율·검사·포장·물류비와 고객별 공급조건"
     }
   ],
   "project_timeline": [
@@ -458,21 +578,33 @@
       "window": "2026년 8월",
       "theme": "파일럿 생산",
       "model": "생산 파트너 활용",
-      "actions": ["배치기록과 3지점 시료 확보", "CoA·공정수율·실제 매출원가 확인", "고객 시험용 출고 승인"],
+      "actions": [
+        "배치기록과 3지점 시료 확보",
+        "CoA·공정수율·실제 매출원가 확인",
+        "고객 시험용 출고 승인"
+      ],
       "gate": "제품 규격·QA·실제 원가 확인"
     },
     {
       "window": "2027년 상반기",
       "theme": "양산 가동",
       "model": "외부 생산 기반 상업 생산",
-      "actions": ["월별 생산·발주·재고 계획 운영", "품질협약·납기·회수 체계 가동", "유료 반복 주문과 매출총이익 검증"],
+      "actions": [
+        "월별 생산·발주·재고 계획 운영",
+        "품질협약·납기·회수 체계 가동",
+        "유료 반복 주문과 매출총이익 검증"
+      ],
       "gate": "반복 주문·납기·품질·매출총이익 충족"
     },
     {
       "window": "2028년 하반기",
       "theme": "자체 공장 설립",
       "model": "5·10·50톤급 발효조(퍼멘터) 대안 검토",
-      "actions": ["부지·인허가·CAPEX·OPEX 검토", "수요와 가동률에 맞는 발효조 구성 비교", "자금조달·투자 회수 조건 확정"],
+      "actions": [
+        "부지·인허가·CAPEX·OPEX 검토",
+        "수요와 가동률에 맞는 발효조 구성 비교",
+        "자금조달·투자 회수 조건 확정"
+      ],
       "gate": "확정 수요·가동률·투자 회수·인허가 통과"
     }
   ],
@@ -480,83 +612,417 @@
     {
       "window": "0~7일",
       "theme": "규격·축종별 시험설계 확정",
-      "actions": ["품목 분류·표시 문구 사전 검토", "활성함량·배합·로트 규격 확정", "6개 축종군의 시험기간·대조군·판정지표 확정"]
+      "actions": [
+        "품목 분류·표시 문구 사전 검토",
+        "활성함량·배합·로트 규격 확정",
+        "6개 축종군의 시험기간·대조군·판정지표 확정"
+      ]
     },
     {
       "window": "8~21일",
       "theme": "시험생산·원가 확인",
-      "actions": ["시험생산 1회와 3지점 시료 채취", "활성함량·균일도·안정성·CoA 확인", "실제 견적으로 사료 1톤당 원가 다시 계산"]
+      "actions": [
+        "시험생산 1회와 3지점 시료 채취",
+        "활성함량·균일도·안정성·CoA 확인",
+        "실제 견적으로 사료 1톤당 원가 다시 계산"
+      ]
     },
     {
       "window": "22~30일",
       "theme": "유료 연구·농장 실증 착수",
-      "actions": ["우선 축종의 연구기관 또는 농장 계약·발주서 확보", "기초 생산성·급여량·사료비 기록", "개체·군 식별과 최종 성과 연결"]
+      "actions": [
+        "우선 축종의 연구기관 또는 농장 계약·발주서 확보",
+        "기초 생산성·급여량·사료비 기록",
+        "개체·군 식별과 최종 성과 연결"
+      ]
     },
     {
       "window": "축종별 35~168일 이상",
       "theme": "장기 효능시험 수행",
-      "actions": ["증체·산유·산란 성적과 사료효율 비교", "질병·폐사·이상반응·섭취 감소 점검", "축종별 중간 점검에서 계속 급여할지 결정"]
+      "actions": [
+        "증체·산유·산란 성적과 사료효율 비교",
+        "질병·폐사·이상반응·섭취 감소 점검",
+        "축종별 중간 점검에서 계속 급여할지 결정"
+      ]
     },
     {
       "window": "생산주기 종료",
       "theme": "축산물 품질·경제성 최종 판단",
-      "actions": ["도체·우유·계란 품질 성적 확인", "품질·생산성·사료비 통합 분석", "축종별 반복 주문과 브랜드 적용 여부 결정"]
+      "actions": [
+        "도체·우유·계란 품질 성적 확인",
+        "품질·생산성·사료비 통합 분석",
+        "축종별 반복 주문과 브랜드 적용 여부 결정"
+      ]
     }
   ],
   "glossary": [
-    {"term": "GABA", "plain": "감마아미노부티르산", "use": "축종·용량·제형에 따라 결과가 달라질 수 있는 성분"},
-    {"term": "반추위 메탄", "plain": "소·양 같은 반추동물이 소화 과정에서 배출하는 메탄", "use": "이 프로젝트에서는 사료섭취량과 생산성 지표를 함께 대조군과 비교해 측정"},
-    {"term": "마스터배치", "plain": "고농축 중간재", "use": "최종 제품 전 핵심 성분을 일정 농도로 농축한 재고 단위"},
-    {"term": "OEM", "plain": "주문자 상표 부착 생산", "use": "발주자가 규격을 정하고 외부 공장이 생산하는 방식"},
-    {"term": "SKU", "plain": "재고관리 단위", "use": "규격·포장·배합을 구분하는 최소 품목"},
-    {"term": "CoA", "plain": "시험성적서", "use": "로트별 성분·미생물·중금속 시험 결과를 기록한 문서"},
-    {"term": "MOQ", "plain": "최소주문수량", "use": "공장이 한 번에 생산하는 최소 물량"},
-    {"term": "FIFO", "plain": "선입선출", "use": "먼저 입고한 재고를 먼저 출고하는 원칙"},
-    {"term": "PO", "plain": "발주서", "use": "규격·수량·가격·납기를 확정한 주문 문서"},
-    {"term": "PoV", "plain": "고객 가치 검증", "use": "실제 고객 환경에서 경제적 가치를 확인하는 시험"},
-    {"term": "QA Agreement", "plain": "품질 협약서", "use": "시험·변경·일탈·회수 책임을 발주자와 제조자가 합의한 문서"},
-    {"term": "매출액", "plain": "제품을 판매해 발생한 금액", "use": "판매수량에 판매가격을 곱한 값"},
-    {"term": "매출원가", "plain": "판매된 제품을 만드는 데 직접 들어간 원가", "use": "원료·가공·건조·검사·포장처럼 제품 생산에 직접 연결되는 비용"},
-    {"term": "매출총이익", "plain": "매출액에서 매출원가를 뺀 금액", "use": "판매관리비와 고정비를 차감하기 전 제품의 기본 수익성"},
-    {"term": "손익분기 기준이익", "plain": "고정비 회수에 기여하는 주문단위 이익", "use": "매출총이익에서 판매량에 따라 달라지는 판매·현장비를 뺀 값"},
-    {"term": "품목분류", "plain": "어떤 사료로 볼지 결정", "use": "법적 범주와 등록경로를 정하는 절차"},
-    {"term": "기준품", "plain": "품질과 농도의 기준이 되는 제품", "use": "가바크루드 GABA 20% 제품처럼 시험·출하 기준을 대표하는 규격"},
-    {"term": "미네랄매트릭스", "plain": "미네랄 기반 배합체", "use": "가바크루드와 함께 가바케어믹스의 배합 구조와 투입 기준을 구성하는 혼합 기반"},
-    {"term": "CAPA", "plain": "생산가능량", "use": "정해진 기간에 생산할 수 있는 최대 물량. 이 자료에서는 배양액의 월간 생산량"}
-    ,{"term": "일당증체량(ADG)", "plain": "하루 평균 체중 증가량", "use": "시험 기간 체중 증가량을 급여 일수로 나눈 생산성 지표"}
-    ,{"term": "사료요구율(FCR)", "plain": "체중 1kg 증가에 필요한 사료량", "use": "값이 낮을수록 같은 증체에 필요한 사료가 적다는 뜻"}
-    ,{"term": "근내지방도", "plain": "등심 안 지방 분포 정도", "use": "출하 시 육질 평가에 사용하는 지표 중 하나"}
-    ,{"term": "대조군", "plain": "가바케어믹스를 급여하지 않는 비교 집단", "use": "사료 효과와 자연 변화를 구분하기 위한 기준"}
-    ,{"term": "사전등록 최소효과", "plain": "시험 전에 정한 의미 있는 차이", "use": "결과를 본 뒤 성공 기준을 바꾸지 않도록 미리 합의하는 판단 기준"}
-    ,{"term": "장기 효능시험", "plain": "정해진 기간 동안 실제 가축에서 효과를 확인하는 시험", "use": "이 인덱스에서는 축종별 생산주기에 맞춘 최소 관찰기간을 적용"}
-    ,{"term": "생산주기", "plain": "출하·비유·산란처럼 생산 성과가 완성되는 기간", "use": "중간 신호와 최종 성과를 구분하는 기준"}
+    {
+      "term": "GABA",
+      "plain": "감마아미노부티르산",
+      "use": "축종·용량·제형에 따라 결과가 달라질 수 있는 성분"
+    },
+    {
+      "term": "반추위 메탄",
+      "plain": "소·양 같은 반추동물이 소화 과정에서 배출하는 메탄",
+      "use": "이 프로젝트에서는 사료섭취량과 생산성 지표를 함께 대조군과 비교해 측정"
+    },
+    {
+      "term": "마스터배치",
+      "plain": "고농축 중간재",
+      "use": "최종 제품 전 핵심 성분을 일정 농도로 농축한 재고 단위"
+    },
+    {
+      "term": "OEM",
+      "plain": "주문자 상표 부착 생산",
+      "use": "발주자가 규격을 정하고 외부 공장이 생산하는 방식"
+    },
+    {
+      "term": "SKU",
+      "plain": "재고관리 단위",
+      "use": "규격·포장·배합을 구분하는 최소 품목"
+    },
+    {
+      "term": "CoA",
+      "plain": "시험성적서",
+      "use": "로트별 성분·미생물·중금속 시험 결과를 기록한 문서"
+    },
+    {
+      "term": "MOQ",
+      "plain": "최소주문수량",
+      "use": "공장이 한 번에 생산하는 최소 물량"
+    },
+    {
+      "term": "FIFO",
+      "plain": "선입선출",
+      "use": "먼저 입고한 재고를 먼저 출고하는 원칙"
+    },
+    {
+      "term": "PO",
+      "plain": "발주서",
+      "use": "규격·수량·가격·납기를 확정한 주문 문서"
+    },
+    {
+      "term": "PoV",
+      "plain": "고객 가치 검증",
+      "use": "실제 고객 환경에서 경제적 가치를 확인하는 시험"
+    },
+    {
+      "term": "QA Agreement",
+      "plain": "품질 협약서",
+      "use": "시험·변경·일탈·회수 책임을 발주자와 제조자가 합의한 문서"
+    },
+    {
+      "term": "매출액",
+      "plain": "제품을 판매해 발생한 금액",
+      "use": "판매수량에 판매가격을 곱한 값"
+    },
+    {
+      "term": "매출원가",
+      "plain": "판매된 제품을 만드는 데 직접 들어간 원가",
+      "use": "원료·가공·건조·검사·포장처럼 제품 생산에 직접 연결되는 비용"
+    },
+    {
+      "term": "매출총이익",
+      "plain": "매출액에서 매출원가를 뺀 금액",
+      "use": "판매관리비와 고정비를 차감하기 전 제품의 기본 수익성"
+    },
+    {
+      "term": "손익분기 기준이익",
+      "plain": "고정비 회수에 기여하는 주문단위 이익",
+      "use": "매출총이익에서 판매량에 따라 달라지는 판매·현장비를 뺀 값"
+    },
+    {
+      "term": "품목분류",
+      "plain": "어떤 사료로 볼지 결정",
+      "use": "법적 범주와 등록경로를 정하는 절차"
+    },
+    {
+      "term": "기준품",
+      "plain": "품질과 농도의 기준이 되는 제품",
+      "use": "가바크루드 GABA 20% 제품처럼 시험·출하 기준을 대표하는 규격"
+    },
+    {
+      "term": "미네랄매트릭스",
+      "plain": "미네랄 기반 배합체",
+      "use": "가바크루드와 함께 가바케어믹스의 배합 구조와 투입 기준을 구성하는 혼합 기반"
+    },
+    {
+      "term": "CAPA",
+      "plain": "생산가능량",
+      "use": "정해진 기간에 생산할 수 있는 최대 물량. 이 자료에서는 배양액의 월간 생산량"
+    },
+    {
+      "term": "일당증체량(ADG)",
+      "plain": "하루 평균 체중 증가량",
+      "use": "시험 기간 체중 증가량을 급여 일수로 나눈 생산성 지표"
+    },
+    {
+      "term": "사료요구율(FCR)",
+      "plain": "체중 1kg 증가에 필요한 사료량",
+      "use": "값이 낮을수록 같은 증체에 필요한 사료가 적다는 뜻"
+    },
+    {
+      "term": "근내지방도",
+      "plain": "등심 안 지방 분포 정도",
+      "use": "출하 시 육질 평가에 사용하는 지표 중 하나"
+    },
+    {
+      "term": "대조군",
+      "plain": "가바케어믹스를 급여하지 않는 비교 집단",
+      "use": "사료 효과와 자연 변화를 구분하기 위한 기준"
+    },
+    {
+      "term": "사전등록 최소효과",
+      "plain": "시험 전에 정한 의미 있는 차이",
+      "use": "결과를 본 뒤 성공 기준을 바꾸지 않도록 미리 합의하는 판단 기준"
+    },
+    {
+      "term": "장기 효능시험",
+      "plain": "정해진 기간 동안 실제 가축에서 효과를 확인하는 시험",
+      "use": "이 인덱스에서는 축종별 생산주기에 맞춘 최소 관찰기간을 적용"
+    },
+    {
+      "term": "생산주기",
+      "plain": "출하·비유·산란처럼 생산 성과가 완성되는 기간",
+      "use": "중간 신호와 최종 성과를 구분하는 기준"
+    }
   ],
   "source_catalog": [
-    {"id": "feed_standard", "name": "사료 등의 기준 및 규격", "organization": "국가법령정보센터", "url": "https://www.law.go.kr/행정규칙/사료%20등의%20기준%20및%20규격", "cadence": "월 1회"},
-    {"id": "feed_act", "name": "사료관리법", "organization": "국가법령정보센터", "url": "https://www.law.go.kr/법령/사료관리법", "cadence": "월 1회"},
-    {"id": "feed_committee", "name": "사료공정심의위원회 운영규정", "organization": "국가법령정보센터", "url": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000231582&chrClsCd=010201", "cadence": "월 1회"},
-    {"id": "mafra_rss", "name": "농림축산식품부 보도자료 RSS", "organization": "농림축산식품부", "url": "https://www.mafra.go.kr/bbs/home/792/rssList.do?row=50", "cadence": "주 1회"},
-    {"id": "krei_grain", "name": "국제곡물 관측", "organization": "한국농촌경제연구원", "url": "https://agevent.krei.re.kr/main", "cadence": "월 1회"},
-    {"id": "europe_pmc", "name": "GABA·사료 학술 메타데이터", "organization": "Europe PMC", "url": "https://europepmc.org/", "cadence": "주 1회"},
-    {"id": "world_bank_pink_sheet", "name": "World Bank Commodity Price Data (Pink Sheet)", "organization": "World Bank Prospects Group", "url": "https://www.worldbank.org/en/research/commodity-markets", "cadence": "월 1회"},
-    {"id": "eu_feed_efficacy_period", "name": "사료첨가제 장기 효능시험 최소기간", "organization": "유럽연합 법령정보", "url": "https://eur-lex.europa.eu/eli/reg/2008/429/oj/eng", "cadence": "연 1회"},
-    {"id": "nias_piglet_feed_trial", "name": "이유자돈 사료 급여시험 6주 사례", "organization": "국립축산과학원", "url": "https://www.nias.go.kr/front/contview3.do?cmCode=M170106113356833&cntntsNo=202201&mainCategoryCode=", "cadence": "근거 고정"},
-    {"id": "nias_broiler_cycle", "name": "육계 1~5(6)주령 현장 시험 사례", "organization": "국립축산과학원", "url": "https://nias.go.kr/front/soboarddown.do?boardSeqNum=3668&cmCode=M090814150850297&fileSeqNum=2744", "cadence": "근거 고정"},
-    {"id": "nias_layer_feed_trial", "name": "산란계 사료 급여 8주 생산성 조사 사례", "organization": "국립축산과학원", "url": "https://nias.go.kr/front/soboarddown.do?boardSeqNum=9095&cmCode=M091023194037455&fileSeqNum=5948", "cadence": "근거 고정"},
-    {"id": "kci_gaba_livestock", "name": "GABA 축산 연구 논문 색인", "organization": "한국학술지인용색인", "url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART003036784", "cadence": "주 1회"},
-    {"id": "animals_gaba_dairy", "name": "젖소 GABA 연구 논문", "organization": "Animals", "url": "https://www.mdpi.com/2076-2615/16/2/262", "cadence": "근거 고정"}
+    {
+      "id": "feed_standard",
+      "name": "사료 등의 기준 및 규격",
+      "organization": "국가법령정보센터",
+      "url": "https://www.law.go.kr/행정규칙/사료%20등의%20기준%20및%20규격",
+      "cadence": "월 1회"
+    },
+    {
+      "id": "feed_act",
+      "name": "사료관리법",
+      "organization": "국가법령정보센터",
+      "url": "https://www.law.go.kr/법령/사료관리법",
+      "cadence": "월 1회"
+    },
+    {
+      "id": "feed_committee",
+      "name": "사료공정심의위원회 운영규정",
+      "organization": "국가법령정보센터",
+      "url": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000231582&chrClsCd=010201",
+      "cadence": "월 1회"
+    },
+    {
+      "id": "mafra_rss",
+      "name": "농림축산식품부 보도자료 RSS",
+      "organization": "농림축산식품부",
+      "url": "https://www.mafra.go.kr/bbs/home/792/rssList.do?row=50",
+      "cadence": "주 1회"
+    },
+    {
+      "id": "krei_grain",
+      "name": "국제곡물 관측",
+      "organization": "한국농촌경제연구원",
+      "url": "https://agevent.krei.re.kr/main",
+      "cadence": "월 1회"
+    },
+    {
+      "id": "europe_pmc",
+      "name": "GABA·사료 학술 메타데이터",
+      "organization": "Europe PMC",
+      "url": "https://europepmc.org/",
+      "cadence": "주 1회"
+    },
+    {
+      "id": "world_bank_pink_sheet",
+      "name": "World Bank Commodity Price Data (Pink Sheet)",
+      "organization": "World Bank Prospects Group",
+      "url": "https://www.worldbank.org/en/research/commodity-markets",
+      "cadence": "월 1회"
+    },
+    {
+      "id": "eu_feed_efficacy_period",
+      "name": "사료첨가제 장기 효능시험 최소기간",
+      "organization": "유럽연합 법령정보",
+      "url": "https://eur-lex.europa.eu/eli/reg/2008/429/oj/eng",
+      "cadence": "연 1회"
+    },
+    {
+      "id": "nias_piglet_feed_trial",
+      "name": "이유자돈 사료 급여시험 6주 사례",
+      "organization": "국립축산과학원",
+      "url": "https://www.nias.go.kr/front/contview3.do?cmCode=M170106113356833&cntntsNo=202201&mainCategoryCode=",
+      "cadence": "근거 고정"
+    },
+    {
+      "id": "nias_broiler_cycle",
+      "name": "육계 1~5(6)주령 현장 시험 사례",
+      "organization": "국립축산과학원",
+      "url": "https://nias.go.kr/front/soboarddown.do?boardSeqNum=3668&cmCode=M090814150850297&fileSeqNum=2744",
+      "cadence": "근거 고정"
+    },
+    {
+      "id": "nias_layer_feed_trial",
+      "name": "산란계 사료 급여 8주 생산성 조사 사례",
+      "organization": "국립축산과학원",
+      "url": "https://nias.go.kr/front/soboarddown.do?boardSeqNum=9095&cmCode=M091023194037455&fileSeqNum=5948",
+      "cadence": "근거 고정"
+    },
+    {
+      "id": "kci_gaba_livestock",
+      "name": "GABA 축산 연구 논문 색인",
+      "organization": "한국학술지인용색인",
+      "url": "https://www.kci.go.kr/kciportal/landing/article.kci?arti_id=ART003036784",
+      "cadence": "주 1회"
+    },
+    {
+      "id": "animals_gaba_dairy",
+      "name": "젖소 GABA 연구 논문",
+      "organization": "Animals",
+      "url": "https://www.mdpi.com/2076-2615/16/2/262",
+      "cadence": "근거 고정"
+    }
   ],
   "collection_categories": [
-    {"id": "research_materials", "name": "연구 자료", "purpose": "축종별 생산성·품질·안전성에 필요한 연구 결과를 모읍니다.", "signal_categories": ["제품근거"], "source_ids": ["nias_piglet_feed_trial", "nias_broiler_cycle", "nias_layer_feed_trial"], "cadence": "주 1회", "review_rule": "원문·축종·용량·시험기간을 확인하기 전에는 검토 대기로 유지"},
-    {"id": "papers", "name": "논문", "purpose": "GABA와 사료·축산 관련 동료심사 논문 및 서지정보를 관리합니다.", "signal_categories": ["학술자동"], "source_ids": ["europe_pmc", "kci_gaba_livestock", "animals_gaba_dairy"], "cadence": "주 1회", "review_rule": "논문 존재와 제품 효능 주장을 구분하고 원문 검토 후 인덱스에 반영"},
-    {"id": "market_domestic", "name": "국내 동향", "purpose": "국내 사료 정책·축산 산업·원료 수급 변화를 추적합니다.", "signal_categories": ["산업", "정책", "정책자동"], "source_ids": ["mafra_rss", "krei_grain"], "cadence": "주 1회·월 1회", "review_rule": "국내 공고·산업 신호는 원문과 기준일 확인 후 점수와 분리"},
-    {"id": "market_overseas", "name": "해외 동향", "purpose": "국제 원료 가격과 해외 사료 시장 변화를 추적합니다.", "signal_categories": [], "source_ids": ["world_bank_pink_sheet"], "cadence": "월 1회", "review_rule": "해외 가격은 기준월·단위·환율 영향을 확인하고 참고 자료로 관리"}
+    {
+      "id": "research_materials",
+      "name": "연구 자료",
+      "purpose": "축종별 생산성·품질·안전성에 필요한 연구 결과를 모읍니다.",
+      "signal_categories": [
+        "제품근거"
+      ],
+      "source_ids": [
+        "nias_piglet_feed_trial",
+        "nias_broiler_cycle",
+        "nias_layer_feed_trial"
+      ],
+      "cadence": "주 1회",
+      "review_rule": "원문·축종·용량·시험기간을 확인하기 전에는 검토 대기로 유지"
+    },
+    {
+      "id": "papers",
+      "name": "논문",
+      "purpose": "GABA와 사료·축산 관련 동료심사 논문 및 서지정보를 관리합니다.",
+      "signal_categories": [
+        "학술자동"
+      ],
+      "source_ids": [
+        "europe_pmc",
+        "kci_gaba_livestock",
+        "animals_gaba_dairy"
+      ],
+      "cadence": "주 1회",
+      "review_rule": "논문 존재와 제품 효능 주장을 구분하고 원문 검토 후 인덱스에 반영"
+    },
+    {
+      "id": "market_domestic",
+      "name": "국내 동향",
+      "purpose": "국내 사료 정책·축산 산업·원료 수급 변화를 추적합니다.",
+      "signal_categories": [
+        "산업",
+        "정책",
+        "정책자동"
+      ],
+      "source_ids": [
+        "mafra_rss",
+        "krei_grain"
+      ],
+      "cadence": "주 1회·월 1회",
+      "review_rule": "국내 공고·산업 신호는 원문과 기준일 확인 후 점수와 분리"
+    },
+    {
+      "id": "market_overseas",
+      "name": "해외 동향",
+      "purpose": "국제 원료 가격과 해외 사료 시장 변화를 추적합니다.",
+      "signal_categories": [],
+      "source_ids": [
+        "world_bank_pink_sheet"
+      ],
+      "cadence": "월 1회",
+      "review_rule": "해외 가격은 기준월·단위·환율 영향을 확인하고 참고 자료로 관리"
+    }
   ],
-  "collection_schedule": {"timezone": "Asia/Seoul", "status": "예약 운영", "rule": "예약 수집은 탐색용이며, 원문·기준일·축종·시험조건을 검토한 뒤에만 준비도 점수 증빙으로 승격합니다.", "jobs": [{"category_id": "research_materials", "schedule": "매주 월요일 09:00", "next_run": "2026-08-10 09:00"}, {"category_id": "papers", "schedule": "매주 월요일 09:15", "next_run": "2026-08-10 09:15"}, {"category_id": "market_domestic", "schedule": "매주 월요일 09:30", "next_run": "2026-08-10 09:30"}, {"category_id": "market_overseas", "schedule": "매월 첫 영업일 09:45", "next_run": "2026-09-01 09:45"}]},
+  "collection_schedule": {
+    "timezone": "Asia/Seoul",
+    "status": "예약 운영",
+    "rule": "예약 수집은 탐색용이며, 원문·기준일·축종·시험조건을 검토한 뒤에만 준비도 점수 증빙으로 승격합니다.",
+    "jobs": [
+      {
+        "category_id": "research_materials",
+        "schedule": "매주 월요일 09:00",
+        "next_run": "2026-08-10 09:00"
+      },
+      {
+        "category_id": "papers",
+        "schedule": "매주 월요일 09:15",
+        "next_run": "2026-08-10 09:15"
+      },
+      {
+        "category_id": "market_domestic",
+        "schedule": "매주 월요일 09:30",
+        "next_run": "2026-08-10 09:30"
+      },
+      {
+        "category_id": "market_overseas",
+        "schedule": "매월 첫 영업일 09:45",
+        "next_run": "2026-09-01 09:45"
+      }
+    ]
+  },
   "downloads": [
-    {"name": "사료업체·투자자 스피치덱 PDF", "file": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf", "type": "PDF"},
-    {"name": "가바크루드 사양서 PDF", "file": "downloads/GABA_Crude_Specification_v1.pdf", "type": "PDF"},
-    {"name": "가바케어믹스 사양서 PDF", "file": "downloads/GABA_Caremix_Specification_v1.pdf", "type": "PDF"}
+    {
+      "name": "사료업체·투자자 스피치덱 PDF",
+      "file": "downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf",
+      "type": "PDF"
+    },
+    {
+      "name": "가바크루드 사양서 PDF",
+      "file": "downloads/GABA_Crude_Specification_v1.pdf",
+      "type": "PDF"
+    },
+    {
+      "name": "가바케어믹스 사양서 PDF",
+      "file": "downloads/GABA_Caremix_Specification_v1.pdf",
+      "type": "PDF"
+    }
   ],
-  "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다."
+  "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
+  "pricing_reference": {
+    "schema_version": "1.2.0",
+    "effective_date": "2026-08-10",
+    "currency": "KRW",
+    "gaba_crude": {
+      "product": "GABA Crude 20",
+      "gaba_fraction": 0.2,
+      "public_supply_price_krw_per_kg": 18000,
+      "status": "user_confirmed_public_basis",
+      "exclusions": [
+        "VAT",
+        "운송",
+        "고객별 거래조건"
+      ]
+    },
+    "mineral_matrix": {
+      "price_krw_per_kg": 5000,
+      "status": "user_confirmed_public_basis",
+      "exclusions": [
+        "VAT",
+        "운송",
+        "고객별 거래조건"
+      ],
+      "note": "사용자 확정 공개 산술 기준. 실제 구매·공급 조건은 유효 견적서로 확정"
+    },
+    "care_mix": {
+      "gaba_crude_fraction": 0.5,
+      "mineral_matrix_fraction": 0.5,
+      "gaba_fraction": 0.1,
+      "application_kg_per_feed_ton": 1.0,
+      "nominal_final_gaba_mg_per_kg": 100,
+      "calculated_raw_material_cost_krw_per_kg": 11500,
+      "calculated_raw_material_cost_krw_per_feed_ton": 11500,
+      "gaba_crude_component_krw_per_kg": 9000,
+      "mineral_matrix_component_krw_per_kg": 2500,
+      "final_cogs_status": "pending_trial_batch_and_quotes",
+      "final_supply_price_status": "quote_required"
+    },
+    "formula": "0.5kg × 18,000원/kg + 0.5kg × 5,000원/kg = 11,500원/kg",
+    "public_disclaimer": "11,500원/kg은 원료 2종만 반영한 이론 원료비이며 가바케어믹스 최종 매출원가 또는 공급단가가 아닙니다. 혼합·제조·검사·포장·수율손실·물류·거래조건을 반영한 유효 견적서로 최종 단가를 확정합니다."
+  }
 }
