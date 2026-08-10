@@ -39,8 +39,11 @@ const GABA_LEAD_HEADERS_V2 = [
   'Last_Activity', 'Notes'
 ];
 
+const GABA_KPI_HEADERS_V2 = ['Key', 'Value', 'Updated_At', 'Source'];
+
 function setupGabaInquiryReceiver() {
   const sheet = gabaInquirySheetV2_();
+  gabaRefreshB2bKpiV2_();
   const quota = MailApp.getRemainingDailyQuota();
   const now = Utilities.formatDate(new Date(), GABA_INQUIRY_CFG_V2.TZ, 'yyyy-MM-dd HH:mm:ss');
 
@@ -327,6 +330,14 @@ function gabaInquiryProcessV2_(params) {
 
   if (!sheetError) {
     try {
+      gabaRefreshB2bKpiV2_();
+    } catch (error) {
+      console.error('B2B KPI refresh failed: ' + error);
+    }
+  }
+
+  if (!sheetError) {
+    try {
       gabaInquiryUpdateLeadV2_(inquiryId, leadResult);
     } catch (error) {
       console.error('Lead status update failed: ' + error);
@@ -587,6 +598,64 @@ function gabaInquiryUpdateLeadV2_(inquiryId, leadResult) {
   const rowNumber = match + 2;
   sheet.getRange(rowNumber, leadColumn).setValue(leadResult.leadId || '');
   sheet.getRange(rowNumber, statusColumn).setValue(leadResult.status || 'FAILED');
+}
+
+function gabaRefreshB2bKpiV2_() {
+  const ss = SpreadsheetApp.openById(GABA_INQUIRY_CFG_V2.SPREADSHEET_ID);
+  const leadSheet = ss.getSheetByName(GABA_INQUIRY_CFG_V2.LEAD_SHEET_NAME);
+  const now = Utilities.formatDate(new Date(), GABA_INQUIRY_CFG_V2.TZ, 'yyyy-MM-dd HH:mm:ss');
+  const source = 'Lead_Pipeline / automated calculation';
+  const empty = {
+    total_leads: 0, new_leads: 0, qualified_leads: 0, samples: 0,
+    active_pilots: 0, completed_pilots: 0, quotes: 0, pos: 0, reorders: 0,
+    lead_to_qualified_rate: '', qualified_to_sample_rate: '', sample_to_pilot_rate: '',
+    pilot_to_quote_rate: '', quote_to_po_rate: '', average_first_response_hours: '',
+    overdue_next_actions: 0, evidence_reviews: 'Pending Verification',
+    regulatory_reviews: 'Pending Verification', failed_sources: 'Pending Sync'
+  };
+  if (!leadSheet || leadSheet.getLastRow() < 2) {
+    gabaUpsertStatusRowsV2_(ss, 'B2B_KPI', empty, source);
+    return empty;
+  }
+  const lastColumn = leadSheet.getLastColumn();
+  const headers = leadSheet.getRange(1, 1, 1, lastColumn).getValues()[0].map(String);
+  const rows = leadSheet.getRange(2, 1, leadSheet.getLastRow() - 1, lastColumn).getValues();
+  const col = function(name) { return headers.indexOf(name); };
+  const value = function(row, name) { const index = col(name); return index < 0 ? '' : String(row[index] || '').trim(); };
+  const nonEmpty = function(text) { return text && !/^(not started|none|no|n\/a|pending)$/i.test(text); };
+  const count = function(name, predicate) { return rows.filter(function(row) { return predicate(value(row, name)); }).length; };
+  const qualified = count('Qualification_Status', function(status) { return /qualified|technical|sample|pilot|quote|po|supply|reorder/i.test(status); });
+  const samples = count('Sample_Status', nonEmpty);
+  const activePilots = count('Pilot_Status', function(status) { return /active|in progress|running|started/i.test(status); });
+  const completedPilots = count('Pilot_Status', function(status) { return /complete|completed|done/i.test(status); });
+  const quotes = count('Quote_Status', nonEmpty);
+  const pos = count('PO_Status', function(status) { return /received|approved|issued|complete|done/i.test(status); });
+  const reorders = count('Last_Activity', function(activity) { return /reorder|repeat/i.test(activity); });
+  const total = rows.length;
+  const ratio = function(numerator, denominator) { return denominator ? Math.round(numerator / denominator * 10000) / 100 : ''; };
+  const overdue = rows.filter(function(row) {
+    const date = value(row, 'Next_Action_Date');
+    return date && new Date(date).getTime() < new Date().getTime();
+  }).length;
+  const metrics = Object.assign(empty, {
+    total_leads: total,
+    new_leads: count('Qualification_Status', function(status) { return /^new$/i.test(status); }),
+    qualified_leads: qualified,
+    samples: samples,
+    active_pilots: activePilots,
+    completed_pilots: completedPilots,
+    quotes: quotes,
+    pos: pos,
+    reorders: reorders,
+    lead_to_qualified_rate: ratio(qualified, total),
+    qualified_to_sample_rate: ratio(samples, qualified),
+    sample_to_pilot_rate: ratio(activePilots + completedPilots, samples),
+    pilot_to_quote_rate: ratio(quotes, activePilots + completedPilots),
+    quote_to_po_rate: ratio(pos, quotes),
+    overdue_next_actions: overdue
+  });
+  gabaUpsertStatusRowsV2_(ss, 'B2B_KPI', metrics, source);
+  return metrics;
 }
 
 function gabaInquirySheetValueV2_(value) {

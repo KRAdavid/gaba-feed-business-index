@@ -30,6 +30,17 @@ class InquiryE2EStaticTests(unittest.TestCase):
         self.assertIn("status: 'FAILED'", self.apps_script)
         self.assertIn("lead_error: leadResult.error || ''", self.apps_script)
 
+    def test_kpi_refresh_is_automated_from_lead_pipeline(self):
+        self.assertIn("const GABA_KPI_HEADERS_V2", self.apps_script)
+        self.assertIn("function gabaRefreshB2bKpiV2_", self.apps_script)
+        self.assertIn("gabaUpsertStatusRowsV2_(ss, 'B2B_KPI'", self.apps_script)
+        self.assertIn("gabaRefreshB2bKpiV2_();", self.apps_script)
+
+    def test_dashboard_sync_accepts_json_action(self):
+        self.assertIn("JSON.parse(e.postData.contents)", self.apps_script)
+        self.assertIn("action === 'sync_status'", self.apps_script)
+        self.assertIn("GABA_STATUS_SYNC_TOKEN", self.apps_script)
+
 
 if __name__ == "__main__":
     unittest.main()
