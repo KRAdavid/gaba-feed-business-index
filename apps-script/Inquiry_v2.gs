@@ -28,7 +28,9 @@ const GABA_INQUIRY_HEADERS_V2 = [
   'Species', 'Farm_or_Feed_Volume', 'Current_Challenges', 'Preparation_Stage',
   'Desired_Start', 'Sample_Initial_Volume', 'Annual_Volume', 'Evaluation_KPIs',
   'Detailed_Request', 'Consent', 'Source_Page', 'Client_Timestamp', 'Form_Version',
-  'Lead_ID', 'Lead_Status'
+  'Lead_ID', 'Lead_Status', 'Created_At', 'Country', 'Role', 'Interest', 'Product',
+  'Expected_Volume', 'Project_Stage', 'Technical_Requirements', 'Message', 'DB_Status',
+  'DB_Error', 'Source', 'UTM', 'Next_Action'
 ];
 
 const GABA_LEAD_HEADERS_V2 = [
@@ -223,6 +225,11 @@ function gabaInquiryProcessV2_(params) {
     clientTimestamp:
       gabaInquiryValueV2_(params, '접수시각') ||
       gabaInquiryValueV2_(params, 'client_timestamp'),
+    utm: [
+      gabaInquiryValueV2_(params, 'utm_source'),
+      gabaInquiryValueV2_(params, 'utm_medium'),
+      gabaInquiryValueV2_(params, 'utm_campaign')
+    ].filter(Boolean).join(' / '),
     formVersion:
       gabaInquiryValueV2_(params, 'form_version') ||
       GABA_INQUIRY_CFG_V2.FORM_VERSION
@@ -249,11 +256,11 @@ function gabaInquiryProcessV2_(params) {
   );
   const inquiryId =
     'INQ-' +
-    Utilities.formatDate(now, GABA_INQUIRY_CFG_V2.TZ, 'yyyyMMdd-HHmmss') +
+    Utilities.formatDate(now, GABA_INQUIRY_CFG_V2.TZ, 'yyyyMMdd') +
     '-' +
-    Utilities.getUuid().replace(/-/g, '').slice(0, 6).toUpperCase();
+    Utilities.getUuid().replace(/-/g, '').slice(0, 4).toUpperCase();
 
-  let mailStatus = 'sent';
+  let mailStatus = 'SENT';
   let mailError = '';
   let autoReplyWarning = '';
 
@@ -304,12 +311,13 @@ function gabaInquiryProcessV2_(params) {
       );
     }
   } catch (error) {
-    mailStatus = 'failed';
+    mailStatus = 'FAILED';
     mailError = String(error && error.message ? error.message : error).slice(0, 500);
   }
 
   let sheetError = '';
   let leadResult = { leadId: '', status: 'FAILED', error: '' };
+  data.nextAction = gabaLeadContextV2_(data).nextAction;
   try {
     gabaInquiryAppendV2_(inquiryId, receivedAt, mailStatus, mailError, data, leadResult);
   } catch (error) {
@@ -344,7 +352,7 @@ function gabaInquiryProcessV2_(params) {
     }
   }
 
-  if (mailStatus !== 'sent') {
+  if (mailStatus !== 'SENT') {
     return gabaInquiryResponseV2_(
       false,
       '문의는 기록되었으나 이메일 발송에 실패했습니다. 메일 앱으로 보내기를 눌러 주세요.',
@@ -352,6 +360,8 @@ function gabaInquiryProcessV2_(params) {
       {
         mail_status: mailStatus,
         sheet_saved: !sheetError,
+        db_status: sheetError ? 'FAILED' : 'SAVED',
+        db_error: sheetError,
         error: mailError,
         lead_id: leadResult.leadId,
         lead_status: leadResult.status
@@ -372,6 +382,8 @@ function gabaInquiryProcessV2_(params) {
     {
       mail_status: mailStatus,
       sheet_saved: !sheetError,
+      db_status: sheetError ? 'FAILED' : 'SAVED',
+      db_error: sheetError,
       lead_id: leadResult.leadId,
       lead_status: leadResult.status,
       lead_error: leadResult.error || ''
@@ -493,7 +505,21 @@ function gabaInquiryAppendV2_(
       data.clientTimestamp,
       data.formVersion,
       leadResult && leadResult.leadId || '',
-      leadResult && leadResult.status || 'PENDING'
+      leadResult && leadResult.status || 'PENDING',
+      receivedAt,
+      data.countryRegion,
+      data.departmentTitle,
+      data.collaborationType,
+      data.selectedProduct,
+      data.annualVolume || data.farmFeedVolume,
+      data.preparationStage,
+      data.selectedSpecification || data.evaluationKpis,
+      data.detailedRequest,
+      'SAVED',
+      '',
+      data.sourcePage,
+      data.utm,
+      data.nextAction
     ].map(gabaInquirySheetValueV2_);
 
     gabaInquirySheetV2_().appendRow(row);
@@ -525,7 +551,7 @@ function gabaCreateLeadV2_(inquiryId, receivedAt, data) {
   gabaEnsureHeadersV2_(sheet, GABA_LEAD_HEADERS_V2);
 
   const leadId = 'LEAD-' + receivedAt.replace(/[^0-9]/g, '').slice(0, 8) + '-' +
-    Utilities.getUuid().replace(/-/g, '').slice(0, 6).toUpperCase();
+    Utilities.getUuid().replace(/-/g, '').slice(0, 4).toUpperCase();
   const context = gabaLeadContextV2_(data);
   const values = {
     Lead_ID: leadId,

@@ -50,7 +50,7 @@ TO: 'feed@cellpinda.com',
 - 응답 대기시간은 60초입니다.
 - 문의자 이메일을 Reply-To로 사용합니다.
 - 모든 답변과 메일 발송 상태를 `Inquiries` 시트에 기록합니다.
-- 문의번호 `INQ-YYYYMMDD-HHMMSS-XXXXXX`를 발급합니다.
+- 문의번호 `INQ-YYYYMMDD-XXXX`를 발급합니다.
 
 ## 정상 작동 확인
 

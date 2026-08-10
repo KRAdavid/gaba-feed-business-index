@@ -21,6 +21,8 @@ class InquiryE2EStaticTests(unittest.TestCase):
         self.assertIn("LEAD_SHEET_NAME: 'Lead_Pipeline'", self.apps_script)
         self.assertIn("function gabaCreateLeadV2_", self.apps_script)
         self.assertIn("LEAD-", self.apps_script)
+        self.assertIn("slice(0, 4).toUpperCase()", self.apps_script)
+        self.assertIn("yyyyMMdd') +", self.apps_script)
         self.assertIn("gabaInquiryUpdateLeadV2_", self.apps_script)
         self.assertIn("Lead_Status", self.apps_script)
         self.assertIn("lead_id: leadResult.leadId", self.apps_script)
@@ -40,6 +42,16 @@ class InquiryE2EStaticTests(unittest.TestCase):
         self.assertIn("JSON.parse(e.postData.contents)", self.apps_script)
         self.assertIn("action === 'sync_status'", self.apps_script)
         self.assertIn("GABA_STATUS_SYNC_TOKEN", self.apps_script)
+
+    def test_inquiry_contract_has_operating_alias_fields(self):
+        for field in (
+            'Created_At', 'Company', 'Contact_Name', 'Email', 'Country', 'Role',
+            'Interest', 'Product', 'Expected_Volume', 'Project_Stage',
+            'Technical_Requirements', 'Message', 'Mail_Status', 'DB_Status',
+            'Lead_Status', 'Source', 'UTM', 'Next_Action'
+        ):
+            self.assertIn("'" + field + "'", self.apps_script)
+        self.assertIn("db_status: sheetError ? 'FAILED' : 'SAVED'", self.apps_script)
 
 
 if __name__ == "__main__":
