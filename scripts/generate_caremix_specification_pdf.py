@@ -67,7 +67,7 @@ def header_footer(canvas, doc) -> None:
     canvas.line(18 * mm, 14 * mm, PAGE_W - 18 * mm, 14 * mm)
     canvas.setFont("NanumGothic", 7)
     canvas.setFillColor(GRAY)
-    canvas.drawString(18 * mm, 9.5 * mm, "CELLPINDA GABA CARE MIX · Pricing basis v1.1 · 2026-08-10")
+    canvas.drawString(18 * mm, 9.5 * mm, "CELLPINDA GABA CARE MIX · Pricing basis v1.2 · 2026-08-10")
     canvas.drawRightString(PAGE_W - 18 * mm, 9.5 * mm, str(doc.page))
     canvas.restoreState()
 
@@ -172,7 +172,7 @@ def build_pdf() -> None:
         leftMargin=18 * mm,
         topMargin=17 * mm,
         bottomMargin=18 * mm,
-        title="GABA Care Mix 기술·사업 사양서 v1.1",
+        title="GABA Care Mix 기술·사업 사양서 v1.2",
         author="Cellpinda Life Science Lab",
     )
     frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="normal")
@@ -180,7 +180,7 @@ def build_pdf() -> None:
     story: list = []
 
     story += [
-        P("PRODUCT SPECIFICATION · PRICING BASIS v1.1", "KCardLabel"),
+        P("PRODUCT SPECIFICATION · PRICING BASIS v1.2", "KCardLabel"),
         Spacer(1, 3 * mm),
         P("GABA Care Mix<br/>가바케어믹스 기술·사업 사양서", "KTitle"),
         P("가바크루드 GABA 20% 기준품과 미네랄매트릭스를 50:50으로 배합하여, 사료 1톤당 1kg 투입 시 명목 GABA 100mg/kg을 공급하는 제품 설계안입니다.", "KSub"),
@@ -188,7 +188,7 @@ def build_pdf() -> None:
         Table(
             [[
                 card("GABA CRUDE", f"{crude_price:,}원/kg", "셀핀다 공개 공급 기준가<br/>VAT·운송 등 별도", GREEN),
-                card("MINERAL MATRIX", f"{mineral_price:,}원/kg", "잠정 원료 기준가<br/>실제 구매 견적으로 확정", BLUE),
+                card("MINERAL MATRIX", f"{mineral_price:,}원/kg", "사용자 확정 공개 기준<br/>VAT·운송 등 별도", BLUE),
                 card("CARE MIX 원료비", f"{caremix_cost:,}원/kg", "50:50 혼합 원료 2종만 반영<br/>제조·검사·포장 등 제외", GOLD),
                 card("사료 1톤당", f"{caremix_cost:,}원", "Care Mix 1kg 투입 기준<br/>최종 공급가와 구분", RED),
             ]],
@@ -204,7 +204,7 @@ def build_pdf() -> None:
             [
                 [P("구분", "KWhite"), P("적용 기준", "KWhite"), P("상태", "KWhite")],
                 [P("가바크루드 기준가"), P(f"{crude_price:,}원/kg"), P("사용자 확정 공개 기준")],
-                [P("미네랄매트릭스"), P(f"{mineral_price:,}원/kg"), P("잠정 기준 - 견적 필요")],
+                [P("미네랄매트릭스"), P(f"{mineral_price:,}원/kg"), P("사용자 확정 공개 기준")],
                 [P("Care Mix 배합"), P("가바크루드 50% + 미네랄매트릭스 50%"), P("제품 설계안")],
                 [P("Care Mix 원료비"), P(f"{caremix_cost:,}원/kg · 사료 1톤당 {caremix_cost:,}원"), P("원료 2종 이론값")],
                 [P("Care Mix 공급가"), P("별도 견적"), P("미확정")],
@@ -234,7 +234,7 @@ def build_pdf() -> None:
             [
                 [P("원료", "KWhite"), P("배합량", "KWhite"), P("기준단가", "KWhite"), P("금액", "KWhite"), P("근거상태", "KWhite")],
                 [P("가바크루드 20"), P("0.500kg"), P(f"{crude_price:,}원/kg"), P(f"{crude_price * 0.5:,.0f}원"), P("사용자 확정 공개 기준")],
-                [P("미네랄매트릭스"), P("0.500kg"), P(f"{mineral_price:,}원/kg"), P(f"{mineral_price * 0.5:,.0f}원"), P("잠정 - 구매견적 필요")],
+                [P("미네랄매트릭스"), P("0.500kg"), P(f"{mineral_price:,}원/kg"), P(f"{mineral_price * 0.5:,.0f}원"), P("사용자 확정 공개 기준")],
                 [P("합계"), P("1.000kg"), P("-"), P(f"<b>{caremix_cost:,}원</b>"), P("원료 2종만 반영")],
             ],
             [38 * mm, 27 * mm, 35 * mm, 30 * mm, 38 * mm],
@@ -254,16 +254,16 @@ def build_pdf() -> None:
         PageBreak(),
     ]
 
-    story += section_title("02", "가바케어믹스 단가 민감도", "미네랄매트릭스 실제 구매단가가 확정되면 Care Mix 원료비를 자동 재산정합니다.")
+    story += section_title("02", "가바케어믹스 단가 민감도", "미네랄매트릭스 기준가 또는 배합비가 변경되면 Care Mix 원료비를 같은 버전으로 재산정합니다.")
     scenarios = []
-    for mineral in [2000, 2500, 3000, 3500, 4000, 5000]:
+    for mineral in [3000, 4000, 5000, 6000, 7000]:
         mineral_component = 0.5 * mineral
         total = 0.5 * crude_price + mineral_component
         scenarios.append([P(f"{mineral:,.0f}원/kg"), P(f"{crude_price * 0.5:,.0f}원"), P(f"{mineral_component:,.0f}원"), P(f"<b>{total:,.0f}원/kg</b>"), P(f"{total:,.0f}원/사료톤")])
     story += [
         data_table([[P("미네랄 기준가", "KWhite"), P("가바크루드 50%", "KWhite"), P("미네랄 50%", "KWhite"), P("Care Mix 원료비", "KWhite"), P("1kg/t 적용비", "KWhite")]] + scenarios, [34 * mm, 34 * mm, 31 * mm, 38 * mm, 38 * mm]),
         Spacer(1, 6 * mm),
-        callout("현재 공개 기준", f"<b>미네랄매트릭스 {mineral_price:,}원/kg 가정 → Care Mix 원료비 {caremix_cost:,}원/kg</b><br/>미네랄 단가는 확정 견적이 아니므로, 구매견적 수령 시 본 표와 웹·PDF·견적 템플릿을 함께 갱신합니다."),
+        callout("현재 공개 기준", f"<b>미네랄매트릭스 {mineral_price:,}원/kg 기준 → Care Mix 원료비 {caremix_cost:,}원/kg</b><br/>기준가 또는 배합비가 변경되면 본 표와 웹·PDF·견적 템플릿을 같은 버전으로 갱신합니다."),
         Spacer(1, 6 * mm),
         P("최종 공급단가 구성", "KHead2"),
         data_table(
@@ -343,10 +343,10 @@ def build_pdf() -> None:
             [59 * mm, 55 * mm, 54 * mm],
         ),
         Spacer(1, 7 * mm),
-        callout("버전관리", "본 문서는 2026-08-10 기준 가격 산술 정정본 v1.1입니다. 가바크루드 기준가, 미네랄매트릭스 견적 또는 배합비가 변경되면 문서·웹·계산기·견적 템플릿을 같은 버전으로 갱신합니다."),
+        callout("버전관리", "본 문서는 2026-08-10 기준 가격 산술 정정본 v1.2입니다. 가바크루드 기준가, 미네랄매트릭스 견적 또는 배합비가 변경되면 문서·웹·계산기·견적 템플릿을 같은 버전으로 갱신합니다."),
         Spacer(1, 6 * mm),
         P("근거 및 범위", "KHead2"),
-        P(f"가바크루드 {crude_price:,}원/kg은 사용자 확정 공개 기준입니다. 미네랄매트릭스 {mineral_price:,}원/kg은 현재 산술을 위한 잠정 기준이며, 제공 자료에는 최종 구매견적·혼합 제조비·검사비·포장비·실제 수율이 없습니다. 따라서 {caremix_cost:,}원/kg은 원료 2종의 이론 투입원가로만 사용합니다. 제품효능은 축종별 대조시험으로 확인합니다."),
+        P(f"가바크루드 {crude_price:,}원/kg은 사용자 확정 공개 기준입니다. 미네랄매트릭스 {mineral_price:,}원/kg도 사용자 확정 공개 기준이며, 제공 자료에는 최종 구매견적·혼합 제조비·검사비·포장비·실제 수율이 없습니다. 따라서 {caremix_cost:,}원/kg은 원료 2종의 이론 투입원가로만 사용합니다. 제품효능은 축종별 대조시험으로 확인합니다."),
         Spacer(1, 5 * mm),
         HRFlowable(width="100%", thickness=0.6, color=LINE),
         Spacer(1, 3 * mm),

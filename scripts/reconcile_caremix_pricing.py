@@ -242,7 +242,6 @@ def main() -> int:
         re.compile(r"미네랄매트릭스[^\n<]{0,120}3,000원/kg"),
         re.compile(r"0\.5kg\s*[×xX*]\s*18,000원/kg\s*\+\s*0\.5kg\s*[×xX*]\s*3,000원/kg"),
         re.compile(r"가바케어믹스[^\n<]{0,160}10,500원/kg"),
-        re.compile(r"가바케어믹스[^\n<]{0,160}5,000원/kg"),
         re.compile(r"가바크루드 50%\s*\+\s*미네랄매트릭스 50%[^\n<]{0,80}5,000원/kg"),
     ]
     check_paths = [*SOURCE_JSONS, PUBLIC_PRICING, TECH_DOCS, INDEX_HTML]
