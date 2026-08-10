@@ -80,12 +80,15 @@ jobs:
           PY
 
       - name: Sync status to Google Master DB
-        if: ${{ secrets.GABA_APPS_SCRIPT_SYNC_URL != '' && secrets.GABA_APPS_SCRIPT_SYNC_TOKEN != '' }}
         env:
           SYNC_URL: ${{ secrets.GABA_APPS_SCRIPT_SYNC_URL }}
           SYNC_TOKEN: ${{ secrets.GABA_APPS_SCRIPT_SYNC_TOKEN }}
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: |
+          if [ -z "${SYNC_URL:-}" ] || [ -z "${SYNC_TOKEN:-}" ]; then
+            echo "Google dashboard sync skipped: sync secrets are not configured"
+            exit 0
+          fi
           python scripts/build_dashboard_sync_payload.py --output /tmp/gaba-dashboard-status.json --workflow-run "$GITHUB_RUN_ID"
           python - <<'PY'
           import json, os, urllib.request
