@@ -1,0 +1,19 @@
+{
+  "release": "caremix-pricing-v1.2",
+  "published_at": "2026-08-10T04:01:00+00:00",
+  "effective_date": "2026-08-10",
+  "public_site": "https://kradavid.github.io/gaba-feed-business-index/",
+  "basis": {
+    "gaba_crude_krw_per_kg": 18000,
+    "mineral_matrix_krw_per_kg": 5000,
+    "mix_ratio": "50:50",
+    "theoretical_raw_material_cost_krw_per_kg": 11500,
+    "application_kg_per_feed_ton": 1,
+    "theoretical_raw_material_cost_krw_per_feed_ton": 11500
+  },
+  "price_scope": "원료 2종 이론값이며 최종 매출원가·공급단가는 유효 견적서로 확정",
+  "documents": [
+    "downloads/GABA_Caremix_Specification_v1.pdf",
+    "data/caremix_pricing.json"
+  ]
+}
