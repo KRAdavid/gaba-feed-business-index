@@ -77,6 +77,8 @@ jobs:
           test -f docs/data/technical_documents.json
           test -f docs/data/b2b_operations.json
           test -f docs/data/platform_health.json
+          test -f docs/data/products.json
+          test -f docs/data/product_master.json
           test -f docs/data/evidence_claim_matrix.json
           test -s docs/downloads/GABA_Crude_Specification_v1.pdf
           test -f docs/downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf
@@ -129,6 +131,8 @@ jobs:
               Path("docs/data/technical_documents.json"),
               Path("docs/data/b2b_operations.json"),
               Path("docs/data/platform_health.json"),
+              Path("docs/data/products.json"),
+              Path("docs/data/product_master.json"),
               Path("docs/data/evidence_claim_matrix.json"),
           ]
 
