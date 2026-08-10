@@ -421,6 +421,7 @@ def collect_official_monitors(monitors: list[dict[str, Any]], old_state: dict[st
         urls = [url for url in (source.get("urls") or [source.get("url")]) if url]
         active_url = ""
         last_error: Exception | None = None
+        previous = dict(state.get(sid, {}))
         try:
             raw: bytes | None = None
             for candidate_url in urls:
@@ -436,7 +437,13 @@ def collect_official_monitors(monitors: list[dict[str, Any]], old_state: dict[st
             digest = visible_text_digest(raw, source.get("keywords", []))
             next_state, confirmed = advance_monitor_state(state.get(sid, {}), digest, int(source.get("confirmation_runs", 2)))
             next_state["url"] = active_url
+            next_state["selected_url"] = active_url
             next_state["fallback_count"] = max(0, urls.index(active_url)) if active_url in urls else 0
+            next_state["fallback_used"] = bool(next_state["fallback_count"])
+            next_state["last_success_at"] = iso_now()
+            next_state["last_failure_at"] = previous.get("last_failure_at", "")
+            next_state["consecutive_failures"] = 0
+            next_state["response_status"] = "ok"
             state[sid] = next_state
             if confirmed or (not old_state.get(sid) and source.get("publish_initial", False)):
                 category = source.get("category", "policy")
@@ -449,6 +456,14 @@ def collect_official_monitors(monitors: list[dict[str, Any]], old_state: dict[st
                 )
                 items.append(quality_gate(item, config))
         except Exception as exc:  # monitoring must not stop research collection
+            failed_state = previous
+            failed_state["last_success_at"] = previous.get("last_success_at", "")
+            failed_state["last_failure_at"] = iso_now()
+            failed_state["consecutive_failures"] = int(previous.get("consecutive_failures", 0)) + 1
+            failed_state["selected_url"] = ""
+            failed_state["fallback_used"] = len(urls) > 1
+            failed_state["response_status"] = str(last_error or exc)[:180]
+            state[sid] = failed_state
             failures.append({"source": sid, "error": str(exc)[:300], "attempted_urls": urls})
     return items, state, failures
 
@@ -484,12 +499,16 @@ def knowledge_payload(items: list[Item], generated_at: str) -> dict[str, Any]:
     return {"schema_version": "2.0.0", "updated_at": generated_at, "count": len(rows), "counts": counts, "items": rows}
 
 
-def semantic_digest(public_items: list[Item], review_items: list[Item], failures: list[dict[str, str]], monitor_state: dict[str, Any]) -> str:
+def semantic_digest(public_items: list[Item], review_items: list[Item], failures: list[dict[str, str]] | None = None, monitor_state: dict[str, Any] | None = None) -> str:
+    """Return a digest of published/review content only.
+
+    Runtime failures and monitor probe metadata belong to the heartbeat, not to
+    content freshness. Keeping them out prevents a source outage from falsely
+    advancing ``last_content_change_at``.
+    """
     payload = {
         "public": [{k: v for k, v in asdict(x).items() if k != "detected_at"} for x in public_items],
         "review": [{k: v for k, v in asdict(x).items() if k != "detected_at"} for x in review_items],
-        "failures": failures,
-        "monitor_state": monitor_state,
     }
     return hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
 
@@ -516,6 +535,7 @@ def validate_outputs() -> None:
 
 
 def run(since_days: int, skip_network: bool = False) -> dict[str, Any]:
+    started = time.perf_counter()
     config = load_json(CONFIG_PATH, {})
     settings = config.get("settings", {})
     max_public = int(settings.get("max_public_items", 250))
@@ -564,13 +584,21 @@ def run(since_days: int, skip_network: bool = False) -> dict[str, Any]:
     last_content_change_at = generated_at if content_changed else clean_text(
         old_state.get("last_content_change_at") or old_status.get("last_content_change_at")
     )
-    last_success_at = run_at if not failures else clean_text(
-        old_state.get("last_success_at") or old_status.get("last_success_at")
-    )
-    source_success = len(config.get("official_monitors", [])) + 3 - len(failures)
+    # A run that completes with partial source failures is still an executed
+    # run; the source failures are represented separately in Health.
+    last_success_at = run_at
+    collector_names = ("pubmed", "europe_pmc", "crossref")
+    enabled_collectors = sum(1 for name in collector_names if config.get(name, {}).get("enabled", True))
+    sources_total = enabled_collectors + len(config.get("official_monitors", []))
+    source_success = sources_total - len(failures)
     source_success = max(0, source_success)
     workflow_run_id = clean_text(os.environ.get("GITHUB_RUN_ID"))
     workflow_attempt = clean_text(os.environ.get("GITHUB_RUN_ATTEMPT"))
+    event_name = clean_text(os.environ.get("GITHUB_EVENT_NAME"))
+    trigger_type = "retry" if workflow_attempt and workflow_attempt != "1" else (
+        "scheduled" if event_name == "schedule" else "manual"
+    )
+    execution_duration = round(time.perf_counter() - started, 3)
 
     status_name = "healthy" if not failures else "partial"
     output = {
@@ -588,11 +616,12 @@ def run(since_days: int, skip_network: bool = False) -> dict[str, Any]:
               "last_run_at": run_at, "last_success_at": last_success_at,
               "last_content_change_at": last_content_change_at,
               "workflow_run_id": workflow_run_id, "workflow_attempt": workflow_attempt,
-              "trigger_type": "scheduled" if os.environ.get("GITHUB_EVENT_NAME") == "schedule" else "manual",
-              "sources_total": len(config.get("official_monitors", [])) + 3,
+              "trigger_type": trigger_type,
+              "sources_total": sources_total,
               "sources_success": source_success, "sources_failed": len(failures),
               "items_collected_this_run": len(incoming), "items_published_current": len(public_items),
-              "review_queue_current": len(review_items)}
+              "review_queue_current": len(review_items),
+              "execution_duration_seconds": execution_duration}
     state = {"version": "2.0.0", "semantic_digest": digest, "official_monitors": monitor_state,
              "last_run_at": run_at, "last_success_at": last_success_at,
              "last_content_change_at": last_content_change_at}

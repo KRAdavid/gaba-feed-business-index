@@ -22,7 +22,7 @@
     }
   };
 
-  function enhanceSelector() {
+  function enhanceSelector(productMaster = {}) {
     const selector = document.querySelector('.product-switch');
     if (!selector || selector.dataset.splitSelector === 'true') return false;
 
@@ -37,7 +37,7 @@
 
     selector.querySelectorAll('[data-product]').forEach((button) => {
       const key = button.dataset.product;
-      const product = PRODUCT_COPY[key];
+      const product = { ...PRODUCT_COPY[key], ...(productMaster[key] || {}) };
       if (!product) return;
 
       button.classList.add('product-split-card', `product-split-card--${product.theme}`);
@@ -48,6 +48,7 @@
           <small>${escapeHtml(product.en)}</small>
         </span>
         <span class="product-split-summary">${escapeHtml(product.summary)}</span>
+        <span class="product-split-status">기준정보: ${escapeHtml(product.specification_status || 'Pending Verification')}</span>
         <span class="product-split-points">
           ${product.points.map((point) => `<i>${escapeHtml(point)}</i>`).join('')}
         </span>
@@ -88,10 +89,28 @@
       .replaceAll("'", '&#039;');
   }
 
-  function init() {
-    if (enhanceSelector()) return;
+  async function loadProductMaster() {
+    try {
+      const response = await fetch('data/products.json', { cache: 'no-store' });
+      if (!response.ok) return {};
+      const payload = await response.json();
+      const products = Object.fromEntries((payload.products || []).map((product) => [
+        product.product_id === 'GABA-CRUDE-20' ? 'crude' : 'caremix',
+        { specification_status: product.specification_status }
+      ]));
+      window.GABA_PRODUCT_MASTER = payload;
+      return products;
+    } catch (error) {
+      console.warn('Product master snapshot unavailable; using reviewed fallback copy.', error);
+      return {};
+    }
+  }
+
+  async function init() {
+    const productMaster = await loadProductMaster();
+    if (enhanceSelector(productMaster)) return;
     const observer = new MutationObserver(() => {
-      if (enhanceSelector()) observer.disconnect();
+      if (enhanceSelector(productMaster)) observer.disconnect();
     });
     observer.observe(document.documentElement, { childList: true, subtree: true });
     window.setTimeout(() => observer.disconnect(), 10000);

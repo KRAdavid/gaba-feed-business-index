@@ -7,6 +7,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from validate_evidence_qa import validate as validate_evidence_qa
+from validate_product_master import validate as validate_product_master
+
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 OUTPUT = DOCS / "data" / "platform_health.json"
@@ -64,6 +67,10 @@ def main() -> int:
         DOCS / "data" / "update_status.json",
         DOCS / "assets" / "inquiry-form.js",
         DOCS / "assets" / "inquiry-apps-script.js",
+        ROOT / "data" / "evidence_claim_matrix.json",
+        ROOT / "data" / "product_master.json",
+        DOCS / "data" / "products.json",
+        DOCS / "data" / "b2b_kpi.json",
     ]
     missing = [str(path.relative_to(ROOT)) for path in required_files if not path.exists()]
     add(
@@ -139,6 +146,25 @@ def main() -> int:
         "critical",
         f"운영단계 {stage_count}개 · 바이어팩 {pack_count}개",
     )
+    required_pipeline = ["Inquiry", "Lead", "Qualified", "Technical Pack", "Sample", "Pilot", "Quote", "PO", "Supply", "Reorder"]
+    pipeline = operations.get("pipeline_stages", []) if isinstance(operations, dict) else []
+    if not pipeline and isinstance(operations, dict):
+        pipeline = operations.get("platform_goal", {}).get("pipeline_stages", [])
+    add(
+        "buyer_workflow",
+        "바이어 실행 워크플로",
+        pipeline == required_pipeline,
+        "critical",
+        "Inquiry → Lead → Qualified → Technical Pack → Sample → Pilot → Quote → PO → Supply → Reorder",
+    )
+    product_errors = validate_product_master()
+    add(
+        "product_master",
+        "제품 기준정보 SOT",
+        not product_errors,
+        "critical",
+        "제품 master와 공개 스냅샷 일치" if not product_errors else "; ".join(product_errors),
+    )
 
     documents = load_json(DOCS / "data" / "technical_documents.json", {})
     document_count = len(documents.get("items", [])) if isinstance(documents, dict) else 0
@@ -168,6 +194,16 @@ def main() -> int:
         fallback_ok,
         "warning",
         "FDA·APVMA·OECD 기본·대체 URL 구성" if fallback_ok else "핵심 공식출처의 대체 URL 보완 필요",
+    )
+
+    evidence_matrix = load_json(ROOT / "data" / "evidence_claim_matrix.json", {})
+    evidence_errors = validate_evidence_qa(evidence_matrix) if isinstance(evidence_matrix, dict) else ["invalid evidence matrix"]
+    add(
+        "evidence_gate",
+        "Evidence QA public gate",
+        not evidence_errors,
+        "critical",
+        "Review documents held; RED claims = 0" if not evidence_errors else "; ".join(evidence_errors),
     )
 
     update_status = load_json(DOCS / "data" / "update_status.json", {})

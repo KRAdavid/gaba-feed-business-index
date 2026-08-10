@@ -12,6 +12,18 @@
       "Quote / PO",
       "Lot Release",
       "Reorder"
+    ],
+    "pipeline_stages": [
+      "Inquiry",
+      "Lead",
+      "Qualified",
+      "Technical Pack",
+      "Sample",
+      "Pilot",
+      "Quote",
+      "PO",
+      "Supply",
+      "Reorder"
     ]
   },
   "service_targets": [

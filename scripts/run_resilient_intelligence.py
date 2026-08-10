@@ -21,6 +21,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config" / "intelligence_sources_v2.json"
 STATUS = ROOT / "docs" / "data" / "update_status.json"
+STATE = ROOT / "data" / "auto_intelligence_state.json"
 ENGINE = ROOT / "scripts" / "auto_intelligence_v2.py"
 USER_AGENT = "Cellpinda-GABA-Feed-Intelligence/2.1 (+https://github.com/KRAdavid/gaba-feed-business-index)"
 
@@ -81,6 +82,8 @@ def choose_routes(config: dict[str, Any]) -> list[dict[str, Any]]:
 
 def update_public_status(reports: list[dict[str, Any]]) -> None:
     payload = load_json(STATUS, {})
+    state = load_json(STATE, {})
+    monitor_state = state.get("official_monitors", {}) if isinstance(state, dict) else {}
     payload["route_checked_at"] = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     payload["source_routes"] = [
         {
@@ -89,6 +92,11 @@ def update_public_status(reports: list[dict[str, Any]]) -> None:
             "selected_url": report["selected_url"],
             "attempt_count": len(report["attempts"]),
             "last_result": report["attempts"][-1]["result"] if report["attempts"] else "no URL",
+            "fallback_used": len(report["attempts"]) > 1 and report["reachable"],
+            "last_success_at": monitor_state.get(report["source"], {}).get("last_success_at", ""),
+            "last_failure_at": monitor_state.get(report["source"], {}).get("last_failure_at", ""),
+            "consecutive_failures": monitor_state.get(report["source"], {}).get("consecutive_failures", 0),
+            "response_status": monitor_state.get(report["source"], {}).get("response_status", ""),
         }
         for report in reports
     ]

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "source_of_truth": "Google Master DB / B2B_KPI",
+  "updated_at": "2026-08-10",
+  "status": "Awaiting connected CRM rows",
+  "metrics": [
+    {"key": "total_leads", "label": "Total Leads", "value": null, "source_field": "Lead_ID"},
+    {"key": "new_leads", "label": "New Leads", "value": null, "source_field": "Qualification_Status"},
+    {"key": "qualified_leads", "label": "Qualified Leads", "value": null, "source_field": "Qualification_Status"},
+    {"key": "samples", "label": "Samples", "value": null, "source_field": "Sample_Status"},
+    {"key": "active_pilots", "label": "Active Pilots", "value": null, "source_field": "Pilot_Status"},
+    {"key": "completed_pilots", "label": "Completed Pilots", "value": null, "source_field": "Pilot_Status"},
+    {"key": "quotes", "label": "Quotes", "value": null, "source_field": "Quote_Status"},
+    {"key": "pos", "label": "POs", "value": null, "source_field": "PO_Status"},
+    {"key": "reorders", "label": "Reorders", "value": null, "source_field": "Last_Activity"},
+    {"key": "lead_to_qualified_rate", "label": "Lead → Qualified", "value": null, "source_field": "derived"},
+    {"key": "qualified_to_sample_rate", "label": "Qualified → Sample", "value": null, "source_field": "derived"},
+    {"key": "sample_to_pilot_rate", "label": "Sample → Pilot", "value": null, "source_field": "derived"},
+    {"key": "pilot_to_quote_rate", "label": "Pilot → Quote", "value": null, "source_field": "derived"},
+    {"key": "quote_to_po_rate", "label": "Quote → PO", "value": null, "source_field": "derived"},
+    {"key": "average_first_response_hours", "label": "Average First Response", "value": null, "source_field": "Created_At / Last_Activity"},
+    {"key": "overdue_next_actions", "label": "Overdue Next Actions", "value": null, "source_field": "Next_Action_Date"},
+    {"key": "evidence_reviews", "label": "Evidence Reviews", "value": null, "source_field": "Claim Matrix"},
+    {"key": "regulatory_reviews", "label": "Regulatory Reviews", "value": null, "source_field": "Regulatory_Status"},
+    {"key": "failed_sources", "label": "Failed Sources", "value": null, "source_field": "source_health"}
+  ]
+}

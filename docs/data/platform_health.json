@@ -1,11 +1,11 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-08-10T01:05:51+00:00",
+  "generated_at": "2026-08-10T03:22:24+00:00",
   "status": "partial",
   "summary": {
     "critical_failed": 0,
     "warnings": 2,
-    "checks": 11,
+    "checks": 14,
     "documents": 7,
     "operating_stages": 6,
     "buyer_packs": 4,
@@ -55,6 +55,20 @@
       "message": "운영단계 6개 · 바이어팩 4개"
     },
     {
+      "id": "buyer_workflow",
+      "label": "바이어 실행 워크플로",
+      "ok": true,
+      "severity": "critical",
+      "message": "Inquiry → Lead → Qualified → Technical Pack → Sample → Pilot → Quote → PO → Supply → Reorder"
+    },
+    {
+      "id": "product_master",
+      "label": "제품 기준정보 SOT",
+      "ok": true,
+      "severity": "critical",
+      "message": "제품 master와 공개 스냅샷 일치"
+    },
+    {
       "id": "documents",
       "label": "기술·사업 자료",
       "ok": true,
@@ -69,11 +83,18 @@
       "message": "FDA·APVMA·OECD 기본·대체 URL 구성"
     },
     {
+      "id": "evidence_gate",
+      "label": "Evidence QA public gate",
+      "ok": true,
+      "severity": "critical",
+      "message": "Review documents held; RED claims = 0"
+    },
+    {
       "id": "data_freshness",
       "label": "자동자료 최신성",
       "ok": true,
       "severity": "warning",
-      "message": "마지막 갱신 5.6시간 전"
+      "message": "마지막 갱신 7.8시간 전"
     },
     {
       "id": "intelligence_sources",
@@ -90,5 +111,19 @@
       "message": "통제된 테스트 문의로 페이지 문의번호·feed 메일·백업메일·Inquiries 행을 함께 확인해야 함"
     }
   ],
+  "heartbeat": {
+    "last_run_at": "",
+    "last_success_at": "",
+    "last_content_change_at": "",
+    "workflow_run_id": "",
+    "workflow_attempt": "",
+    "trigger_type": "",
+    "sources_total": "",
+    "sources_success": "",
+    "sources_failed": "",
+    "items_collected_this_run": "",
+    "items_published_current": "",
+    "review_queue_current": ""
+  },
   "public_note": "본 상태는 공개자산·스마트 상담·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다."
 }

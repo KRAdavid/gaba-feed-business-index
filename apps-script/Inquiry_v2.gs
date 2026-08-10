@@ -64,10 +64,117 @@ function setupGabaInquiryReceiver() {
   };
 }
 
+/**
+ * Receives the public GitHub Intelligence status snapshot and mirrors it into
+ * the Master DB. Configure Script Properties:
+ *   GABA_STATUS_SYNC_TOKEN = a long random token
+ *
+ * GitHub Actions sends { action: 'sync_status', token, payload } to the same
+ * Web App endpoint. The token is never stored in a sheet or public snapshot.
+ */
+function gabaDashboardSyncV2_(e) {
+  const expected = PropertiesService.getScriptProperties().getProperty('GABA_STATUS_SYNC_TOKEN');
+  const body = e && e.postData && e.postData.contents ? e.postData.contents : '{}';
+  let request;
+  try {
+    request = JSON.parse(body);
+  } catch (error) {
+    return gabaDashboardSyncResponseV2_(false, 'Invalid JSON payload', { status: 400 });
+  }
+  const supplied = String(request.token || (e && e.parameter && e.parameter.token) || '');
+  if (!expected || !supplied || supplied !== expected) {
+    return gabaDashboardSyncResponseV2_(false, 'Unauthorized', { status: 401 });
+  }
+  const payload = request.payload || request;
+  if (!payload || typeof payload !== 'object' || !payload.last_run_at) {
+    return gabaDashboardSyncResponseV2_(false, 'Missing status payload', { status: 422 });
+  }
+
+  const values = {
+    'Operating Mode': payload.operating_mode || 'HYBRID_B2B',
+    'Public Source of Truth': payload.source_of_truth || 'GITHUB_APPROVED_SNAPSHOT',
+    'Public Engine Version': payload.engine_version || '2.0.0',
+    'Last Run At': payload.last_run_at,
+    'Last Success At': payload.last_success_at || '',
+    'Last Content Change At': payload.last_content_change_at || '',
+    'Published Count': payload.published_count || 0,
+    'Review Count': payload.review_count || 0,
+    'Sources Success': payload.sources_success || 0,
+    'Sources Failed': payload.sources_failed || 0,
+    'Health Status': payload.health_status || 'unknown',
+    'Latest Workflow Run': payload.latest_workflow_run || '',
+    'Latest Snapshot': payload.latest_snapshot || '',
+    'Semantic Digest': payload.semantic_digest || '',
+    'Execution Duration Seconds': payload.execution_duration_seconds || '',
+    'Dashboard Updated At': Utilities.formatDate(new Date(), GABA_INQUIRY_CFG_V2.TZ, 'yyyy-MM-dd HH:mm:ss')
+  };
+
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const ss = SpreadsheetApp.openById(GABA_INQUIRY_CFG_V2.SPREADSHEET_ID);
+    gabaUpsertStatusRowsV2_(ss, '00_Dashboard', values, 'GITHUB_APPROVED_SNAPSHOT');
+    gabaUpsertStatusRowsV2_(ss, 'System_Config', {
+      'Operating_Mode': values['Operating Mode'],
+      'Public_Source_of_Truth': values['Public Source of Truth'],
+      'Public_Intelligence_Engine': values['Public Engine Version']
+    }, 'GitHub Intelligence v2');
+  } finally {
+    lock.releaseLock();
+  }
+  return gabaDashboardSyncResponseV2_(true, 'Dashboard status synchronized', {
+    status: 200,
+    updated_sheets: ['00_Dashboard', 'System_Config'],
+    last_run_at: payload.last_run_at
+  });
+}
+
+function gabaUpsertStatusRowsV2_(ss, sheetName, values, source) {
+  let sheet = ss.getSheetByName(sheetName);
+  if (!sheet) sheet = ss.insertSheet(sheetName);
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, 4).setValues([['Key', 'Value', 'Updated_At', 'Source']]);
+    sheet.setFrozenRows(1);
+    sheet.getRange(1, 1, 1, 4).setFontWeight('bold');
+  }
+  const lastRow = sheet.getLastRow();
+  const keys = lastRow > 1 ? sheet.getRange(2, 1, lastRow - 1, 1).getValues() : [];
+  const updatedAt = Utilities.formatDate(new Date(), GABA_INQUIRY_CFG_V2.TZ, 'yyyy-MM-dd HH:mm:ss');
+  Object.keys(values).forEach(function(key) {
+    const index = keys.findIndex(function(row) { return String(row[0]) === key; });
+    const row = index >= 0 ? index + 2 : sheet.getLastRow() + 1;
+    if (index < 0) keys.push([key]);
+    sheet.getRange(row, 1, 1, 4).setValues([[
+      gabaInquirySheetValueV2_(key),
+      gabaInquirySheetValueV2_(values[key]),
+      updatedAt,
+      source
+    ]]);
+  });
+}
+
+function gabaDashboardSyncResponseV2_(ok, message, extra) {
+  const payload = Object.assign({ ok: Boolean(ok), message: String(message || '') }, extra || {});
+  return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(ContentService.MimeType.JSON);
+}
+
 function doPost(e) {
   try {
     const params = (e && e.parameters) || {};
-    if (gabaInquiryValueV2_(params, 'action').toLowerCase() !== 'inquiry') {
+    let action = gabaInquiryValueV2_(params, 'action').toLowerCase();
+    if (!action && e && e.postData && e.postData.contents) {
+      try {
+        const body = JSON.parse(e.postData.contents);
+        action = String(body.action || '').toLowerCase();
+      } catch (error) {
+        // Inquiry requests use form encoding; malformed JSON falls through to
+        // the standard unsupported-request response below.
+      }
+    }
+    if (action === 'sync_status') {
+      return gabaDashboardSyncV2_(e);
+    }
+    if (action !== 'inquiry') {
       return gabaInquiryResponseV2_(false, '지원하지 않는 요청입니다.', '');
     }
     return gabaInquiryProcessV2_(params);

@@ -57,7 +57,8 @@
       "version": "2026.05",
       "language": "KO",
       "url": "materials/breeder-pig-gaba-proposal.html",
-      "status": "AVAILABLE"
+      "status": "REVIEW",
+      "public": false
     },
     {
       "id": "australia-wagyu",
@@ -68,7 +69,8 @@
       "version": "1.0",
       "language": "KO",
       "url": "materials/australia-wagyu-gaba-assessment.html",
-      "status": "AVAILABLE"
+      "status": "REVIEW",
+      "public": false
     },
     {
       "id": "feed-introduction",
@@ -79,7 +81,8 @@
       "version": "1.0",
       "language": "KO",
       "url": "materials/gaba-feed-introduction.html",
-      "status": "AVAILABLE"
+      "status": "REVIEW",
+      "public": false
     }
   ]
 }

@@ -20,6 +20,20 @@ class TestAutoIntelligenceV2(unittest.TestCase):
             "items_published_current", "review_queue_current",
         ):
             self.assertIn(field, source)
+
+    def test_content_digest_ignores_runtime_failures(self):
+        self.assertEqual(
+            module.semantic_digest([], [], [{"source": "a", "error": "timeout"}], {}),
+            module.semantic_digest([], [], [], {"a": {"consecutive_failures": 3}}),
+        )
+
+    def test_official_monitor_state_tracks_route_health(self):
+        source = MODULE_PATH.read_text(encoding="utf-8")
+        for field in (
+            "last_success_at", "last_failure_at", "consecutive_failures",
+            "selected_url", "fallback_used", "response_status",
+        ):
+            self.assertIn(field, source)
     def test_strict_relevance_requires_gaba_animal_and_feed_context(self):
         self.assertTrue(module.strict_relevance(
             "Effects of GABA in broiler chickens",

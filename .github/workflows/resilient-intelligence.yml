@@ -63,6 +63,7 @@ jobs:
 
       - name: Validate public outputs
         run: |
+          python scripts/validate_evidence_qa.py
           python scripts/auto_intelligence_v2.py --validate-only
           python scripts/check_b2b_platform.py
           python - <<'PY'
@@ -76,6 +77,26 @@ jobs:
           ):
               json.loads(path.read_text(encoding='utf-8'))
               print('validated', path)
+          PY
+
+      - name: Sync status to Google Master DB
+        if: ${{ secrets.GABA_APPS_SCRIPT_SYNC_URL != '' && secrets.GABA_APPS_SCRIPT_SYNC_TOKEN != '' }}
+        env:
+          SYNC_URL: ${{ secrets.GABA_APPS_SCRIPT_SYNC_URL }}
+          SYNC_TOKEN: ${{ secrets.GABA_APPS_SCRIPT_SYNC_TOKEN }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          python scripts/build_dashboard_sync_payload.py --output /tmp/gaba-dashboard-status.json --workflow-run "$GITHUB_RUN_ID"
+          python - <<'PY'
+          import json, os, urllib.request
+          payload = json.load(open('/tmp/gaba-dashboard-status.json', encoding='utf-8'))
+          body = json.dumps({'action': 'sync_status', 'token': os.environ['SYNC_TOKEN'], 'payload': payload}).encode()
+          request = urllib.request.Request(os.environ['SYNC_URL'], data=body, headers={'Content-Type': 'application/json'}, method='POST')
+          with urllib.request.urlopen(request, timeout=30) as response:
+              result = json.load(response)
+          if not result.get('ok'):
+              raise SystemExit('Google dashboard sync rejected: ' + str(result))
+          print('Google dashboard sync completed:', result)
           PY
 
       - name: Commit changed public snapshots
