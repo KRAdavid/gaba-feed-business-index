@@ -169,9 +169,10 @@
     });
   }
 
-  function summary(c, s) {
+  function summary(c, s, fields) {
     const calc = [c.calculator.heads && `${c.calculator.heads}마리`, c.calculator.ppm && `GABA ${c.calculator.ppm}`, c.calculator.growth && `성장 가정 ${c.calculator.growth}%`, c.calculator.fcr && `FCR 가정 ${c.calculator.fcr}%`, c.calculator.crude && `필요 원료 ${c.calculator.crude}`].filter(Boolean).join(' · ');
-    return [START, `- 진입경로: ${c.source}`, `- 바이어 역할: ${c.role || '직접 확인'}`, `- 제품: ${c.product}`, `- 축종: ${c.species || '직접 선택 필요'}`, `- 현재 단계: ${s.stage}`, `- 협업 유형: ${s.collaboration.join(', ')}`, `- 해결 과제: ${s.tasks.join(', ') || '상담 중 확인'}`, `- 핵심 KPI: ${s.kpis.join(', ') || '상담 중 확인'}`, `- 요청자료: ${s.documents.join(', ')}`, calc && `- 계산기 조건: ${calc}`, END].filter(Boolean).join('\n');
+    const conditions = fields.filter((field) => field.value).map((field) => `${field.label}: ${field.value}`).join(' · ');
+    return [START, `- 진입경로: ${c.source}`, `- 바이어 역할: ${c.role || '직접 확인'}`, `- 제품: ${c.product}`, `- 축종: ${c.species || '직접 선택 필요'}`, `- 현재 단계: ${s.stage}`, `- 협업 유형: ${s.collaboration.join(', ')}`, `- 해결 과제: ${s.tasks.join(', ') || '상담 중 확인'}`, `- 핵심 KPI: ${s.kpis.join(', ') || '상담 중 확인'}`, `- 요청자료: ${s.documents.join(', ')}`, conditions && `- 조건별 자동설정: ${conditions}`, calc && `- 계산기 조건: ${calc}`, END].filter(Boolean).join('\n');
   }
 
   function putSummary(form, text) {
@@ -203,8 +204,11 @@
     count += setChecks(form, '협업_유형', s.collaboration); count += setChecks(form, '현재_과제', s.tasks); count += setChecks(form, '핵심_평가지표', s.kpis);
     count += setSelect(form, '주요_축종', c.species) ? 1 : 0; count += setSelect(form, '현재_준비단계', s.stage) ? 1 : 0; count += setSelect(form, '희망_시작시기', s.start) ? 1 : 0;
     count += setInput(form, '국가_지역', c.country) ? 1 : 0; count += setInput(form, '예상_샘플_초도물량', c.quantity) ? 1 : 0; count += setInput(form, '사육규모_사료물량', c.calculator.heads && `${c.calculator.heads}마리`) ? 1 : 0;
-    renderConditionals(form, fields); count += fields.length; const text = summary(c, s); putSummary(form, text);
-    hidden(form, '스마트상담_버전', '1.0.0'); hidden(form, '스마트상담_진입경로', source); hidden(form, '스마트상담_요청자료', s.documents.join(', ')); hidden(form, '스마트상담_자동설정수', count); hidden(form, '선택제품', c.product); hidden(form, '주문가이드_경로', s.stage);
+    renderConditionals(form, fields); count += fields.length;
+    const text = summary(c, s, fields); putSummary(form, text);
+    const selectedSpec = fields.find((field) => field.name === '희망_GABA_규격' || field.name === '희망_제품형태')?.value || c.option || '';
+    const conditionSummary = fields.filter((field) => field.value).map((field) => `${field.label}: ${field.value}`).join(' · ');
+    hidden(form, '스마트상담_버전', '1.1.0'); hidden(form, '스마트상담_진입경로', source); hidden(form, '스마트상담_요청팩', pack?.title || '조건 기반 자동 구성'); hidden(form, '스마트상담_요청자료', s.documents.join(', ')); hidden(form, '스마트상담_조건별설정', conditionSummary); hidden(form, '스마트상담_자동설정수', count); hidden(form, '선택제품', c.product); hidden(form, '선택규격_형태', selectedSpec); hidden(form, '주문가이드_경로', s.stage);
     try { sessionStorage.setItem(STORE_KEY, JSON.stringify({ at: Date.now(), source, packId: pack?.id || '' })); } catch (_) {}
     renderReview(form, c, s, count); contact.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
     document.querySelector('.b2b-live-status')?.replaceChildren(document.createTextNode(`${count}개 조건을 자동 설정했습니다. 필수 정보만 확인해 주세요.`));
