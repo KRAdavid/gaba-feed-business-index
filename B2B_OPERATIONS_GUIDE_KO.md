@@ -16,8 +16,9 @@
 
 ### Lead_Pipeline
 
-- A:O는 `Inquiries`에서 자동 동기화됩니다.
-- P:AB는 담당자가 직접 관리합니다.
+- `Inquiry_v2.gs`가 `Inquiries`와 `Lead_Pipeline`을 생성·연결합니다.
+- `B2B_KPI`는 `Lead_Pipeline` 상태값을 기준으로 자동 재계산됩니다.
+- 담당자는 `Owner`, `Next_Action`, `Next_Action_Date`, 활동 메모를 보완합니다.
 - 신규 리드는 1영업일 안에 `Lead_Status`, `Priority`, `Owner`, `Next_Action`, `Next_Action_Date`를 입력합니다.
 
 ### B2B_Activities
@@ -112,4 +113,5 @@
 - `feed@cellpinda.com` 수신 확인
 - 백업 Gmail 수신 확인
 - `Inquiries` 행과 `Lead_Pipeline` 자동 동기화 확인
+- `B2B_KPI`의 리드·샘플·파일럿·견적·PO 지표 확인
 - APVMA·OECD-FAO 공식 페이지의 외부 접근 제한에 대한 지속 모니터링

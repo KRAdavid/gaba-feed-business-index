@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "source_of_truth": "PRODUCT_MASTER",
+  "updated_at": "2026-08-10",
+  "dose_basis": "mg active GABA / kg complete feed",
+  "products": [
+    {
+      "product_id": "GABA-CRUDE-20",
+      "product_name": "GABA Crude 20",
+      "version": "1.0",
+      "gaba_content": "20% target; lot CoA pending",
+      "specification_status": "Pending Verification",
+      "carrier": "TBD",
+      "moisture": "Pending Verification",
+      "appearance": "Pending Verification",
+      "analytical_method": "HPLC; method verification pending",
+      "recommended_inclusion": "Pilot Assumption",
+      "dose_basis": "mg active GABA / kg complete feed",
+      "moq": "TBD",
+      "packing": "TBD",
+      "lead_time": "TBD",
+      "price_status": "Pending Verification",
+      "coa_status": "Pending Verification",
+      "regulatory_status": "Pending Verification",
+      "last_updated": "2026-08-10",
+      "approved_by": ""
+    },
+    {
+      "product_id": "GABA-CARE-MIX",
+      "product_name": "GABA Care Mix",
+      "version": "1.0",
+      "gaba_content": "Pilot Assumption; formulation dependent",
+      "specification_status": "Pending Verification",
+      "carrier": "Mineral matrix; formulation pending",
+      "moisture": "Pending Verification",
+      "appearance": "Pending Verification",
+      "analytical_method": "Pending Verification",
+      "recommended_inclusion": "Pilot Assumption",
+      "dose_basis": "mg active GABA / kg complete feed",
+      "moq": "TBD",
+      "packing": "TBD",
+      "lead_time": "TBD",
+      "price_status": "Pending Verification",
+      "coa_status": "Pending Verification",
+      "regulatory_status": "Pending Verification",
+      "last_updated": "2026-08-10",
+      "approved_by": ""
+    }
+  ]
+}

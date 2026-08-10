@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnLIZGWbJDiDPMlUJ3yef8cXI1jgZC5cZsaCBUbYBR6bNAdXskVTZBSrxSHZiIpCDYPA/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNO1bwsnuHDMJsKpcCU2KUVMESnSD2_ZaauD_-sbqVE_X031-_oWS3ujh3zhYbMuCoqQ/exec';
   const PRIMARY_RECIPIENT = 'feed@cellpinda.com';
   const LEGACY_RECIPIENT = 'dubaissday@cellpinda.com';
   const MESSAGE_SOURCE = 'cellpinda-gaba-inquiry';

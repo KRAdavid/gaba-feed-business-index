@@ -12,6 +12,7 @@
 const GABA_INQUIRY_CFG_V2 = Object.freeze({
   SPREADSHEET_ID: '1QOYtwlq6uHp54BXu0v3yf5eA5B04HON9GxfxdE830zw',
   SHEET_NAME: 'Inquiries',
+  LEAD_SHEET_NAME: 'Lead_Pipeline',
   TO: 'feed@cellpinda.com',
   CC: 'dubaissday@gmail.com',
   TZ: 'Asia/Seoul',
@@ -26,11 +27,25 @@ const GABA_INQUIRY_HEADERS_V2 = [
   'Collaboration_Type', 'Selected_Product', 'Selected_Specification', 'Order_Guide_Path',
   'Species', 'Farm_or_Feed_Volume', 'Current_Challenges', 'Preparation_Stage',
   'Desired_Start', 'Sample_Initial_Volume', 'Annual_Volume', 'Evaluation_KPIs',
-  'Detailed_Request', 'Consent', 'Source_Page', 'Client_Timestamp', 'Form_Version'
+  'Detailed_Request', 'Consent', 'Source_Page', 'Client_Timestamp', 'Form_Version',
+  'Lead_ID', 'Lead_Status', 'Created_At', 'Country', 'Role', 'Interest', 'Product',
+  'Expected_Volume', 'Project_Stage', 'Technical_Requirements', 'Message', 'DB_Status',
+  'DB_Error', 'Source', 'UTM', 'Next_Action'
 ];
+
+const GABA_LEAD_HEADERS_V2 = [
+  'Lead_ID', 'Inquiry_ID', 'Created_At', 'Company', 'Contact', 'Country', 'Role',
+  'Species', 'Product', 'Expected_Volume', 'Use_Case', 'Project_Stage',
+  'Qualification_Status', 'Lead_Score', 'Owner', 'Next_Action', 'Next_Action_Date',
+  'Buyer_Pack', 'Sample_Status', 'Pilot_Status', 'Quote_Status', 'PO_Status',
+  'Last_Activity', 'Notes'
+];
+
+const GABA_KPI_HEADERS_V2 = ['Key', 'Value', 'Updated_At', 'Source'];
 
 function setupGabaInquiryReceiver() {
   const sheet = gabaInquirySheetV2_();
+  gabaRefreshB2bKpiV2_();
   const quota = MailApp.getRemainingDailyQuota();
   const now = Utilities.formatDate(new Date(), GABA_INQUIRY_CFG_V2.TZ, 'yyyy-MM-dd HH:mm:ss');
 
@@ -54,10 +69,145 @@ function setupGabaInquiryReceiver() {
   };
 }
 
+/**
+ * Read-only installation check. Run this after deployment or authorization;
+ * it does not send mail, create rows, or change any sheet.
+ */
+function verifyGabaInquiryReceiverV2() {
+  const ss = SpreadsheetApp.openById(GABA_INQUIRY_CFG_V2.SPREADSHEET_ID);
+  const checks = [
+    gabaVerifySheetHeadersV2_(ss, GABA_INQUIRY_CFG_V2.SHEET_NAME, GABA_INQUIRY_HEADERS_V2),
+    gabaVerifySheetHeadersV2_(ss, GABA_INQUIRY_CFG_V2.LEAD_SHEET_NAME, GABA_LEAD_HEADERS_V2),
+    gabaVerifySheetHeadersV2_(ss, 'B2B_KPI', GABA_KPI_HEADERS_V2)
+  ];
+  return {
+    ok: checks.every(function(check) { return check.ok; }),
+    spreadsheet_id: GABA_INQUIRY_CFG_V2.SPREADSHEET_ID,
+    checks: checks,
+    sync_token_configured: Boolean(PropertiesService.getScriptProperties().getProperty('GABA_STATUS_SYNC_TOKEN'))
+  };
+}
+
+function gabaVerifySheetHeadersV2_(ss, sheetName, requiredHeaders) {
+  const sheet = ss.getSheetByName(sheetName);
+  if (!sheet) return { sheet: sheetName, ok: false, missing: requiredHeaders, reason: 'sheet_missing' };
+  const width = Math.max(sheet.getLastColumn(), 1);
+  const headers = sheet.getRange(1, 1, 1, width).getValues()[0].map(String);
+  const missing = requiredHeaders.filter(function(header) { return headers.indexOf(header) === -1; });
+  return { sheet: sheetName, ok: missing.length === 0, missing: missing, row_count: Math.max(0, sheet.getLastRow() - 1) };
+}
+
+/**
+ * Receives the public GitHub Intelligence status snapshot and mirrors it into
+ * the Master DB. Configure Script Properties:
+ *   GABA_STATUS_SYNC_TOKEN = a long random token
+ *
+ * GitHub Actions sends { action: 'sync_status', token, payload } to the same
+ * Web App endpoint. The token is never stored in a sheet or public snapshot.
+ */
+function gabaDashboardSyncV2_(e) {
+  const expected = PropertiesService.getScriptProperties().getProperty('GABA_STATUS_SYNC_TOKEN');
+  const body = e && e.postData && e.postData.contents ? e.postData.contents : '{}';
+  let request;
+  try {
+    request = JSON.parse(body);
+  } catch (error) {
+    return gabaDashboardSyncResponseV2_(false, 'Invalid JSON payload', { status: 400 });
+  }
+  const supplied = String(request.token || (e && e.parameter && e.parameter.token) || '');
+  if (!expected || !supplied || supplied !== expected) {
+    return gabaDashboardSyncResponseV2_(false, 'Unauthorized', { status: 401 });
+  }
+  const payload = request.payload || request;
+  if (!payload || typeof payload !== 'object' || !payload.last_run_at) {
+    return gabaDashboardSyncResponseV2_(false, 'Missing status payload', { status: 422 });
+  }
+
+  const values = {
+    'Operating Mode': payload.operating_mode || 'HYBRID_B2B',
+    'Public Source of Truth': payload.source_of_truth || 'GITHUB_APPROVED_SNAPSHOT',
+    'Public Engine Version': payload.engine_version || '2.0.0',
+    'Last Run At': payload.last_run_at,
+    'Last Success At': payload.last_success_at || '',
+    'Last Content Change At': payload.last_content_change_at || '',
+    'Published Count': payload.published_count || 0,
+    'Review Count': payload.review_count || 0,
+    'Sources Success': payload.sources_success || 0,
+    'Sources Failed': payload.sources_failed || 0,
+    'Health Status': payload.health_status || 'unknown',
+    'Latest Workflow Run': payload.latest_workflow_run || '',
+    'Latest Snapshot': payload.latest_snapshot || '',
+    'Semantic Digest': payload.semantic_digest || '',
+    'Execution Duration Seconds': payload.execution_duration_seconds || '',
+    'Dashboard Updated At': Utilities.formatDate(new Date(), GABA_INQUIRY_CFG_V2.TZ, 'yyyy-MM-dd HH:mm:ss')
+  };
+
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const ss = SpreadsheetApp.openById(GABA_INQUIRY_CFG_V2.SPREADSHEET_ID);
+    gabaUpsertStatusRowsV2_(ss, '00_Dashboard', values, 'GITHUB_APPROVED_SNAPSHOT');
+    gabaUpsertStatusRowsV2_(ss, 'System_Config', {
+      'Operating_Mode': values['Operating Mode'],
+      'Public_Source_of_Truth': values['Public Source of Truth'],
+      'Public_Intelligence_Engine': values['Public Engine Version']
+    }, 'GitHub Intelligence v2');
+  } finally {
+    lock.releaseLock();
+  }
+  return gabaDashboardSyncResponseV2_(true, 'Dashboard status synchronized', {
+    status: 200,
+    updated_sheets: ['00_Dashboard', 'System_Config'],
+    last_run_at: payload.last_run_at
+  });
+}
+
+function gabaUpsertStatusRowsV2_(ss, sheetName, values, source) {
+  let sheet = ss.getSheetByName(sheetName);
+  if (!sheet) sheet = ss.insertSheet(sheetName);
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, 4).setValues([['Key', 'Value', 'Updated_At', 'Source']]);
+    sheet.setFrozenRows(1);
+    sheet.getRange(1, 1, 1, 4).setFontWeight('bold');
+  }
+  const lastRow = sheet.getLastRow();
+  const keys = lastRow > 1 ? sheet.getRange(2, 1, lastRow - 1, 1).getValues() : [];
+  const updatedAt = Utilities.formatDate(new Date(), GABA_INQUIRY_CFG_V2.TZ, 'yyyy-MM-dd HH:mm:ss');
+  Object.keys(values).forEach(function(key) {
+    const index = keys.findIndex(function(row) { return String(row[0]) === key; });
+    const row = index >= 0 ? index + 2 : sheet.getLastRow() + 1;
+    if (index < 0) keys.push([key]);
+    sheet.getRange(row, 1, 1, 4).setValues([[
+      gabaInquirySheetValueV2_(key),
+      gabaInquirySheetValueV2_(values[key]),
+      updatedAt,
+      source
+    ]]);
+  });
+}
+
+function gabaDashboardSyncResponseV2_(ok, message, extra) {
+  const payload = Object.assign({ ok: Boolean(ok), message: String(message || '') }, extra || {});
+  return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(ContentService.MimeType.JSON);
+}
+
 function doPost(e) {
   try {
     const params = (e && e.parameters) || {};
-    if (gabaInquiryValueV2_(params, 'action').toLowerCase() !== 'inquiry') {
+    let action = gabaInquiryValueV2_(params, 'action').toLowerCase();
+    if (!action && e && e.postData && e.postData.contents) {
+      try {
+        const body = JSON.parse(e.postData.contents);
+        action = String(body.action || '').toLowerCase();
+      } catch (error) {
+        // Inquiry requests use form encoding; malformed JSON falls through to
+        // the standard unsupported-request response below.
+      }
+    }
+    if (action === 'sync_status') {
+      return gabaDashboardSyncV2_(e);
+    }
+    if (action !== 'inquiry') {
       return gabaInquiryResponseV2_(false, '지원하지 않는 요청입니다.', '');
     }
     return gabaInquiryProcessV2_(params);
@@ -103,6 +253,11 @@ function gabaInquiryProcessV2_(params) {
     clientTimestamp:
       gabaInquiryValueV2_(params, '접수시각') ||
       gabaInquiryValueV2_(params, 'client_timestamp'),
+    utm: [
+      gabaInquiryValueV2_(params, 'utm_source'),
+      gabaInquiryValueV2_(params, 'utm_medium'),
+      gabaInquiryValueV2_(params, 'utm_campaign')
+    ].filter(Boolean).join(' / '),
     formVersion:
       gabaInquiryValueV2_(params, 'form_version') ||
       GABA_INQUIRY_CFG_V2.FORM_VERSION
@@ -129,11 +284,11 @@ function gabaInquiryProcessV2_(params) {
   );
   const inquiryId =
     'INQ-' +
-    Utilities.formatDate(now, GABA_INQUIRY_CFG_V2.TZ, 'yyyyMMdd-HHmmss') +
+    Utilities.formatDate(now, GABA_INQUIRY_CFG_V2.TZ, 'yyyyMMdd') +
     '-' +
-    Utilities.getUuid().replace(/-/g, '').slice(0, 6).toUpperCase();
+    Utilities.getUuid().replace(/-/g, '').slice(0, 4).toUpperCase();
 
-  let mailStatus = 'sent';
+  let mailStatus = 'SENT';
   let mailError = '';
   let autoReplyWarning = '';
 
@@ -184,18 +339,48 @@ function gabaInquiryProcessV2_(params) {
       );
     }
   } catch (error) {
-    mailStatus = 'failed';
+    mailStatus = 'FAILED';
     mailError = String(error && error.message ? error.message : error).slice(0, 500);
   }
 
   let sheetError = '';
+  let leadResult = { leadId: '', status: 'FAILED', error: '' };
+  data.nextAction = gabaLeadContextV2_(data).nextAction;
   try {
-    gabaInquiryAppendV2_(inquiryId, receivedAt, mailStatus, mailError, data);
+    gabaInquiryAppendV2_(inquiryId, receivedAt, mailStatus, mailError, data, leadResult);
   } catch (error) {
     sheetError = String(error && error.message ? error.message : error).slice(0, 500);
   }
 
-  if (mailStatus !== 'sent') {
+  // Lead creation is deliberately best-effort: an email or inquiry write must
+  // never be rolled back because a downstream pipeline sheet is unavailable.
+  try {
+    if (!sheetError) leadResult = gabaCreateLeadV2_(inquiryId, receivedAt, data);
+  } catch (error) {
+    leadResult = {
+      leadId: '',
+      status: 'FAILED',
+      error: String(error && error.message ? error.message : error).slice(0, 500)
+    };
+  }
+
+  if (!sheetError) {
+    try {
+      gabaRefreshB2bKpiV2_();
+    } catch (error) {
+      console.error('B2B KPI refresh failed: ' + error);
+    }
+  }
+
+  if (!sheetError) {
+    try {
+      gabaInquiryUpdateLeadV2_(inquiryId, leadResult);
+    } catch (error) {
+      console.error('Lead status update failed: ' + error);
+    }
+  }
+
+  if (mailStatus !== 'SENT') {
     return gabaInquiryResponseV2_(
       false,
       '문의는 기록되었으나 이메일 발송에 실패했습니다. 메일 앱으로 보내기를 눌러 주세요.',
@@ -203,7 +388,11 @@ function gabaInquiryProcessV2_(params) {
       {
         mail_status: mailStatus,
         sheet_saved: !sheetError,
-        error: mailError
+        db_status: sheetError ? 'FAILED' : 'SAVED',
+        db_error: sheetError,
+        error: mailError,
+        lead_id: leadResult.leadId,
+        lead_status: leadResult.status
       }
     );
   }
@@ -220,7 +409,12 @@ function gabaInquiryProcessV2_(params) {
     inquiryId,
     {
       mail_status: mailStatus,
-      sheet_saved: !sheetError
+      sheet_saved: !sheetError,
+      db_status: sheetError ? 'FAILED' : 'SAVED',
+      db_error: sheetError,
+      lead_id: leadResult.leadId,
+      lead_status: leadResult.status,
+      lead_error: leadResult.error || ''
     }
   );
 }
@@ -293,15 +487,7 @@ function gabaInquirySheetV2_() {
     sheet = ss.insertSheet(GABA_INQUIRY_CFG_V2.SHEET_NAME);
   }
 
-  if (sheet.getLastRow() === 0) {
-    sheet
-      .getRange(1, 1, 1, GABA_INQUIRY_HEADERS_V2.length)
-      .setValues([GABA_INQUIRY_HEADERS_V2]);
-    sheet.setFrozenRows(1);
-    sheet
-      .getRange(1, 1, 1, GABA_INQUIRY_HEADERS_V2.length)
-      .setFontWeight('bold');
-  }
+  gabaEnsureHeadersV2_(sheet, GABA_INQUIRY_HEADERS_V2);
 
   return sheet;
 }
@@ -311,7 +497,8 @@ function gabaInquiryAppendV2_(
   receivedAt,
   mailStatus,
   mailError,
-  data
+  data,
+  leadResult
 ) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
@@ -344,13 +531,185 @@ function gabaInquiryAppendV2_(
       data.consent,
       data.sourcePage,
       data.clientTimestamp,
-      data.formVersion
+      data.formVersion,
+      leadResult && leadResult.leadId || '',
+      leadResult && leadResult.status || 'PENDING',
+      receivedAt,
+      data.countryRegion,
+      data.departmentTitle,
+      data.collaborationType,
+      data.selectedProduct,
+      data.annualVolume || data.farmFeedVolume,
+      data.preparationStage,
+      data.selectedSpecification || data.evaluationKpis,
+      data.detailedRequest,
+      'SAVED',
+      '',
+      data.sourcePage,
+      data.utm,
+      data.nextAction
     ].map(gabaInquirySheetValueV2_);
 
     gabaInquirySheetV2_().appendRow(row);
   } finally {
     lock.releaseLock();
   }
+}
+
+function gabaEnsureHeadersV2_(sheet, headers) {
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    sheet.setFrozenRows(1);
+    sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
+    return;
+  }
+  const current = sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), 1)).getValues()[0];
+  headers.forEach(function(header) {
+    if (current.indexOf(header) === -1) {
+      sheet.getRange(1, sheet.getLastColumn() + 1).setValue(header).setFontWeight('bold');
+      current.push(header);
+    }
+  });
+}
+
+function gabaCreateLeadV2_(inquiryId, receivedAt, data) {
+  const ss = SpreadsheetApp.openById(GABA_INQUIRY_CFG_V2.SPREADSHEET_ID);
+  let sheet = ss.getSheetByName(GABA_INQUIRY_CFG_V2.LEAD_SHEET_NAME);
+  if (!sheet) sheet = ss.insertSheet(GABA_INQUIRY_CFG_V2.LEAD_SHEET_NAME);
+  gabaEnsureHeadersV2_(sheet, GABA_LEAD_HEADERS_V2);
+
+  const leadId = 'LEAD-' + receivedAt.replace(/[^0-9]/g, '').slice(0, 8) + '-' +
+    Utilities.getUuid().replace(/-/g, '').slice(0, 4).toUpperCase();
+  const context = gabaLeadContextV2_(data);
+  const values = {
+    Lead_ID: leadId,
+    Inquiry_ID: inquiryId,
+    Created_At: receivedAt,
+    Company: data.company,
+    Contact: data.contactName,
+    Country: data.countryRegion,
+    Role: data.departmentTitle,
+    Species: data.species,
+    Product: data.selectedProduct,
+    Expected_Volume: data.annualVolume || data.farmFeedVolume,
+    Use_Case: data.currentChallenges,
+    Project_Stage: data.preparationStage,
+    Qualification_Status: 'New',
+    Lead_Score: context.score,
+    Owner: '',
+    Next_Action: context.nextAction,
+    Next_Action_Date: '',
+    Buyer_Pack: context.buyerPack,
+    Sample_Status: 'Not Started',
+    Pilot_Status: 'Not Started',
+    Quote_Status: 'Not Started',
+    PO_Status: 'Not Started',
+    Last_Activity: receivedAt,
+    Notes: 'Created automatically from ' + inquiryId + '. ' + data.detailedRequest
+  };
+  const row = GABA_LEAD_HEADERS_V2.map(function(header) {
+    return gabaInquirySheetValueV2_(values[header] || '');
+  });
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    sheet.appendRow(row);
+  } finally {
+    lock.releaseLock();
+  }
+  return { leadId: leadId, status: 'CREATED', error: '' };
+}
+
+function gabaLeadContextV2_(data) {
+  const text = [data.collaborationType, data.preparationStage, data.currentChallenges].join(' ').toLowerCase();
+  let buyerPack = 'Technical Validation Pack';
+  let nextAction = 'Review inquiry and confirm technical requirements';
+  if (/pilot|farm|field/.test(text)) {
+    buyerPack = 'Farm Pilot Pack';
+    nextAction = 'Confirm pilot scope, KPI and sample requirement';
+  } else if (/purchase|procurement|quote|price|commercial/.test(text)) {
+    buyerPack = 'Commercial Supply Pack';
+    nextAction = 'Confirm specification, MOQ, price and lead time';
+  } else if (/import|export|regulatory|importer/.test(text)) {
+    buyerPack = 'Importer Readiness Pack';
+    nextAction = 'Review regulatory, import and specification requirements';
+  }
+  const score = Math.min(100, 20 + (data.company ? 10 : 0) + (data.annualVolume || data.farmFeedVolume ? 20 : 0) +
+    (data.preparationStage ? 15 : 0) + (data.detailedRequest ? 20 : 0) + (data.evaluationKpis ? 15 : 0));
+  return { buyerPack: buyerPack, nextAction: nextAction, score: score };
+}
+
+function gabaInquiryUpdateLeadV2_(inquiryId, leadResult) {
+  const sheet = gabaInquirySheetV2_();
+  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const inquiryColumn = headers.indexOf('Inquiry_ID') + 1;
+  const leadColumn = headers.indexOf('Lead_ID') + 1;
+  const statusColumn = headers.indexOf('Lead_Status') + 1;
+  if (!inquiryColumn || !leadColumn || !statusColumn) return;
+  const match = sheet.getRange(2, inquiryColumn, Math.max(sheet.getLastRow() - 1, 1), 1)
+    .getValues().findIndex(function(row) { return String(row[0]) === inquiryId; });
+  if (match < 0) return;
+  const rowNumber = match + 2;
+  sheet.getRange(rowNumber, leadColumn).setValue(leadResult.leadId || '');
+  sheet.getRange(rowNumber, statusColumn).setValue(leadResult.status || 'FAILED');
+}
+
+function gabaRefreshB2bKpiV2_() {
+  const ss = SpreadsheetApp.openById(GABA_INQUIRY_CFG_V2.SPREADSHEET_ID);
+  const leadSheet = ss.getSheetByName(GABA_INQUIRY_CFG_V2.LEAD_SHEET_NAME);
+  const now = Utilities.formatDate(new Date(), GABA_INQUIRY_CFG_V2.TZ, 'yyyy-MM-dd HH:mm:ss');
+  const source = 'Lead_Pipeline / automated calculation';
+  const empty = {
+    total_leads: 0, new_leads: 0, qualified_leads: 0, samples: 0,
+    active_pilots: 0, completed_pilots: 0, quotes: 0, pos: 0, reorders: 0,
+    lead_to_qualified_rate: '', qualified_to_sample_rate: '', sample_to_pilot_rate: '',
+    pilot_to_quote_rate: '', quote_to_po_rate: '', average_first_response_hours: '',
+    overdue_next_actions: 0, evidence_reviews: 'Pending Verification',
+    regulatory_reviews: 'Pending Verification', failed_sources: 'Pending Sync'
+  };
+  if (!leadSheet || leadSheet.getLastRow() < 2) {
+    gabaUpsertStatusRowsV2_(ss, 'B2B_KPI', empty, source);
+    return empty;
+  }
+  const lastColumn = leadSheet.getLastColumn();
+  const headers = leadSheet.getRange(1, 1, 1, lastColumn).getValues()[0].map(String);
+  const rows = leadSheet.getRange(2, 1, leadSheet.getLastRow() - 1, lastColumn).getValues();
+  const col = function(name) { return headers.indexOf(name); };
+  const value = function(row, name) { const index = col(name); return index < 0 ? '' : String(row[index] || '').trim(); };
+  const nonEmpty = function(text) { return text && !/^(not started|none|no|n\/a|pending)$/i.test(text); };
+  const count = function(name, predicate) { return rows.filter(function(row) { return predicate(value(row, name)); }).length; };
+  const qualified = count('Qualification_Status', function(status) { return /qualified|technical|sample|pilot|quote|po|supply|reorder/i.test(status); });
+  const samples = count('Sample_Status', nonEmpty);
+  const activePilots = count('Pilot_Status', function(status) { return /active|in progress|running|started/i.test(status); });
+  const completedPilots = count('Pilot_Status', function(status) { return /complete|completed|done/i.test(status); });
+  const quotes = count('Quote_Status', nonEmpty);
+  const pos = count('PO_Status', function(status) { return /received|approved|issued|complete|done/i.test(status); });
+  const reorders = count('Last_Activity', function(activity) { return /reorder|repeat/i.test(activity); });
+  const total = rows.length;
+  const ratio = function(numerator, denominator) { return denominator ? Math.round(numerator / denominator * 10000) / 100 : ''; };
+  const overdue = rows.filter(function(row) {
+    const date = value(row, 'Next_Action_Date');
+    return date && new Date(date).getTime() < new Date().getTime();
+  }).length;
+  const metrics = Object.assign(empty, {
+    total_leads: total,
+    new_leads: count('Qualification_Status', function(status) { return /^new$/i.test(status); }),
+    qualified_leads: qualified,
+    samples: samples,
+    active_pilots: activePilots,
+    completed_pilots: completedPilots,
+    quotes: quotes,
+    pos: pos,
+    reorders: reorders,
+    lead_to_qualified_rate: ratio(qualified, total),
+    qualified_to_sample_rate: ratio(samples, qualified),
+    sample_to_pilot_rate: ratio(activePilots + completedPilots, samples),
+    pilot_to_quote_rate: ratio(quotes, activePilots + completedPilots),
+    quote_to_po_rate: ratio(pos, quotes),
+    overdue_next_actions: overdue
+  });
+  gabaUpsertStatusRowsV2_(ss, 'B2B_KPI', metrics, source);
+  return metrics;
 }
 
 function gabaInquirySheetValueV2_(value) {

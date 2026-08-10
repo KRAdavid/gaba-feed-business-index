@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-08-10",
+  "public_policy": {
+    "red_claims_allowed": 0,
+    "unidentified_sources_allowed": 0,
+    "dose_basis": "mg active GABA / kg complete feed",
+    "public_requires": "GREEN QA and reviewer approval"
+  },
+  "publication_note": "세 제안서는 원문·시험조건·규제 표현을 추가 확인하기 전까지 공개하지 않습니다.",
+  "documents": [
+    {"document_id": "pig-gaba-feed-proposal", "document": "씨돼지 GABA 사료첨가제 제안서", "status": "Review", "public": false},
+    {"document_id": "australia-wagyu-gaba-assessment", "document": "호주 와규 GABA 사료 시장성·실현 가능성 평가", "status": "Review", "public": false},
+    {"document_id": "stress-care-gaba-feed-proposal", "document": "스트레스 케어 기능성 GABA 사료 도입 제안서", "status": "Review", "public": false}
+  ],
+  "qa_summary": {"red_claims": 0, "amber_claims": 3, "public_claims": 0}
+}

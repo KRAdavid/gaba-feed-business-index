@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "apps-script/Inquiry.gs"
+      - "apps-script/Inquiry_v2.gs"
       - "docs/assets/inquiry-apps-script.js"
       - "scripts/patch_inquiry_apps_script.py"
       - "scripts/build_site_worker.mjs"
@@ -63,7 +63,7 @@ jobs:
 
       - name: Verify installed route
         run: |
-          test -f apps-script/Inquiry.gs
+          test -f apps-script/Inquiry_v2.gs
           test -f docs/assets/inquiry-apps-script.js
           grep -q 'assets/inquiry-apps-script.js' docs/index.html
           grep -q 'AKfycbxnLIZGWbJDiDPMlUJ3yef8cXI1jgZC5cZsaCBUbYBR6bNAdXskVTZBSrxSHZiIpCDYPA' docs/assets/inquiry-apps-script.js
@@ -74,8 +74,8 @@ jobs:
           {
             echo "## Apps Script inquiry receiver"
             echo "- Front-end client: installed"
-            echo "- Receiver source: \`apps-script/Inquiry.gs\`"
+            echo "- Receiver source: \`apps-script/Inquiry_v2.gs\`"
             echo "- Existing web app URL: configured"
-            echo "- **Manual action required once:** paste \`Inquiry.gs\` into the bound Apps Script project and redeploy the existing web app as a new version."
+            echo "- **Manual action required once:** paste \`Inquiry_v2.gs\` into the bound Apps Script project and redeploy the existing web app as a new version."
             echo "- Setup guide: \`APPS_SCRIPT_INQUIRY_SETUP.md\`"
           } >> "$GITHUB_STEP_SUMMARY"

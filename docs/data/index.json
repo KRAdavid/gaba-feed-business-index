@@ -1703,7 +1703,7 @@
   },
   "auto_intelligence": {
     "version": "2.0.0",
-    "generated_at": "2026-08-09T19:31:28+00:00",
+    "generated_at": "2026-08-10T03:38:34+00:00",
     "count": 12,
     "items": [
       {
@@ -2035,7 +2035,7 @@
       }
     ]
   },
-  "auto_intelligence_updated_at": "2026-08-09T19:31:28+00:00",
+  "auto_intelligence_updated_at": "2026-08-10T03:38:34+00:00",
   "pricing_reference": {
     "schema_version": "1.2.0",
     "effective_date": "2026-08-10",

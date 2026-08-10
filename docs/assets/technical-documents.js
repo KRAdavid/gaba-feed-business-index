@@ -104,7 +104,7 @@
       const response = await fetch(DATA_URL, { cache: 'no-store' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
-      items = Array.isArray(data.items) ? data.items : [];
+      items = Array.isArray(data.items) ? data.items.filter((item) => item.public !== false) : [];
       render();
 
       const section = document.getElementById('downloads');

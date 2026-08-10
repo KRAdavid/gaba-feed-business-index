@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-08-10",
+  "public_policy": {
+    "red_claims_allowed": 0,
+    "unidentified_sources_allowed": 0,
+    "dose_basis": "mg active GABA / kg complete feed",
+    "public_requires": "GREEN QA and reviewer approval"
+  },
+  "documents": [
+    {
+      "document_id": "pig-gaba-feed-proposal",
+      "document": "Breeder pig GABA feed additive proposal",
+      "status": "Review",
+      "public": false
+    },
+    {
+      "document_id": "australia-wagyu-gaba-assessment",
+      "document": "Australia Wagyu GABA feed market and feasibility assessment",
+      "status": "Review",
+      "public": false
+    },
+    {
+      "document_id": "stress-care-gaba-feed-proposal",
+      "document": "Stress-care functional GABA feed introduction proposal",
+      "status": "Review",
+      "public": false
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "QA-GATE-PIG-001",
+      "document": "Breeder pig GABA feed additive proposal",
+      "page": "all",
+      "claim": "Internal proposal is held from public publication until primary-source and trial-condition verification.",
+      "claim_type": "QA_GATE",
+      "species": "pig",
+      "evidence_type": "internal proposal",
+      "direct_or_extrapolated": "not_applicable",
+      "source": "Internal proposal; primary source verification pending",
+      "doi": "",
+      "dose": "",
+      "dose_standardized": "",
+      "study_duration": "",
+      "outcome": "",
+      "statistical_significance": "",
+      "evidence_grade": "N/A",
+      "regulatory_risk": "Review",
+      "commercial_risk": "Review",
+      "qa_status": "AMBER",
+      "approved_copy": "",
+      "reviewer": "",
+      "reviewed_at": "",
+      "public": false
+    },
+    {
+      "claim_id": "QA-GATE-WAGYU-001",
+      "document": "Australia Wagyu GABA feed market and feasibility assessment",
+      "page": "all",
+      "claim": "Internal market and feasibility assumptions are held from public publication until source, date, and regulatory verification.",
+      "claim_type": "QA_GATE",
+      "species": "beef cattle",
+      "evidence_type": "internal proposal",
+      "direct_or_extrapolated": "not_applicable",
+      "source": "Internal proposal; primary source verification pending",
+      "doi": "",
+      "dose": "",
+      "dose_standardized": "",
+      "study_duration": "",
+      "outcome": "",
+      "statistical_significance": "",
+      "evidence_grade": "N/A",
+      "regulatory_risk": "Review",
+      "commercial_risk": "Review",
+      "qa_status": "AMBER",
+      "approved_copy": "",
+      "reviewer": "",
+      "reviewed_at": "",
+      "public": false
+    },
+    {
+      "claim_id": "QA-GATE-STRESS-001",
+      "document": "Stress-care functional GABA feed introduction proposal",
+      "page": "all",
+      "claim": "Functional and stress-related efficacy wording is held from public publication until direct evidence and regulatory wording are verified.",
+      "claim_type": "QA_GATE",
+      "species": "multi-species",
+      "evidence_type": "internal proposal",
+      "direct_or_extrapolated": "not_applicable",
+      "source": "Internal proposal; primary source verification pending",
+      "doi": "",
+      "dose": "",
+      "dose_standardized": "",
+      "study_duration": "",
+      "outcome": "",
+      "statistical_significance": "",
+      "evidence_grade": "N/A",
+      "regulatory_risk": "Review",
+      "commercial_risk": "Review",
+      "qa_status": "AMBER",
+      "approved_copy": "",
+      "reviewer": "",
+      "reviewed_at": "",
+      "public": false
+    }
+  ]
+}
