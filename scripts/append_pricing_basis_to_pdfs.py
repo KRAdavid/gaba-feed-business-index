@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Append a current pricing-basis notice to public PDFs that contain money figures.
+"""Append or refresh the current Care Mix pricing basis in public PDFs.
 
-Source proposal PDFs retain their original scenarios. This script does not rewrite
-scientific or historical content; it appends an explicit current-price notice and,
-where an obsolete Care Mix formula is detected, places a supersession banner on
-the affected page. The operation is idempotent.
+Historical proposal figures remain historical scenarios. The current commercial
+arithmetic is appended as a clear superseding notice. Existing v1.1 pricing pages
+are removed before the v1.2 page is added, making the operation idempotent.
 """
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import re
 
@@ -15,6 +15,7 @@ import fitz  # PyMuPDF
 
 ROOT = Path(__file__).resolve().parents[1]
 DOWNLOADS = ROOT / "docs" / "downloads"
+CONFIG = ROOT / "config" / "caremix_pricing_v1.json"
 FONT = next(
     path
     for path in (
@@ -32,7 +33,11 @@ BOLD = next(
     if Path(path).exists()
 )
 
-MARKER = "PRICING BASIS UPDATE 2026-08-10"
+MARKER = "PRICING BASIS UPDATE v1.2 · 2026-08-10"
+LEGACY_MARKERS = (
+    "PRICING BASIS UPDATE 2026-08-10",
+    "PRICING BASIS UPDATE v1.1",
+)
 ACTIVE_PRICING_NAMES = {
     "GABA_Feed_Business_Model_Speech_Deck_v1.pdf",
     "셀핀다_가바크루드_국내외시장_사업전략기획서_v1.pdf",
@@ -45,10 +50,25 @@ MONEY_PATTERNS = [
 ]
 STALE_PATTERNS = [
     re.compile(r"0\.5\s*kg\s*[×xX*]\s*7,?000\s*원"),
+    re.compile(r"0\.5\s*kg\s*[×xX*]\s*18,?000\s*원[^\n]{0,100}0\.5\s*kg\s*[×xX*]\s*3,?000\s*원"),
+    re.compile(r"미네랄매트릭스[^\n]{0,120}3,?000\s*원/kg"),
+    re.compile(r"가바케어믹스[^\n]{0,120}10,?500\s*원/kg"),
     re.compile(r"가바케어믹스[^\n]{0,120}5,?000\s*원/kg"),
     re.compile(r"가바크루드\s*50%[^\n]{0,100}5,?000\s*원/kg"),
     re.compile(r"4,681\.8\s*원/kg"),
 ]
+
+
+def pricing() -> dict:
+    cfg = json.loads(CONFIG.read_text(encoding="utf-8"))
+    crude = int(cfg["gaba_crude"]["public_supply_price_krw_per_kg"])
+    mineral = int(cfg["mineral_matrix"]["price_krw_per_kg"])
+    total = int(cfg["care_mix"]["calculated_raw_material_cost_krw_per_kg"])
+    crude_component = int(cfg["care_mix"]["gaba_crude_component_krw_per_kg"])
+    mineral_component = int(cfg["care_mix"]["mineral_matrix_component_krw_per_kg"])
+    if (crude, mineral, total, crude_component, mineral_component) != (18000, 5000, 11500, 9000, 2500):
+        raise ValueError("Unexpected Care Mix pricing basis")
+    return cfg
 
 
 def all_text(doc: fitz.Document) -> str:
@@ -68,7 +88,19 @@ def stale_pages(doc: fitz.Document) -> list[int]:
     return pages
 
 
+def remove_legacy_pricing_pages(doc: fitz.Document) -> int:
+    removed = 0
+    for number in range(len(doc) - 1, -1, -1):
+        text = doc[number].get_text("text")
+        if any(marker in text for marker in LEGACY_MARKERS):
+            doc.delete_page(number)
+            removed += 1
+    return removed
+
+
 def add_supersession_banner(page: fitz.Page) -> None:
+    if "가격 산식 정정" in page.get_text("text"):
+        return
     width = page.rect.width
     height = max(34, page.rect.height * 0.055)
     rect = fitz.Rect(0, 0, width, height)
@@ -76,7 +108,7 @@ def add_supersession_banner(page: fitz.Page) -> None:
     page.insert_font(fontname="NGB", fontfile=BOLD)
     page.insert_textbox(
         fitz.Rect(18, 7, width - 18, height - 4),
-        "가격 산식 정정 · 이 페이지의 기존 Care Mix 원가 산식은 폐기되었습니다. 최신 기준은 문서 마지막의 Pricing Basis Update를 적용합니다.",
+        "가격 산식 정정 · 이 페이지의 기존 Care Mix 원가 산식은 폐기되었습니다. 최신 기준은 문서 마지막의 Pricing Basis Update v1.2를 적용합니다.",
         fontname="NGB",
         fontsize=max(7.5, min(11, width / 95)),
         color=(1, 1, 1),
@@ -85,14 +117,17 @@ def add_supersession_banner(page: fitz.Page) -> None:
     )
 
 
-def add_pricing_page(doc: fitz.Document, source_name: str, historical: bool) -> None:
-    if len(doc):
-        rect = doc[0].rect
-    else:
-        rect = fitz.Rect(0, 0, 842, 595)
+def add_pricing_page(doc: fitz.Document, source_name: str, historical: bool, cfg: dict) -> None:
+    rect = doc[0].rect if len(doc) else fitz.Rect(0, 0, 842, 595)
     page = doc.new_page(width=rect.width, height=rect.height)
     page.insert_font(fontname="NG", fontfile=FONT)
     page.insert_font(fontname="NGB", fontfile=BOLD)
+
+    crude = int(cfg["gaba_crude"]["public_supply_price_krw_per_kg"])
+    mineral = int(cfg["mineral_matrix"]["price_krw_per_kg"])
+    total = int(cfg["care_mix"]["calculated_raw_material_cost_krw_per_kg"])
+    crude_component = int(cfg["care_mix"]["gaba_crude_component_krw_per_kg"])
+    mineral_component = int(cfg["care_mix"]["mineral_matrix_component_krw_per_kg"])
 
     w, h = rect.width, rect.height
     margin = max(30, w * 0.065)
@@ -119,7 +154,7 @@ def add_pricing_page(doc: fitz.Document, source_name: str, historical: bool) -> 
     subtitle = (
         "본 문서에 포함된 과거 예시가격·ROI 가정은 당시 시나리오이며 현재 공급 견적이 아닙니다."
         if historical
-        else "현재 공개 기준가를 사용해 Care Mix 원료 투입 이론값을 다시 계산했습니다."
+        else "사용자가 확정한 현재 공개 기준가로 Care Mix 원료 투입 이론값을 다시 계산했습니다."
     )
     page.insert_textbox(
         fitz.Rect(margin, h * 0.255, w - margin, h * 0.36),
@@ -134,9 +169,9 @@ def add_pricing_page(doc: fitz.Document, source_name: str, historical: bool) -> 
     gap = w * 0.018
     card_w = (w - 2 * margin - 2 * gap) / 3
     cards = [
-        ("가바크루드 공개 기준가", "18,000원/kg", "사용자 확정 공개 기준\nVAT·운송·거래조건 별도"),
-        ("미네랄매트릭스", "3,000원/kg", "현재 산술용 잠정값\n실제 구매견적으로 갱신"),
-        ("Care Mix 원료비", "10,500원/kg", "0.5kg×18,000 + 0.5kg×3,000\n사료 1톤당 1kg 적용 시 10,500원"),
+        ("가바크루드 공개 기준가", f"{crude:,}원/kg", f"0.5kg 원료분 {crude_component:,}원\nVAT·운송·거래조건 별도"),
+        ("미네랄매트릭스", f"{mineral:,}원/kg", f"0.5kg 원료분 {mineral_component:,}원\nVAT·운송·거래조건 별도"),
+        ("Care Mix 이론 원료비", f"{total:,}원/kg", f"0.5kg×{crude:,} + 0.5kg×{mineral:,}\n사료 1톤당 1kg 적용 시 {total:,}원"),
     ]
     for index, (label, value, note) in enumerate(cards):
         x0 = margin + index * (card_w + gap)
@@ -149,7 +184,7 @@ def add_pricing_page(doc: fitz.Document, source_name: str, historical: bool) -> 
     note_y = cards_y + cards_h + h * 0.055
     page.insert_textbox(
         fitz.Rect(margin, note_y, w - margin, h - margin * 1.15),
-        "중요: 10,500원/kg은 원료 2종만 반영한 이론 원료비이며 가바케어믹스 판매가격이 아닙니다. 최종 매출원가·공급단가는 혼합·제조·검사·포장·수율손실·물류·거래조건을 반영한 유효 견적서로 확정합니다.\n\n문서: " + source_name + "  ·  기준일: 2026-08-10  ·  문의: feed@cellpinda.com",
+        f"중요: {total:,}원/kg은 원료 2종만 반영한 이론 원료비이며 가바케어믹스의 최종 매출원가 또는 판매가격이 아닙니다. 최종 공급단가는 혼합·제조·검사·포장·수율손실·물류·거래조건을 반영한 유효 견적서로 확정합니다.\n\n문서: {source_name}  ·  기준일: {cfg['effective_date']}  ·  문의: feed@cellpinda.com",
         fontname="NG",
         fontsize=max(8, min(12, w / 74)),
         color=dark,
@@ -157,37 +192,42 @@ def add_pricing_page(doc: fitz.Document, source_name: str, historical: bool) -> 
     )
 
 
-def process(path: Path) -> str:
+def process(path: Path, cfg: dict) -> str:
     if path.name == "GABA_Caremix_Specification_v1.pdf":
-        return "generated-authoritative"
+        return "generated-authoritative-v1.2"
+
     doc = fitz.open(path)
     text = all_text(doc)
     if MARKER in text:
         doc.close()
-        return "already-updated"
+        return "already-updated-v1.2"
 
+    removed = remove_legacy_pricing_pages(doc)
     stale = stale_pages(doc)
-    should_append = path.name in ACTIVE_PRICING_NAMES or bool(stale) or has_money(text)
+    current_text = all_text(doc)
+    should_append = path.name in ACTIVE_PRICING_NAMES or bool(stale) or has_money(current_text)
     if not should_append:
         doc.close()
         return "no-price-content"
 
     for page_no in stale:
-        add_supersession_banner(doc[page_no])
-    add_pricing_page(doc, path.name, historical=path.name not in ACTIVE_PRICING_NAMES)
+        if page_no < len(doc):
+            add_supersession_banner(doc[page_no])
+    add_pricing_page(doc, path.name, historical=path.name not in ACTIVE_PRICING_NAMES, cfg=cfg)
 
     temp = path.with_suffix(".pricing.tmp.pdf")
     doc.save(temp, garbage=4, deflate=True, clean=True)
     doc.close()
     temp.replace(path)
-    return f"updated:addendum;stale_pages={','.join(str(n + 1) for n in stale) or 'none'}"
+    return f"updated-v1.2:addendum;removed_old={removed};stale_pages={','.join(str(n + 1) for n in stale) or 'none'}"
 
 
 def main() -> int:
+    cfg = pricing()
     DOWNLOADS.mkdir(parents=True, exist_ok=True)
     results: dict[str, str] = {}
     for path in sorted(DOWNLOADS.glob("*.pdf")):
-        results[path.name] = process(path)
+        results[path.name] = process(path, cfg)
     for name, status in results.items():
         print(f"{name}: {status}")
     return 0
