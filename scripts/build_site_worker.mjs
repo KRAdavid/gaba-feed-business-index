@@ -38,6 +38,7 @@ const publicFiles = [
   ["/assets/b2b-operations.js", "assets/b2b-operations.js", "text/javascript; charset=utf-8"],
   ["/assets/smart-consultation.css", "assets/smart-consultation.css", "text/css; charset=utf-8"],
   ["/assets/smart-consultation.js", "assets/smart-consultation.js", "text/javascript; charset=utf-8"],
+  ["/assets/smart-consultation-sync.js", "assets/smart-consultation-sync.js", "text/javascript; charset=utf-8"],
   ["/data/index.json", "data/index.json", "application/json; charset=utf-8"],
   ["/data/auto_intelligence.json", "data/auto_intelligence.json", "application/json; charset=utf-8"],
   ["/data/knowledge_base.json", "data/knowledge_base.json", "application/json; charset=utf-8"],
