@@ -1703,9 +1703,38 @@
   },
   "auto_intelligence": {
     "version": "2.0.0",
-    "generated_at": "2026-08-10T03:38:34+00:00",
-    "count": 12,
+    "generated_at": "2026-08-10T05:07:57+00:00",
+    "count": 13,
     "items": [
+      {
+        "item_id": "policy-1d337037280ea8b8db09",
+        "category": "policy",
+        "source_type": "official_monitor",
+        "title": "대한민국 농림축산식품부 관련 페이지 변경 확인 필요",
+        "summary": "공식 출처의 관련 페이지에서 두 차례 연속 동일한 변경이 감지되었습니다. 변경 내용은 원문과 시행일을 확인한 뒤 사업 자료에 반영해야 합니다.",
+        "source_name": "대한민국 농림축산식품부",
+        "source_url": "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
+        "published_at": "2026-08-10",
+        "detected_at": "2026-08-10T05:00:24+00:00",
+        "doi": "",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "A",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": true,
+        "tags": [
+          "policy",
+          "official source",
+          "confirmed change"
+        ],
+        "metadata": {
+          "source_id": "kr-mafra-feed-policy",
+          "content_hash": "e7ece5967f6fd8bbb30b39a4c6d8c69ac711fae9ca1dd7a60cf168eb95bbb427",
+          "confirmation_runs": 2,
+          "fallback_count": 0
+        }
+      },
       {
         "item_id": "policy-26ecd08c30079e0d8034",
         "category": "policy",
@@ -2035,7 +2064,7 @@
       }
     ]
   },
-  "auto_intelligence_updated_at": "2026-08-10T03:38:34+00:00",
+  "auto_intelligence_updated_at": "2026-08-10T05:07:57+00:00",
   "pricing_reference": {
     "schema_version": "1.2.0",
     "effective_date": "2026-08-10",
