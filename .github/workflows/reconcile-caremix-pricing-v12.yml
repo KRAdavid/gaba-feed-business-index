@@ -7,6 +7,7 @@ on:
     paths:
       - "config/caremix_pricing_v1.json"
       - "scripts/reconcile_caremix_pricing.py"
+      - "scripts/patch_caremix_reconcile_detector.py"
       - "scripts/generate_caremix_specification_pdf.py"
       - "scripts/patch_caremix_generator_v12.py"
       - "scripts/append_pricing_basis_to_pdfs.py"
@@ -68,6 +69,9 @@ jobs:
           print('validated: 18,000 + 5,000 at 50:50 = 11,500 KRW/kg')
           PY
 
+      - name: Correct stale-price detector
+        run: python scripts/patch_caremix_reconcile_detector.py
+
       - name: Reconcile web, JSON and document metadata
         run: |
           python scripts/reconcile_caremix_pricing.py
@@ -81,6 +85,7 @@ jobs:
 
       - name: Validate reconciled web and PDFs
         run: |
+          python scripts/patch_caremix_reconcile_detector.py --check
           python scripts/reconcile_caremix_pricing.py --check
           python scripts/patch_caremix_generator_v12.py --check
           python - <<'PY'
@@ -131,6 +136,7 @@ jobs:
             docs/index.html \
             docs/materials \
             docs/downloads \
+            scripts/reconcile_caremix_pricing.py \
             scripts/generate_caremix_specification_pdf.py
           if git diff --cached --quiet; then
             echo "Care Mix pricing v1.2 is already fully reconciled"
