@@ -31,6 +31,12 @@
 11. 버전에서 **새 버전**을 선택하고 배포합니다.
 12. 설정은 **실행 사용자: 나**, **액세스 권한: 모든 사용자**를 유지합니다.
 
+## 설치 상태 read-only 점검
+
+Apps Script 함수 선택기에서 `verifyGabaInquiryReceiverV2`를 실행하면 메일을 보내거나 행을 추가하지 않고 `Inquiries`, `Lead_Pipeline`, `B2B_KPI`의 필수 헤더와 Dashboard sync token 설정 여부를 확인할 수 있습니다. 반환값의 `ok: true`를 확인한 뒤 실제 테스트 문의를 진행합니다.
+
+Dashboard sync를 사용할 경우 Script Properties에 `GABA_STATUS_SYNC_TOKEN`을 저장하고, GitHub repository secrets에 같은 값을 `GABA_APPS_SCRIPT_SYNC_TOKEN`, 웹 앱 `/exec` 주소를 `GABA_APPS_SCRIPT_SYNC_URL`로 등록합니다.
+
 기존 배포를 새 버전으로 갱신하면 현재 `/exec` URL은 유지됩니다.
 
 ## 수신 주소만 변경할 때

@@ -70,6 +70,34 @@ function setupGabaInquiryReceiver() {
 }
 
 /**
+ * Read-only installation check. Run this after deployment or authorization;
+ * it does not send mail, create rows, or change any sheet.
+ */
+function verifyGabaInquiryReceiverV2() {
+  const ss = SpreadsheetApp.openById(GABA_INQUIRY_CFG_V2.SPREADSHEET_ID);
+  const checks = [
+    gabaVerifySheetHeadersV2_(ss, GABA_INQUIRY_CFG_V2.SHEET_NAME, GABA_INQUIRY_HEADERS_V2),
+    gabaVerifySheetHeadersV2_(ss, GABA_INQUIRY_CFG_V2.LEAD_SHEET_NAME, GABA_LEAD_HEADERS_V2),
+    gabaVerifySheetHeadersV2_(ss, 'B2B_KPI', GABA_KPI_HEADERS_V2)
+  ];
+  return {
+    ok: checks.every(function(check) { return check.ok; }),
+    spreadsheet_id: GABA_INQUIRY_CFG_V2.SPREADSHEET_ID,
+    checks: checks,
+    sync_token_configured: Boolean(PropertiesService.getScriptProperties().getProperty('GABA_STATUS_SYNC_TOKEN'))
+  };
+}
+
+function gabaVerifySheetHeadersV2_(ss, sheetName, requiredHeaders) {
+  const sheet = ss.getSheetByName(sheetName);
+  if (!sheet) return { sheet: sheetName, ok: false, missing: requiredHeaders, reason: 'sheet_missing' };
+  const width = Math.max(sheet.getLastColumn(), 1);
+  const headers = sheet.getRange(1, 1, 1, width).getValues()[0].map(String);
+  const missing = requiredHeaders.filter(function(header) { return headers.indexOf(header) === -1; });
+  return { sheet: sheetName, ok: missing.length === 0, missing: missing, row_count: Math.max(0, sheet.getLastRow() - 1) };
+}
+
+/**
  * Receives the public GitHub Intelligence status snapshot and mirrors it into
  * the Master DB. Configure Script Properties:
  *   GABA_STATUS_SYNC_TOKEN = a long random token
