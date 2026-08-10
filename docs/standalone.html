@@ -36,6 +36,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--ink);
   background: var(--paper);
   font-family: Inter, Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -183,6 +184,21 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .guardrail-panel li { position: relative; padding: 10px 0 10px 20px; border-top: 1px solid rgba(255,255,255,.09); color: #b8c6c1; font-size: 11px; }
 .guardrail-panel li:first-child { border-top: 0; }
 .guardrail-panel li::before { content: "•"; position: absolute; left: 0; color: var(--gold); }
+
+.future-project-lead { display: grid; grid-template-columns: 1fr auto; gap: 34px; align-items: center; padding: 34px; color: var(--ink); background: var(--cream); border-radius: var(--radius); }
+.future-project-lead span, .future-project-grid span, .future-project-steps span { color: var(--leaf); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+.future-project-lead h3 { max-width: 780px; margin: 10px 0; font-size: 29px; line-height: 1.25; letter-spacing: -.04em; }
+.future-project-lead p { max-width: 780px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.future-project-lead > strong { padding: 10px 14px; color: white; background: var(--deep); border-radius: 999px; font-size: 12px; white-space: nowrap; }
+.future-project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+.future-project-grid article { min-height: 240px; padding: 27px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); }
+.future-project-grid h3 { margin: 16px 0 12px; color: white; font-size: 20px; line-height: 1.35; letter-spacing: -.03em; }
+.future-project-grid p { margin: 0; color: #b8c6c1; font-size: 12px; line-height: 1.7; }
+.future-project-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.future-project-steps > div { padding: 27px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); }
+.future-project-steps ol, .future-project-steps ul { margin: 15px 0 0 20px; padding: 0; color: #d7e1dc; }
+.future-project-steps li { margin: 8px 0; font-size: 12px; line-height: 1.55; }
+.future-project-steps a { display: inline-block; margin-top: 12px; color: #9bd0b6; font-size: 12px; font-weight: 800; }
 
 .section { padding-block: 110px; }
 .section-dark, .section-ink { color: white; background: var(--deep); }
@@ -439,7 +455,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .hero-score { grid-template-columns: 150px 1fr; gap: 20px; }
   .score-ring { width: 150px; }
   .score-ring strong { font-size: 42px; }
-  .summary-grid, .gate-grid, .market-grid, .download-grid, .track-grid, .caremix-kpi-grid, .sales-strategy-grid { grid-template-columns: 1fr; }
+  .summary-grid, .gate-grid, .market-grid, .download-grid, .track-grid, .caremix-kpi-grid, .sales-strategy-grid, .future-project-grid, .future-project-steps { grid-template-columns: 1fr; }
   .summary-card { min-height: 130px; }
   .section { padding-block: 78px; }
   .orientation { padding-bottom: 78px; }
@@ -456,6 +472,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .market-proof a { width: fit-content; white-space: normal; }
   .sales-card { padding: 27px 24px; }
   .caremix-goal { grid-template-columns: 1fr; padding: 28px 24px; }
+  .future-project-lead { grid-template-columns: 1fr; padding: 28px 24px; }
+  .future-project-lead h3 { font-size: 24px; }
+  .future-project-lead > strong { width: fit-content; white-space: normal; }
   .caremix-goal h3 { font-size: 23px; }
   .caremix-goal > strong { width: fit-content; }
   .species-basis { grid-template-columns: 1fr; }
@@ -502,6 +521,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
     <nav class="desktop-nav" aria-label="주요 메뉴">
       <a href="#business-model">사업모델</a>
       <a href="#caremix">가바케어믹스</a>
+      <a href="#future-project">미래사업</a>
       <a href="#species-validation">축종별 검증</a>
       <a href="#readiness">준비도</a>
           <a href="#signals">동향</a>
@@ -593,6 +613,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
       <div class="validation-clock" id="validation-clock"></div>
       <div class="caremix-kpi-grid" id="caremix-kpi-grid"></div>
       <div class="guardrail-panel" id="caremix-guardrails"></div>
+    </section>
+
+    <section class="section section-ink" id="future-project" aria-labelledby="future-project-title">
+      <div class="shell">
+        <div class="section-heading inverse"><div><div class="section-kicker">미래사업</div><h2 id="future-project-title">반추위동물 메탄가스 저감은 별도 검증 프로젝트로 관리합니다.</h2></div><p>메탄 저감은 기대 방향입니다. 측정·규정·경제성이 확인되기 전에는 제품 효능이나 탄소 성과로 표시하지 않습니다.</p></div>
+        <div id="future-project-panel"></div>
+      </div>
     </section>
 
     <section class="section section-mist" id="species-validation" aria-labelledby="species-validation-title">
@@ -804,6 +831,43 @@ button, a { -webkit-tap-highlight-color: transparent; }
       ]
     }
   ],
+  "future_project": {
+    "label": "미래사업 · 검증 프로젝트",
+    "title": "반추위동물 메탄가스 저감 사업 검증 프로젝트",
+    "scope": "비육우·젖소·염소·면양",
+    "stage": "검증 기획 단계",
+    "summary": "가바케어믹스를 반추위동물 사료에 적용해 장내발효 메탄 배출량과 생산성 지표를 함께 확인하는 별도 프로젝트입니다. 메탄 저감 효과는 시험 결과가 나오기 전까지 제품 효능이나 탄소 감축 성과로 표시하지 않습니다.",
+    "market_view": [
+      {
+        "label": "시장성",
+        "headline": "저메탄 사료와 생산성 검증 수요",
+        "detail": "OECD·FAO는 축산 생산성 향상과 사료 고도화를 배출 저감 경로 중 하나로 제시합니다. 시장 진입은 ‘저감 주장’이 아니라 공인된 측정과 고객의 적용 가능성 확인부터 시작합니다."
+      },
+      {
+        "label": "사업 모델",
+        "headline": "연구기관·농장 공동 실증",
+        "detail": "가바케어믹스 적용군과 대조군의 섭취량, 증체·산유, 사료효율, 메탄 배출량을 같은 조건에서 비교한 뒤 유료 실증과 반복 주문 여부를 판단합니다."
+      },
+      {
+        "label": "확장 조건",
+        "headline": "측정·규정·경제성의 동시 충족",
+        "detail": "반추위 메탄 측정 방법, 축종별 장기 시험, 표시·인증 가능 문구, 사료 1톤당 추가 원가와 농가 경제성이 함께 확인될 때만 사업화합니다."
+      }
+    ],
+    "milestones": [
+      "시험 설계와 메탄 측정기관 선정",
+      "비육우·젖소 우선 대조시험 착수",
+      "생산성·메탄 결과와 사료 1톤당 경제성 통합 분석",
+      "표시·인증·고객 계약 가능성 검토"
+    ],
+    "guardrails": [
+      "메탄 저감률이나 탄소배출권 수익을 시험 전 숫자로 약속하지 않습니다.",
+      "사료 효율 개선과 메탄 저감은 동일한 대조시험에서 함께 확인합니다.",
+      "국가별 사료·표시·탄소 관련 규정은 현지 자문과 서면 검토 후 적용합니다."
+    ],
+    "source_name": "OECD-FAO Agricultural Outlook 2025-2034",
+    "source_url": "https://www.oecd.org/en/publications/2025/07/oecd-fao-agricultural-outlook-2025-2034_3eb15914.html"
+  },
   "commercialization_team": [
     {
       "name": "장순욱",
@@ -1085,7 +1149,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
         "max_score": 20,
         "status": "가정 모델",
         "evidence": "배양액 조성·가바크루드 생산수율과 매출액·매출원가·매출총이익, 손익분기 산식이 있습니다.",
-        "open_gate": "말토덱스트린·건조·검사·포장 원가와 실제 공정수율, 가바케어믹스 제품원가 4,681.8원/kg의 근거를 확인하지 못했습니다.",
+        "open_gate": "말토덱스트린·건조·검사·포장 원가와 실제 공정수율, 가바케어믹스 제품원가의 근거를 확인하지 못했습니다.",
         "next_evidence": "실제 견적, 시험생산 수율, 포장비·물류비를 포함한 제품별 매출원가 내역",
         "owner": "Finance",
         "target_date": "2026-08-24"
@@ -1245,32 +1309,32 @@ button, a { -webkit-tap-highlight-color: transparent; }
       "unlock": "최종 매출원가 확정"
     },
     {
-      "metric": "가바케어믹스 매출액",
-      "value": "6,000원/사료t",
-      "state": "검증 필요",
-      "formula": "입력",
-      "unlock": "유료 PoV와 고객 계약"
+      "metric": "가바케어믹스 투입 기준",
+      "value": "사료 1톤당 1kg",
+      "state": "사용자 제공 배합 기준",
+      "formula": "미네랄매트릭스 배합사료의 통상 투입량 1kg/사료t를 기준으로 계산",
+      "unlock": "축종별 실제 섭취량·배합 균일도 확인"
     },
     {
-      "metric": "가바케어믹스 1회 GABA 설계량",
-      "value": "50~100mg/가축·1회",
-      "state": "사용자 제공 설계 범위",
-      "formula": "가바크루드 GABA 20% 기준: 제품 0.25~0.50g에 GABA 50~100mg 포함",
-      "unlock": "축종별 체중·섭취량·유효용량 시험"
+      "metric": "최종 사료 GABA 설계량",
+      "value": "100mg/kg 사료",
+      "state": "사용자 제공 설계 기준",
+      "formula": "사료 1톤에 GABA 100g 필요; 가바케어믹스 1kg에는 GABA 100g, 즉 GABA 10%가 필요",
+      "unlock": "축종별 섭취량·유효용량·안전성 시험"
     },
     {
-      "metric": "가바케어믹스 제품 원가",
-      "value": "약 3,000.25~3,000.50원/kg (원료 2종만 반영)",
-      "state": "사용자 제공 단가·이론 배합",
-      "formula": "가바크루드 0.25~0.50g×4,000원/kg + 미네랄매트릭스 999.50~999.75g×3,000원/kg",
-      "unlock": "제조·검사·포장·수율손실·축종별 급여량 확인"
+      "metric": "가바케어믹스 혼합비·원료 투입원가",
+      "value": "가바크루드 50% + 미네랄매트릭스 50% · 5,000원/kg",
+      "state": "표준품 단가 기준 이론 계산",
+      "formula": "GABA 20% 가바크루드 0.5kg×7,000원/kg + 미네랄매트릭스 0.5kg×3,000원/kg = 5,000원/kg; 사료 1톤당 5,000원",
+      "unlock": "제조·검사·포장·수율손실·축종별 실제 섭취량 확인"
     },
     {
-      "metric": "가바케어믹스 손익분기 기준이익",
-      "value": "4,149원/사료t",
-      "state": "가정 계산",
-      "formula": "매출총이익 5,649원-판매·현장 변동비 1,500원",
-      "unlock": "채널비·현장비·반품비 확정"
+      "metric": "내부 제조 시 원가 하한 참고",
+      "value": "3,500원/kg",
+      "state": "배양액 원가 하한만 반영",
+      "formula": "가바크루드 원가 하한 4,000원/kg×50% + 미네랄매트릭스 3,000원/kg×50%; 최종 매출원가는 제조·검사·포장·수율 반영 후 확정",
+      "unlock": "말토덱스트린·건조·검사·포장 견적과 실제 공정수율"
     },
     {
       "metric": "고객가치",
@@ -1367,6 +1431,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
       "term": "GABA",
       "plain": "감마아미노부티르산",
       "use": "축종·용량·제형에 따라 결과가 달라질 수 있는 성분"
+    },
+    {
+      "term": "반추위 메탄",
+      "plain": "소·양 같은 반추동물이 소화 과정에서 배출하는 메탄",
+      "use": "이 프로젝트에서는 사료섭취량과 생산성 지표를 함께 대조군과 비교해 측정"
     },
     {
       "term": "마스터배치",
@@ -1687,8 +1756,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   ],
   "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T09:32:02Z",
-    "as_of_date": "2026-08-03",
+    "generated_at": "2026-08-10T00:29:51Z",
+    "as_of_date": "2026-08-10",
     "timezone": "Asia/Seoul",
     "automation": "Codex 주간 자동화 + Sites production 배포",
     "next_scheduled_refresh": "매주 월요일 09:17 KST",
@@ -1702,12 +1771,51 @@ button, a { -webkit-tap-highlight-color: transparent; }
     "stage": "VALIDATE",
     "critical_open_gates": 4,
     "reviewed_signals": 9,
-    "auto_signals_waiting_review": 18,
+    "auto_signals_waiting_review": 19,
     "source_health_ok": 3,
     "source_health_total": 3,
     "lowest_dimension": "상업성 검증"
   },
   "signals": [
+    {
+      "id": "mafra-228d7f0a1bb3ee",
+      "date": "2026-08-07",
+      "category": "정책자동",
+      "title": "농관원, 휴가철 축산물 원산지 위반 106개소 적발",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578682/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-49fdf69687f2c7",
+      "date": "2026-08-04",
+      "category": "정책자동",
+      "title": "축산분야 폭염 대응 추진상황 집중점검",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578631/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-c290b80af9dbf2",
+      "date": "2026-08-04",
+      "category": "정책자동",
+      "title": "7월 농축산물 소비자물가 전년대비 0.5% 상승, 안정적 물가 관리 지속",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578634/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
     {
       "id": "internal-model-v5",
       "date": "2026-08-03",
@@ -1770,32 +1878,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
       "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
       "source_name": "농림축산식품부 RSS",
       "url": "http://www.mafra.go.kr/bbs/home/792/578546/artclView.do",
-      "review_status": "auto-collected",
-      "source_quality": "정부 1차 자료·자동수집"
-    },
-    {
-      "id": "mafra-875997f788ba76",
-      "date": "2026-07-21",
-      "category": "정책자동",
-      "title": "경북 예천 구제역 방역조치 차질 없이 추진 중",
-      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
-      "judgment": "검토 대기",
-      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
-      "source_name": "농림축산식품부 RSS",
-      "url": "http://www.mafra.go.kr/bbs/home/792/578506/artclView.do",
-      "review_status": "auto-collected",
-      "source_quality": "정부 1차 자료·자동수집"
-    },
-    {
-      "id": "mafra-e96003c8cbac5b",
-      "date": "2026-07-20",
-      "category": "정책자동",
-      "title": "폭염·호우 등에 대비하여 농축산물 수급 관리 강화",
-      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
-      "judgment": "검토 대기",
-      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
-      "source_name": "농림축산식품부 RSS",
-      "url": "http://www.mafra.go.kr/bbs/home/792/578501/artclView.do",
       "review_status": "auto-collected",
       "source_quality": "정부 1차 자료·자동수집"
     },
@@ -2151,16 +2233,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
       "series_id": "World Bank Pink Sheet: Maize",
       "source_url": "https://www.worldbank.org/en/research/commodity-markets",
       "unit": "USD/metric ton",
-      "latest_date": "2026-06-01",
-      "latest": 197.1,
-      "mom_pct": -8.8,
-      "yoy_pct": 0.5,
-      "signal": "원료비 부담 완화",
+      "latest_date": "2026-07-01",
+      "latest": 213.4,
+      "mom_pct": 8.3,
+      "yoy_pct": 11.1,
+      "signal": "원료비 상승 요인",
       "points": [
-        {
-          "date": "2024-07-01",
-          "value": 177.4
-        },
         {
           "date": "2024-08-01",
           "value": 170.3
@@ -2252,6 +2330,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
         {
           "date": "2026-06-01",
           "value": 197.1
+        },
+        {
+          "date": "2026-07-01",
+          "value": 213.4
         }
       ]
     },
@@ -2261,16 +2343,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
       "series_id": "World Bank Pink Sheet: Soybeans",
       "source_url": "https://www.worldbank.org/en/research/commodity-markets",
       "unit": "USD/metric ton",
-      "latest_date": "2026-06-01",
-      "latest": 468.0,
+      "latest_date": "2026-07-01",
+      "latest": 459.0,
       "mom_pct": -1.1,
-      "yoy_pct": 12.5,
+      "yoy_pct": 12.0,
       "signal": "큰 변동 없음",
       "points": [
-        {
-          "date": "2024-07-01",
-          "value": 470.0
-        },
         {
           "date": "2024-08-01",
           "value": 400.0
@@ -2361,7 +2439,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
         },
         {
           "date": "2026-06-01",
-          "value": 468.0
+          "value": 464.0
+        },
+        {
+          "date": "2026-07-01",
+          "value": 459.0
         }
       ]
     }
@@ -2371,24 +2453,24 @@ button, a { -webkit-tap-highlight-color: transparent; }
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T09:32:02Z",
+        "fetched_at": "2026-08-10T00:29:51Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T09:32:02Z",
-        "item_count": 6
+        "fetched_at": "2026-08-10T00:29:51Z",
+        "item_count": 7
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T09:32:02Z",
+        "fetched_at": "2026-08-10T00:29:51Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T09:32:02Z",
-    "review_queue_count": 18
+    "last_successful_live_refresh": "2026-08-10T00:29:51Z",
+    "review_queue_count": 19
   }
 }
 ;</script><script>(() => {
@@ -2456,6 +2538,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
     $("#validation-clock").innerHTML = data.validation_clock.map((row, index) => `<article class="clock-card"><span>0${index + 1}</span><strong>${escapeHTML(row.target)}</strong><h3>${escapeHTML(row.name)}</h3><p>${escapeHTML(row.definition)}</p></article>`).join("");
     $("#caremix-kpi-grid").innerHTML = data.kpis.map(row => `<article class="kpi-card"><span>${escapeHTML(row.group)} · ${escapeHTML(row.timing)}</span><h3>${escapeHTML(row.name)}</h3><p>${escapeHTML(row.definition)}</p><dl><div><dt>판정 기준</dt><dd>${escapeHTML(row.target)}</dd></div><div><dt>증빙</dt><dd>${escapeHTML(row.evidence)}</dd></div></dl></article>`).join("");
     $("#caremix-guardrails").innerHTML = `<div><span>판단 원칙</span><strong>${escapeHTML(data.scope_note)}</strong></div><ul>${data.guardrails.map(row => `<li>${escapeHTML(row)}</li>`).join("")}</ul>`;
+  }
+
+  function renderFutureProject(project) {
+    const panel = $("#future-project-panel");
+    if (!panel || !project) return;
+    panel.innerHTML = `<div class="future-project-lead"><div><span>${escapeHTML(project.label)}</span><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.summary)}</p></div><strong>${escapeHTML(project.scope)}</strong></div>
+      <div class="future-project-grid">${(project.market_view || []).map(item => `<article><span>${escapeHTML(item.label)}</span><h3>${escapeHTML(item.headline)}</h3><p>${escapeHTML(item.detail)}</p></article>`).join("")}</div>
+      <div class="future-project-steps"><div><span>검증 순서</span><ol>${(project.milestones || []).map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ol></div><div><span>사업화 원칙</span><ul>${(project.guardrails || []).map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul><a href="${escapeHTML(safeURL(project.source_url))}" target="_blank" rel="noopener noreferrer">${escapeHTML(project.source_name)} ↗</a></div></div>`;
   }
 
   function renderSpeciesValidation(data) {
@@ -2630,7 +2720,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
     state.data = data;
     const tasks = [
       () => renderHero(data), () => renderSummary(data), () => renderBusinessTracks(data.business_tracks),
-      () => renderCareMixAdvancement(data.caremix_advancement), () => renderSpeciesValidation(data.species_validation),
+      () => renderCareMixAdvancement(data.caremix_advancement), () => renderFutureProject(data.future_project), () => renderSpeciesValidation(data.species_validation),
       () => renderReadiness(data), () => renderGates(data.critical_gates), () => setupSignalFilters(data),
       () => renderSignals(), () => renderCollection(data), () => renderAssumptions(data.assumptions),
       () => renderRoadmap(data.roadmap), () => renderProjectTimeline(data.project_timeline || []),

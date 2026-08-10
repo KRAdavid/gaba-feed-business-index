@@ -65,6 +65,14 @@
     $("#caremix-guardrails").innerHTML = `<div><span>판단 원칙</span><strong>${escapeHTML(data.scope_note)}</strong></div><ul>${data.guardrails.map(row => `<li>${escapeHTML(row)}</li>`).join("")}</ul>`;
   }
 
+  function renderFutureProject(project) {
+    const panel = $("#future-project-panel");
+    if (!panel || !project) return;
+    panel.innerHTML = `<div class="future-project-lead"><div><span>${escapeHTML(project.label)}</span><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.summary)}</p></div><strong>${escapeHTML(project.scope)}</strong></div>
+      <div class="future-project-grid">${(project.market_view || []).map(item => `<article><span>${escapeHTML(item.label)}</span><h3>${escapeHTML(item.headline)}</h3><p>${escapeHTML(item.detail)}</p></article>`).join("")}</div>
+      <div class="future-project-steps"><div><span>검증 순서</span><ol>${(project.milestones || []).map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ol></div><div><span>사업화 원칙</span><ul>${(project.guardrails || []).map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul><a href="${escapeHTML(safeURL(project.source_url))}" target="_blank" rel="noopener noreferrer">${escapeHTML(project.source_name)} ↗</a></div></div>`;
+  }
+
   function renderSpeciesValidation(data) {
     if (!data || !Array.isArray(data.rows)) return;
     $("#species-grid").innerHTML = data.rows.map(row => `<article class="species-card">
@@ -237,7 +245,7 @@
     state.data = data;
     const tasks = [
       () => renderHero(data), () => renderSummary(data), () => renderBusinessTracks(data.business_tracks),
-      () => renderCareMixAdvancement(data.caremix_advancement), () => renderSpeciesValidation(data.species_validation),
+      () => renderCareMixAdvancement(data.caremix_advancement), () => renderFutureProject(data.future_project), () => renderSpeciesValidation(data.species_validation),
       () => renderReadiness(data), () => renderGates(data.critical_gates), () => setupSignalFilters(data),
       () => renderSignals(), () => renderCollection(data), () => renderAssumptions(data.assumptions),
       () => renderRoadmap(data.roadmap), () => renderProjectTimeline(data.project_timeline || []),

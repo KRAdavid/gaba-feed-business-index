@@ -60,6 +60,43 @@
       ]
     }
   ],
+  "future_project": {
+    "label": "미래사업 · 검증 프로젝트",
+    "title": "반추위동물 메탄가스 저감 사업 검증 프로젝트",
+    "scope": "비육우·젖소·염소·면양",
+    "stage": "검증 기획 단계",
+    "summary": "가바케어믹스를 반추위동물 사료에 적용해 장내발효 메탄 배출량과 생산성 지표를 함께 확인하는 별도 프로젝트입니다. 메탄 저감 효과는 시험 결과가 나오기 전까지 제품 효능이나 탄소 감축 성과로 표시하지 않습니다.",
+    "market_view": [
+      {
+        "label": "시장성",
+        "headline": "저메탄 사료와 생산성 검증 수요",
+        "detail": "OECD·FAO는 축산 생산성 향상과 사료 고도화를 배출 저감 경로 중 하나로 제시합니다. 시장 진입은 ‘저감 주장’이 아니라 공인된 측정과 고객의 적용 가능성 확인부터 시작합니다."
+      },
+      {
+        "label": "사업 모델",
+        "headline": "연구기관·농장 공동 실증",
+        "detail": "가바케어믹스 적용군과 대조군의 섭취량, 증체·산유, 사료효율, 메탄 배출량을 같은 조건에서 비교한 뒤 유료 실증과 반복 주문 여부를 판단합니다."
+      },
+      {
+        "label": "확장 조건",
+        "headline": "측정·규정·경제성의 동시 충족",
+        "detail": "반추위 메탄 측정 방법, 축종별 장기 시험, 표시·인증 가능 문구, 사료 1톤당 추가 원가와 농가 경제성이 함께 확인될 때만 사업화합니다."
+      }
+    ],
+    "milestones": [
+      "시험 설계와 메탄 측정기관 선정",
+      "비육우·젖소 우선 대조시험 착수",
+      "생산성·메탄 결과와 사료 1톤당 경제성 통합 분석",
+      "표시·인증·고객 계약 가능성 검토"
+    ],
+    "guardrails": [
+      "메탄 저감률이나 탄소배출권 수익을 시험 전 숫자로 약속하지 않습니다.",
+      "사료 효율 개선과 메탄 저감은 동일한 대조시험에서 함께 확인합니다.",
+      "국가별 사료·표시·탄소 관련 규정은 현지 자문과 서면 검토 후 적용합니다."
+    ],
+    "source_name": "OECD-FAO Agricultural Outlook 2025-2034",
+    "source_url": "https://www.oecd.org/en/publications/2025/07/oecd-fao-agricultural-outlook-2025-2034_3eb15914.html"
+  },
   "commercialization_team": [
     {
       "name": "장순욱",
@@ -341,7 +378,7 @@
         "max_score": 20,
         "status": "가정 모델",
         "evidence": "배양액 조성·가바크루드 생산수율과 매출액·매출원가·매출총이익, 손익분기 산식이 있습니다.",
-        "open_gate": "말토덱스트린·건조·검사·포장 원가와 실제 공정수율, 가바케어믹스 제품원가 4,681.8원/kg의 근거를 확인하지 못했습니다.",
+        "open_gate": "말토덱스트린·건조·검사·포장 원가와 실제 공정수율, 가바케어믹스 제품원가의 근거를 확인하지 못했습니다.",
         "next_evidence": "실제 견적, 시험생산 수율, 포장비·물류비를 포함한 제품별 매출원가 내역",
         "owner": "Finance",
         "target_date": "2026-08-24"
@@ -501,32 +538,32 @@
       "unlock": "최종 매출원가 확정"
     },
     {
-      "metric": "가바케어믹스 매출액",
-      "value": "6,000원/사료t",
-      "state": "검증 필요",
-      "formula": "입력",
-      "unlock": "유료 PoV와 고객 계약"
+      "metric": "가바케어믹스 투입 기준",
+      "value": "사료 1톤당 1kg",
+      "state": "사용자 제공 배합 기준",
+      "formula": "미네랄매트릭스 배합사료의 통상 투입량 1kg/사료t를 기준으로 계산",
+      "unlock": "축종별 실제 섭취량·배합 균일도 확인"
     },
     {
-      "metric": "가바케어믹스 1회 GABA 설계량",
-      "value": "50~100mg/가축·1회",
-      "state": "사용자 제공 설계 범위",
-      "formula": "가바크루드 GABA 20% 기준: 제품 0.25~0.50g에 GABA 50~100mg 포함",
-      "unlock": "축종별 체중·섭취량·유효용량 시험"
+      "metric": "최종 사료 GABA 설계량",
+      "value": "100mg/kg 사료",
+      "state": "사용자 제공 설계 기준",
+      "formula": "사료 1톤에 GABA 100g 필요; 가바케어믹스 1kg에는 GABA 100g, 즉 GABA 10%가 필요",
+      "unlock": "축종별 섭취량·유효용량·안전성 시험"
     },
     {
-      "metric": "가바케어믹스 제품 원가",
-      "value": "약 3,000.25~3,000.50원/kg (원료 2종만 반영)",
-      "state": "사용자 제공 단가·이론 배합",
-      "formula": "가바크루드 0.25~0.50g×4,000원/kg + 미네랄매트릭스 999.50~999.75g×3,000원/kg",
-      "unlock": "제조·검사·포장·수율손실·축종별 급여량 확인"
+      "metric": "가바케어믹스 혼합비·원료 투입원가",
+      "value": "가바크루드 50% + 미네랄매트릭스 50% · 5,000원/kg",
+      "state": "표준품 단가 기준 이론 계산",
+      "formula": "GABA 20% 가바크루드 0.5kg×7,000원/kg + 미네랄매트릭스 0.5kg×3,000원/kg = 5,000원/kg; 사료 1톤당 5,000원",
+      "unlock": "제조·검사·포장·수율손실·축종별 실제 섭취량 확인"
     },
     {
-      "metric": "가바케어믹스 손익분기 기준이익",
-      "value": "4,149원/사료t",
-      "state": "가정 계산",
-      "formula": "매출총이익 5,649원-판매·현장 변동비 1,500원",
-      "unlock": "채널비·현장비·반품비 확정"
+      "metric": "내부 제조 시 원가 하한 참고",
+      "value": "3,500원/kg",
+      "state": "배양액 원가 하한만 반영",
+      "formula": "가바크루드 원가 하한 4,000원/kg×50% + 미네랄매트릭스 3,000원/kg×50%; 최종 매출원가는 제조·검사·포장·수율 반영 후 확정",
+      "unlock": "말토덱스트린·건조·검사·포장 견적과 실제 공정수율"
     },
     {
       "metric": "고객가치",
@@ -623,6 +660,11 @@
       "term": "GABA",
       "plain": "감마아미노부티르산",
       "use": "축종·용량·제형에 따라 결과가 달라질 수 있는 성분"
+    },
+    {
+      "term": "반추위 메탄",
+      "plain": "소·양 같은 반추동물이 소화 과정에서 배출하는 메탄",
+      "use": "이 프로젝트에서는 사료섭취량과 생산성 지표를 함께 대조군과 비교해 측정"
     },
     {
       "term": "마스터배치",
@@ -943,8 +985,8 @@
   ],
   "disclaimer": "이 공개 인덱스는 사업 준비도와 검토 순서를 관리하기 위한 자료입니다. 법률·수의·사료·투자 분야의 전문 자문을 대신하지 않습니다. 자동으로 수집한 자료는 담당자가 원문을 확인하기 전까지 점수나 효능 판단에 반영하지 않습니다.",
   "meta": {
-    "generated_at": "2026-08-03T09:32:02Z",
-    "as_of_date": "2026-08-03",
+    "generated_at": "2026-08-10T00:29:51Z",
+    "as_of_date": "2026-08-10",
     "timezone": "Asia/Seoul",
     "automation": "Codex 주간 자동화 + Sites production 배포",
     "next_scheduled_refresh": "매주 월요일 09:17 KST",
@@ -958,12 +1000,51 @@
     "stage": "VALIDATE",
     "critical_open_gates": 4,
     "reviewed_signals": 9,
-    "auto_signals_waiting_review": 18,
+    "auto_signals_waiting_review": 19,
     "source_health_ok": 3,
     "source_health_total": 3,
     "lowest_dimension": "상업성 검증"
   },
   "signals": [
+    {
+      "id": "mafra-228d7f0a1bb3ee",
+      "date": "2026-08-07",
+      "category": "정책자동",
+      "title": "농관원, 휴가철 축산물 원산지 위반 106개소 적발",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578682/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-49fdf69687f2c7",
+      "date": "2026-08-04",
+      "category": "정책자동",
+      "title": "축산분야 폭염 대응 추진상황 집중점검",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578631/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
+    {
+      "id": "mafra-c290b80af9dbf2",
+      "date": "2026-08-04",
+      "category": "정책자동",
+      "title": "7월 농축산물 소비자물가 전년대비 0.5% 상승, 안정적 물가 관리 지속",
+      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
+      "judgment": "검토 대기",
+      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
+      "source_name": "농림축산식품부 RSS",
+      "url": "http://www.mafra.go.kr/bbs/home/792/578634/artclView.do",
+      "review_status": "auto-collected",
+      "source_quality": "정부 1차 자료·자동수집"
+    },
     {
       "id": "internal-model-v5",
       "date": "2026-08-03",
@@ -1026,32 +1107,6 @@
       "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
       "source_name": "농림축산식품부 RSS",
       "url": "http://www.mafra.go.kr/bbs/home/792/578546/artclView.do",
-      "review_status": "auto-collected",
-      "source_quality": "정부 1차 자료·자동수집"
-    },
-    {
-      "id": "mafra-875997f788ba76",
-      "date": "2026-07-21",
-      "category": "정책자동",
-      "title": "경북 예천 구제역 방역조치 차질 없이 추진 중",
-      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
-      "judgment": "검토 대기",
-      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
-      "source_name": "농림축산식품부 RSS",
-      "url": "http://www.mafra.go.kr/bbs/home/792/578506/artclView.do",
-      "review_status": "auto-collected",
-      "source_quality": "정부 1차 자료·자동수집"
-    },
-    {
-      "id": "mafra-e96003c8cbac5b",
-      "date": "2026-07-20",
-      "category": "정책자동",
-      "title": "폭염·호우 등에 대비하여 농축산물 수급 관리 강화",
-      "summary": "농림축산식품부 보도자료에서 사료·축산 사업과 관련된 내용을 찾았습니다. 담당자가 원문을 확인하기 전까지는 참고 자료로만 표시합니다.",
-      "judgment": "검토 대기",
-      "action": "담당자가 원문을 확인한 뒤 사업에 미치는 영향과 필요한 조치를 기록합니다.",
-      "source_name": "농림축산식품부 RSS",
-      "url": "http://www.mafra.go.kr/bbs/home/792/578501/artclView.do",
       "review_status": "auto-collected",
       "source_quality": "정부 1차 자료·자동수집"
     },
@@ -1407,16 +1462,12 @@
       "series_id": "World Bank Pink Sheet: Maize",
       "source_url": "https://www.worldbank.org/en/research/commodity-markets",
       "unit": "USD/metric ton",
-      "latest_date": "2026-06-01",
-      "latest": 197.1,
-      "mom_pct": -8.8,
-      "yoy_pct": 0.5,
-      "signal": "원료비 부담 완화",
+      "latest_date": "2026-07-01",
+      "latest": 213.4,
+      "mom_pct": 8.3,
+      "yoy_pct": 11.1,
+      "signal": "원료비 상승 요인",
       "points": [
-        {
-          "date": "2024-07-01",
-          "value": 177.4
-        },
         {
           "date": "2024-08-01",
           "value": 170.3
@@ -1508,6 +1559,10 @@
         {
           "date": "2026-06-01",
           "value": 197.1
+        },
+        {
+          "date": "2026-07-01",
+          "value": 213.4
         }
       ]
     },
@@ -1517,16 +1572,12 @@
       "series_id": "World Bank Pink Sheet: Soybeans",
       "source_url": "https://www.worldbank.org/en/research/commodity-markets",
       "unit": "USD/metric ton",
-      "latest_date": "2026-06-01",
-      "latest": 468.0,
+      "latest_date": "2026-07-01",
+      "latest": 459.0,
       "mom_pct": -1.1,
-      "yoy_pct": 12.5,
+      "yoy_pct": 12.0,
       "signal": "큰 변동 없음",
       "points": [
-        {
-          "date": "2024-07-01",
-          "value": 470.0
-        },
         {
           "date": "2024-08-01",
           "value": 400.0
@@ -1617,7 +1668,11 @@
         },
         {
           "date": "2026-06-01",
-          "value": 468.0
+          "value": 464.0
+        },
+        {
+          "date": "2026-07-01",
+          "value": 459.0
         }
       ]
     }
@@ -1627,24 +1682,24 @@
       {
         "source": "europe_pmc",
         "status": "ok",
-        "fetched_at": "2026-08-03T09:32:02Z",
+        "fetched_at": "2026-08-10T00:29:51Z",
         "item_count": 12
       },
       {
         "source": "mafra_rss",
         "status": "ok",
-        "fetched_at": "2026-08-03T09:32:02Z",
-        "item_count": 6
+        "fetched_at": "2026-08-10T00:29:51Z",
+        "item_count": 7
       },
       {
         "source": "world_bank_pink_sheet",
         "status": "ok",
-        "fetched_at": "2026-08-03T09:32:02Z",
+        "fetched_at": "2026-08-10T00:29:51Z",
         "item_count": 48
       }
     ],
-    "last_successful_live_refresh": "2026-08-03T09:32:02Z",
-    "review_queue_count": 18
+    "last_successful_live_refresh": "2026-08-10T00:29:51Z",
+    "review_queue_count": 19
   },
   "auto_intelligence": {
     "version": "2.0.0",
