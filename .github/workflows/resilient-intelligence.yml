@@ -118,7 +118,26 @@ jobs:
             echo "No public intelligence changes"
           else
             git commit -m "data: refresh resilient GABA intelligence [skip ci]"
-            git pull --rebase origin main
+            if ! git pull --rebase origin main; then
+              echo "Concurrent intelligence refresh detected; resolving generated snapshot files in favor of this resilient run"
+              git checkout --theirs -- \
+                data/auto_intelligence_state.json \
+                data/auto_review_queue.json \
+                docs/data/auto_intelligence.json \
+                docs/data/knowledge_base.json \
+                docs/data/update_status.json \
+                docs/data/platform_health.json \
+                docs/data/index.json
+              git add \
+                data/auto_intelligence_state.json \
+                data/auto_review_queue.json \
+                docs/data/auto_intelligence.json \
+                docs/data/knowledge_base.json \
+                docs/data/update_status.json \
+                docs/data/platform_health.json \
+                docs/data/index.json
+              GIT_EDITOR=true git rebase --continue
+            fi
             git push origin HEAD:main
           fi
 
