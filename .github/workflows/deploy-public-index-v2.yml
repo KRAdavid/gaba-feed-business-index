@@ -68,6 +68,8 @@ jobs:
           test -f docs/assets/technical-documents.js
           test -f docs/assets/b2b-operations.css
           test -f docs/assets/b2b-operations.js
+          test -f docs/assets/public-copy-polish.css
+          test -f docs/assets/public-copy-polish.js
           test -f docs/data/index.json
           test -f docs/data/auto_intelligence.json
           test -f docs/data/knowledge_base.json
@@ -75,6 +77,7 @@ jobs:
           test -f docs/data/technical_documents.json
           test -f docs/data/b2b_operations.json
           test -f docs/data/platform_health.json
+          test -f docs/data/evidence_claim_matrix.json
           test -s docs/downloads/GABA_Crude_Specification_v1.pdf
           test -f docs/downloads/GABA_Feed_Business_Model_Speech_Deck_v1.pdf
           test -f docs/downloads/GABA_Caremix_Specification_v1.pdf
@@ -95,6 +98,7 @@ jobs:
           grep -q 'assets/lab-section.js' docs/index.html
           grep -q 'assets/technical-documents.js' docs/index.html
           grep -q 'assets/b2b-operations.js' docs/assets/technical-documents.js
+          grep -q 'assets/public-copy-polish.js' docs/index.html
 
           node --check docs/assets/inquiry-form.js
           node --check docs/assets/inquiry-apps-script.js
@@ -107,6 +111,7 @@ jobs:
           node --check docs/assets/lab-section.js
           node --check docs/assets/technical-documents.js
           node --check docs/assets/b2b-operations.js
+          node --check docs/assets/public-copy-polish.js
           python -m py_compile scripts/check_b2b_platform.py
 
           python - <<'PY'
@@ -121,6 +126,7 @@ jobs:
               Path("docs/data/technical_documents.json"),
               Path("docs/data/b2b_operations.json"),
               Path("docs/data/platform_health.json"),
+              Path("docs/data/evidence_claim_matrix.json"),
           ]
 
           for path in required_json:

@@ -1,0 +1,18 @@
+ .appendix-section .section-title { max-width: 900px; }
+
+@media (min-width: 961px) {
+  .nav { gap: 12px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav button, .nav-cta { white-space: nowrap; flex-shrink: 0; }
+  .nav button { font-size: 12px; }
+}
+
+@media (max-width: 640px) {
+  .appendix-section { padding: 72px 0; }
+  .appendix-grid { grid-template-columns: 1fr; }
+  .appendix-panel { padding: 22px; }
+  .appendix-sources > div { display: grid; grid-template-columns: 1fr; }
+  .appendix-sources a { display: block; }
+  .knowledge-status strong { white-space: normal; }
+  .powder { width: 120%; }
+}
