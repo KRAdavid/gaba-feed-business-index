@@ -590,7 +590,7 @@ def run(since_days: int, skip_network: bool = False) -> dict[str, Any]:
     collector_names = ("pubmed", "europe_pmc", "crossref")
     enabled_collectors = sum(1 for name in collector_names if config.get(name, {}).get("enabled", True))
     sources_total = enabled_collectors + len(config.get("official_monitors", []))
-    source_success = sources_total - len(failures)
+    source_success = 0 if skip_network else sources_total - len(failures)
     source_success = max(0, source_success)
     workflow_run_id = clean_text(os.environ.get("GITHUB_RUN_ID"))
     workflow_attempt = clean_text(os.environ.get("GITHUB_RUN_ATTEMPT"))
@@ -600,6 +600,8 @@ def run(since_days: int, skip_network: bool = False) -> dict[str, Any]:
     )
     execution_duration = round(time.perf_counter() - started, 3)
 
+    if skip_network:
+        failures = [{"source": "network", "error": "network collection skipped by --skip-network"}]
     status_name = "healthy" if not failures else "partial"
     output = {
         "version": "2.0.0", "generated_at": generated_at, "status": status_name,
@@ -618,10 +620,11 @@ def run(since_days: int, skip_network: bool = False) -> dict[str, Any]:
               "workflow_run_id": workflow_run_id, "workflow_attempt": workflow_attempt,
               "trigger_type": trigger_type,
               "sources_total": sources_total,
-              "sources_success": source_success, "sources_failed": len(failures),
+              "sources_success": source_success, "sources_failed": sources_total if skip_network else len(failures),
               "items_collected_this_run": len(incoming), "items_published_current": len(public_items),
               "review_queue_current": len(review_items),
-              "execution_duration_seconds": execution_duration}
+              "execution_duration_seconds": execution_duration,
+              "network_skipped": bool(skip_network)}
     state = {"version": "2.0.0", "semantic_digest": digest, "official_monitors": monitor_state,
              "last_run_at": run_at, "last_success_at": last_success_at,
              "last_content_change_at": last_content_change_at}
