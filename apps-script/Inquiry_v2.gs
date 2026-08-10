@@ -12,6 +12,7 @@
 const GABA_INQUIRY_CFG_V2 = Object.freeze({
   SPREADSHEET_ID: '1QOYtwlq6uHp54BXu0v3yf5eA5B04HON9GxfxdE830zw',
   SHEET_NAME: 'Inquiries',
+  LEAD_SHEET_NAME: 'Lead_Pipeline',
   TO: 'feed@cellpinda.com',
   CC: 'dubaissday@gmail.com',
   TZ: 'Asia/Seoul',
@@ -26,7 +27,16 @@ const GABA_INQUIRY_HEADERS_V2 = [
   'Collaboration_Type', 'Selected_Product', 'Selected_Specification', 'Order_Guide_Path',
   'Species', 'Farm_or_Feed_Volume', 'Current_Challenges', 'Preparation_Stage',
   'Desired_Start', 'Sample_Initial_Volume', 'Annual_Volume', 'Evaluation_KPIs',
-  'Detailed_Request', 'Consent', 'Source_Page', 'Client_Timestamp', 'Form_Version'
+  'Detailed_Request', 'Consent', 'Source_Page', 'Client_Timestamp', 'Form_Version',
+  'Lead_ID', 'Lead_Status'
+];
+
+const GABA_LEAD_HEADERS_V2 = [
+  'Lead_ID', 'Inquiry_ID', 'Created_At', 'Company', 'Contact', 'Country', 'Role',
+  'Species', 'Product', 'Expected_Volume', 'Use_Case', 'Project_Stage',
+  'Qualification_Status', 'Lead_Score', 'Owner', 'Next_Action', 'Next_Action_Date',
+  'Buyer_Pack', 'Sample_Status', 'Pilot_Status', 'Quote_Status', 'PO_Status',
+  'Last_Activity', 'Notes'
 ];
 
 function setupGabaInquiryReceiver() {
@@ -189,10 +199,31 @@ function gabaInquiryProcessV2_(params) {
   }
 
   let sheetError = '';
+  let leadResult = { leadId: '', status: 'FAILED', error: '' };
   try {
-    gabaInquiryAppendV2_(inquiryId, receivedAt, mailStatus, mailError, data);
+    gabaInquiryAppendV2_(inquiryId, receivedAt, mailStatus, mailError, data, leadResult);
   } catch (error) {
     sheetError = String(error && error.message ? error.message : error).slice(0, 500);
+  }
+
+  // Lead creation is deliberately best-effort: an email or inquiry write must
+  // never be rolled back because a downstream pipeline sheet is unavailable.
+  try {
+    if (!sheetError) leadResult = gabaCreateLeadV2_(inquiryId, receivedAt, data);
+  } catch (error) {
+    leadResult = {
+      leadId: '',
+      status: 'FAILED',
+      error: String(error && error.message ? error.message : error).slice(0, 500)
+    };
+  }
+
+  if (!sheetError) {
+    try {
+      gabaInquiryUpdateLeadV2_(inquiryId, leadResult);
+    } catch (error) {
+      console.error('Lead status update failed: ' + error);
+    }
   }
 
   if (mailStatus !== 'sent') {
@@ -203,7 +234,9 @@ function gabaInquiryProcessV2_(params) {
       {
         mail_status: mailStatus,
         sheet_saved: !sheetError,
-        error: mailError
+        error: mailError,
+        lead_id: leadResult.leadId,
+        lead_status: leadResult.status
       }
     );
   }
@@ -220,7 +253,10 @@ function gabaInquiryProcessV2_(params) {
     inquiryId,
     {
       mail_status: mailStatus,
-      sheet_saved: !sheetError
+      sheet_saved: !sheetError,
+      lead_id: leadResult.leadId,
+      lead_status: leadResult.status,
+      lead_error: leadResult.error || ''
     }
   );
 }
@@ -293,15 +329,7 @@ function gabaInquirySheetV2_() {
     sheet = ss.insertSheet(GABA_INQUIRY_CFG_V2.SHEET_NAME);
   }
 
-  if (sheet.getLastRow() === 0) {
-    sheet
-      .getRange(1, 1, 1, GABA_INQUIRY_HEADERS_V2.length)
-      .setValues([GABA_INQUIRY_HEADERS_V2]);
-    sheet.setFrozenRows(1);
-    sheet
-      .getRange(1, 1, 1, GABA_INQUIRY_HEADERS_V2.length)
-      .setFontWeight('bold');
-  }
+  gabaEnsureHeadersV2_(sheet, GABA_INQUIRY_HEADERS_V2);
 
   return sheet;
 }
@@ -311,7 +339,8 @@ function gabaInquiryAppendV2_(
   receivedAt,
   mailStatus,
   mailError,
-  data
+  data,
+  leadResult
 ) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
@@ -344,13 +373,113 @@ function gabaInquiryAppendV2_(
       data.consent,
       data.sourcePage,
       data.clientTimestamp,
-      data.formVersion
+      data.formVersion,
+      leadResult && leadResult.leadId || '',
+      leadResult && leadResult.status || 'PENDING'
     ].map(gabaInquirySheetValueV2_);
 
     gabaInquirySheetV2_().appendRow(row);
   } finally {
     lock.releaseLock();
   }
+}
+
+function gabaEnsureHeadersV2_(sheet, headers) {
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    sheet.setFrozenRows(1);
+    sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
+    return;
+  }
+  const current = sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), 1)).getValues()[0];
+  headers.forEach(function(header) {
+    if (current.indexOf(header) === -1) {
+      sheet.getRange(1, sheet.getLastColumn() + 1).setValue(header).setFontWeight('bold');
+      current.push(header);
+    }
+  });
+}
+
+function gabaCreateLeadV2_(inquiryId, receivedAt, data) {
+  const ss = SpreadsheetApp.openById(GABA_INQUIRY_CFG_V2.SPREADSHEET_ID);
+  let sheet = ss.getSheetByName(GABA_INQUIRY_CFG_V2.LEAD_SHEET_NAME);
+  if (!sheet) sheet = ss.insertSheet(GABA_INQUIRY_CFG_V2.LEAD_SHEET_NAME);
+  gabaEnsureHeadersV2_(sheet, GABA_LEAD_HEADERS_V2);
+
+  const leadId = 'LEAD-' + receivedAt.replace(/[^0-9]/g, '').slice(0, 8) + '-' +
+    Utilities.getUuid().replace(/-/g, '').slice(0, 6).toUpperCase();
+  const context = gabaLeadContextV2_(data);
+  const values = {
+    Lead_ID: leadId,
+    Inquiry_ID: inquiryId,
+    Created_At: receivedAt,
+    Company: data.company,
+    Contact: data.contactName,
+    Country: data.countryRegion,
+    Role: data.departmentTitle,
+    Species: data.species,
+    Product: data.selectedProduct,
+    Expected_Volume: data.annualVolume || data.farmFeedVolume,
+    Use_Case: data.currentChallenges,
+    Project_Stage: data.preparationStage,
+    Qualification_Status: 'New',
+    Lead_Score: context.score,
+    Owner: '',
+    Next_Action: context.nextAction,
+    Next_Action_Date: '',
+    Buyer_Pack: context.buyerPack,
+    Sample_Status: 'Not Started',
+    Pilot_Status: 'Not Started',
+    Quote_Status: 'Not Started',
+    PO_Status: 'Not Started',
+    Last_Activity: receivedAt,
+    Notes: 'Created automatically from ' + inquiryId + '. ' + data.detailedRequest
+  };
+  const row = GABA_LEAD_HEADERS_V2.map(function(header) {
+    return gabaInquirySheetValueV2_(values[header] || '');
+  });
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    sheet.appendRow(row);
+  } finally {
+    lock.releaseLock();
+  }
+  return { leadId: leadId, status: 'CREATED', error: '' };
+}
+
+function gabaLeadContextV2_(data) {
+  const text = [data.collaborationType, data.preparationStage, data.currentChallenges].join(' ').toLowerCase();
+  let buyerPack = 'Technical Validation Pack';
+  let nextAction = 'Review inquiry and confirm technical requirements';
+  if (/pilot|farm|field/.test(text)) {
+    buyerPack = 'Farm Pilot Pack';
+    nextAction = 'Confirm pilot scope, KPI and sample requirement';
+  } else if (/purchase|procurement|quote|price|commercial/.test(text)) {
+    buyerPack = 'Commercial Supply Pack';
+    nextAction = 'Confirm specification, MOQ, price and lead time';
+  } else if (/import|export|regulatory|importer/.test(text)) {
+    buyerPack = 'Importer Readiness Pack';
+    nextAction = 'Review regulatory, import and specification requirements';
+  }
+  const score = Math.min(100, 20 + (data.company ? 10 : 0) + (data.annualVolume || data.farmFeedVolume ? 20 : 0) +
+    (data.preparationStage ? 15 : 0) + (data.detailedRequest ? 20 : 0) + (data.evaluationKpis ? 15 : 0));
+  return { buyerPack: buyerPack, nextAction: nextAction, score: score };
+}
+
+function gabaInquiryUpdateLeadV2_(inquiryId, leadResult) {
+  const sheet = gabaInquirySheetV2_();
+  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const inquiryColumn = headers.indexOf('Inquiry_ID') + 1;
+  const leadColumn = headers.indexOf('Lead_ID') + 1;
+  const statusColumn = headers.indexOf('Lead_Status') + 1;
+  if (!inquiryColumn || !leadColumn || !statusColumn) return;
+  const match = sheet.getRange(2, inquiryColumn, Math.max(sheet.getLastRow() - 1, 1), 1)
+    .getValues().findIndex(function(row) { return String(row[0]) === inquiryId; });
+  if (match < 0) return;
+  const rowNumber = match + 2;
+  sheet.getRange(rowNumber, leadColumn).setValue(leadResult.leadId || '');
+  sheet.getRange(rowNumber, statusColumn).setValue(leadResult.status || 'FAILED');
 }
 
 function gabaInquirySheetValueV2_(value) {

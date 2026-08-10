@@ -218,6 +218,16 @@ def main() -> int:
             "smart_consultation": smart_connected,
         },
         "checks": checks,
+        "heartbeat": {
+            key: update_status.get(key, "")
+            for key in (
+                "last_run_at", "last_success_at", "last_content_change_at",
+                "workflow_run_id", "workflow_attempt", "trigger_type",
+                "sources_total", "sources_success", "sources_failed",
+                "items_collected_this_run", "items_published_current",
+                "review_queue_current",
+            )
+        },
         "public_note": "본 상태는 공개자산·스마트 상담·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다.",
     }
 

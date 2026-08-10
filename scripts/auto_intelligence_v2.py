@@ -522,6 +522,7 @@ def run(since_days: int, skip_network: bool = False) -> dict[str, Any]:
     max_review = int(settings.get("max_review_items", 500))
     old_output = load_json(OUTPUT_PATH, {})
     old_review = load_json(REVIEW_PATH, {})
+    old_status = load_json(STATUS_PATH, {})
     old_state = load_json(STATE_PATH, {"version": "2.0.0", "official_monitors": {}})
 
     existing_public = [x for row in old_output.get("items", []) if (x := row_to_item(row, config))]
@@ -558,6 +559,18 @@ def run(since_days: int, skip_network: bool = False) -> dict[str, Any]:
     old_digest = clean_text(old_state.get("semantic_digest"))
     generated_at = clean_text(old_output.get("generated_at")) if digest == old_digest else iso_now()
     generated_at = generated_at or iso_now()
+    run_at = iso_now()
+    content_changed = digest != old_digest
+    last_content_change_at = generated_at if content_changed else clean_text(
+        old_state.get("last_content_change_at") or old_status.get("last_content_change_at")
+    )
+    last_success_at = run_at if not failures else clean_text(
+        old_state.get("last_success_at") or old_status.get("last_success_at")
+    )
+    source_success = len(config.get("official_monitors", [])) + 3 - len(failures)
+    source_success = max(0, source_success)
+    workflow_run_id = clean_text(os.environ.get("GITHUB_RUN_ID"))
+    workflow_attempt = clean_text(os.environ.get("GITHUB_RUN_ATTEMPT"))
 
     status_name = "healthy" if not failures else "partial"
     output = {
@@ -571,8 +584,18 @@ def run(since_days: int, skip_network: bool = False) -> dict[str, Any]:
     review_payload = {"version": "2.0.0", "generated_at": generated_at, "count": len(review_items), "items": [asdict(x) for x in review_items]}
     knowledge = knowledge_payload(public_items, generated_at)
     status = {"version": "2.0.0", "updated_at": generated_at, "status": status_name, "semantic_digest": digest,
-              "counts": output["counts"], "failures": failures, "next_schedule": "daily 03:20 Asia/Seoul"}
-    state = {"version": "2.0.0", "semantic_digest": digest, "official_monitors": monitor_state}
+              "counts": output["counts"], "failures": failures, "next_schedule": "daily 03:20 Asia/Seoul",
+              "last_run_at": run_at, "last_success_at": last_success_at,
+              "last_content_change_at": last_content_change_at,
+              "workflow_run_id": workflow_run_id, "workflow_attempt": workflow_attempt,
+              "trigger_type": "scheduled" if os.environ.get("GITHUB_EVENT_NAME") == "schedule" else "manual",
+              "sources_total": len(config.get("official_monitors", [])) + 3,
+              "sources_success": source_success, "sources_failed": len(failures),
+              "items_collected_this_run": len(incoming), "items_published_current": len(public_items),
+              "review_queue_current": len(review_items)}
+    state = {"version": "2.0.0", "semantic_digest": digest, "official_monitors": monitor_state,
+             "last_run_at": run_at, "last_success_at": last_success_at,
+             "last_content_change_at": last_content_change_at}
 
     save_if_changed(OUTPUT_PATH, output)
     save_if_changed(REVIEW_PATH, review_payload)

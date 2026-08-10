@@ -11,6 +11,15 @@ spec.loader.exec_module(module)
 
 
 class TestAutoIntelligenceV2(unittest.TestCase):
+    def test_status_contract_includes_heartbeat_fields(self):
+        source = MODULE_PATH.read_text(encoding="utf-8")
+        for field in (
+            "last_run_at", "last_success_at", "last_content_change_at",
+            "workflow_run_id", "workflow_attempt", "sources_success",
+            "sources_failed", "items_collected_this_run",
+            "items_published_current", "review_queue_current",
+        ):
+            self.assertIn(field, source)
     def test_strict_relevance_requires_gaba_animal_and_feed_context(self):
         self.assertTrue(module.strict_relevance(
             "Effects of GABA in broiler chickens",
