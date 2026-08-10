@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/build_site_worker.mjs",
     "build:site": "node scripts/build_site_worker.mjs",
     "build:static": "python scripts/build_static_release.py",
     "check:static": "python scripts/validate_static_release.py",
