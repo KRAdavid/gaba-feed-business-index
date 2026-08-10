@@ -8,6 +8,9 @@ on:
       - "B2B_OPERATING_MODEL.md"
       - "docs/assets/b2b-operations.css"
       - "docs/assets/b2b-operations.js"
+      - "docs/assets/smart-consultation.css"
+      - "docs/assets/smart-consultation.js"
+      - "docs/assets/technical-documents.js"
       - "docs/data/b2b_operations.json"
       - "docs/data/update_status.json"
       - "scripts/check_b2b_platform.py"
@@ -43,8 +46,14 @@ jobs:
       - name: Validate source assets
         run: |
           node --check docs/assets/b2b-operations.js
+          node --check docs/assets/smart-consultation.js
+          node --check docs/assets/technical-documents.js
           python -m py_compile scripts/patch_b2b_platform.py scripts/check_b2b_platform.py
           python -m unittest tests/test_patch_b2b_platform.py -v
+          test -s docs/assets/smart-consultation.css
+          grep -q 'assets/smart-consultation.js' docs/assets/technical-documents.js
+          grep -q '조건 검토 후 상담요청' docs/assets/smart-consultation.js
+          grep -q '스마트상담_진입경로' docs/assets/smart-consultation.js
           python - <<'PY'
           import json
           from pathlib import Path
@@ -68,6 +77,7 @@ jobs:
           node --check docs/assets/inquiry-form.js
           node --check docs/assets/inquiry-apps-script.js
           node --check docs/assets/b2b-operations.js
+          node --check docs/assets/smart-consultation.js
           grep -q 'assets/b2b-operations.css' docs/index.html
           grep -q 'assets/b2b-operations.js' docs/index.html
           grep -q 'feed@cellpinda.com' docs/assets/inquiry-form.js
@@ -106,6 +116,8 @@ jobs:
             echo "- Buyer Deal Room: installed"
             echo "- Six-stage buyer-to-reorder workflow: installed"
             echo "- Role-specific document packs: installed"
+            echo "- Condition-aware smart consultation: installed"
+            echo "- Required-only user input handoff: installed"
             echo "- Legacy FormSubmit route: removed"
             echo "- Inquiry recipient: feed@cellpinda.com"
             echo "- Official source fallback monitoring: installed"
