@@ -97,6 +97,7 @@ jobs:
           grep -q 'assets/product-split-selector.js' docs/index.html
           grep -q 'assets/lab-section.js' docs/index.html
           grep -q 'assets/technical-documents.js' docs/index.html
+          grep -q 'assets/b2b-operations.js' docs/index.html
           grep -q 'assets/b2b-operations.js' docs/assets/technical-documents.js
           grep -q 'assets/public-copy-polish.js' docs/index.html
 
@@ -110,6 +111,8 @@ jobs:
           node --check docs/assets/product-split-selector.js
           node --check docs/assets/lab-section.js
           node --check docs/assets/technical-documents.js
+          node --check docs/assets/b2b-operations.js
+          python scripts/check_b2b_platform.py
           node --check docs/assets/b2b-operations.js
           node --check docs/assets/public-copy-polish.js
           python -m py_compile scripts/check_b2b_platform.py

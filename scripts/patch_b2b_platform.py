@@ -88,7 +88,14 @@ def patch_source_config(payload: dict) -> tuple[dict, bool]:
         if not patch:
             continue
         for key, value in patch.items():
-            if monitor.get(key) != value:
+            if key == "urls":
+                current_urls = monitor.get(key) or []
+                merged_urls = list(current_urls)
+                merged_urls.extend(url for url in value if url not in merged_urls)
+                if current_urls != merged_urls:
+                    monitor[key] = merged_urls
+                    changed = True
+            elif monitor.get(key) != value:
                 monitor[key] = value
                 changed = True
     missing = set(updates) - {row.get("id") for row in monitors}
@@ -151,6 +158,16 @@ NEW_MONITOR_BLOCK = '''        urls = [url for url in (source.get("urls") or [so
 
 def patch_collector(text: str) -> tuple[str, bool]:
     if NEW_MONITOR_BLOCK in text:
+        return text, False
+    # The collector may already contain the fallback implementation with
+    # harmless formatting/comment changes from a previous release. Treat that
+    # shape as installed so the CI installer remains idempotent.
+    if (
+        'source.get("urls")' in text
+        and "active_url = \"\"" in text
+        and 'metadata={"source_id": sid' in text
+        and '"attempted_urls": urls' in text
+    ):
         return text, False
     if OLD_MONITOR_BLOCK not in text:
         raise RuntimeError("official monitor block not found")

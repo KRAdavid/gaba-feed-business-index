@@ -66,7 +66,7 @@ jobs:
           test -f apps-script/Inquiry_v2.gs
           test -f docs/assets/inquiry-apps-script.js
           grep -q 'assets/inquiry-apps-script.js' docs/index.html
-          grep -q 'AKfycbxnLIZGWbJDiDPMlUJ3yef8cXI1jgZC5cZsaCBUbYBR6bNAdXskVTZBSrxSHZiIpCDYPA' docs/assets/inquiry-apps-script.js
+          grep -q 'AKfycbyNO1bwsnuHDMJsKpcCU2KUVMESnSD2_ZaauD_-sbqVE_X031-_oWS3ujh3zhYbMuCoqQ' docs/assets/inquiry-apps-script.js
           python scripts/patch_inquiry_apps_script.py --check
 
       - name: Write setup reminder

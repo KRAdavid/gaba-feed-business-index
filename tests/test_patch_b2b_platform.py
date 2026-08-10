@@ -58,6 +58,17 @@ class PatchB2BPlatformTest(unittest.TestCase):
         self.assertFalse(changed_again)
         self.assertEqual(patched, repatched)
 
+    def test_collector_accepts_current_fallback_shape(self):
+        source = (
+            'source.get("urls")\n'
+            'active_url = ""\n'
+            'metadata={"source_id": sid, "content_hash": digest}\n'
+            '"attempted_urls": urls\n'
+        )
+        patched, changed = module.patch_collector(source)
+        self.assertFalse(changed)
+        self.assertEqual(source, patched)
+
 
 if __name__ == "__main__":
     unittest.main()
