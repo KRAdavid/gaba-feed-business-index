@@ -122,6 +122,20 @@
     }
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load);
-  else load();
+  function loadSmartConsultation() {
+    if (document.querySelector('script[data-smart-consultation-loader]')) return;
+    const script = document.createElement('script');
+    script.src = 'assets/smart-consultation.js';
+    script.defer = true;
+    script.dataset.smartConsultationLoader = 'v1';
+    document.body.append(script);
+  }
+
+  function init() {
+    load();
+    loadSmartConsultation();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
