@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-08-09T19:31:28+00:00",
+  "generated_at": "2026-08-10T03:38:34+00:00",
   "status": "partial",
   "sources": {
     "pubmed": true,
@@ -345,33 +345,13 @@
   ],
   "failures": [
     {
-      "source": "kr-mafra-feed-policy",
-      "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.mafra.go.kr/"
-      ]
-    },
-    {
-      "source": "kr-feed-control-act",
-      "error": "request failed after 3 attempts: https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95"
-      ]
-    },
-    {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
       "attempted_urls": [
         "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products",
+        "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/stockfeed-petfood-regulation",
+        "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages-fs",
         "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages"
-      ]
-    },
-    {
-      "source": "oecd-fao-agricultural-outlook",
-      "error": "request failed after 3 attempts: https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report/key-messages_600831c0.html: HTTP Error 403: Forbidden",
-      "attempted_urls": [
-        "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html",
-        "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report/key-messages_600831c0.html"
       ]
     }
   ],

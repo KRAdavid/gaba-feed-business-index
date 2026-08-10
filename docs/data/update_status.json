@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-08-09T19:31:28+00:00",
+  "updated_at": "2026-08-10T03:38:34+00:00",
   "status": "partial",
-  "semantic_digest": "da53920a1e3cd1ccce29764691e8bed66d41c1765dcb9487344d166749f1e041",
+  "semantic_digest": "5b328cb9b898898edf3f687cd2cabb6c3fdaab28c4dcb70a4bdc5a1634375581",
   "counts": {
     "collected_this_run": 12,
     "auto_published": 12,
@@ -10,87 +10,115 @@
   },
   "failures": [
     {
-      "source": "kr-mafra-feed-policy",
-      "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.mafra.go.kr/"
-      ]
-    },
-    {
-      "source": "kr-feed-control-act",
-      "error": "request failed after 3 attempts: https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95"
-      ]
-    },
-    {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
       "attempted_urls": [
         "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/animal-feed-products",
+        "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/stockfeed-petfood-regulation",
+        "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages-fs",
         "https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages"
-      ]
-    },
-    {
-      "source": "oecd-fao-agricultural-outlook",
-      "error": "request failed after 3 attempts: https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report/key-messages_600831c0.html: HTTP Error 403: Forbidden",
-      "attempted_urls": [
-        "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report.html",
-        "https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2026-2035_47874669-en/full-report/key-messages_600831c0.html"
       ]
     }
   ],
   "next_schedule": "daily 03:20 Asia/Seoul",
-  "route_checked_at": "2026-08-09T19:31:28+00:00",
+  "last_run_at": "2026-08-10T03:38:34+00:00",
+  "last_success_at": "2026-08-10T03:38:34+00:00",
+  "last_content_change_at": "2026-08-10T03:38:34+00:00",
+  "workflow_run_id": "",
+  "workflow_attempt": "",
+  "trigger_type": "manual",
+  "sources_total": 10,
+  "sources_success": 9,
+  "sources_failed": 1,
+  "items_collected_this_run": 12,
+  "items_published_current": 12,
+  "review_queue_current": 1,
+  "execution_duration_seconds": 455.974,
+  "route_checked_at": "2026-08-10T03:38:35+00:00",
   "source_routes": [
     {
       "source": "kr-mafra-feed-policy",
-      "reachable": false,
-      "selected_url": "",
+      "reachable": true,
+      "selected_url": "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
       "attempt_count": 1,
-      "last_result": "<urlopen error timed out>"
+      "last_result": "HTTP 206",
+      "fallback_used": false,
+      "last_success_at": "2026-08-10T03:31:09+00:00",
+      "last_failure_at": "",
+      "consecutive_failures": 0,
+      "response_status": "ok"
     },
     {
       "source": "kr-feed-control-act",
-      "reachable": false,
-      "selected_url": "",
+      "reachable": true,
+      "selected_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
       "attempt_count": 1,
-      "last_result": "<urlopen error timed out>"
+      "last_result": "HTTP 206",
+      "fallback_used": false,
+      "last_success_at": "2026-08-10T03:31:10+00:00",
+      "last_failure_at": "",
+      "consecutive_failures": 0,
+      "response_status": "ok"
     },
     {
       "source": "eu-efsa-feed-additives",
       "reachable": true,
       "selected_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
       "attempt_count": 1,
-      "last_result": "HTTP 206"
+      "last_result": "HTTP 206",
+      "fallback_used": false,
+      "last_success_at": "2026-08-10T03:31:11+00:00",
+      "last_failure_at": "",
+      "consecutive_failures": 0,
+      "response_status": "ok"
     },
     {
       "source": "us-fda-animal-food",
       "reachable": true,
       "selected_url": "https://www.fda.gov/animal-food-feeds",
       "attempt_count": 1,
-      "last_result": "HTTP 200"
+      "last_result": "HTTP 200",
+      "fallback_used": false,
+      "last_success_at": "2026-08-10T03:31:12+00:00",
+      "last_failure_at": "",
+      "consecutive_failures": 0,
+      "response_status": "ok"
     },
     {
       "source": "au-apvma-animal-feed",
       "reachable": false,
       "selected_url": "",
-      "attempt_count": 2,
-      "last_result": "The read operation timed out"
+      "attempt_count": 4,
+      "last_result": "The read operation timed out",
+      "fallback_used": false,
+      "last_success_at": "",
+      "last_failure_at": "2026-08-10T03:38:30+00:00",
+      "consecutive_failures": 1,
+      "response_status": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out"
     },
     {
       "source": "fao-animal-production",
       "reachable": true,
       "selected_url": "https://www.fao.org/animal-production/en",
       "attempt_count": 1,
-      "last_result": "HTTP 200"
+      "last_result": "HTTP 200",
+      "fallback_used": false,
+      "last_success_at": "2026-08-10T03:38:30+00:00",
+      "last_failure_at": "",
+      "consecutive_failures": 0,
+      "response_status": "ok"
     },
     {
       "source": "oecd-fao-agricultural-outlook",
-      "reachable": false,
-      "selected_url": "",
+      "reachable": true,
+      "selected_url": "https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.TAD.ATM&df%5Bds%5D=DisseminateFinalDMZ&df%5Bid%5D=DSD_AGR%40DF_OUTLOOK_2026_2035",
       "attempt_count": 2,
-      "last_result": "HTTP 403"
+      "last_result": "HTTP 200",
+      "fallback_used": true,
+      "last_success_at": "2026-08-10T03:38:34+00:00",
+      "last_failure_at": "",
+      "consecutive_failures": 0,
+      "response_status": "ok"
     }
   ]
 }
