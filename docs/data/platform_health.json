@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.1.0",
-  "generated_at": "2026-08-09T19:31:29+00:00",
+  "schema_version": "1.2.0",
+  "generated_at": "2026-08-10T01:05:51+00:00",
   "status": "partial",
   "summary": {
     "critical_failed": 0,
     "warnings": 2,
-    "checks": 10,
+    "checks": 11,
     "documents": 7,
     "operating_stages": 6,
-    "buyer_packs": 4
+    "buyer_packs": 4,
+    "smart_consultation": true
   },
   "checks": [
     {
@@ -24,6 +25,13 @@
       "ok": true,
       "severity": "critical",
       "message": "직접 연결됨"
+    },
+    {
+      "id": "smart_consultation",
+      "label": "조건기반 스마트 상담",
+      "ok": true,
+      "severity": "critical",
+      "message": "도입진단·주문가이드·Buyer Pack 조건 자동반영"
     },
     {
       "id": "inquiry_runtime_route",
@@ -65,7 +73,7 @@
       "label": "자동자료 최신성",
       "ok": true,
       "severity": "warning",
-      "message": "마지막 갱신 0.0시간 전"
+      "message": "마지막 갱신 5.6시간 전"
     },
     {
       "id": "intelligence_sources",
@@ -82,5 +90,5 @@
       "message": "통제된 테스트 문의로 페이지 문의번호·feed 메일·백업메일·Inquiries 행을 함께 확인해야 함"
     }
   ],
-  "public_note": "본 상태는 공개자산·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다."
+  "public_note": "본 상태는 공개자산·스마트 상담·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다."
 }
