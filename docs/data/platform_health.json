@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-08-10T19:53:33+00:00",
+  "generated_at": "2026-08-11T20:14:10+00:00",
   "status": "partial",
   "summary": {
     "critical_failed": 0,
@@ -94,14 +94,14 @@
       "label": "자동자료 최신성",
       "ok": true,
       "severity": "warning",
-      "message": "마지막 갱신 14.8시간 전"
+      "message": "마지막 갱신 39.1시간 전"
     },
     {
       "id": "intelligence_sources",
       "label": "외부 인텔리전스 수집",
       "ok": false,
       "severity": "warning",
-      "message": "상태 partial · 실패 소스 1개"
+      "message": "상태 partial · 실패 소스 3개"
     },
     {
       "id": "inquiry_e2e",
@@ -112,19 +112,19 @@
     }
   ],
   "heartbeat": {
-    "last_run_at": "2026-08-10T19:53:33+00:00",
-    "last_success_at": "2026-08-10T19:53:33+00:00",
+    "last_run_at": "2026-08-11T20:14:09+00:00",
+    "last_success_at": "2026-08-11T20:14:09+00:00",
     "last_content_change_at": "2026-08-10T05:07:57+00:00",
-    "workflow_run_id": "31425577959",
+    "workflow_run_id": "31529815621",
     "workflow_attempt": "1",
     "trigger_type": "scheduled",
     "sources_total": 10,
-    "sources_success": 9,
-    "sources_failed": 1,
+    "sources_success": 7,
+    "sources_failed": 3,
     "items_collected_this_run": 12,
     "items_published_current": 13,
     "review_queue_current": 1,
-    "execution_duration_seconds": 459.754
+    "execution_duration_seconds": 1247.49
   },
   "public_note": "본 상태는 공개자산·스마트 상담·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다."
 }
