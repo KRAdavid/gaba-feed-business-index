@@ -257,13 +257,46 @@ section{scroll-margin-top:82px}.product-section,.evidence-section,.downloads-sec
     </div>
     <div class="auto-summary" id="autoSummary"></div>
     <div class="calc-result">
+      <div><small>사료 적용 단가 <span class="calc-evidence-mark" title="축종별 사업성 검토용 기본값이며 실제 구매·견적 단가로 대체합니다.">근거+</span></small><strong id="feedUnitPrice">-</strong><span id="feedUnitPriceBasis">축종별 검토용 기준값</span></div>
       <div><small>자동 GABA 목표농도</small><strong id="autoPpm">-</strong><span id="doseBasis">-</span></div>
-      <div><small>총 적용 사료량</small><strong id="totalFeed">-</strong><span id="feedBasis">-</span></div>
       <div><small>필요 가바크루드</small><strong id="neededCrude">-</strong><span>GABA 20% 기준</span></div>
-      <div><small>가바크루드 도입비</small><strong id="rawCost">-</strong><span id="costPerHead">-</span></div>
-      <div><small>예상 사료비 절감</small><strong id="feedSaving">-</strong><span>FCR 2% 개선 시나리오</span></div>
-      <div class="emphasis"><small>시나리오상 차액</small><strong id="netBenefit">-</strong><span>가정상 사료비 절감 - 도입비</span></div>
+      <div class="emphasis"><small>가바크루드 추가비용</small><strong id="rawCost">-</strong><span id="costPerHead">-</span></div>
     </div>
+    <section class="feed-impact" id="feedImpactVisual" aria-live="polite" aria-label="ADG와 FCR에 따른 사료 절감량 비교">
+      <div class="impact-summary-title">
+        <small>가바크루드 도입효과 한눈에</small>
+        <strong>더 빠른 출하 · 더 적은 사료 · 남는 이익</strong>
+      </div>
+      <div class="before-after-compare" aria-label="가바크루드 적용 전후 비교">
+        <div class="compare-card compare-before">
+          <span class="compare-state">적용 전</span>
+          <strong>기본 사육</strong>
+          <dl>
+            <div><dt>출하</dt><dd id="beforeShipDays">-</dd></div>
+            <div><dt>사료</dt><dd id="beforeFeedAmount">-</dd></div>
+            <div><dt>크루드</dt><dd id="beforeCrudeCost">-</dd></div>
+            <div><dt>총비용</dt><dd id="beforeTotalCost">-</dd></div>
+          </dl>
+        </div>
+        <div class="compare-arrow" aria-hidden="true">→</div>
+        <div class="compare-card compare-after">
+          <span class="compare-state">적용 후</span>
+          <strong>가바크루드 적용</strong>
+          <dl>
+            <div><dt>출하</dt><dd id="afterShipDays">-</dd></div>
+            <div><dt>사료</dt><dd id="afterFeedAmount">-</dd></div>
+            <div><dt>크루드</dt><dd id="afterCrudeCost">-</dd></div>
+            <div><dt>총비용</dt><dd id="afterTotalCost">-</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="compare-delta">
+        <span>적용 전 대비 도입효과</span>
+        <strong id="compareBenefit">-</strong>
+        <small id="compareBenefitBasis">-</small>
+      </div>
+      <p class="impact-key-summary" id="impactKeySummary">ADG로 출하 시기를 줄이고 FCR로 사료량을 줄인 뒤, 사료비 절감액에서 가바크루드 추가비용을 차감합니다.</p>
+    </section>
     <div class="calc-effect">
       <div><b id="effectTitle">예상 생산성 변화</b><span id="effectText">-</span></div>
       <div><b>검증 권장지표</b><span id="kpiText">-</span></div>
@@ -272,7 +305,7 @@ section{scroll-margin-top:82px}.product-section,.evidence-section,.downloads-sec
       <button class="csv" id="downloadCalcCsv">계산 결과 CSV 다운로드</button>
       <button class="print" onclick="window.print()">현재 페이지 PDF 저장</button>
     </div>
-    <div class="calc-disclaimer">본 결과는 사업성 검토용 자동 시뮬레이션이며 제품 보장효능이 아닙니다. ADG 3%, FCR 2% 개선은 시나리오 가정으로만 취급하고, 실제 급여량·효능·경제성은 축종별 대조시험과 견적으로 확인합니다.</div>
+    <div class="calc-disclaimer">본 결과는 사업성 검토용 자동 시뮬레이션이며 제품 보장효능이 아닙니다. ADG·FCR 개선률은 시나리오 가정으로만 취급하고, 실제 급여량·효능·경제성은 축종별 대조시험과 견적으로 확인합니다.</div>
   </div>
 </div>
 </section>
@@ -312,15 +345,9 @@ function calculateSpeciesEffect(){
   document.getElementById('autoSummary').innerHTML=`<strong>${d.name} ${fmt(heads,0)}마리</strong> 기준으로 일일 사료섭취량 ${fmt(d.dailyFeed,2)} kg, 적용기간 ${fmt(d.days,0)}일, GABA ${fmt(d.ppm,0)} mg/kg 사료가 자동 적용됩니다.`;
   document.getElementById('autoPpm').textContent=`${fmt(d.ppm,0)} mg/kg`;
   document.getElementById('doseBasis').textContent=d.evidence;
-  document.getElementById('totalFeed').textContent=`${fmt(totalFeedTon,2)}톤`;
-  document.getElementById('feedBasis').textContent=`${fmt(d.dailyFeed,2)} kg/마리·일 × ${fmt(d.days,0)}일`;
   document.getElementById('neededCrude').textContent=`${fmt(crudeKg,2)} kg`;
   document.getElementById('rawCost').textContent=won(rawCost);
   document.getElementById('costPerHead').textContent=`마리당 ${won(rawCost/heads)}`;
-  document.getElementById('feedSaving').textContent=won(feedSaving);
-  const netEl=document.getElementById('netBenefit');
-  netEl.textContent=(net>=0?'':'-')+won(Math.abs(net));
-  netEl.style.color=net>=0?'var(--green)':'#a4423b';
   document.getElementById('effectTitle').textContent=d.focus;
   document.getElementById('effectText').textContent=d.effect;
   document.getElementById('kpiText').textContent=d.kpi;
