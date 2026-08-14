@@ -110,11 +110,13 @@
     setText('afterCrudeCost', `+${won(rawCost)}`);
     setText('beforeTotalCost', won(baselineFeedCost));
     setText('afterTotalCost', won(afterTotalCost));
-    setText('compareBenefit', `${net >= 0 ? '절감 ' : '증가 '}${won(Math.abs(net))}`);
-    setText('compareBenefitBasis', `출하 -${fmt(adgDaysSaved, 1)}일 · 사료 -${fmt(totalSavedFeedKg, 1)}kg`);
-    setText('impactKeySummary', `${growthLabel}로 출하 ${fmt(adgDaysSaved, 1)}일 단축, ${fcrLabel}로 사료 ${fmt(totalSavedFeedKg, 1)}kg 절감. 사료비 절감 ${won(feedSaving)}에서 가바크루드 추가비용 ${won(rawCost)}을 차감한 ${net >= 0 ? '예상 이익' : '예상 손실'}은 ${won(Math.abs(net))}입니다.`);
-    const compareDelta = document.getElementById('compareBenefit');
-    if (compareDelta) compareDelta.parentElement.classList.toggle('is-negative', net < 0);
+    setText('summaryShipDelta', `-${fmt(adgDaysSaved, 1)}`);
+    setText('summaryFeedDelta', `-${fmt(totalSavedFeedKg, 1)}kg`);
+    setText('summaryProfit', `${net >= 0 ? '' : '-'}${won(Math.abs(net))}`);
+    setText('summaryProfitBasis', `절감 ${won(feedSaving)} - 크루드 ${won(rawCost)}`);
+    setText('impactKeySummary', `${growthLabel}로 출하 ${fmt(adgDaysSaved, 1)}일 단축, ${fcrLabel}으로 사료 ${fmt(totalSavedFeedKg, 1)}kg 절감. 사료비 절감 ${won(feedSaving)}에서 가바크루드 추가비용 ${won(rawCost)}을 차감한 ${net >= 0 ? '예상 이익' : '예상 손실'}은 ${won(Math.abs(net))}입니다.`);
+    const summaryProfit = document.getElementById('summaryProfit');
+    if (summaryProfit) summaryProfit.parentElement.classList.toggle('is-negative', net < 0);
 
     document.getElementById('effectTitle').textContent = `${d.focus} · 선택 시나리오`;
     document.getElementById('effectText').textContent = `${growthLabel}, ${fcrLabel}`;
