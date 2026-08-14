@@ -4,6 +4,9 @@
   const DEFAULT_GROWTH_PCT = 3;
   const DEFAULT_FCR_PCT = 2;
   const MAX_SCENARIO_PCT = 20;
+  const GABA_CRUDE_GABA_FRACTION = 0.20;
+  const GABA_CRUDE_PRICE_KRW_KG = 18000;
+  const MODEL_BASIS_DATE = '2026-08-10';
 
   function clampPercent(value, fallback) {
     const parsed = Number(value);
@@ -69,12 +72,13 @@
     const improvedFeedKg = adgFeedKg - fcrSavedFeedKg;
     const totalSavedFeedKg = baselineFeedKg - improvedFeedKg;
     const totalFeedTon = baselineFeedKg / 1000;
-    const crudeKg = (d.ppm / 0.20) * totalFeedTon / 1000;
-    const rawCost = crudeKg * 18000;
+    const crudeKg = (d.ppm / GABA_CRUDE_GABA_FRACTION) * totalFeedTon / 1000;
+    const rawCost = crudeKg * GABA_CRUDE_PRICE_KRW_KG;
     const feedSaving = totalSavedFeedKg * d.feedPrice;
     const net = feedSaving - rawCost;
-    const growthLabel = growthPct > 0 ? `성장 +${percentText(growthPct)}%` : '성장 개선 미반영';
-    const fcrLabel = fcrPct > 0 ? `FCR ${percentText(fcrPct)}% 개선` : 'FCR 개선 미반영';
+    const growthLabel = growthPct > 0 ? `성장 +${percentText(growthPct)}%` : '성장 개선 0%';
+    const fcrLabel = fcrPct > 0 ? `FCR ${percentText(fcrPct)}% 개선` : 'FCR 개선 0%';
+    const fcrConnector = fcrPct > 0 ? '으로' : '로';
 
     growthInput.value = percentText(growthPct);
     fcrInput.value = percentText(fcrPct);
@@ -85,12 +89,12 @@
     }
 
     document.getElementById('feedUnitPrice').textContent = `${won(d.feedPrice)}/kg`;
-    document.getElementById('feedUnitPriceBasis').textContent = `${d.evidence} · 실제 견적 대체`;
+    document.getElementById('feedUnitPriceBasis').textContent = `${d.evidence} · 기준일 ${MODEL_BASIS_DATE} · 실제 견적 대체`;
     document.getElementById('autoPpm').textContent = `${fmt(d.ppm, 0)} mg/kg`;
     document.getElementById('doseBasis').textContent = d.evidence;
     document.getElementById('neededCrude').textContent = `${fmt(crudeKg, 2)} kg`;
     document.getElementById('rawCost').textContent = won(rawCost);
-    document.getElementById('costPerHead').textContent = `18,000원/kg · 마리당 ${won(rawCost / heads)}`;
+    document.getElementById('costPerHead').textContent = `18,000원/kg · 기본 사료량 기준 · 마리당 ${won(rawCost / heads)}`;
 
     const adgDaysSaved = d.days - d.days / (1 + growthPct / 100);
     const improvedDays = d.days - adgDaysSaved;
@@ -110,11 +114,11 @@
     setText('afterCrudeCost', `+${won(rawCost)}`);
     setText('beforeTotalCost', won(baselineFeedCost));
     setText('afterTotalCost', won(afterTotalCost));
-    setText('summaryShipDelta', `-${fmt(adgDaysSaved, 1)}`);
-    setText('summaryFeedDelta', `-${fmt(totalSavedFeedKg, 1)}kg`);
+    setText('summaryShipDelta', adgDaysSaved > 0 ? `-${fmt(adgDaysSaved, 1)}` : '0');
+    setText('summaryFeedDelta', totalSavedFeedKg > 0 ? `-${fmt(totalSavedFeedKg, 1)}kg` : '0kg');
     setText('summaryProfit', `${net >= 0 ? '' : '-'}${won(Math.abs(net))}`);
     setText('summaryProfitBasis', `절감 ${won(feedSaving)} - 크루드 ${won(rawCost)}`);
-    setText('impactKeySummary', `${growthLabel}로 출하 ${fmt(adgDaysSaved, 1)}일 단축, ${fcrLabel}으로 사료 ${fmt(totalSavedFeedKg, 1)}kg 절감. 사료비 절감 ${won(feedSaving)}에서 가바크루드 추가비용 ${won(rawCost)}을 차감한 ${net >= 0 ? '예상 이익' : '예상 손실'}은 ${won(Math.abs(net))}입니다.`);
+    setText('impactKeySummary', `${growthLabel}로 출하 ${fmt(adgDaysSaved, 1)}일 단축, ${fcrLabel}${fcrConnector} 사료 ${fmt(totalSavedFeedKg, 1)}kg 절감. 사료비 절감 ${won(feedSaving)}에서 가바크루드 추가비용 ${won(rawCost)}을 차감한 ${net >= 0 ? '시나리오상 예상 이익' : '시나리오상 예상 손실'}은 ${won(Math.abs(net))}입니다.`);
     const summaryProfit = document.getElementById('summaryProfit');
     if (summaryProfit) summaryProfit.parentElement.classList.toggle('is-negative', net < 0);
 
@@ -150,7 +154,8 @@
         성장가치_금액반영: '동일 목표 증체량 기준 사료량으로 환산',
         시뮬레이션_가정: `${growthLabel}, ${fcrLabel}`,
         계산가정: 'ADG 적용 후 FCR 절감률을 순차 반영',
-        주의사항: '사용자 선택 가정이며 실제 효능과 경제성은 축종별 대조시험으로 확인'
+        원료비_산정기준: 'GABA 20% 기준 · 기본 사료량 기준 · 18,000원/kg 검토용 단가',
+        주의사항: '사용자 선택 가정이며 실제 효능과 경제성은 축종별 대조시험과 실제 견적으로 확인'
       };
     }
   }

@@ -81,7 +81,7 @@ section{scroll-margin-top:82px}.product-section,.evidence-section,.downloads-sec
 .api-status{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:7px 11px;border-radius:999px;background:#edf7f2;color:#35614f;font-size:11px;font-weight:800}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.api-status i{width:8px;height:8px;border-radius:50%;background:#c58a24}
 .appendix-section{padding:100px 0;background:#103c2f;color:#fff}.appendix-section .section-title p{color:rgba(255,255,255,.72)}.appendix-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.appendix-panel{padding:28px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:20px}.appendix-panel h3,.appendix-sources h3{margin:0 0 18px;font-size:20px}.appendix-panel dl,.appendix-panel ol{margin:0}.appendix-panel dl>div{padding:14px 0;border-top:1px solid rgba(255,255,255,.12)}.appendix-panel dl>div:first-child{border-top:0}.appendix-panel dt{font-weight:850;color:#c9edd9}.appendix-panel dd{margin:5px 0 0;color:rgba(255,255,255,.72);font-size:13px;line-height:1.65}.appendix-panel ol{padding-left:20px}.appendix-panel li{padding:9px 0;color:rgba(255,255,255,.72);font-size:13px;line-height:1.6}.appendix-panel li strong{display:block;color:#c9edd9}.appendix-panel li span{display:block}.appendix-sources{margin-top:18px;padding:22px 0;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)}.appendix-sources h3{font-size:15px}.appendix-sources>div{display:flex;flex-wrap:wrap;gap:10px}.appendix-sources a{padding:9px 12px;color:#c9edd9;border:1px solid rgba(201,237,217,.35);border-radius:9px;font-size:12px;text-decoration:none}.appendix-disclaimer{margin-top:22px;padding:20px 22px;color:rgba(255,255,255,.72);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;font-size:12px;line-height:1.7}.appendix-disclaimer strong{color:#fff}.appendix-disclaimer p{margin:6px 0 0}
-.api-status.online i{background:#1b9b68}.api-status.error i{background:#b94a48}
+.api-status.online i{background:#1b9b68}.api-status.error i{background:#b94a48}.api-status.fallback i{background:#c58a24}
 
 </style>
 <link rel="stylesheet" href="assets/inquiry-form.css" data-inquiry-form="v1">
@@ -262,7 +262,7 @@ section{scroll-margin-top:82px}.product-section,.evidence-section,.downloads-sec
       <div><small>필요 가바크루드</small><strong id="neededCrude">-</strong><span>GABA 20% 기준</span></div>
       <div class="emphasis"><small>가바크루드 추가비용</small><strong id="rawCost">-</strong><span id="costPerHead">-</span></div>
     </div>
-    <section class="feed-impact" id="feedImpactVisual" aria-live="polite" aria-label="ADG와 FCR에 따른 사료 절감량 비교">
+    <section class="feed-impact" id="feedImpactVisual" aria-label="ADG와 FCR에 따른 사료 절감량 비교">
       <div class="impact-summary-title">
         <small>가바크루드 도입효과 한눈에</small>
         <strong>더 빠른 출하 · 더 적은 사료 · 남는 이익</strong>
@@ -295,9 +295,9 @@ section{scroll-margin-top:82px}.product-section,.evidence-section,.downloads-sec
         <div class="impact-result-metrics">
           <div><small>출하</small><strong id="summaryShipDelta">-</strong><span>일 단축</span></div>
           <div><small>사료</small><strong id="summaryFeedDelta">-</strong><span>절감</span></div>
-          <div class="profit"><small>예상 순이익</small><strong id="summaryProfit">-</strong><span id="summaryProfitBasis">사료비 절감 - 크루드 비용</span></div>
+          <div class="profit"><small>시나리오상 예상 순이익</small><strong id="summaryProfit">-</strong><span id="summaryProfitBasis">사료비 절감 - 크루드 비용</span></div>
         </div>
-        <p class="impact-key-summary" id="impactKeySummary">ADG로 출하 시기를 줄이고 FCR로 사료량을 줄인 뒤, 사료비 절감액에서 가바크루드 추가비용을 차감합니다.</p>
+        <p class="impact-key-summary" id="impactKeySummary" aria-live="polite" aria-atomic="true">ADG로 출하 시기를 줄이고 FCR로 사료량을 줄인 뒤, 사료비 절감액에서 가바크루드 추가비용을 차감합니다.</p>
       </div>
     </section>
     <div class="calc-effect">
@@ -336,28 +336,8 @@ const fmt=(n,d=1)=>Number(n).toLocaleString('ko-KR',{maximumFractionDigits:d});
 const won=n=>Math.round(n).toLocaleString('ko-KR')+'원';
 let lastCalc=null;
 function calculateSpeciesEffect(){
-  const d=speciesModel[speciesCalc.value];
-  const heads=Math.max(1,Math.floor(Number(headCount.value)||1));
-  const totalFeedKg=d.dailyFeed*d.days*heads;
-  const totalFeedTon=totalFeedKg/1000;
-  const crudeKg=(d.ppm/0.20)*totalFeedTon/1000;
-  const rawCost=crudeKg*18000;
-  const savedFeedKg=totalFeedKg*0.02;
-  const feedSaving=savedFeedKg*d.feedPrice;
-  const net=feedSaving-rawCost;
-  document.getElementById('autoSummary').innerHTML=`<strong>${d.name} ${fmt(heads,0)}마리</strong> 기준으로 일일 사료섭취량 ${fmt(d.dailyFeed,2)} kg, 적용기간 ${fmt(d.days,0)}일, GABA ${fmt(d.ppm,0)} mg/kg 사료가 자동 적용됩니다.`;
-  document.getElementById('autoPpm').textContent=`${fmt(d.ppm,0)} mg/kg`;
-  document.getElementById('doseBasis').textContent=d.evidence;
-  document.getElementById('neededCrude').textContent=`${fmt(crudeKg,2)} kg`;
-  document.getElementById('rawCost').textContent=won(rawCost);
-  document.getElementById('costPerHead').textContent=`마리당 ${won(rawCost/heads)}`;
-  document.getElementById('effectTitle').textContent=d.focus;
-  document.getElementById('effectText').textContent=d.effect;
-  document.getElementById('kpiText').textContent=d.kpi;
-  lastCalc={축종:d.name,사육마릿수:heads,자동_GABA_농도_mg_per_kg:d.ppm,일일_사료섭취량_kg_per_head:d.dailyFeed,적용기간_일:d.days,총_사료량_kg:totalFeedKg,필요_가바크루드_kg:crudeKg,가바크루드_도입비_원:rawCost,예상_사료절감량_kg:savedFeedKg,예상_사료비절감_원:feedSaving,도입후_예상이익_원:net,시뮬레이션_가정:'ADG 3%, FCR 2% 개선'};
+  /* The single calculator implementation lives in calculator-scenarios.js. */
 }
-speciesCalc.addEventListener('change',calculateSpeciesEffect);
-headCount.addEventListener('input',calculateSpeciesEffect);
 document.getElementById('downloadCalcCsv').addEventListener('click',()=>{
   if(!lastCalc)return;
   const rows=[['항목','값'],...Object.entries(lastCalc)];
@@ -367,7 +347,6 @@ document.getElementById('downloadCalcCsv').addEventListener('click',()=>{
   const a=document.createElement('a');a.href=url;a.download=`GABA_도입효과_${lastCalc.축종}_${lastCalc.사육마릿수}마리.csv`;a.click();
   URL.revokeObjectURL(url);
 });
-calculateSpeciesEffect();
 </script>
 <script>
 const apiStatus=document.getElementById('apiStatus');
@@ -384,6 +363,13 @@ async function apiGet(dataset,params={}){
   return json;
 }
 
+function datasetRows(payload,dataset){
+  if(Array.isArray(payload?.data))return payload.data;
+  const aliases={papers:'research',regulations:'policy',statistics:'statistics',market:'market',downloads:'downloads',products:'products',species_model:'species_model'};
+  const key=aliases[dataset]||dataset;
+  return Array.isArray(payload?.[key])?payload[key]:[];
+}
+
 function mapSpeciesId(id){
   const map={pig:'pig',broiler:'broiler',beef:'beef',breeder_pig:'breederPig'};
   return map[id]||id;
@@ -392,7 +378,11 @@ function mapSpeciesId(id){
 async function loadSpeciesModel(){
   try{
     const payload=await apiGet('species_model');
-    const rows=payload.data||[];
+    const rows=datasetRows(payload,'species_model');
+    if(!rows.length){
+      setApiStatus('fallback','Master DB 연결됨 · 계산모델 미제공 · 검토용 기본값 사용');
+      return;
+    }
     rows.forEach(r=>{
       const key=mapSpeciesId(r.species_id);
       if(!fallbackSpeciesModel[key])return;
@@ -410,7 +400,7 @@ async function loadSpeciesModel(){
     calculateSpeciesEffect();
     setApiStatus('online',`Master DB 연결됨 · 계산모델 ${rows.length}건`);
   }catch(e){
-    setApiStatus('error','API 연결 실패 · 기본 계산값 사용');
+    setApiStatus('fallback','API 계산모델 확인 실패 · 검토용 기본값 사용');
   }
 }
 
@@ -478,11 +468,11 @@ async function loadKnowledge(){
       apiGet('papers'),apiGet('regulations'),apiGet('statistics'),apiGet('market')
     ]);
     const apiItems=normalizeKnowledge({
-      papers:papers.data,regulations:regulations.data,statistics:statistics.data,market:market.data
+      papers:datasetRows(papers,'papers'),regulations:datasetRows(regulations,'regulations'),statistics:datasetRows(statistics,'statistics'),market:datasetRows(market,'market')
     });
     items=mergeKnowledge(staticData.items,apiItems);
     document.getElementById('knowledgeUpdated').textContent=`GitHub 자동데이터 ${staticData.updated_at||'-'} · API ${new Date().toLocaleString('ko-KR')}`;
-    if(!apiStatus.classList.contains('online'))setApiStatus('online',`GitHub 자동데이터 ${staticData.items.length}건 · Master DB ${apiItems.length}건`);
+    if(!apiStatus.classList.contains('online')&&!apiStatus.classList.contains('fallback'))setApiStatus('online',`GitHub 자동데이터 ${staticData.items.length}건 · Master DB ${apiItems.length}건`);
     draw();
   }catch(e){
     try{
@@ -501,7 +491,7 @@ async function loadKnowledge(){
 async function loadDownloads(){
   try{
     const payload=await apiGet('downloads');
-    const rows=payload.data||[];
+    const rows=datasetRows(payload,'downloads');
     if(!rows.length)return;
     const list=document.querySelector('#downloads .doc-list');
     list.innerHTML=rows.map((x,i)=>`<a href="${x.public_url}" target="_blank" rel="noreferrer"><span class="doc-index">${String(i+1).padStart(2,'0')}</span><div><strong>${x.title}</strong><small>${x.category||''} · v${x.file_version||''} · ${x.language||''}</small></div><span class="download-mark">↓</span></a>`).join('');
