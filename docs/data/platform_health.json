@@ -1,12 +1,12 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-08-19T19:38:00+00:00",
+  "generated_at": "2026-08-20T04:15:31+00:00",
   "status": "partial",
   "summary": {
     "critical_failed": 0,
     "warnings": 3,
     "checks": 14,
-    "documents": 7,
+    "documents": 8,
     "operating_stages": 6,
     "buyer_packs": 4,
     "smart_consultation": true
@@ -73,7 +73,7 @@
       "label": "기술·사업 자료",
       "ok": true,
       "severity": "warning",
-      "message": "공개 자료 7건"
+      "message": "공개 자료 8건"
     },
     {
       "id": "official_source_fallbacks",
@@ -94,7 +94,7 @@
       "label": "자동자료 최신성",
       "ok": false,
       "severity": "warning",
-      "message": "마지막 갱신 230.5시간 전"
+      "message": "마지막 갱신 239.1시간 전"
     },
     {
       "id": "intelligence_sources",

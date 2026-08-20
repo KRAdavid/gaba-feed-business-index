@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0.0",
   "source_of_truth": "PRODUCT_MASTER",
-  "updated_at": "2026-08-10",
+  "updated_at": "2026-08-20",
   "dose_basis": "mg active GABA / kg complete feed",
   "products": [
     {
       "product_id": "GABA-CRUDE-20",
       "product_name": "GABA Crude 20",
       "version": "1.0",
-      "gaba_content": "20% target; lot CoA pending",
-      "specification_status": "Pending Verification",
+      "gaba_content": "20% target; provided CoA result 21.89% for lot Test-260818-01",
+      "specification_status": "Provided CoA · Review",
       "carrier": "TBD",
-      "moisture": "Pending Verification",
+      "moisture": "Provided CoA result 4.98%; specification 5.0% Max",
       "appearance": "Pending Verification",
       "analytical_method": "HPLC; method verification pending",
       "recommended_inclusion": "Pilot Assumption",
@@ -20,9 +20,10 @@
       "packing": "TBD",
       "lead_time": "TBD",
       "price_status": "Pending Verification",
-      "coa_status": "Pending Verification",
+      "coa_status": "Provided · Review",
+      "coa_documents": ["data/coa_gaba_crude_2026-08-18.json"],
       "regulatory_status": "Pending Verification",
-      "last_updated": "2026-08-10",
+      "last_updated": "2026-08-20",
       "approved_by": ""
     },
     {
