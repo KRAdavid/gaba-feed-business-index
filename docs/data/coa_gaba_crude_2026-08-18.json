@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "document_type": "Certificate of Analysis",
+  "title": "Gaba 발효분말 CoA",
+  "product": "Gaba 발효분말",
+  "product_id": "GABA-CRUDE-20",
+  "lot_no": "Test-260818-01",
+  "manufacture_date": "2026-08-18",
+  "expiration": "제조일로부터 2년",
+  "raw_material": "김치 유산균 발효액 / Lactobacillus·Kimchi Ferment Extract",
+  "storage_condition": "서늘한 곳 밀봉보관; 개봉 후 10°C 이하",
+  "source": "사용자 제공 이미지: Gaba COA.jpg",
+  "source_received_date": "2026-08-20",
+  "verification_status": "Provided · Review",
+  "public_use": "제품·로트 검토용; 독립 시험기관 검증 및 출하승인 자료로 해석하지 않음",
+  "results": {
+    "appearance": {"specification": "균일한 분말", "result": "균일한 분말", "judgement": "합격", "method": "관능검사"},
+    "color": {"specification": "미황색", "result": "미황색", "judgement": "합격", "method": "관능검사"},
+    "odor_taste": {"specification": "유산균의 새콤한 맛", "result": "유산균의 새콤한 맛", "judgement": "합격", "method": "관능검사"},
+    "foreign_matters": {"specification": "확인된 이물 없음", "result": "확인된 이물 없음", "judgement": "합격", "method": "육안 확인"},
+    "particle_size": {"specification": "100~120 mesh 95%", "result": "100~120 mesh 95%", "judgement": "합격", "method": "식품공전 일반시험법"},
+    "ph_5_percent": {"specification": "6.0~7.0", "result": "6.14", "judgement": "합격", "method": "pH Meter 측정"},
+    "moisture": {"specification": "5.0% Max", "result": "4.98%", "judgement": "합격", "method": "Dry Oven 105°C 건조"},
+    "gaba_content": {"specification": "20% Min", "result": "21.89%", "judgement": "합격", "method": "아미노산 전용분석기"},
+    "arsenic_inorganic": {"specification": "2.0 ppm Max", "result": "불검출", "judgement": "합격", "method": "식품공전 일반시험법"},
+    "lead": {"specification": "5.0 ppm Max", "result": "0.064 ppm", "judgement": "합격", "method": "식품공전 일반시험법"},
+    "cadmium": {"specification": "0.5 ppm Max", "result": "불검출", "judgement": "합격", "method": "식품공전 일반시험법"},
+    "bacteria": {"specification": "5,000 cfu/g Max", "result": "210 cfu/g", "judgement": "합격", "method": "식품공전 일반시험법"},
+    "escherichia_coli": {"specification": "100 cfu/g Max", "result": "불검출", "judgement": "합격", "method": "식품공전 일반시험법"},
+    "salmonella": {"specification": "불검출", "result": "불검출", "judgement": "불검출", "method": "식품공전 일반시험법"},
+    "pathogenic_escherichia": {"specification": "불검출", "result": "불검출", "judgement": "불검출", "method": "식품공전 일반시험법"}
+  },
+  "open_items": [
+    "시험기관명·시험성적서 원본 발행정보 확인 필요",
+    "사료용 원료로서의 규제 분류·허가·표시 적합성 별도 확인 필요",
+    "상업 출하 로트의 CoA 및 추적성 자료 확인 필요"
+  ],
+  "document_url": "downloads/GABA_Crude_CoA_Lot_Test-260818-01.jpg"
+}

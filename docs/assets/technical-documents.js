@@ -22,6 +22,7 @@
 
   const DATA_URL = 'data/technical_documents.json';
   let items = [];
+  let updatedAt = '';
   let activeCategory = '전체';
   let observer = null;
   let rendering = false;
@@ -37,14 +38,14 @@
 
   function buildCard(item) {
     const isNew = item.status === 'NEW';
-    const primaryLabel = item.format === 'PDF' ? 'PDF 자료 열기' : '웹 자료 읽기';
+    const primaryLabel = item.format === 'PDF' ? 'PDF 자료 열기' : item.format === 'IMAGE' ? 'CoA 원본 열기' : '웹 자료 읽기';
     const mainUrl = item.url || item.web_url || '#';
     const webLink = item.web_url && item.web_url !== mainUrl
-      ? `<div class="technical-document-extra"><a href="${escapeHtml(item.web_url)}">웹 사양서 보기</a></div>`
+      ? `<div class="technical-document-extra"><a href="${escapeHtml(item.web_url)}">구조화된 CoA 데이터 보기</a></div>`
       : '';
     return `
       <article class="technical-document-card" data-tech-category="${escapeHtml(item.category)}">
-        <a href="${escapeHtml(mainUrl)}" target="${item.format === 'PDF' ? '_blank' : '_self'}" rel="${item.format === 'PDF' ? 'noreferrer' : ''}" style="position:absolute;inset:0" aria-label="${escapeHtml(item.title)} ${primaryLabel}"></a>
+        <a href="${escapeHtml(mainUrl)}" target="${item.format === 'PDF' || item.format === 'IMAGE' ? '_blank' : '_self'}" rel="${item.format === 'PDF' || item.format === 'IMAGE' ? 'noreferrer' : ''}" style="position:absolute;inset:0" aria-label="${escapeHtml(item.title)} ${primaryLabel}"></a>
         <div class="technical-document-meta">
           <span class="technical-document-category">${escapeHtml(item.category)}</span>
           <span class="technical-document-badges">
@@ -83,7 +84,7 @@
         <div class="technical-documents-filter" role="group" aria-label="기술·사업 자료 분류">
           ${categories.map((category) => `<button type="button" class="${category === activeCategory ? 'active' : ''}" data-tech-filter="${escapeHtml(category)}">${escapeHtml(category)}</button>`).join('')}
         </div>
-        <span class="technical-documents-updated">검증자료 ${items.length}건 · 2026-08-07</span>
+        <span class="technical-documents-updated">검증자료 ${items.length}건 · ${escapeHtml(updatedAt || '검토일 미상')}</span>
       </div>
       <div class="technical-documents-grid">${shown.map(buildCard).join('')}</div>
       <div class="technical-documents-note"><strong>자료 사용 원칙</strong><br>가바크루드의 GABA 20% 외 수치형 품질한계와 축종별 효능은 상업 제조로트·분석법·목표국 규정 및 현장시험으로 최종 확정합니다. 웹 요약은 원자료의 핵심 구조를 보존해 정리한 사업검토용 문서입니다.</div>`;
@@ -104,6 +105,7 @@
       const response = await fetch(DATA_URL, { cache: 'no-store' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
+      updatedAt = data.updated_at || '';
       items = Array.isArray(data.items) ? data.items.filter((item) => item.public !== false) : [];
       render();
 
