@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-08-20T04:15:31+00:00",
+  "generated_at": "2026-08-20T19:44:26+00:00",
   "status": "partial",
   "summary": {
     "critical_failed": 0,
@@ -94,7 +94,7 @@
       "label": "자동자료 최신성",
       "ok": false,
       "severity": "warning",
-      "message": "마지막 갱신 239.1시간 전"
+      "message": "마지막 갱신 254.6시간 전"
     },
     {
       "id": "intelligence_sources",
@@ -112,10 +112,10 @@
     }
   ],
   "heartbeat": {
-    "last_run_at": "2026-08-19T19:38:00+00:00",
-    "last_success_at": "2026-08-19T19:38:00+00:00",
+    "last_run_at": "2026-08-20T19:44:26+00:00",
+    "last_success_at": "2026-08-20T19:44:26+00:00",
     "last_content_change_at": "2026-08-10T05:07:57+00:00",
-    "workflow_run_id": "32291801559",
+    "workflow_run_id": "32408099191",
     "workflow_attempt": "1",
     "trigger_type": "scheduled",
     "sources_total": 10,
@@ -124,7 +124,7 @@
     "items_collected_this_run": 12,
     "items_published_current": 13,
     "review_queue_current": 1,
-    "execution_duration_seconds": 1239.012
+    "execution_duration_seconds": 1237.006
   },
   "public_note": "본 상태는 공개자산·스마트 상담·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다."
 }
