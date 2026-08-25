@@ -329,6 +329,10 @@ broiler:{name:'육계',ppm:75,dailyFeed:0.12,days:35,feedPrice:592,evidence:'사
 beef:{name:'한우·육우',ppm:100,dailyFeed:11.1,days:400,feedPrice:531,evidence:'사업성 검토용 기본값',focus:'증체·육질 안정',effect:'ADG +3%, FCR -2% 시나리오',kpi:'ADG, DMI, FCR, 육색, TBARS, 등급'},
 breederPig:{name:'씨돼지',ppm:50,dailyFeed:3.0,days:56,feedPrice:727,evidence:'사업성 검토용 기본값',focus:'고온기 컨디션 관리',effect:'ADG +3%, FCR -2% 시나리오',kpi:'사료섭취량, 체중변화, cortisol, 정액량, 운동성'}
 };
+// 공개 계산기의 승인된 시나리오 값입니다. API의 이전 Master DB 값이 화면을 되돌리지 않도록 우선 적용합니다.
+const CALCULATOR_POLICY_OVERRIDES={
+  pig:{ppm:100,evidence:'사업성 검토용 기본값 · 탐색범위 상단'}
+};
 let speciesModel={...fallbackSpeciesModel};
 const speciesCalc=document.getElementById('speciesCalc');
 const headCount=document.getElementById('headCount');
@@ -396,6 +400,10 @@ async function loadSpeciesModel(){
         evidence:`Master DB 모델 ${r.model_version||'1.0'} · 근거 ${r.evidence_level||'미평가'}`,
         effect:`ADG ${(Number(r.adg_improvement_decimal||0)*100).toFixed(1)}%, FCR ${(Number(r.fcr_improvement_decimal||0)*100).toFixed(1)}% 개선 시나리오`
       };
+    });
+    Object.entries(CALCULATOR_POLICY_OVERRIDES).forEach(([key,override])=>{
+      if(!speciesModel[key])speciesModel[key]={...fallbackSpeciesModel[key]};
+      speciesModel[key]={...speciesModel[key],...override};
     });
     calculateSpeciesEffect();
     setApiStatus('online',`Master DB 연결됨 · 계산모델 ${rows.length}건`);
