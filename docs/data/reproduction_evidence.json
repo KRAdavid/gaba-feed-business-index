@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-08-25",
+  "title": "유사산·번식실패 개선 검토 세션 근거",
+  "scope": "돼지 번식돈 중심; 다른 축종은 별도 원인·진단·시험계획 필요",
+  "claim_policy": "GABA가 유사산율을 직접 낮춘다는 확정 주장은 하지 않음",
+  "evidence": [
+    {
+      "id": "msd-pig-abortion",
+      "type": "veterinary-reference",
+      "title": "Abortion in Pigs",
+      "organization": "MSD Veterinary Manual",
+      "year": 2024,
+      "url": "https://www.msdvetmanual.com/reproductive-system/abortion-in-large-animals/abortion-in-pigs",
+      "finding": "돼지 번식실패는 유사산뿐 아니라 미라·사산·허약자돈·배아사·불임을 포함하며, PRRS·파보바이러스·렙토스피라 등 감염성 원인과 고온·곰팡이독소·영양·독성물질 등 비감염성 원인을 함께 감별해야 함",
+      "use": "원인 분해·진단 체크리스트의 기준"
+    },
+    {
+      "id": "gaba-sow-pubmed-36230278",
+      "type": "peer-reviewed-study",
+      "title": "Maternal Dietary Supplementation with γ-Aminobutyric Acid Alleviated Oxidative Stress in Gestating Sows and Their Offspring by Regulating GABRP",
+      "organization": "Animals / PubMed · China Agricultural University",
+      "year": 2022,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36230278/",
+      "finding": "임신 말기 모돈 18두, GABA 200 mg/kg 비교에서 모돈 생식성적에는 유의한 효과가 없었으나 산화스트레스·항산화 지표와 태반 관련 기전, IUGR 감소 경향을 보고함",
+      "use": "GABA의 가능한 생리·산화스트레스 경로 참고; 유사산율 직접 근거로 사용하지 않음"
+    },
+    {
+      "id": "gaba-gilt-pmc10781436",
+      "type": "peer-reviewed-study",
+      "title": "Effects of dietary supplementation of different levels of gamma-aminobutyric acid on reproductive performance, glucose intolerance, and placental development of gilts",
+      "organization": "Frontiers in Veterinary Science / PMC",
+      "year": 2023,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10781436/",
+      "finding": "후보 GABA 급여수준과 번식성적·태반발달을 평가한 연구로, 농장 유사산율 개선을 입증한 연구가 아니라 번식 관련 탐색근거로 취급해야 함",
+      "use": "시험설계·측정지표 참고"
+    }
+  ],
+  "pilot_design": {
+    "primary_endpoints": ["임신 확인 대비 유사산/임신손실률", "분만율", "재발정률"],
+    "litter_endpoints": ["총산자수", "생존산자수", "사산자수", "미라자돈수", "허약자돈수", "IUGR 비율"],
+    "safety_and_mechanism": ["일일 사료섭취량", "체온·호흡수", "체중·BCS", "cortisol", "SOD·GSH-Px·MDA", "태반·초유 지표"],
+    "diagnostic_controls": ["PRRSV·PPV·Leptospira 등 수의진단", "곰팡이독소·사료·음수 점검", "환기·고온·밀사·영양·백신 기록"],
+    "design_note": "GABA 투입량은 연구값을 상업 권장량으로 복사하지 말고 수의사·영양전문가와 안전성·규제·대조군 설계를 거쳐 탐색"
+  },
+  "limitations": [
+    "유사산은 다원인성 결과이므로 GABA만으로 원인을 설명할 수 없음",
+    "현재 공개 근거만으로 가바크루드가 유사산율을 낮춘다고 결론낼 수 없음",
+    "농장 파일럿은 산차·교배일·계절·백신·질병상태·사료를 기록하고 군집 단위로 비교해야 함"
+  ]
+}
