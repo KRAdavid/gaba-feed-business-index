@@ -324,7 +324,7 @@ document.querySelectorAll('[data-product]').forEach(b=>b.addEventListener('click
 const nav=document.getElementById('nav'),menuBtn=document.getElementById('menuBtn');menuBtn.addEventListener('click',()=>{nav.classList.toggle('open');menuBtn.textContent=nav.classList.contains('open')?'×':'☰'});document.querySelectorAll('[data-scroll]').forEach(b=>b.addEventListener('click',()=>{document.getElementById(b.dataset.scroll)?.scrollIntoView({behavior:'smooth'});nav.classList.remove('open');menuBtn.textContent='☰'}));
 const API_URL='https://script.google.com/macros/s/AKfycbyNO1bwsnuHDMJsKpcCU2KUVMESnSD2_ZaauD_-sbqVE_X031-_oWS3ujh3zhYbMuCoqQ/exec';
 const fallbackSpeciesModel={
-pig:{name:'비육돈',ppm:50,dailyFeed:3.2,days:180,feedPrice:727,evidence:'사업성 검토용 기본값',focus:'성장·사료효율',effect:'ADG +3%, FCR -2% 시나리오',kpi:'ADG, FCR, 출하일, 사료섭취량, cortisol'},
+pig:{name:'비육돈',ppm:100,dailyFeed:3.2,days:180,feedPrice:727,evidence:'사업성 검토용 기본값 · 탐색범위 상단',focus:'성장·사료효율',effect:'ADG +3%, FCR -2% 시나리오',kpi:'ADG, FCR, 출하일, 사료섭취량, cortisol'},
 broiler:{name:'육계',ppm:75,dailyFeed:0.12,days:35,feedPrice:592,evidence:'사업성 검토용 기본값',focus:'열스트레스·사료효율',effect:'증체 +3%, FCR -2% 시나리오',kpi:'증체량, FCR, 폐사율, H/L ratio, TBARS'},
 beef:{name:'한우·육우',ppm:100,dailyFeed:11.1,days:400,feedPrice:531,evidence:'사업성 검토용 기본값',focus:'증체·육질 안정',effect:'ADG +3%, FCR -2% 시나리오',kpi:'ADG, DMI, FCR, 육색, TBARS, 등급'},
 breederPig:{name:'씨돼지',ppm:50,dailyFeed:3.0,days:56,feedPrice:727,evidence:'사업성 검토용 기본값',focus:'고온기 컨디션 관리',effect:'ADG +3%, FCR -2% 시나리오',kpi:'사료섭취량, 체중변화, cortisol, 정액량, 운동성'}
