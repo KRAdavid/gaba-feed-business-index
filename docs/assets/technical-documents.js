@@ -35,8 +35,26 @@
     }
   }
 
+  function ensureIntelligenceHubAssets() {
+    if (!document.querySelector('link[data-intelligence-hub]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'assets/intelligence-hub.css';
+      link.dataset.intelligenceHub = 'v1';
+      document.head.append(link);
+    }
+    if (!document.querySelector('script[data-intelligence-hub]')) {
+      const script = document.createElement('script');
+      script.src = 'assets/intelligence-hub.js';
+      script.dataset.intelligenceHub = 'v1';
+      script.defer = true;
+      document.body.append(script);
+    }
+  }
+
   ensureB2BOperationsAssets();
   ensureReproductionSessionAssets();
+  ensureIntelligenceHubAssets();
 
   const DATA_URL = 'data/technical_documents.json';
   let items = [];
