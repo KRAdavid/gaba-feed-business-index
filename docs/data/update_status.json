@@ -4,7 +4,7 @@
   "status": "partial",
   "semantic_digest": "79e0e697c598d780c8aa0e41d5dc64dc2daceb558cdb5fc40778b10ec1d97965",
   "counts": {
-    "collected_this_run": 11,
+    "collected_this_run": 12,
     "auto_published": 13,
     "review_queue": 0
   },
@@ -21,21 +21,21 @@
     }
   ],
   "next_schedule": "daily 03:20 Asia/Seoul",
-  "last_run_at": "2026-08-28T02:30:48+00:00",
-  "last_success_at": "2026-08-28T02:30:48+00:00",
+  "last_run_at": "2026-08-29T02:04:50+00:00",
+  "last_success_at": "2026-08-29T02:04:50+00:00",
   "last_content_change_at": "2026-08-25T19:28:14+00:00",
-  "workflow_run_id": "33135684127",
+  "workflow_run_id": "33227645824",
   "workflow_attempt": "1",
   "trigger_type": "scheduled",
   "sources_total": 10,
   "sources_success": 9,
   "sources_failed": 1,
-  "items_collected_this_run": 11,
+  "items_collected_this_run": 12,
   "items_published_current": 13,
   "review_queue_current": 0,
-  "execution_duration_seconds": 457.38,
+  "execution_duration_seconds": 466.454,
   "network_skipped": false,
-  "route_checked_at": "2026-08-28T02:30:48+00:00",
+  "route_checked_at": "2026-08-29T02:04:50+00:00",
   "source_routes": [
     {
       "source": "kr-mafra-feed-policy",
@@ -44,7 +44,7 @@
       "attempt_count": 1,
       "last_result": "HTTP 206",
       "fallback_used": false,
-      "last_success_at": "2026-08-28T02:23:20+00:00",
+      "last_success_at": "2026-08-29T01:57:14+00:00",
       "last_failure_at": "2026-08-26T21:28:21+00:00",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -52,11 +52,11 @@
     {
       "source": "kr-feed-control-act",
       "reachable": true,
-      "selected_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
-      "attempt_count": 1,
-      "last_result": "HTTP 206",
-      "fallback_used": false,
-      "last_success_at": "2026-08-28T02:23:21+00:00",
+      "selected_url": "https://open.law.go.kr/LSO/openApi/guideResult.do?htmlName=ordinInfoGuide",
+      "attempt_count": 2,
+      "last_result": "HTTP 200",
+      "fallback_used": true,
+      "last_success_at": "2026-08-29T01:57:20+00:00",
       "last_failure_at": "2026-08-26T21:33:22+00:00",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -68,7 +68,7 @@
       "attempt_count": 1,
       "last_result": "HTTP 206",
       "fallback_used": false,
-      "last_success_at": "2026-08-28T02:23:22+00:00",
+      "last_success_at": "2026-08-29T01:57:21+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -80,7 +80,7 @@
       "attempt_count": 1,
       "last_result": "HTTP 200",
       "fallback_used": false,
-      "last_success_at": "2026-08-28T02:23:22+00:00",
+      "last_success_at": "2026-08-29T01:57:22+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -93,8 +93,8 @@
       "last_result": "The read operation timed out",
       "fallback_used": false,
       "last_success_at": "",
-      "last_failure_at": "2026-08-28T02:30:43+00:00",
-      "consecutive_failures": 31,
+      "last_failure_at": "2026-08-29T02:04:45+00:00",
+      "consecutive_failures": 32,
       "response_status": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out"
     },
     {
@@ -104,7 +104,7 @@
       "attempt_count": 1,
       "last_result": "HTTP 200",
       "fallback_used": false,
-      "last_success_at": "2026-08-28T02:30:43+00:00",
+      "last_success_at": "2026-08-29T02:04:45+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -116,7 +116,7 @@
       "attempt_count": 2,
       "last_result": "HTTP 200",
       "fallback_used": true,
-      "last_success_at": "2026-08-28T02:30:48+00:00",
+      "last_success_at": "2026-08-29T02:04:50+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
