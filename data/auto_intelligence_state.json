@@ -10,7 +10,7 @@
       "selected_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-08-29T21:12:54+00:00",
+      "last_success_at": "2026-08-29T21:38:48+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -23,7 +23,7 @@
       "selected_url": "https://www.fao.org/animal-production/en",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-08-29T21:20:16+00:00",
+      "last_success_at": "2026-08-29T21:46:07+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -37,7 +37,7 @@
       "fallback_count": 0,
       "fallback_used": true,
       "last_success_at": "2026-08-29T01:57:14+00:00",
-      "last_failure_at": "2026-08-29T21:07:06+00:00",
+      "last_failure_at": "2026-08-29T21:32:52+00:00",
       "consecutive_failures": 1,
       "response_status": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>"
     },
@@ -50,7 +50,7 @@
       "fallback_count": 0,
       "fallback_used": true,
       "last_success_at": "2026-08-29T01:57:20+00:00",
-      "last_failure_at": "2026-08-29T21:12:51+00:00",
+      "last_failure_at": "2026-08-29T21:38:45+00:00",
       "consecutive_failures": 1,
       "response_status": "request failed after 3 attempts: https://apis.data.go.kr/1170000/law/lawSearchList.do: <urlopen error timed out>"
     },
@@ -62,14 +62,14 @@
       "selected_url": "https://www.fda.gov/animal-food-feeds",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-08-29T21:12:54+00:00",
+      "last_success_at": "2026-08-29T21:38:49+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     },
     "au-apvma-animal-feed": {
       "last_success_at": "",
-      "last_failure_at": "2026-08-29T21:20:16+00:00",
+      "last_failure_at": "2026-08-29T21:46:07+00:00",
       "consecutive_failures": 33,
       "selected_url": "",
       "fallback_used": true,
@@ -83,13 +83,13 @@
       "selected_url": "https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.TAD.ATM&df%5Bds%5D=DisseminateFinalDMZ&df%5Bid%5D=DSD_AGR%40DF_OUTLOOK_2026_2035",
       "fallback_count": 1,
       "fallback_used": true,
-      "last_success_at": "2026-08-29T21:20:20+00:00",
+      "last_success_at": "2026-08-29T21:46:12+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     }
   },
-  "last_run_at": "2026-08-29T21:20:20+00:00",
-  "last_success_at": "2026-08-29T21:20:20+00:00",
+  "last_run_at": "2026-08-29T21:46:12+00:00",
+  "last_success_at": "2026-08-29T21:46:12+00:00",
   "last_content_change_at": "2026-08-25T19:28:14+00:00"
 }
