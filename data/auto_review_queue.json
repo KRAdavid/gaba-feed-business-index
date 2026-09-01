@@ -1,6 +1,89 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-08-25T19:28:14+00:00",
-  "count": 0,
-  "items": []
+  "generated_at": "2026-09-01T21:15:50+00:00",
+  "count": 3,
+  "items": [
+    {
+      "item_id": "research-950ec6d956798e4498fa",
+      "category": "research",
+      "source_type": "europe_pmc",
+      "title": "Physiology and comparative transcriptomic analyses reveal the effects of food enrichment on the brain of yellow drum Nibea albiflora (Richardson, 1846).",
+      "summary": "Food enrichment is a prominent feeding strategy used to enhance the welfare and physiological performance of captive aquatic animals; however, its effects on the brain remain poorly understood. In this study, three feeding regimes with similar nutritional levels-designated as the Control group (commercial diet), Group 1 [90% commercial diet + 10% ice-fresh Palaemon gravieri (Yu, 1930),] and Group 2 [90% commercial diet + 5% ice-fresh P.",
+      "source_name": "Europe PMC",
+      "source_url": "https://europepmc.org/article/MED/42671654",
+      "published_at": "2026-08-31",
+      "detected_at": "2026-09-01T21:08:05+00:00",
+      "doi": "10.1007/s10695-026-01782-1",
+      "pmid": "42671654",
+      "species": "Aquaculture",
+      "evidence_grade": "B",
+      "confidence": "medium",
+      "auto_publish": false,
+      "official_source": false,
+      "tags": [
+        "GABA",
+        "animal nutrition",
+        "research"
+      ],
+      "metadata": {
+        "cited_by_count": 0
+      }
+    },
+    {
+      "item_id": "research-c7e8e142d58dbeff7f95",
+      "category": "research",
+      "source_type": "pubmed",
+      "title": "Exposure to three levels of CO2-induced freshwater acidification results in multi-tissue transcriptional and behavioural responses in medaka (Oryzias latipes).",
+      "summary": "Elevated atmospheric carbon dioxide (CO2) can acidify aquatic environments, which several studies have linked to molecular and behavioural responses in fish. However, few studies on CO2-induced acidification have focused on freshwater fishes and the potential for fish to overcome acute responses. Our study investigated the effects of acidification over a 20 d exposure on medaka (Oryzias latipes) behaviour and mRNA transcripts sampled from the brain and gill.",
+      "source_name": "Comparative biochemistry and physiology. Part A, Molecular & integrative physiology",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42501961/",
+      "published_at": "2026",
+      "detected_at": "2026-09-01T21:08:02+00:00",
+      "doi": "10.1016/j.cbpa.2026.112054",
+      "pmid": "42501961",
+      "species": "Aquaculture",
+      "evidence_grade": "C",
+      "confidence": "medium",
+      "auto_publish": false,
+      "official_source": false,
+      "tags": [
+        "GABA",
+        "animal nutrition",
+        "research"
+      ],
+      "metadata": {
+        "publication_types": [
+          "Journal Article"
+        ]
+      }
+    },
+    {
+      "item_id": "research-b411745f76ba1b90a3ac",
+      "category": "research",
+      "source_type": "pubmed",
+      "title": "Physiology and comparative transcriptomic analyses reveal the effects of food enrichment on the brain of yellow drum Nibea albiflora (Richardson, 1846).",
+      "summary": "Food enrichment is a prominent feeding strategy used to enhance the welfare and physiological performance of captive aquatic animals; however, its effects on the brain remain poorly understood. In this study, three feeding regimes with similar nutritional levels-designated as the Control group (commercial diet), Group 1 [90% commercial diet + 10% ice-fresh Palaemon gravieri (Yu, 1930),] and Group 2 [90% commercial diet + 5% ice-fresh P.",
+      "source_name": "Fish physiology and biochemistry",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42671654/",
+      "published_at": "2026",
+      "detected_at": "2026-09-01T21:08:02+00:00",
+      "doi": "10.1080/10495398.2021.1920426",
+      "pmid": "42671654",
+      "species": "Aquaculture",
+      "evidence_grade": "B",
+      "confidence": "medium",
+      "auto_publish": false,
+      "official_source": false,
+      "tags": [
+        "GABA",
+        "animal nutrition",
+        "research"
+      ],
+      "metadata": {
+        "publication_types": [
+          "Journal Article"
+        ]
+      }
+    }
+  ]
 }
