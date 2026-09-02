@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-09-02T21:28:43+00:00",
+  "generated_at": "2026-09-02T21:31:01+00:00",
   "count": 4,
   "items": [
     {
@@ -12,7 +12,7 @@
       "source_name": "Nutrients",
       "source_url": "https://doi.org/10.3390/nu18172876",
       "published_at": "2026-09-02",
-      "detected_at": "2026-09-02T21:08:03+00:00",
+      "detected_at": "2026-09-02T21:23:32+00:00",
       "doi": "10.3390/nu18172876",
       "pmid": "",
       "species": "Multi-species",
@@ -39,7 +39,7 @@
       "source_name": "Europe PMC",
       "source_url": "https://europepmc.org/article/MED/42671654",
       "published_at": "2026-08-31",
-      "detected_at": "2026-09-02T21:08:02+00:00",
+      "detected_at": "2026-09-02T21:23:30+00:00",
       "doi": "10.1007/s10695-026-01782-1",
       "pmid": "42671654",
       "species": "Aquaculture",
@@ -65,7 +65,7 @@
       "source_name": "Comparative biochemistry and physiology. Part A, Molecular & integrative physiology",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42501961/",
       "published_at": "2026",
-      "detected_at": "2026-09-02T21:07:59+00:00",
+      "detected_at": "2026-09-02T21:23:28+00:00",
       "doi": "10.1016/j.cbpa.2026.112054",
       "pmid": "42501961",
       "species": "Aquaculture",
@@ -93,7 +93,7 @@
       "source_name": "Fish physiology and biochemistry",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42671654/",
       "published_at": "2026",
-      "detected_at": "2026-09-02T21:07:59+00:00",
+      "detected_at": "2026-09-02T21:23:28+00:00",
       "doi": "10.1080/10495398.2021.1920426",
       "pmid": "42671654",
       "species": "Aquaculture",

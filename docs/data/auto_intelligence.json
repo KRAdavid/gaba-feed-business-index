@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-09-02T21:28:43+00:00",
+  "generated_at": "2026-09-02T21:31:01+00:00",
   "status": "partial",
   "sources": {
     "pubmed": true,
@@ -373,25 +373,6 @@
     }
   ],
   "failures": [
-    {
-      "source": "kr-mafra-feed-policy",
-      "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
-        "https://www.mafra.go.kr/bbs/home/792/rssList.do?row=50",
-        "https://www.mafra.go.kr/bbs/home/788/rssList.do?row=50",
-        "https://www.mafra.go.kr/"
-      ]
-    },
-    {
-      "source": "kr-feed-control-act",
-      "error": "request failed after 3 attempts: https://apis.data.go.kr/1170000/law/lawSearchList.do: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
-        "https://open.law.go.kr/LSO/openApi/guideResult.do?htmlName=ordinInfoGuide",
-        "https://apis.data.go.kr/1170000/law/lawSearchList.do"
-      ]
-    },
     {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
