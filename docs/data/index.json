@@ -1709,9 +1709,38 @@
   },
   "auto_intelligence": {
     "version": "2.0.0",
-    "generated_at": "2026-09-02T21:31:01+00:00",
-    "count": 13,
+    "generated_at": "2026-09-03T21:28:18+00:00",
+    "count": 14,
     "items": [
+      {
+        "item_id": "policy-2f5d11ea0dfad4c75596",
+        "category": "policy",
+        "source_type": "official_monitor",
+        "title": "U.S. FDA Animal Foods & Feeds 관련 페이지 변경 확인 필요",
+        "summary": "공식 출처의 관련 페이지에서 두 차례 연속 동일한 변경이 감지되었습니다. 변경 내용은 원문과 시행일을 확인한 뒤 사업 자료에 반영해야 합니다.",
+        "source_name": "U.S. FDA Animal Foods & Feeds",
+        "source_url": "https://www.fda.gov/animal-food-feeds",
+        "published_at": "2026-09-03",
+        "detected_at": "2026-09-03T21:20:53+00:00",
+        "doi": "",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "A",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": true,
+        "tags": [
+          "policy",
+          "official source",
+          "confirmed change"
+        ],
+        "metadata": {
+          "source_id": "us-fda-animal-food",
+          "content_hash": "e49e760e76a15f86ac06252179575e61d066a1e6b6c14ae9ac79c4b4f53ce561",
+          "confirmation_runs": 2,
+          "fallback_count": 0
+        }
+      },
       {
         "item_id": "policy-1d337037280ea8b8db09",
         "category": "policy",
@@ -2070,7 +2099,7 @@
       }
     ]
   },
-  "auto_intelligence_updated_at": "2026-09-02T21:31:01+00:00",
+  "auto_intelligence_updated_at": "2026-09-03T21:28:18+00:00",
   "pricing_reference": {
     "schema_version": "1.2.0",
     "effective_date": "2026-08-10",

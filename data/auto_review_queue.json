@@ -1,35 +1,8 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-09-02T21:31:01+00:00",
-  "count": 4,
+  "generated_at": "2026-09-03T21:28:18+00:00",
+  "count": 3,
   "items": [
-    {
-      "item_id": "research-0c77387a42a8dbae2009",
-      "category": "research",
-      "source_type": "crossref",
-      "title": "Acute Caffeine Administered in Chewing Gum May Improve Functional Firefighting Balance After Gamma-Aminobutyric Acid Supplementation: A Double-Blind Crossover Trial",
-      "summary": "Background: This study investigated whether caffeinated chewing gum enhances sympathetic activity and improves functional firefighting balance performance after gamma-aminobutyric acid (GABA) supplementation. Methods: Fourteen active-duty elite firefighters (age: 36 ± 5 years; height: 174 ± 5 cm; BMI: 25.2 ± 1.6 kg/m2) participated in a double-blind randomized crossover trial. The participants completed functional firefighting balance tests while wearing approximately 25 kg of full firefighting gear.",
-      "source_name": "Nutrients",
-      "source_url": "https://doi.org/10.3390/nu18172876",
-      "published_at": "2026-09-02",
-      "detected_at": "2026-09-02T21:23:32+00:00",
-      "doi": "10.3390/nu18172876",
-      "pmid": "",
-      "species": "Multi-species",
-      "evidence_grade": "B",
-      "confidence": "medium",
-      "auto_publish": false,
-      "official_source": false,
-      "tags": [
-        "GABA",
-        "animal nutrition",
-        "research"
-      ],
-      "metadata": {
-        "type": "journal-article",
-        "review_required": true
-      }
-    },
     {
       "item_id": "research-950ec6d956798e4498fa",
       "category": "research",
@@ -39,7 +12,7 @@
       "source_name": "Europe PMC",
       "source_url": "https://europepmc.org/article/MED/42671654",
       "published_at": "2026-08-31",
-      "detected_at": "2026-09-02T21:23:30+00:00",
+      "detected_at": "2026-09-03T21:07:45+00:00",
       "doi": "10.1007/s10695-026-01782-1",
       "pmid": "42671654",
       "species": "Aquaculture",
@@ -65,7 +38,7 @@
       "source_name": "Comparative biochemistry and physiology. Part A, Molecular & integrative physiology",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42501961/",
       "published_at": "2026",
-      "detected_at": "2026-09-02T21:23:28+00:00",
+      "detected_at": "2026-09-03T21:07:42+00:00",
       "doi": "10.1016/j.cbpa.2026.112054",
       "pmid": "42501961",
       "species": "Aquaculture",
@@ -93,7 +66,7 @@
       "source_name": "Fish physiology and biochemistry",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42671654/",
       "published_at": "2026",
-      "detected_at": "2026-09-02T21:23:28+00:00",
+      "detected_at": "2026-09-03T21:07:42+00:00",
       "doi": "10.1080/10495398.2021.1920426",
       "pmid": "42671654",
       "species": "Aquaculture",
