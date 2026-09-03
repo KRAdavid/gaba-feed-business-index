@@ -1,12 +1,12 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-09-02T21:31:01+00:00",
+  "generated_at": "2026-09-03T21:33:51+00:00",
   "status": "partial",
   "summary": {
     "critical_failed": 0,
     "warnings": 2,
     "checks": 14,
-    "documents": 8,
+    "documents": 9,
     "operating_stages": 6,
     "buyer_packs": 4,
     "smart_consultation": true
@@ -73,7 +73,7 @@
       "label": "기술·사업 자료",
       "ok": true,
       "severity": "warning",
-      "message": "공개 자료 8건"
+      "message": "공개 자료 9건"
     },
     {
       "id": "official_source_fallbacks",
@@ -112,19 +112,19 @@
     }
   ],
   "heartbeat": {
-    "last_run_at": "2026-09-02T21:31:01+00:00",
-    "last_success_at": "2026-09-02T21:31:01+00:00",
-    "last_content_change_at": "2026-09-02T21:31:01+00:00",
-    "workflow_run_id": "33684702125",
+    "last_run_at": "2026-09-03T21:33:51+00:00",
+    "last_success_at": "2026-09-03T21:33:51+00:00",
+    "last_content_change_at": "2026-09-03T21:33:51+00:00",
+    "workflow_run_id": "33807795717",
     "workflow_attempt": "1",
     "trigger_type": "scheduled",
     "sources_total": 10,
     "sources_success": 9,
     "sources_failed": 1,
-    "items_collected_this_run": 18,
-    "items_published_current": 13,
-    "review_queue_current": 4,
-    "execution_duration_seconds": 453.707
+    "items_collected_this_run": 15,
+    "items_published_current": 14,
+    "review_queue_current": 3,
+    "execution_duration_seconds": 458.726
   },
   "public_note": "본 상태는 공개자산·스마트 상담·데이터 최신성·문의 설정을 점검한 비민감 운영 스냅샷입니다. 실제 메일 수신과 응답시간은 통제된 운영시험으로 별도 확인합니다."
 }
