@@ -403,16 +403,6 @@
   ],
   "failures": [
     {
-      "source": "kr-mafra-feed-policy",
-      "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
-        "https://www.mafra.go.kr/bbs/home/792/rssList.do?row=50",
-        "https://www.mafra.go.kr/bbs/home/788/rssList.do?row=50",
-        "https://www.mafra.go.kr/"
-      ]
-    },
-    {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
       "attempted_urls": [
