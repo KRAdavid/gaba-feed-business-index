@@ -10,7 +10,7 @@
       "selected_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-09-08T21:28:24+00:00",
+      "last_success_at": "2026-09-08T21:29:55+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -23,36 +23,36 @@
       "selected_url": "https://www.fao.org/animal-production/en",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-09-08T21:35:47+00:00",
+      "last_success_at": "2026-09-08T21:37:16+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     },
     "kr-mafra-feed-policy": {
       "digest": "7a59c47a591b91950004d26bc2c9e0b6c2ab9d239b6cb13a9e786f0d1151420c",
-      "candidate_digest": "",
-      "candidate_count": 0,
+      "candidate_digest": "d50dfd9eb9527eab2d78063723778fb84a7c9f6ddb6bd910db3db923036896a1",
+      "candidate_count": 1,
       "url": "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
-      "selected_url": "",
+      "selected_url": "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
       "fallback_count": 0,
-      "fallback_used": true,
-      "last_success_at": "2026-09-07T21:49:57+00:00",
-      "last_failure_at": "2026-09-08T21:22:30+00:00",
-      "consecutive_failures": 1,
-      "response_status": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>"
+      "fallback_used": false,
+      "last_success_at": "2026-09-08T21:29:48+00:00",
+      "last_failure_at": "2026-09-06T20:37:31+00:00",
+      "consecutive_failures": 0,
+      "response_status": "ok"
     },
     "kr-feed-control-act": {
       "digest": "5a1310ddc4d12fbe51bf64098c039a7fee56013633574bc2c1c65fa8fed937e5",
       "candidate_digest": "",
       "candidate_count": 0,
       "url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
-      "selected_url": "",
+      "selected_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
       "fallback_count": 0,
-      "fallback_used": true,
-      "last_success_at": "2026-09-07T21:49:58+00:00",
-      "last_failure_at": "2026-09-08T21:28:22+00:00",
-      "consecutive_failures": 1,
-      "response_status": "request failed after 3 attempts: https://apis.data.go.kr/1170000/law/lawSearchList.do: <urlopen error timed out>"
+      "fallback_used": false,
+      "last_success_at": "2026-09-08T21:29:54+00:00",
+      "last_failure_at": "2026-08-29T21:38:45+00:00",
+      "consecutive_failures": 0,
+      "response_status": "ok"
     },
     "us-fda-animal-food": {
       "digest": "e49e760e76a15f86ac06252179575e61d066a1e6b6c14ae9ac79c4b4f53ce561",
@@ -62,14 +62,14 @@
       "selected_url": "https://www.fda.gov/animal-food-feeds",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-09-08T21:28:25+00:00",
+      "last_success_at": "2026-09-08T21:29:55+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     },
     "au-apvma-animal-feed": {
       "last_success_at": "",
-      "last_failure_at": "2026-09-08T21:35:46+00:00",
+      "last_failure_at": "2026-09-08T21:37:16+00:00",
       "consecutive_failures": 49,
       "selected_url": "",
       "fallback_used": true,
@@ -83,13 +83,13 @@
       "selected_url": "https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.TAD.ATM&df%5Bds%5D=DisseminateFinalDMZ&df%5Bid%5D=DSD_AGR%40DF_OUTLOOK_2026_2035",
       "fallback_count": 1,
       "fallback_used": true,
-      "last_success_at": "2026-09-08T21:35:51+00:00",
+      "last_success_at": "2026-09-08T21:37:20+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     }
   },
-  "last_run_at": "2026-09-08T21:35:51+00:00",
-  "last_success_at": "2026-09-08T21:35:51+00:00",
+  "last_run_at": "2026-09-08T21:37:20+00:00",
+  "last_success_at": "2026-09-08T21:37:20+00:00",
   "last_content_change_at": "2026-09-03T21:33:51+00:00"
 }
