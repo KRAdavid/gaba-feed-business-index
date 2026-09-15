@@ -4,13 +4,13 @@
   "official_monitors": {
     "eu-efsa-feed-additives": {
       "digest": "adafeaa7b7c2325b040627938c9781b24b4950a8f3f34a6d3654fcfb5a69cc96",
-      "candidate_digest": "",
-      "candidate_count": 0,
+      "candidate_digest": "0197c86ae72e826315c8151ad314dbd33d02a374282fe73a473bef16ece7af15",
+      "candidate_count": 1,
       "url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
       "selected_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-09-14T22:09:17+00:00",
+      "last_success_at": "2026-09-15T21:29:18+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -23,20 +23,20 @@
       "selected_url": "https://www.fao.org/animal-production/en",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-09-14T22:16:39+00:00",
+      "last_success_at": "2026-09-15T21:36:43+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     },
     "kr-mafra-feed-policy": {
       "digest": "02e4bb22de3f8083270413fd0ab7bea12bb9c07c0bb1661512d226bd493defc1",
-      "candidate_digest": "",
-      "candidate_count": 0,
+      "candidate_digest": "a83e673bd3be20617919dfe07966e9aba8b6f136fc891948645f2e29c20e1d0d",
+      "candidate_count": 1,
       "url": "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
       "selected_url": "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-09-14T22:09:14+00:00",
+      "last_success_at": "2026-09-15T21:29:12+00:00",
       "last_failure_at": "2026-09-13T21:19:57+00:00",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -49,7 +49,7 @@
       "selected_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-09-14T22:09:16+00:00",
+      "last_success_at": "2026-09-15T21:29:14+00:00",
       "last_failure_at": "2026-09-13T21:25:50+00:00",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -62,15 +62,15 @@
       "selected_url": "https://www.fda.gov/animal-food-feeds",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-09-14T22:09:17+00:00",
+      "last_success_at": "2026-09-15T21:29:18+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     },
     "au-apvma-animal-feed": {
       "last_success_at": "",
-      "last_failure_at": "2026-09-14T22:16:39+00:00",
-      "consecutive_failures": 59,
+      "last_failure_at": "2026-09-15T21:36:42+00:00",
+      "consecutive_failures": 60,
       "selected_url": "",
       "fallback_used": true,
       "response_status": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out"
@@ -83,13 +83,13 @@
       "selected_url": "https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.TAD.ATM&df%5Bds%5D=DisseminateFinalDMZ&df%5Bid%5D=DSD_AGR%40DF_OUTLOOK_2026_2035",
       "fallback_count": 1,
       "fallback_used": true,
-      "last_success_at": "2026-09-14T22:16:43+00:00",
+      "last_success_at": "2026-09-15T21:36:47+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     }
   },
-  "last_run_at": "2026-09-14T22:16:43+00:00",
-  "last_success_at": "2026-09-14T22:16:43+00:00",
+  "last_run_at": "2026-09-15T21:36:47+00:00",
+  "last_success_at": "2026-09-15T21:36:47+00:00",
   "last_content_change_at": "2026-09-03T21:33:51+00:00"
 }
