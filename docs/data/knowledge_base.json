@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
-  "updated_at": "2026-09-22T21:58:54+00:00",
-  "count": 14,
+  "updated_at": "2026-09-26T21:24:52+00:00",
+  "count": 15,
   "counts": {
-    "paper": 5,
+    "paper": 6,
     "policy": 7,
     "statistics": 1,
     "market": 1
@@ -44,6 +44,18 @@
       "source": "European Food Safety Authority",
       "evidence_grade": "A",
       "confidence": "high"
+    },
+    {
+      "id": "research-8f40a075adc695d605ae",
+      "type": "paper",
+      "category": "research · Beef Cattle",
+      "date": "2026",
+      "title": "Dietary Rumen-Protected Gamma-Aminobutyric Acid Supplementation to Alleviate Stress in Beef Cattle Caused by Long-Distance Transport by Improving Antioxidant Capacity, Immune Function, and Hormonal Balance: A Related Study.",
+      "summary": "γ-aminobutyric acid (GABA), an inhibitory neurotransmitter, plays an important role in regulating stress responses through modulation of the hypothalamic-pituitary-adrenal axis, neuroendocrine activity, antioxidant defense, and immune function. Therefore, this study evaluated the effects of dietary rumen-protected γ-aminobutyric acid (RP-GABA) supplementation on alleviating long-distance transport-induced stress in beef cattle.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42791696/",
+      "source": "Animals : an open access journal from MDPI",
+      "evidence_grade": "C",
+      "confidence": "medium"
     },
     {
       "id": "curated-20196dfbfba42ac235c5",

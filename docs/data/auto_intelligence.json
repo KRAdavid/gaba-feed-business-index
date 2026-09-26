@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-09-22T21:58:54+00:00",
+  "generated_at": "2026-09-26T21:24:52+00:00",
   "status": "partial",
   "sources": {
     "pubmed": true,
@@ -10,8 +10,8 @@
     "curated": 11
   },
   "counts": {
-    "collected_this_run": 14,
-    "auto_published": 14,
+    "collected_this_run": 15,
+    "auto_published": 15,
     "review_queue": 3
   },
   "items": [
@@ -99,6 +99,34 @@
         "source_id": "eu-efsa-feed-additives",
         "content_hash": "77b02e78a3be46a014ca7cf20025474f7f2dedc7697a9af1bf62a599368762fb",
         "confirmation_runs": 2
+      }
+    },
+    {
+      "item_id": "research-8f40a075adc695d605ae",
+      "category": "research",
+      "source_type": "pubmed",
+      "title": "Dietary Rumen-Protected Gamma-Aminobutyric Acid Supplementation to Alleviate Stress in Beef Cattle Caused by Long-Distance Transport by Improving Antioxidant Capacity, Immune Function, and Hormonal Balance: A Related Study.",
+      "summary": "γ-aminobutyric acid (GABA), an inhibitory neurotransmitter, plays an important role in regulating stress responses through modulation of the hypothalamic-pituitary-adrenal axis, neuroendocrine activity, antioxidant defense, and immune function. Therefore, this study evaluated the effects of dietary rumen-protected γ-aminobutyric acid (RP-GABA) supplementation on alleviating long-distance transport-induced stress in beef cattle.",
+      "source_name": "Animals : an open access journal from MDPI",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42791696/",
+      "published_at": "2026",
+      "detected_at": "2026-09-26T21:17:01+00:00",
+      "doi": "10.3390/ani16182839",
+      "pmid": "42791696",
+      "species": "Beef Cattle",
+      "evidence_grade": "C",
+      "confidence": "medium",
+      "auto_publish": true,
+      "official_source": false,
+      "tags": [
+        "GABA",
+        "animal nutrition",
+        "research"
+      ],
+      "metadata": {
+        "publication_types": [
+          "Journal Article"
+        ]
       }
     },
     {
