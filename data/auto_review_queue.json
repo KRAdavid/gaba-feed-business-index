@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-09-26T21:24:52+00:00",
-  "count": 3,
+  "generated_at": "2026-09-27T21:34:47+00:00",
+  "count": 4,
   "items": [
     {
       "item_id": "research-950ec6d956798e4498fa",
@@ -12,7 +12,7 @@
       "source_name": "Europe PMC",
       "source_url": "https://europepmc.org/article/MED/42671654",
       "published_at": "2026-08-31",
-      "detected_at": "2026-09-26T21:38:45+00:00",
+      "detected_at": "2026-09-27T21:27:08+00:00",
       "doi": "10.1007/s10695-026-01782-1",
       "pmid": "42671654",
       "species": "Aquaculture",
@@ -30,6 +30,34 @@
       }
     },
     {
+      "item_id": "research-3b6ee5d14f4c9a31a83c",
+      "category": "research",
+      "source_type": "pubmed",
+      "title": "Effects of black soldier fly larvae meal on hepatic metabolism and intestinal health in juvenile southern catfish (Silurus meridionalis): Insights from non-targeted metabolomics.",
+      "summary": "To investigate the effects of replacing fishmeal (FM) with black soldier fly larvae meal (BSFLM) on hepatic metabolism and intestinal health in juvenile southern catfish (Silurus meridionalis), six isonitrogenous and isoenergetic diets were formulated with graded replacement levels of 0%, 10%, 20%, 30%, 40%, and 50% and fed to fish for 8 weeks. Intestinal antioxidant parameters, serum immune factors, hepatic free amino acids, and non-targeted hepatic metabolomics were analyzed.",
+      "source_name": "Comparative biochemistry and physiology. Part D, Genomics & proteomics",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42800357/",
+      "published_at": "2026",
+      "detected_at": "2026-09-27T21:27:06+00:00",
+      "doi": "10.1016/j.cbd.2026.102032",
+      "pmid": "42800357",
+      "species": "Aquaculture",
+      "evidence_grade": "C",
+      "confidence": "medium",
+      "auto_publish": false,
+      "official_source": false,
+      "tags": [
+        "GABA",
+        "animal nutrition",
+        "research"
+      ],
+      "metadata": {
+        "publication_types": [
+          "Journal Article"
+        ]
+      }
+    },
+    {
       "item_id": "research-c7e8e142d58dbeff7f95",
       "category": "research",
       "source_type": "pubmed",
@@ -38,7 +66,7 @@
       "source_name": "Comparative biochemistry and physiology. Part A, Molecular & integrative physiology",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42501961/",
       "published_at": "2026",
-      "detected_at": "2026-09-26T21:38:43+00:00",
+      "detected_at": "2026-09-27T21:27:06+00:00",
       "doi": "10.1016/j.cbpa.2026.112054",
       "pmid": "42501961",
       "species": "Aquaculture",
@@ -66,7 +94,7 @@
       "source_name": "Fish physiology and biochemistry",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42671654/",
       "published_at": "2026",
-      "detected_at": "2026-09-26T21:38:43+00:00",
+      "detected_at": "2026-09-27T21:27:06+00:00",
       "doi": "10.1080/10495398.2021.1920426",
       "pmid": "42671654",
       "species": "Aquaculture",
