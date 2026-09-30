@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-09-28T23:30:12+00:00",
-  "count": 4,
+  "generated_at": "2026-09-30T22:30:27+00:00",
+  "count": 6,
   "items": [
     {
       "item_id": "research-950ec6d956798e4498fa",
@@ -12,7 +12,7 @@
       "source_name": "Europe PMC",
       "source_url": "https://europepmc.org/article/MED/42671654",
       "published_at": "2026-08-31",
-      "detected_at": "2026-09-29T22:42:52+00:00",
+      "detected_at": "2026-09-30T22:22:42+00:00",
       "doi": "10.1007/s10695-026-01782-1",
       "pmid": "42671654",
       "species": "Aquaculture",
@@ -30,6 +30,63 @@
       }
     },
     {
+      "item_id": "research-b03c00a9d1cdabb53c3f",
+      "category": "research",
+      "source_type": "pubmed",
+      "title": "Effects of different processing methods on the nutritional components and in vitro digestion and fermentation characteristics of foxtail millet (Setaria italica).",
+      "summary": "Foxtail millet (Setaria italica) is highly nutritious but has limited consumer acceptance due to its taste and low nutrient bioavailability. Adopting different processing methods may increase the nutritional components and bioavailability of whole grains. However, no study has systematically compared the different processing methods.",
+      "source_name": "Food research international (Ottawa, Ont.)",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42409563/",
+      "published_at": "2026",
+      "detected_at": "2026-09-30T22:22:40+00:00",
+      "doi": "10.1016/j.foodres.2026.119626",
+      "pmid": "42409563",
+      "species": "Multi-species",
+      "evidence_grade": "C",
+      "confidence": "medium",
+      "auto_publish": false,
+      "official_source": false,
+      "tags": [
+        "GABA",
+        "animal nutrition",
+        "research"
+      ],
+      "metadata": {
+        "publication_types": [
+          "Journal Article"
+        ]
+      }
+    },
+    {
+      "item_id": "research-e5280a3278b89ea91a94",
+      "category": "research",
+      "source_type": "pubmed",
+      "title": "Germination-driven biochemical remodeling of cereals and pseudocereals: Impacts on nutrient bioaccessibility, phytochemical enrichment, and functional food potential.",
+      "summary": "Global staples include cereal grains (maize, rice, wheat, barley, and sorghum), whose nutritional value is partly limited by antinutritional factors (phytic acid, oxalates, and protease inhibitors) that limit the absorption of minerals and nutrient bioavailability. Germination is an environmentally friendly and effective bioprocess that enhances the nutritional and functional characteristics of cereals by enzymatic, biochemical, and structural changes.",
+      "source_name": "Food chemistry",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42372527/",
+      "published_at": "2026",
+      "detected_at": "2026-09-30T22:22:40+00:00",
+      "doi": "10.1016/j.foodchem.2026.150232",
+      "pmid": "42372527",
+      "species": "Multi-species",
+      "evidence_grade": "C",
+      "confidence": "medium",
+      "auto_publish": false,
+      "official_source": false,
+      "tags": [
+        "GABA",
+        "animal nutrition",
+        "research"
+      ],
+      "metadata": {
+        "publication_types": [
+          "Journal Article",
+          "Review"
+        ]
+      }
+    },
+    {
       "item_id": "research-3b6ee5d14f4c9a31a83c",
       "category": "research",
       "source_type": "pubmed",
@@ -38,7 +95,7 @@
       "source_name": "Comparative biochemistry and physiology. Part D, Genomics & proteomics",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42800357/",
       "published_at": "2026",
-      "detected_at": "2026-09-29T22:42:49+00:00",
+      "detected_at": "2026-09-30T22:22:38+00:00",
       "doi": "10.1016/j.cbd.2026.102032",
       "pmid": "42800357",
       "species": "Aquaculture",
@@ -66,7 +123,7 @@
       "source_name": "Comparative biochemistry and physiology. Part A, Molecular & integrative physiology",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42501961/",
       "published_at": "2026",
-      "detected_at": "2026-09-29T22:42:49+00:00",
+      "detected_at": "2026-09-30T22:22:38+00:00",
       "doi": "10.1016/j.cbpa.2026.112054",
       "pmid": "42501961",
       "species": "Aquaculture",
@@ -94,7 +151,7 @@
       "source_name": "Fish physiology and biochemistry",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42671654/",
       "published_at": "2026",
-      "detected_at": "2026-09-29T22:42:49+00:00",
+      "detected_at": "2026-09-30T22:22:38+00:00",
       "doi": "10.1080/10495398.2021.1920426",
       "pmid": "42671654",
       "species": "Aquaculture",
