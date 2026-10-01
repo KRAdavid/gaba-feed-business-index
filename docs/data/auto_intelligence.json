@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-09-30T22:30:27+00:00",
+  "generated_at": "2026-10-01T22:54:00+00:00",
   "status": "partial",
   "sources": {
     "pubmed": true,
@@ -10,9 +10,9 @@
     "curated": 11
   },
   "counts": {
-    "collected_this_run": 18,
+    "collected_this_run": 16,
     "auto_published": 16,
-    "review_queue": 6
+    "review_queue": 4
   },
   "items": [
     {
@@ -458,16 +458,6 @@
     }
   ],
   "failures": [
-    {
-      "source": "kr-mafra-feed-policy",
-      "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
-        "https://www.mafra.go.kr/bbs/home/792/rssList.do?row=50",
-        "https://www.mafra.go.kr/bbs/home/788/rssList.do?row=50",
-        "https://www.mafra.go.kr/"
-      ]
-    },
     {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",

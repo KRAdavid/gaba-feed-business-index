@@ -1,24 +1,14 @@
 {
   "version": "2.0.0",
-  "updated_at": "2026-09-30T22:30:27+00:00",
+  "updated_at": "2026-10-01T22:54:00+00:00",
   "status": "partial",
-  "semantic_digest": "3e0206821cec9556bfc3fa386c00141e2833b0b6bc39f6925ad3041194679f0e",
+  "semantic_digest": "881fd69ea1642d692f99a9304f7eb8bd19565dc0c34d8821738f7bce83f688aa",
   "counts": {
-    "collected_this_run": 18,
+    "collected_this_run": 16,
     "auto_published": 16,
-    "review_queue": 6
+    "review_queue": 4
   },
   "failures": [
-    {
-      "source": "kr-mafra-feed-policy",
-      "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>",
-      "attempted_urls": [
-        "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
-        "https://www.mafra.go.kr/bbs/home/792/rssList.do?row=50",
-        "https://www.mafra.go.kr/bbs/home/788/rssList.do?row=50",
-        "https://www.mafra.go.kr/"
-      ]
-    },
     {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
@@ -31,105 +21,18 @@
     }
   ],
   "next_schedule": "daily 03:20 Asia/Seoul",
-  "last_run_at": "2026-09-30T22:57:12+00:00",
-  "last_success_at": "2026-09-30T22:57:12+00:00",
-  "last_content_change_at": "2026-09-30T22:30:27+00:00",
-  "workflow_run_id": "36786818819",
+  "last_run_at": "2026-10-01T22:54:00+00:00",
+  "last_success_at": "2026-10-01T22:54:00+00:00",
+  "last_content_change_at": "2026-10-01T22:54:00+00:00",
+  "workflow_run_id": "36937024706",
   "workflow_attempt": "1",
   "trigger_type": "scheduled",
   "sources_total": 10,
-  "sources_success": 8,
-  "sources_failed": 2,
-  "items_collected_this_run": 18,
+  "sources_success": 9,
+  "sources_failed": 1,
+  "items_collected_this_run": 16,
   "items_published_current": 16,
-  "review_queue_current": 6,
-  "execution_duration_seconds": 901.791,
-  "network_skipped": false,
-  "route_checked_at": "2026-09-30T22:57:12+00:00",
-  "source_routes": [
-    {
-      "source": "kr-mafra-feed-policy",
-      "reachable": false,
-      "selected_url": "",
-      "attempt_count": 4,
-      "last_result": "<urlopen error timed out>",
-      "fallback_used": false,
-      "last_success_at": "2026-09-30T22:22:47+00:00",
-      "last_failure_at": "2026-09-30T22:49:37+00:00",
-      "consecutive_failures": 1,
-      "response_status": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>"
-    },
-    {
-      "source": "kr-feed-control-act",
-      "reachable": true,
-      "selected_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
-      "attempt_count": 1,
-      "last_result": "HTTP 206",
-      "fallback_used": false,
-      "last_success_at": "2026-09-30T22:49:38+00:00",
-      "last_failure_at": "2026-09-23T22:06:29+00:00",
-      "consecutive_failures": 0,
-      "response_status": "ok"
-    },
-    {
-      "source": "eu-efsa-feed-additives",
-      "reachable": true,
-      "selected_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
-      "attempt_count": 1,
-      "last_result": "HTTP 206",
-      "fallback_used": false,
-      "last_success_at": "2026-09-30T22:49:48+00:00",
-      "last_failure_at": "",
-      "consecutive_failures": 0,
-      "response_status": "ok"
-    },
-    {
-      "source": "us-fda-animal-food",
-      "reachable": true,
-      "selected_url": "https://www.fda.gov/animal-food-feeds",
-      "attempt_count": 1,
-      "last_result": "HTTP 200",
-      "fallback_used": false,
-      "last_success_at": "2026-09-30T22:49:48+00:00",
-      "last_failure_at": "",
-      "consecutive_failures": 0,
-      "response_status": "ok"
-    },
-    {
-      "source": "au-apvma-animal-feed",
-      "reachable": false,
-      "selected_url": "",
-      "attempt_count": 4,
-      "last_result": "The read operation timed out",
-      "fallback_used": false,
-      "last_success_at": "",
-      "last_failure_at": "2026-09-30T22:57:07+00:00",
-      "consecutive_failures": 87,
-      "response_status": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out"
-    },
-    {
-      "source": "fao-animal-production",
-      "reachable": true,
-      "selected_url": "https://www.fao.org/animal-production/en",
-      "attempt_count": 1,
-      "last_result": "HTTP 200",
-      "fallback_used": false,
-      "last_success_at": "2026-09-30T22:57:07+00:00",
-      "last_failure_at": "",
-      "consecutive_failures": 0,
-      "response_status": "ok"
-    },
-    {
-      "source": "oecd-fao-agricultural-outlook",
-      "reachable": true,
-      "selected_url": "https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.TAD.ATM&df%5Bds%5D=DisseminateFinalDMZ&df%5Bid%5D=DSD_AGR%40DF_OUTLOOK_2026_2035",
-      "attempt_count": 2,
-      "last_result": "HTTP 200",
-      "fallback_used": true,
-      "last_success_at": "2026-09-30T22:57:12+00:00",
-      "last_failure_at": "",
-      "consecutive_failures": 0,
-      "response_status": "ok"
-    }
-  ]
+  "review_queue_current": 4,
+  "execution_duration_seconds": 463.47,
+  "network_skipped": false
 }
