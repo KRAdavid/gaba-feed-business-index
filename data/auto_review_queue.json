@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-10-01T22:54:00+00:00",
-  "count": 4,
+  "generated_at": "2026-10-02T22:28:25+00:00",
+  "count": 3,
   "items": [
     {
       "item_id": "research-b03c00a9d1cdabb53c3f",
@@ -12,7 +12,7 @@
       "source_name": "Food research international (Ottawa, Ont.)",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42409563/",
       "published_at": "2026",
-      "detected_at": "2026-10-01T22:57:25+00:00",
+      "detected_at": "2026-10-02T22:20:50+00:00",
       "doi": "10.1016/j.foodres.2026.119626",
       "pmid": "42409563",
       "species": "Multi-species",
@@ -40,7 +40,7 @@
       "source_name": "Food chemistry",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42372527/",
       "published_at": "2026",
-      "detected_at": "2026-10-01T22:57:25+00:00",
+      "detected_at": "2026-10-02T22:20:50+00:00",
       "doi": "10.1016/j.foodchem.2026.150232",
       "pmid": "42372527",
       "species": "Multi-species",
@@ -69,37 +69,9 @@
       "source_name": "Comparative biochemistry and physiology. Part D, Genomics & proteomics",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42800357/",
       "published_at": "2026",
-      "detected_at": "2026-10-01T22:57:23+00:00",
+      "detected_at": "2026-10-02T22:20:48+00:00",
       "doi": "10.1016/j.cbd.2026.102032",
       "pmid": "42800357",
-      "species": "Aquaculture",
-      "evidence_grade": "C",
-      "confidence": "medium",
-      "auto_publish": false,
-      "official_source": false,
-      "tags": [
-        "GABA",
-        "animal nutrition",
-        "research"
-      ],
-      "metadata": {
-        "publication_types": [
-          "Journal Article"
-        ]
-      }
-    },
-    {
-      "item_id": "research-c7e8e142d58dbeff7f95",
-      "category": "research",
-      "source_type": "pubmed",
-      "title": "Exposure to three levels of CO2-induced freshwater acidification results in multi-tissue transcriptional and behavioural responses in medaka (Oryzias latipes).",
-      "summary": "Elevated atmospheric carbon dioxide (CO2) can acidify aquatic environments, which several studies have linked to molecular and behavioural responses in fish. However, few studies on CO2-induced acidification have focused on freshwater fishes and the potential for fish to overcome acute responses. Our study investigated the effects of acidification over a 20 d exposure on medaka (Oryzias latipes) behaviour and mRNA transcripts sampled from the brain and gill.",
-      "source_name": "Comparative biochemistry and physiology. Part A, Molecular & integrative physiology",
-      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42501961/",
-      "published_at": "2026",
-      "detected_at": "2026-10-01T22:57:23+00:00",
-      "doi": "10.1016/j.cbpa.2026.112054",
-      "pmid": "42501961",
       "species": "Aquaculture",
       "evidence_grade": "C",
       "confidence": "medium",
