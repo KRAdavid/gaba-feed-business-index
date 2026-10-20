@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-10-11T22:40:17+00:00",
+  "generated_at": "2026-10-20T21:50:45+00:00",
   "status": "partial",
   "sources": {
     "pubmed": true,
@@ -12,7 +12,7 @@
   "counts": {
     "collected_this_run": 16,
     "auto_published": 16,
-    "review_queue": 4
+    "review_queue": 5
   },
   "items": [
     {
