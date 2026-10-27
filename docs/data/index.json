@@ -1709,8 +1709,8 @@
   },
   "auto_intelligence": {
     "version": "2.0.0",
-    "generated_at": "2026-10-23T21:38:05+00:00",
-    "count": 16,
+    "generated_at": "2026-10-27T22:44:37+00:00",
+    "count": 17,
     "items": [
       {
         "item_id": "policy-2f5d11ea0dfad4c75596",
@@ -1796,6 +1796,34 @@
           "source_id": "eu-efsa-feed-additives",
           "content_hash": "77b02e78a3be46a014ca7cf20025474f7f2dedc7697a9af1bf62a599368762fb",
           "confirmation_runs": 2
+        }
+      },
+      {
+        "item_id": "research-d2f12ba037b70d1de0dc",
+        "category": "research",
+        "source_type": "pubmed",
+        "title": "Dietary γ-Aminobutyric Acid (GABA) Improves Growth Performance and Increases Plasma Cortisol During Recovery from Short-Term Acute Thermal Exposure in Juvenile Rainbow Trout (Oncorhynchus mykiss).",
+        "summary": "γ-aminobutyric acid (GABA) is a functional feed additive that may improve growth and stress resilience. The study evaluated the effects of dietary GABA on growth performance and recovery-phase physiological responses after short-term acute thermal exposure in juvenile rainbow trout. Two hundred twenty-five fish (18.9 ± 0.1 g) were fed five diets for 8 weeks: a control diet containing 68 mg/kg (GABA68) and diets with 108 (GABA108), 149 (GABA149), 183 (GABA183), and 218 (GABA218) mg/kg GABA.",
+        "source_name": "Animals : an open access journal from MDPI",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/42939255/",
+        "published_at": "2026",
+        "detected_at": "2026-10-27T22:24:16+00:00",
+        "doi": "10.3390/ani16203324",
+        "pmid": "42939255",
+        "species": "Aquaculture",
+        "evidence_grade": "B",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": false,
+        "tags": [
+          "GABA",
+          "animal nutrition",
+          "research"
+        ],
+        "metadata": {
+          "publication_types": [
+            "Journal Article"
+          ]
         }
       },
       {
@@ -2155,7 +2183,7 @@
       }
     ]
   },
-  "auto_intelligence_updated_at": "2026-10-23T21:38:05+00:00",
+  "auto_intelligence_updated_at": "2026-10-27T22:44:37+00:00",
   "pricing_reference": {
     "schema_version": "1.2.0",
     "effective_date": "2026-08-10",

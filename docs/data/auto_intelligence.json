@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-10-23T21:38:05+00:00",
+  "generated_at": "2026-10-27T22:44:37+00:00",
   "status": "partial",
   "sources": {
     "pubmed": true,
@@ -10,8 +10,8 @@
     "curated": 11
   },
   "counts": {
-    "collected_this_run": 16,
-    "auto_published": 16,
+    "collected_this_run": 17,
+    "auto_published": 17,
     "review_queue": 4
   },
   "items": [
@@ -99,6 +99,34 @@
         "source_id": "eu-efsa-feed-additives",
         "content_hash": "77b02e78a3be46a014ca7cf20025474f7f2dedc7697a9af1bf62a599368762fb",
         "confirmation_runs": 2
+      }
+    },
+    {
+      "item_id": "research-d2f12ba037b70d1de0dc",
+      "category": "research",
+      "source_type": "pubmed",
+      "title": "Dietary γ-Aminobutyric Acid (GABA) Improves Growth Performance and Increases Plasma Cortisol During Recovery from Short-Term Acute Thermal Exposure in Juvenile Rainbow Trout (Oncorhynchus mykiss).",
+      "summary": "γ-aminobutyric acid (GABA) is a functional feed additive that may improve growth and stress resilience. The study evaluated the effects of dietary GABA on growth performance and recovery-phase physiological responses after short-term acute thermal exposure in juvenile rainbow trout. Two hundred twenty-five fish (18.9 ± 0.1 g) were fed five diets for 8 weeks: a control diet containing 68 mg/kg (GABA68) and diets with 108 (GABA108), 149 (GABA149), 183 (GABA183), and 218 (GABA218) mg/kg GABA.",
+      "source_name": "Animals : an open access journal from MDPI",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42939255/",
+      "published_at": "2026",
+      "detected_at": "2026-10-27T22:24:16+00:00",
+      "doi": "10.3390/ani16203324",
+      "pmid": "42939255",
+      "species": "Aquaculture",
+      "evidence_grade": "B",
+      "confidence": "high",
+      "auto_publish": true,
+      "official_source": false,
+      "tags": [
+        "GABA",
+        "animal nutrition",
+        "research"
+      ],
+      "metadata": {
+        "publication_types": [
+          "Journal Article"
+        ]
       }
     },
     {
@@ -458,6 +486,25 @@
     }
   ],
   "failures": [
+    {
+      "source": "kr-mafra-feed-policy",
+      "error": "request failed after 3 attempts: https://www.mafra.go.kr/: <urlopen error timed out>",
+      "attempted_urls": [
+        "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
+        "https://www.mafra.go.kr/bbs/home/792/rssList.do?row=50",
+        "https://www.mafra.go.kr/bbs/home/788/rssList.do?row=50",
+        "https://www.mafra.go.kr/"
+      ]
+    },
+    {
+      "source": "kr-feed-control-act",
+      "error": "request failed after 3 attempts: https://apis.data.go.kr/1170000/law/lawSearchList.do: <urlopen error timed out>",
+      "attempted_urls": [
+        "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
+        "https://open.law.go.kr/LSO/openApi/guideResult.do?htmlName=ordinInfoGuide",
+        "https://apis.data.go.kr/1170000/law/lawSearchList.do"
+      ]
+    },
     {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",

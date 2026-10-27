@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-10-23T21:38:05+00:00",
+  "generated_at": "2026-10-27T22:44:37+00:00",
   "count": 4,
   "items": [
     {
@@ -12,7 +12,7 @@
       "source_name": "Food research international (Ottawa, Ont.)",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42409563/",
       "published_at": "2026",
-      "detected_at": "2026-10-26T22:54:59+00:00",
+      "detected_at": "2026-10-27T22:24:19+00:00",
       "doi": "10.1016/j.foodres.2026.119626",
       "pmid": "42409563",
       "species": "Multi-species",
@@ -40,7 +40,7 @@
       "source_name": "Food chemistry",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42372527/",
       "published_at": "2026",
-      "detected_at": "2026-10-26T22:54:59+00:00",
+      "detected_at": "2026-10-27T22:24:19+00:00",
       "doi": "10.1016/j.foodchem.2026.150232",
       "pmid": "42372527",
       "species": "Multi-species",
@@ -61,7 +61,7 @@
       }
     },
     {
-      "item_id": "research-ebe8aafedd196e10269c",
+      "item_id": "research-42ece9b2b076ede4b02b",
       "category": "research",
       "source_type": "pubmed",
       "title": "Amphora coffeaeformis supplementation attenuates cypermethrin-triggered neurotoxicity, oxidative deficit, proinflammatory and apoptotic‑associated genes dysregulation, and histopathology in the brain of nile tilapias.",
@@ -69,8 +69,8 @@
       "source_name": "Veterinary research communications",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42900281/",
       "published_at": "2026",
-      "detected_at": "2026-10-26T22:54:58+00:00",
-      "doi": "10.1016/j.scitotenv.2020.143054",
+      "detected_at": "2026-10-27T22:24:16+00:00",
+      "doi": "10.1007/s11259-026-11552-2",
       "pmid": "42900281",
       "species": "Aquaculture",
       "evidence_grade": "C",
@@ -97,7 +97,7 @@
       "source_name": "Journal of animal physiology and animal nutrition",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42860030/",
       "published_at": "2026",
-      "detected_at": "2026-10-26T22:54:58+00:00",
+      "detected_at": "2026-10-27T22:24:16+00:00",
       "doi": "10.1111/jpn.70119",
       "pmid": "42860030",
       "species": "Dairy Cattle",
