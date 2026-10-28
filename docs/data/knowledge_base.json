@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
-  "updated_at": "2026-10-27T22:48:56+00:00",
-  "count": 17,
+  "updated_at": "2026-10-28T22:49:58+00:00",
+  "count": 18,
   "counts": {
-    "paper": 8,
+    "paper": 9,
     "policy": 7,
     "statistics": 1,
     "market": 1
@@ -43,6 +43,18 @@
       "url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
       "source": "European Food Safety Authority",
       "evidence_grade": "A",
+      "confidence": "high"
+    },
+    {
+      "id": "research-48488ee00f3c59749279",
+      "type": "paper",
+      "category": "research · Aquaculture",
+      "date": "2026",
+      "title": "Dietary γ-Aminobutyric Acid (GABA) Improves Growth Performance and Increases Plasma Cortisol During Recovery from Short-Term Acute Thermal Exposure in Juvenile Rainbow Trout (Oncorhynchus mykiss).",
+      "summary": "γ-aminobutyric acid (GABA) is a functional feed additive that may improve growth and stress resilience. The study evaluated the effects of dietary GABA on growth performance and recovery-phase physiological responses after short-term acute thermal exposure in juvenile rainbow trout. Two hundred twenty-five fish (18.9 ± 0.1 g) were fed five diets for 8 weeks: a control diet containing 68 mg/kg (GABA68) and diets with 108 (GABA108), 149 (GABA149), 183 (GABA183), and 218 (GABA218) mg/kg GABA.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42939255/",
+      "source": "Animals : an open access journal from MDPI",
+      "evidence_grade": "B",
       "confidence": "high"
     },
     {
