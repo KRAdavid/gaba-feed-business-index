@@ -10,7 +10,7 @@
     "curated": 11
   },
   "counts": {
-    "collected_this_run": 18,
+    "collected_this_run": 19,
     "auto_published": 18,
     "review_queue": 4
   },
@@ -514,13 +514,6 @@
     }
   ],
   "failures": [
-    {
-      "source": "us-fda-animal-food",
-      "error": "request failed after 3 attempts: https://www.fda.gov/animal-food-feeds: HTTP Error 404: Not Found",
-      "attempted_urls": [
-        "https://www.fda.gov/animal-food-feeds"
-      ]
-    },
     {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
