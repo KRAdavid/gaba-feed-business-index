@@ -1,8 +1,35 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-10-31T21:51:13+00:00",
-  "count": 2,
+  "generated_at": "2026-11-03T01:11:50+00:00",
+  "count": 3,
   "items": [
+    {
+      "item_id": "research-74046a8b7a7b5e93d2ef",
+      "category": "research",
+      "source_type": "crossref",
+      "title": "Effects of Postharvest Methyl Jasmonate (MeJA) and γ -Aminobutyric Acid (GABA) on the Quality and Storability of Granny Smith Apple Fruit",
+      "summary": "This study investigated the effects of postharvest methyl jasmonate (MeJA) and γ-aminobutyric acid (GABA) treatments on the quality and storability of Granny Smith apples harvested from a private orchard in Duhok Governorate, Kurdistan Region, Iraq. The reported treatment concentrations were 0, 0.75, 1.5, and 2.5 mM MeJA, applied by dipping for five minutes, and 0, 5, 10, and 15 mM GABA, applied by dipping for fifteen minutes.",
+      "source_name": "Revista Cultura Científica",
+      "source_url": "https://doi.org/10.70517/revcc2624178",
+      "published_at": "2026-11-02",
+      "detected_at": "2026-11-03T01:04:18+00:00",
+      "doi": "10.70517/revcc2624178",
+      "pmid": "",
+      "species": "Multi-species",
+      "evidence_grade": "C",
+      "confidence": "medium",
+      "auto_publish": false,
+      "official_source": false,
+      "tags": [
+        "GABA",
+        "animal nutrition",
+        "research"
+      ],
+      "metadata": {
+        "type": "journal-article",
+        "review_required": true
+      }
+    },
     {
       "item_id": "research-42ece9b2b076ede4b02b",
       "category": "research",
@@ -12,7 +39,7 @@
       "source_name": "Veterinary research communications",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42900281/",
       "published_at": "2026",
-      "detected_at": "2026-11-01T22:29:42+00:00",
+      "detected_at": "2026-11-03T01:04:14+00:00",
       "doi": "10.1007/s11259-026-11552-2",
       "pmid": "42900281",
       "species": "Aquaculture",
@@ -40,7 +67,7 @@
       "source_name": "Journal of animal physiology and animal nutrition",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42860030/",
       "published_at": "2026",
-      "detected_at": "2026-11-01T22:29:42+00:00",
+      "detected_at": "2026-11-03T01:04:14+00:00",
       "doi": "10.1111/jpn.70119",
       "pmid": "42860030",
       "species": "Dairy Cattle",
