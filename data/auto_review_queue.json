@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-11-10T23:39:09+00:00",
-  "count": 3,
+  "generated_at": "2026-11-12T00:58:08+00:00",
+  "count": 2,
   "items": [
     {
       "item_id": "research-54926d8b5c25e90ed1a2",
@@ -12,7 +12,7 @@
       "source_name": "Nutritional neuroscience",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/43004570/",
       "published_at": "2026",
-      "detected_at": "2026-11-10T23:47:06+00:00",
+      "detected_at": "2026-11-12T00:50:18+00:00",
       "doi": "10.1080/1028415x.2026.2754293",
       "pmid": "43004570",
       "species": "Pig",
@@ -40,39 +40,11 @@
       "source_name": "Veterinary research communications",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/42900281/",
       "published_at": "2026",
-      "detected_at": "2026-11-10T23:47:06+00:00",
+      "detected_at": "2026-11-12T00:50:18+00:00",
       "doi": "10.1007/s11259-026-11552-2",
       "pmid": "42900281",
       "species": "Aquaculture",
       "evidence_grade": "C",
-      "confidence": "medium",
-      "auto_publish": false,
-      "official_source": false,
-      "tags": [
-        "GABA",
-        "animal nutrition",
-        "research"
-      ],
-      "metadata": {
-        "publication_types": [
-          "Journal Article"
-        ]
-      }
-    },
-    {
-      "item_id": "research-100fdd12ba62ebecd3cf",
-      "category": "research",
-      "source_type": "pubmed",
-      "title": "Excessive Feed Sorting Is Associated With Altered Plasma Metabolism and Distinct Fermentation Responses of Pooled Rumen Microbiota in Dairy Cows.",
-      "summary": "Feed sorting behaviour in dairy cows alters dietary structure and has been associated with rumen dysfunction, but its systemic metabolic consequences and microbial acidogenic potential remain unclear. This study combined in vivo and in vitro approaches to investigate associations between feed sorting behaviour, host metabolism, and rumen microbial fermentation.",
-      "source_name": "Journal of animal physiology and animal nutrition",
-      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42860030/",
-      "published_at": "2026",
-      "detected_at": "2026-11-10T23:47:06+00:00",
-      "doi": "10.1111/jpn.70119",
-      "pmid": "42860030",
-      "species": "Dairy Cattle",
-      "evidence_grade": "B",
       "confidence": "medium",
       "auto_publish": false,
       "official_source": false,
