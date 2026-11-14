@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-11-12T00:58:08+00:00",
+  "generated_at": "2026-11-14T00:05:18+00:00",
   "status": "partial",
   "sources": {
     "pubmed": true,
@@ -10,11 +10,40 @@
     "curated": 11
   },
   "counts": {
-    "collected_this_run": 16,
-    "auto_published": 18,
+    "collected_this_run": 18,
+    "auto_published": 19,
     "review_queue": 2
   },
   "items": [
+    {
+      "item_id": "policy-8bc522a129a934b683bd",
+      "category": "policy",
+      "source_type": "official_monitor",
+      "title": "국가법령정보센터 사료관리법 관련 페이지 변경 확인 필요",
+      "summary": "공식 출처의 관련 페이지에서 두 차례 연속 동일한 변경이 감지되었습니다. 변경 내용은 원문과 시행일을 확인한 뒤 사업 자료에 반영해야 합니다.",
+      "source_name": "국가법령정보센터 사료관리법",
+      "source_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
+      "published_at": "2026-11-13",
+      "detected_at": "2026-11-13T23:57:53+00:00",
+      "doi": "",
+      "pmid": "",
+      "species": "Multi-species",
+      "evidence_grade": "A",
+      "confidence": "high",
+      "auto_publish": true,
+      "official_source": true,
+      "tags": [
+        "policy",
+        "official source",
+        "confirmed change"
+      ],
+      "metadata": {
+        "source_id": "kr-feed-control-act",
+        "content_hash": "26ffe3ae0aa0b9cd16238b81bac8c7409dbe136edc50327f237c964926264d1c",
+        "confirmation_runs": 2,
+        "fallback_count": 0
+      }
+    },
     {
       "item_id": "policy-2f5d11ea0dfad4c75596",
       "category": "policy",
@@ -514,6 +543,13 @@
     }
   ],
   "failures": [
+    {
+      "source": "us-fda-animal-food",
+      "error": "request failed after 3 attempts: https://www.fda.gov/animal-food-feeds: HTTP Error 404: Not Found",
+      "attempted_urls": [
+        "https://www.fda.gov/animal-food-feeds"
+      ]
+    },
     {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",

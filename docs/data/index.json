@@ -1709,9 +1709,38 @@
   },
   "auto_intelligence": {
     "version": "2.0.0",
-    "generated_at": "2026-11-12T00:58:08+00:00",
-    "count": 18,
+    "generated_at": "2026-11-14T00:05:18+00:00",
+    "count": 19,
     "items": [
+      {
+        "item_id": "policy-8bc522a129a934b683bd",
+        "category": "policy",
+        "source_type": "official_monitor",
+        "title": "국가법령정보센터 사료관리법 관련 페이지 변경 확인 필요",
+        "summary": "공식 출처의 관련 페이지에서 두 차례 연속 동일한 변경이 감지되었습니다. 변경 내용은 원문과 시행일을 확인한 뒤 사업 자료에 반영해야 합니다.",
+        "source_name": "국가법령정보센터 사료관리법",
+        "source_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
+        "published_at": "2026-11-13",
+        "detected_at": "2026-11-13T23:57:53+00:00",
+        "doi": "",
+        "pmid": "",
+        "species": "Multi-species",
+        "evidence_grade": "A",
+        "confidence": "high",
+        "auto_publish": true,
+        "official_source": true,
+        "tags": [
+          "policy",
+          "official source",
+          "confirmed change"
+        ],
+        "metadata": {
+          "source_id": "kr-feed-control-act",
+          "content_hash": "26ffe3ae0aa0b9cd16238b81bac8c7409dbe136edc50327f237c964926264d1c",
+          "confirmation_runs": 2,
+          "fallback_count": 0
+        }
+      },
       {
         "item_id": "policy-2f5d11ea0dfad4c75596",
         "category": "policy",
@@ -2211,7 +2240,7 @@
       }
     ]
   },
-  "auto_intelligence_updated_at": "2026-11-12T00:58:08+00:00",
+  "auto_intelligence_updated_at": "2026-11-14T00:05:18+00:00",
   "pricing_reference": {
     "schema_version": "1.2.0",
     "effective_date": "2026-08-10",
