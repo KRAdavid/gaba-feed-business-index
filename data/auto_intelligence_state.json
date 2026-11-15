@@ -4,13 +4,13 @@
   "official_monitors": {
     "eu-efsa-feed-additives": {
       "digest": "4ac2017c0b90af27054080058b495e9d9c1b759a64fa3ee52506c4c7f4861752",
-      "candidate_digest": "",
-      "candidate_count": 0,
+      "candidate_digest": "ffdae65d56da3c606aeb6ccbf02fd1a282ac5050e33c05d697ac058e0c648ed2",
+      "candidate_count": 1,
       "url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
       "selected_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-11-15T22:59:18+00:00",
+      "last_success_at": "2026-11-15T23:14:06+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -23,7 +23,7 @@
       "selected_url": "https://www.fao.org/animal-production/en",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-11-15T23:06:38+00:00",
+      "last_success_at": "2026-11-15T23:21:27+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -36,23 +36,23 @@
       "selected_url": "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-11-15T22:58:03+00:00",
+      "last_success_at": "2026-11-15T23:13:59+00:00",
       "last_failure_at": "2026-10-03T22:00:57+00:00",
       "consecutive_failures": 0,
       "response_status": "ok"
     },
     "kr-feed-control-act": {
       "digest": "fe3846afbb4343b39b7ab176b742418b705421079c03b1a5b0304a87b8221c0b",
-      "candidate_digest": "",
-      "candidate_count": 0,
+      "candidate_digest": "5a2df79a2c1fbd183f93c368ebc5198196fc5ef9a5f1164a33283a9dfb044fc0",
+      "candidate_count": 1,
       "url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
-      "selected_url": "",
+      "selected_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
       "fallback_count": 0,
-      "fallback_used": true,
-      "last_success_at": "2026-11-14T22:47:26+00:00",
+      "fallback_used": false,
+      "last_success_at": "2026-11-15T23:14:02+00:00",
       "last_failure_at": "2026-11-15T22:59:18+00:00",
-      "consecutive_failures": 1,
-      "response_status": "request failed after 3 attempts: https://apis.data.go.kr/1170000/law/lawSearchList.do: HTTP Error 401: Unauthorized"
+      "consecutive_failures": 0,
+      "response_status": "ok"
     },
     "us-fda-animal-food": {
       "digest": "ddff9c5245d2aa72cfa81dbde02f9a6f7f2867ddb8e7039c50d798de37da642d",
@@ -62,15 +62,15 @@
       "selected_url": "https://www.fda.gov/animal-food-feeds",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-11-15T22:59:19+00:00",
+      "last_success_at": "2026-11-15T23:14:07+00:00",
       "last_failure_at": "2026-11-14T22:34:00+00:00",
       "consecutive_failures": 0,
       "response_status": "ok"
     },
     "au-apvma-animal-feed": {
       "last_success_at": "",
-      "last_failure_at": "2026-11-15T23:06:37+00:00",
-      "consecutive_failures": 175,
+      "last_failure_at": "2026-11-15T23:21:27+00:00",
+      "consecutive_failures": 176,
       "selected_url": "",
       "fallback_used": true,
       "response_status": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out"
@@ -83,13 +83,13 @@
       "selected_url": "https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.TAD.ATM&df%5Bds%5D=DisseminateFinalDMZ&df%5Bid%5D=DSD_AGR%40DF_OUTLOOK_2026_2035",
       "fallback_count": 1,
       "fallback_used": true,
-      "last_success_at": "2026-11-15T23:06:42+00:00",
+      "last_success_at": "2026-11-15T23:21:32+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     }
   },
-  "last_run_at": "2026-11-15T23:06:42+00:00",
-  "last_success_at": "2026-11-15T23:06:42+00:00",
+  "last_run_at": "2026-11-15T23:21:32+00:00",
+  "last_success_at": "2026-11-15T23:21:32+00:00",
   "last_content_change_at": "2026-11-14T00:05:18+00:00"
 }
