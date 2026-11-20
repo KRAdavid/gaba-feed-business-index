@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-11-14T00:05:18+00:00",
-  "count": 2,
+  "generated_at": "2026-11-20T00:50:01+00:00",
+  "count": 1,
   "items": [
     {
       "item_id": "research-54926d8b5c25e90ed1a2",
@@ -12,39 +12,11 @@
       "source_name": "Nutritional neuroscience",
       "source_url": "https://pubmed.ncbi.nlm.nih.gov/43004570/",
       "published_at": "2026",
-      "detected_at": "2026-11-19T00:47:27+00:00",
+      "detected_at": "2026-11-20T00:41:33+00:00",
       "doi": "10.1080/1028415x.2026.2754293",
       "pmid": "43004570",
       "species": "Pig",
       "evidence_grade": "B",
-      "confidence": "medium",
-      "auto_publish": false,
-      "official_source": false,
-      "tags": [
-        "GABA",
-        "animal nutrition",
-        "research"
-      ],
-      "metadata": {
-        "publication_types": [
-          "Journal Article"
-        ]
-      }
-    },
-    {
-      "item_id": "research-42ece9b2b076ede4b02b",
-      "category": "research",
-      "source_type": "pubmed",
-      "title": "Amphora coffeaeformis supplementation attenuates cypermethrin-triggered neurotoxicity, oxidative deficit, proinflammatory and apoptotic‑associated genes dysregulation, and histopathology in the brain of nile tilapias.",
-      "summary": "Cypermethrin (CYP), a neurotoxic pesticide, is released into the environment uncontrollably, posing a particular threat to aquatic species. Amphora coffeaeformis was demonstrated to have a protective effect against hazardous CYP exposure by markedly reducing neurotoxicity in Oreochromis niloticus. A total of 240 O.",
-      "source_name": "Veterinary research communications",
-      "source_url": "https://pubmed.ncbi.nlm.nih.gov/42900281/",
-      "published_at": "2026",
-      "detected_at": "2026-11-19T00:47:27+00:00",
-      "doi": "10.1007/s11259-026-11552-2",
-      "pmid": "42900281",
-      "species": "Aquaculture",
-      "evidence_grade": "C",
       "confidence": "medium",
       "auto_publish": false,
       "official_source": false,
