@@ -544,6 +544,10 @@
   ],
   "failures": [
     {
+      "source": "europe_pmc",
+      "error": "request failed after 3 attempts: https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%28TITLE_ABS%3A%22gamma-aminobutyric+acid%22+OR+TITLE_ABS%3AGABA%29+AND+%28TITLE_ABS%3Afeed+OR+TITLE_ABS%3Adiet+OR+TITLE_ABS%3Anutrition%29+AND+%28TITLE_ABS%3Apig+OR+TITLE_ABS%3Abroiler+OR+TITLE_ABS%3Ac"
+    },
+    {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
       "attempted_urls": [
