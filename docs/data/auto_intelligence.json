@@ -544,6 +544,13 @@
   ],
   "failures": [
     {
+      "source": "us-fda-animal-food",
+      "error": "request failed after 3 attempts: https://www.fda.gov/animal-food-feeds: HTTP Error 404: Not Found",
+      "attempted_urls": [
+        "https://www.fda.gov/animal-food-feeds"
+      ]
+    },
+    {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
       "attempted_urls": [
