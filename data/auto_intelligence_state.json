@@ -10,7 +10,7 @@
       "selected_url": "https://www.efsa.europa.eu/en/topics/topic/feed-additives",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-11-24T04:00:15+00:00",
+      "last_success_at": "2026-11-24T04:07:27+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -23,7 +23,7 @@
       "selected_url": "https://www.fao.org/animal-production/en",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-11-24T04:07:36+00:00",
+      "last_success_at": "2026-11-24T04:14:47+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -36,7 +36,7 @@
       "selected_url": "https://www.mafra.go.kr/bbs/home/791/rssList.do?row=50",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-11-24T03:59:09+00:00",
+      "last_success_at": "2026-11-24T04:07:23+00:00",
       "last_failure_at": "2026-10-03T22:00:57+00:00",
       "consecutive_failures": 0,
       "response_status": "ok"
@@ -46,13 +46,13 @@
       "candidate_digest": "",
       "candidate_count": 0,
       "url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
-      "selected_url": "",
+      "selected_url": "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
       "fallback_count": 0,
-      "fallback_used": true,
-      "last_success_at": "2026-11-22T23:55:08+00:00",
-      "last_failure_at": "2026-11-24T04:00:14+00:00",
-      "consecutive_failures": 1,
-      "response_status": "request failed after 3 attempts: https://apis.data.go.kr/1170000/law/lawSearchList.do: HTTP Error 401: Unauthorized"
+      "fallback_used": false,
+      "last_success_at": "2026-11-24T04:07:26+00:00",
+      "last_failure_at": "2026-11-15T22:59:18+00:00",
+      "consecutive_failures": 0,
+      "response_status": "ok"
     },
     "us-fda-animal-food": {
       "digest": "ea78f27043ff252d9ceb0ddcc5b31794472a5cdc37357781299530ab10ad0f2b",
@@ -62,14 +62,14 @@
       "selected_url": "https://www.fda.gov/animal-food-feeds",
       "fallback_count": 0,
       "fallback_used": false,
-      "last_success_at": "2026-11-24T04:00:16+00:00",
+      "last_success_at": "2026-11-24T04:07:27+00:00",
       "last_failure_at": "2026-11-22T23:39:44+00:00",
       "consecutive_failures": 0,
       "response_status": "ok"
     },
     "au-apvma-animal-feed": {
       "last_success_at": "",
-      "last_failure_at": "2026-11-24T04:07:36+00:00",
+      "last_failure_at": "2026-11-24T04:14:47+00:00",
       "consecutive_failures": 191,
       "selected_url": "",
       "fallback_used": true,
@@ -83,13 +83,13 @@
       "selected_url": "https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.TAD.ATM&df%5Bds%5D=DisseminateFinalDMZ&df%5Bid%5D=DSD_AGR%40DF_OUTLOOK_2026_2035",
       "fallback_count": 1,
       "fallback_used": true,
-      "last_success_at": "2026-11-24T04:07:40+00:00",
+      "last_success_at": "2026-11-24T04:14:51+00:00",
       "last_failure_at": "",
       "consecutive_failures": 0,
       "response_status": "ok"
     }
   },
-  "last_run_at": "2026-11-24T04:07:40+00:00",
-  "last_success_at": "2026-11-24T04:07:40+00:00",
+  "last_run_at": "2026-11-24T04:14:51+00:00",
+  "last_success_at": "2026-11-24T04:14:51+00:00",
   "last_content_change_at": "2026-11-20T00:50:01+00:00"
 }
