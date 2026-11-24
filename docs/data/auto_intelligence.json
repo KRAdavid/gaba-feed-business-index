@@ -544,6 +544,15 @@
   ],
   "failures": [
     {
+      "source": "kr-feed-control-act",
+      "error": "request failed after 3 attempts: https://apis.data.go.kr/1170000/law/lawSearchList.do: HTTP Error 401: Unauthorized",
+      "attempted_urls": [
+        "https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%82%AC%EB%A3%8C%EA%B4%80%EB%A6%AC%EB%B2%95",
+        "https://open.law.go.kr/LSO/openApi/guideResult.do?htmlName=ordinInfoGuide",
+        "https://apis.data.go.kr/1170000/law/lawSearchList.do"
+      ]
+    },
+    {
       "source": "au-apvma-animal-feed",
       "error": "request failed after 3 attempts: https://www.apvma.gov.au/registrations-and-permits/chemical-product-registration/acceptable-nutritional-messages: The read operation timed out",
       "attempted_urls": [
